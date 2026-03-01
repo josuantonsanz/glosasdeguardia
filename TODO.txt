@@ -6,4 +6,3 @@ Things I would like to add:
 - A subtitle for the posts (for those who have it)
 - A table of content in the post like this one: https://maggieappleton.com/ai-enlightenment (use curl)
 - A sass css conversion and minified css in the public folder
-- Add highlighting == ==, in markdown parser

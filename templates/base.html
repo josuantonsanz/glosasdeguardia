@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Digital Garden{% endblock %}</title>
+    <title>{% block title %}Glosas de guardia{% endblock %}</title>
 
     <meta name="description"
         content="{{ description | default('A digital garden and personal knowledge base.', true) }}">
@@ -12,9 +12,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ site_url }}/{{ url | default('', true) }}">
-    <meta property="og:title" content="{{ title | default('Digital Garden', true) }}">
-    <meta property="og:description"
-        content="{{ description | default('A digital garden and personal knowledge base.', true) }}">
+    <meta property="og:title" content="{{ title | default('Glosas de guardia', true) }}">
+    <meta property="og:description" content="{{ description | default('Glosas de guardia', true) }}">
     {% if image %}
     <meta property="og:image" content="{{ site_url }}/{{ image }}">
     {% endif %}
@@ -22,9 +21,8 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ site_url }}/{{ url | default('', true) }}">
-    <meta property="twitter:title" content="{{ title | default('Digital Garden', true) }}">
-    <meta property="twitter:description"
-        content="{{ description | default('A digital garden and personal knowledge base.', true) }}">
+    <meta property="twitter:title" content="{{ title | default('Glosas de guardia', true) }}">
+    <meta property="twitter:description" content="{{ description | default('Glosas de guardia', true) }}">
     {% if image %}
     <meta property="twitter:image" content="{{ site_url }}/{{ image }}">
     {% endif %}

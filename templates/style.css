@@ -133,6 +133,7 @@
 
   /* Flexoki Light Theme - Base (legacy fallback structure) */
   --bg: var(--background-primary);
+  --bg-2: var(--flexoki-50);
 
   /* Layout constraints */
   --max-content-width: 90ch;
@@ -306,9 +307,15 @@ h6 {
   margin-bottom: 1.5em;
 }
 
+.prose ul,
+.prose ol {
+  padding-left: 1.5rem;
+}
+
 /* Note metadata */
 .note-header {
   margin-bottom: 3rem;
+  border-bottom: 0;
 }
 
 .subtitle {
@@ -323,6 +330,19 @@ h6 {
   color: var(--tx-3);
   font-size: 0.875rem;
   font-family: var(--font-sans);
+  width: 100%;
+  align-items: center;
+}
+
+.meta-right {
+  margin-left: auto;
+  display: flex;
+  gap: 0.2rem;
+}
+
+.meta-item.secondary {
+  font-size: 0.75rem;
+  opacity: 0.7;
 }
 
 .meta-item {
@@ -429,6 +449,181 @@ h6 {
 
 .transclusion>*:last-child {
   margin-bottom: 0;
+}
+
+/* Obsidian Callouts */
+details.callout {
+  margin: 1.5em 0;
+  border-left: 4px solid var(--tx-3);
+  background-color: var(--bg-2);
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 0.9em;
+}
+
+summary.callout-title {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* title on left, arrow on right */
+  gap: 0.5rem;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  user-select: none;
+  list-style-type: none;
+  /* hide default marker */
+}
+
+summary.callout-title::-webkit-details-marker {
+  display: none;
+  /* hide webkit default marker */
+}
+
+summary.callout-title:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+
+/* When details is not open, point arrow right */
+details.callout:not([open])>summary.callout-title::after {
+  transform: rotate(-90deg);
+}
+
+/* Hide default marker for cleaner look, relying on custom ::after */
+summary.callout-title::marker {
+  display: none;
+}
+
+/* Callout Content (direct children excluding title) */
+details.callout>*:not(summary.callout-title) {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+details.callout>*:not(summary.callout-title):first-of-type {
+  margin-top: 0.8rem;
+}
+
+details.callout>*:last-child {
+  padding-bottom: 0.8rem;
+  margin-bottom: 0;
+}
+
+/* Color variations */
+.callout-note,
+.callout-info,
+.callout-todo {
+  border-left-color: var(--bl-base);
+  background-color: rgba(67, 133, 190, 0.08);
+}
+
+.callout-note .callout-title,
+.callout-info .callout-title,
+.callout-todo .callout-title {
+  color: var(--bl-base);
+  background-color: rgba(67, 133, 190, 0.15);
+}
+
+.callout-tip,
+.callout-hint,
+.callout-important,
+.callout-abstract,
+.callout-summary,
+.callout-tldr {
+  border-left-color: var(--flexoki-cyan-500);
+  background-color: rgba(47, 150, 141, 0.08);
+}
+
+.callout-tip .callout-title,
+.callout-hint .callout-title,
+.callout-important .callout-title,
+.callout-abstract .callout-title,
+.callout-summary .callout-title,
+.callout-tldr .callout-title {
+  color: var(--flexoki-cyan-600);
+  background-color: rgba(47, 150, 141, 0.15);
+}
+
+.callout-success,
+.callout-check,
+.callout-done {
+  border-left-color: var(--gr-base);
+  background-color: rgba(135, 154, 57, 0.08);
+}
+
+.callout-success .callout-title,
+.callout-check .callout-title,
+.callout-done .callout-title {
+  color: var(--gr-base);
+  background-color: rgba(135, 154, 57, 0.15);
+}
+
+.callout-question,
+.callout-help,
+.callout-faq,
+.callout-warning,
+.callout-caution,
+.callout-attention {
+  border-left-color: var(--flexoki-orange-500);
+  background-color: rgba(203, 97, 32, 0.08);
+}
+
+.callout-question .callout-title,
+.callout-help .callout-title,
+.callout-faq .callout-title,
+.callout-warning .callout-title,
+.callout-caution .callout-title,
+.callout-attention .callout-title {
+  color: var(--flexoki-orange-600);
+  background-color: rgba(203, 97, 32, 0.15);
+}
+
+.callout-failure,
+.callout-fail,
+.callout-missing,
+.callout-danger,
+.callout-error,
+.callout-bug {
+  border-left-color: var(--re-base);
+  background-color: rgba(209, 77, 65, 0.08);
+}
+
+.callout-failure .callout-title,
+.callout-fail .callout-title,
+.callout-missing .callout-title,
+.callout-danger .callout-title,
+.callout-error .callout-title,
+.callout-bug .callout-title {
+  color: var(--re-base);
+  background-color: rgba(209, 77, 65, 0.15);
+}
+
+.callout-example {
+  border-left-color: var(--pu-base);
+  background-color: rgba(139, 126, 200, 0.08);
+}
+
+.callout-example .callout-title {
+  color: var(--pu-base);
+  background-color: rgba(139, 126, 200, 0.15);
+}
+
+.callout-quote,
+.callout-cite {
+  border-left-color: var(--tx-2);
+  background-color: rgba(135, 133, 128, 0.08);
+}
+
+.callout-quote .callout-title,
+.callout-cite .callout-title {
+  color: var(--tx-2);
+  background-color: rgba(135, 133, 128, 0.15);
 }
 
 /* Mobile Responsiveness */

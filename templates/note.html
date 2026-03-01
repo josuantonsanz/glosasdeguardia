@@ -29,9 +29,23 @@
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                {{ reading_time }} min read
+                {{ reading_time }} min
             </span>
             {% endif %}
+
+            <div class="meta-right">
+                {% if planted_hace %}
+                <span class="meta-item secondary">
+                    Plantado hace {{ planted_hace }}.
+                </span>
+                {% endif %}
+
+                {% if atendido_hace %}
+                <span class="meta-item secondary">
+                    Atendido hace {{ atendido_hace }}.
+                </span>
+                {% endif %}
+            </div>
         </div>
     </header>
 
@@ -44,7 +58,7 @@
 {% block toc_sidebar %}
 {% if toc and '<li>' in toc %}
     <div class="toc-container">
-        <div class="toc-title">Table of Contents</div>
+        <div class="toc-title">Contenido</div>
         <nav class="toc-nav">
             {{ toc | safe }}
         </nav>

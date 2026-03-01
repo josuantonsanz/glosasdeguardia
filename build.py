@@ -6,6 +6,7 @@ import markdown
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 import time
+from datetime import datetime
 
 # Configuration
 SITE_URL = "https://glosasdeguardia.es"
@@ -148,6 +149,48 @@ def filter_proprietary_content(content):
     """Removes sections between ;;;propio and ;;;."""
     return re.sub(r';;;propio[\s\S]*?;;;', '', content)
 
+def get_relative_time(date_val):
+    """
+    Returns a string representing how long ago the date was.
+    Handles datetime objects or ISO format strings.
+    """
+    if not date_val:
+        return ""
+    
+    try:
+        if isinstance(date_val, str):
+            # Try parsing various formats common in Obsidian
+            for fmt in ("%Y-%m-%dT%H:%M", "%Y-%m-%d %H:%M", "%Y-%m-%d"):
+                try:
+                    dt = datetime.strptime(date_val, fmt)
+                    break
+                except ValueError:
+                    continue
+            else:
+                return "" # Could not parse
+        else:
+            dt = date_val
+            
+        now = datetime.now()
+        diff = now - dt
+        
+        days = diff.days
+        if days < 0: return "en el futuro"
+        
+        if days == 0:
+            return "hoy"
+        if days < 30:
+            return f"{days} {'día' if days == 1 else 'días'}"
+        
+        months = days // 30
+        if months < 12:
+            return f"{months} {'mes' if months == 1 else 'meses'}"
+        
+        years = months // 12
+        return f"{years} {'año' if years == 1 else 'años'}"
+    except Exception:
+        return ""
+
 def extract_metadata(content, frontmatter_dict, fallback_title, extracted_images=None):
     """
     Extracts metadata for the template:
@@ -161,10 +204,16 @@ def extract_metadata(content, frontmatter_dict, fallback_title, extracted_images
     Returns: (metadata_dict, cleaned_content) where cleaned_content has the primary H1 removed
     if it was used as the title.
     """
+    # Extract relative times
+    created_val = frontmatter_dict.get("created", frontmatter_dict.get("planted", ""))
+    updated_val = frontmatter_dict.get("updated", frontmatter_dict.get("edited", ""))
+    
     metadata = {
-        "title": frontmatter_dict.get("title"),
+        "title": None, # Ignore title from frontmatter
         "subtitle": frontmatter_dict.get("subtitle", ""),
-        "date": frontmatter_dict.get("date", frontmatter_dict.get("planted", ""))
+        "date": frontmatter_dict.get("date", frontmatter_dict.get("planted", "")),
+        "planted_hace": get_relative_time(created_val),
+        "atendido_hace": get_relative_time(updated_val)
     }
     
     # Calculate reading time and text preview
@@ -196,9 +245,6 @@ def extract_metadata(content, frontmatter_dict, fallback_title, extracted_images
             cleaned_content = content.replace(h1_match.group(0), "", 1).lstrip()
         else:
             metadata["title"] = fallback_title
-    else:
-        # Also unescape if title came from frontmatter
-        metadata["title"] = str(metadata["title"]).replace("\\.", ".")
             
     return metadata, cleaned_content
 
@@ -225,6 +271,86 @@ def process_inline_footnotes(content):
 def process_highlights(content):
     """Converts ==text== to <mark>text</mark>."""
     return re.sub(r'==(.+?)==', r'<mark>\1</mark>', content)
+
+def process_strikethrough(content):
+    """Converts ~~text~~ to <del>text</del>."""
+    return re.sub(r'~~(.+?)~~', r'<del>\1</del>', content)
+
+def process_callouts(content):
+    """
+    Identifies Obsidian callouts:
+    > [!type] Title
+    > Content
+    
+    Converts them to:
+    <details class="callout callout-{type}" open markdown="1">
+    <summary class="callout-title">{title or type}</summary>
+    {content}
+    </details>
+    """
+    lines = content.split('\n')
+    new_lines = []
+    in_callout = False
+    callout_type = ""
+    callout_title = ""
+    callout_is_collapsible = False
+    callout_is_open = True
+    callout_body = []
+    
+    # Regex to match the start of a callout: > [!type][+|-] Title
+    callout_start_re = re.compile(r'^>\s*\[!([^\]]+)\]([+-]?)\s*(.*)$')
+    
+    for line in lines:
+        if not in_callout:
+            match = callout_start_re.match(line)
+            if match:
+                in_callout = True
+                callout_type = match.group(1).lower().strip()
+                fold_marker = match.group(2)
+                callout_title = match.group(3).strip()
+                
+                # In standard markdown/HTML, <details> is always collapsible.
+                # If we want it to work cleanly, and user said "in case they have a title",
+                # let's assume if there's an explicit title, we can make it a detail block.
+                # Actually, Obsidian callouts always have a title (defaulting to type name).
+                if not callout_title:
+                    callout_title = callout_type.capitalize()
+                    
+                if fold_marker == '-':
+                    callout_is_open = False
+                else:
+                    callout_is_open = True
+                    
+                callout_body = []
+            else:
+                new_lines.append(line)
+        else:
+            # We are inside a callout. Does this line continue the callout?
+            if line.startswith('>'):
+                # Strip the leading '>' and one space if present
+                content_line = line[1:]
+                if content_line.startswith(' '):
+                    content_line = content_line[1:]
+                callout_body.append(content_line)
+            else:
+                # Callout ended
+                open_attr = ' open' if callout_is_open else ''
+                new_lines.append(f'<details class="callout callout-{callout_type}"{open_attr} markdown="1">')
+                new_lines.append(f'<summary class="callout-title">{callout_title}</summary>')
+                new_lines.append('\n'.join(callout_body))
+                new_lines.append('</details>')
+                new_lines.append(line)
+                in_callout = False
+                
+    # If the file ends while in a callout
+    if in_callout:
+        open_attr = ' open' if callout_is_open else ''
+        new_lines.append(f'<details class="callout callout-{callout_type}"{open_attr} markdown="1">')
+        new_lines.append(f'<summary class="callout-title">{callout_title}</summary>')
+        new_lines.append('\n'.join(callout_body))
+        new_lines.append('</details>')
+        
+    return '\n'.join(new_lines)
 
 def resolve_images(content, current_rel_path, image_map):
     """
@@ -332,20 +458,31 @@ def convert_wikilinks(content, link_map, current_filepath):
     
     def get_relative_url(target):
         # We get the target's path relative to the root (e.g. "Folder/Target.html")
-        target_url = link_map.get(target, f"{target}.html")
+        target_url = link_map.get(target)
+        if not target_url:
+            return None
         # And we prefix it to make it relative to the currently viewed page
         return f"{prefix}{target_url}"
     
     def repl_alias(match):
         note_target = match.group(1).strip()
+        # If the pipe was escaped (e.g. in tables: [[Note\|Alias]]),
+        # the note_target will end with a backslash.
+        if note_target.endswith('\\'):
+            note_target = note_target[:-1].strip()
+            
         alias = match.group(2).strip()
         url = get_relative_url(note_target)
-        return f"[{alias}]({url})"
+        if url:
+            return f"[{alias}]({url})"
+        return alias
         
     def repl_simple(match):
         note_target = match.group(1).strip()
         url = get_relative_url(note_target)
-        return f"[{note_target}]({url})"
+        if url:
+            return f"[{note_target}]({url})"
+        return note_target
         
     content = pattern_alias.sub(repl_alias, content)
     content = pattern_simple.sub(repl_simple, content)
@@ -382,8 +519,9 @@ def build_site():
         try:
             with open(filepath, 'r', encoding='utf-8') as f:
                 post = frontmatter.load(f)
-            # Index by title if available, otherwise filename stem
-            title = post.metadata.get("title", filepath.stem)
+            # Index for transclusions - ignore frontmatter title, use filename stem
+            # This ensures consistent internal references
+            title = filepath.stem
             vault_content[title] = post.content
             # Also index by relative path stem to ensure safety
             vault_content[filepath.stem] = post.content
@@ -407,7 +545,13 @@ def build_site():
         # 4. Process Highlights ==...==
         content = process_highlights(content)
         
-        # 5. Resolve Images and Obsidian Embeds ![[img]]
+        # 5. Process Strikethrough ~~...~~
+        content = process_strikethrough(content)
+        
+        # 6. Process Callouts > [!type]
+        content = process_callouts(content)
+        
+        # 7. Resolve Images and Obsidian Embeds ![[img]]
         content, used_images = resolve_images(content, rel_path, all_used_images)
         all_used_images.update(used_images)
         
@@ -430,6 +574,8 @@ def build_site():
             "subtitle": metadata["subtitle"],
             "date": metadata["date"],
             "reading_time": metadata["reading_time"],
+            "planted_hace": metadata["planted_hace"],
+            "atendido_hace": metadata["atendido_hace"],
             "description": metadata["description"],
             "image": metadata["image"],
             "content": html_content,

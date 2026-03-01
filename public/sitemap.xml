@@ -21,6 +21,13 @@
     </url>
     
     <url>
+        <loc>https://glosasdeguardia.es/Test Callouts.html</loc>
+        
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
         <loc>https://glosasdeguardia.es/Investigación/Enseñanza/LaTeX (Cursillo acelerado)/1. Introducción - Latex.html</loc>
         
         <changefreq>weekly</changefreq>

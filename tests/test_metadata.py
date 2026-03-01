@@ -20,14 +20,17 @@ def test_extract_metadata_fallback_title():
     
     assert metadata["title"] == "Filename Title"
 
-def test_extract_metadata_prioritizes_frontmatter():
+def test_extract_metadata_ignores_frontmatter_title():
     content = "# Markdown Header"
     frontmatter = {"title": "YAML Title", "subtitle": "A great subtitle", "date": "2023-10-01", "planted": "2022-01-01"}
     
     metadata, new_content = extract_metadata(content, frontmatter, "Fallback")
     
-    assert metadata["title"] == "YAML Title"
+    # It should IGNORE "YAML Title" and use "Markdown Header"
+    assert metadata["title"] == "Markdown Header"
     assert metadata["subtitle"] == "A great subtitle"
+    # The header should be removed from content even if frontmatter title was present
+    assert "# Markdown Header" not in new_content
     
 def test_extract_reading_time():
     # 400 words should be exactly 2 minutes (200 wpm)

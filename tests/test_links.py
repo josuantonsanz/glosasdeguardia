@@ -47,3 +47,20 @@ def test_convert_wikilinks_with_nested_paths():
     # Test link from deep subfolder with alias
     content3 = "Check out [[Folder A/Note 1|My First Note]]"
     assert convert_wikilinks(content3, link_map, current_filepath=Path("Folder A/Subfolder/Deep Note.md")) == "Check out [My First Note](../../Folder A/Note 1.html)"
+
+def test_convert_wikilinks_ignores_unpublished():
+    link_map = {
+        "Published Note": "Published Note.html"
+    }
+    
+    # Link to published note should work
+    content_pub = "See [[Published Note]]"
+    assert convert_wikilinks(content_pub, link_map, current_filepath=Path("index.md")) == "See [Published Note](Published Note.html)"
+    
+    # Link to UNPUBLISHED note (not in link_map) should be plain text
+    content_unpub = "See [[Secret Note]]"
+    assert convert_wikilinks(content_unpub, link_map, current_filepath=Path("index.md")) == "See Secret Note"
+    
+    # Link to UNPUBLISHED note with alias should be alias text
+    content_alias = "See [[Secret Note|Alias]]"
+    assert convert_wikilinks(content_alias, link_map, current_filepath=Path("index.md")) == "See Alias"
