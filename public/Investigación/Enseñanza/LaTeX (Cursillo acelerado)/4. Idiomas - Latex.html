@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idiomas en LaTeX | Digital Garden</title>
+
+    <meta name="description"
+        content="Idiomas en LaTeX Aunque una vez que funciona es maravilloso, es un poco complicado configurar LaTeX para que funcione con varios idiomas sobre todo si tienen...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/Investigación/Enseñanza/LaTeX (Cursillo acelerado)/4. Idiomas - Latex.html">
+    <meta property="og:title" content="Idiomas en LaTeX">
+    <meta property="og:description"
+        content="Idiomas en LaTeX Aunque una vez que funciona es maravilloso, es un poco complicado configurar LaTeX para que funcione con varios idiomas sobre todo si tienen...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/Investigación/Enseñanza/LaTeX (Cursillo acelerado)/4. Idiomas - Latex.html">
+    <meta property="twitter:title" content="Idiomas en LaTeX">
+    <meta property="twitter:description"
+        content="Idiomas en LaTeX Aunque una vez que funciona es maravilloso, es un poco complicado configurar LaTeX para que funcione con varios idiomas sobre todo si tienen...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#espanol">Español</a></li>
+<li><a href="#griego">Griego</a></li>
+<li><a href="#hebreo">Hebreo</a><ul>
+<li><a href="#parrafos-completos-en-hebreo">Párrafos completos en hebreo</a></li>
+</ul>
+</li>
+<li><a href="#fonetica-y-transliteracion">Fonética y transliteración</a></li>
+<li><a href="#a-donde-ir-desde-aqui">A dónde ir desde aquí</a></li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Idiomas en LaTeX</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                2 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <p>Aunque una vez que funciona es maravilloso, es un poco complicado configurar LaTeX para que funcione con varios idiomas (sobre todo si tienen distinta grafía o dirección). Para los siguientes pasos, se recomienda cambiar el compilador de <code>pdflatex</code> a <code>xelatex</code>. La clase de documento que usaremos será <code>memoir</code>.</p>
+<p>Para todos los casos, conviene usar un tipo de letra que tenga todos los caracteres españoles y griegos, así que vamos a usar <code>libertine</code>:</p>
+<pre><code class="language-tex">\usapackage{libertine}
+</code></pre>
+<h2 id="espanol">Español</h2>
+<p>Para el español usaremos <code>babel</code>:</p>
+<pre><code class="language-tex">\PassOptionsToPackage{spanish, es-lcroman}{babel}
+\usepackage{babel}
+\selectlanguage{spanish}
+</code></pre>
+<h2 id="griego">Griego</h2>
+<p>Usando <code>xelatex</code> y <code>libertine</code> como fuente, puedes escribir en griego sin ningún problema (usando un teclado griego). Si no está esa opción, puedes usar <code>textgreek</code>:</p>
+<pre><code class="language-tex">\usepackage[euler]{textgreek}
+</code></pre>
+<h2 id="hebreo">Hebreo</h2>
+<p>Para el hebreo <code>cjhebrew</code>, con dos comandos extra para simplificar la inclusión de texto hebreo en medio de una línea:</p>
+<pre><code class="language-tex">\usepackage{cjhebrew}
+\newcommand{\hb}[1]{\cjRL{#1}}
+\newcommand{\Lhb}[1]{{\Large\hb{#1}}}
+</code></pre>
+<p>Así, el conjunto quedaría:</p>
+<pre><code class="language-tex">\usepackage[euler]{textgreek}
+\usepackage{cjhebrew}
+\newcommand{\hb}[1]{\cjRL{#1}}
+\newcommand{\Lhb}[1]{{\Large\hb{#1}}}
+\PassOptionsToPackage{spanish, es-lcroman}{babel}
+\usepackage{babel}
+\selectlanguage{spanish}
+</code></pre>
+<h3 id="parrafos-completos-en-hebreo">Párrafos completos en hebreo</h3>
+<p>Aquí se complica un poco la cosa, hay que usar <code>polyglossia</code> y deshacernos de <code>babel</code>. Quedaría tal que así:</p>
+<pre><code class="language-tex">\usepackage[euler]{textgreek}
+\usepackage{cjhebrew}
+\newcommand{\hb}[1]{\cjRL{#1}}
+\newcommand{\Lhb}[1]{{\Large\hb{#1}}}
+
+% - Right-to-left text - %
+
+\usepackage{polyglossia}
+\let\XeLaTeX\relax
+\let\XeTeX\relax
+\setmainlanguage{spanish}
+\setotherlanguage{hebrew}
+\selectlanguage{spanish}
+</code></pre>
+<h2 id="fonetica-y-transliteracion">Fonética y transliteración</h2>
+<p>Para la fonética y transliteración, lo más sencillo es usar <code>tipa</code>. Para más facilidad con el hebreo, podemos añadir estos comandos:</p>
+<pre><code class="language-tex">\usepackage{tipa}
+\newcommand{\ie}{\textipa{@}} % e invertida (sewa)
+\newcommand{\sewa}{\v{s}\ie wa} % transliteración de &quot;sewa&quot;
+\renewcommand{\st}{\textprimstress} % acento transliterado
+</code></pre>
+<p>Algunos símbolos comunes:
+- ò <code>\`{o}</code> 
+- ó<code>\'{o}</code> 
+- ô <code>\^{o}</code> 
+- ǒ<code>\v{o}</code><br />
+- ō <code>\ ={o}</code> 
+- o̲ <code>\b{o}</code> 
+- ȯ <code>\.{o}</code> 
+- ọ <code>\d{o}</code><br />
+- ŏ <code>\u{o}</code> 
+- õ <code>\~{o}</code> </p>
+<h2 id="a-donde-ir-desde-aqui">A dónde ir desde aquí</h2>
+<p>Aquí tienes el esquema general:
+1. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/1. Introducción - Latex.html">Introducción, estructura y formato</a>
+2. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/2. Elementos más complejos - Latex.html">Imágenes, tablas y notas al pie</a>
+3. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/4. Idiomas - Latex.html">Idiomas (castellano, griego, hebreo y fonética)</a> (esta página)
+4. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">5. Canciones</a></p>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

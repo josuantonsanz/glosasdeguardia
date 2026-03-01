@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadenas en Python | Digital Garden</title>
+
+    <meta name="description"
+        content="Cadenas en Python Repaso rápido: Lo que ya sabemos de las cadenas Recordemos lo que vimos en las clases anteriores: 1. Creación: Se crean con comillas simple...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/2c - Cadenas.html">
+    <meta property="og:title" content="Cadenas en Python">
+    <meta property="og:description"
+        content="Cadenas en Python Repaso rápido: Lo que ya sabemos de las cadenas Recordemos lo que vimos en las clases anteriores: 1. Creación: Se crean con comillas simple...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/2c - Cadenas.html">
+    <meta property="twitter:title" content="Cadenas en Python">
+    <meta property="twitter:description"
+        content="Cadenas en Python Repaso rápido: Lo que ya sabemos de las cadenas Recordemos lo que vimos en las clases anteriores: 1. Creación: Se crean con comillas simple...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#repaso-rapido-lo-que-ya-sabemos-de-las-cadenas">Repaso rápido: Lo que ya sabemos de las cadenas</a></li>
+<li><a href="#las-cadenas-son-secuencias-indexacion-y-slicing">Las cadenas son secuencias: Indexación y Slicing</a><ul>
+<li><a href="#indexacion-acceder-a-un-caracter">Indexación (acceder a un carácter)</a></li>
+<li><a href="#slicing-extraer-sub-cadenas">Slicing (Extraer sub-cadenas)</a></li>
+</ul>
+</li>
+<li><a href="#inmutabilidad-las-cadenas-no-se-pueden-cambiar">Inmutabilidad: Las cadenas no se pueden cambiar</a><ul>
+<li><a href="#la-caja-de-herramientas-metodos-y-operadores-de-string">La «caja de herramientas»: Métodos y operadores de String</a><ul>
+<li><a href="#operador-in-comprobando-pertenencia">Operador in: Comprobando pertenencia</a></li>
+<li><a href="#cambio-de-mayusculas-y-minusculas">Cambio de mayúsculas y minúsculas</a></li>
+<li><a href="#busqueda-y-reemplazo">Búsqueda y reemplazo</a></li>
+<li><a href="#limpieza-de-espacios-en-blanco">Limpieza de espacios en blanco</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#formateo-de-cadenas-las-f-strings">Formateo de cadenas, las f-strings</a><ul>
+<li><a href="#aprovechando-las-f-strings">Aprovechando las f-strings</a></li>
+<li><a href="#controlando-el-ancho-y-la-alineacion">Controlando el ancho y la alineación</a></li>
+<li><a href="#formateando-numeros-decimales-float">Formateando números decimales (float)</a></li>
+<li><a href="#combinando-formatos-y-otros-trucos-utiles">Combinando formatos y otros trucos útiles</a></li>
+</ul>
+</li>
+<li><a href="#ejercicios-practicos">Ejercicios prácticos</a><ul>
+<li><a href="#1-extractor-de-informacion">1. Extractor de información</a></li>
+<li><a href="#2-formateador-de-nombres">2. Formateador de nombres</a></li>
+<li><a href="#3-censor-de-palabras">3. Censor de palabras</a></li>
+<li><a href="#4-palindromos">4. Palíndromos</a></li>
+<li><a href="#6-dibujante-de-separadores">6. Dibujante de separadores</a></li>
+<li><a href="#7-generador-de-tickets-de-compra">7. Generador de tickets de compra</a></li>
+</ul>
+</li>
+<li><a href="#datos-de-los-productos">Datos de los productos</a></li>
+<li><a href="#iva">IVA</a></li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Cadenas en Python</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                12 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <h2 id="repaso-rapido-lo-que-ya-sabemos-de-las-cadenas">Repaso rápido: Lo que ya sabemos de las cadenas</h2>
+<p>Recordemos lo que vimos en las clases anteriores:</p>
+<ol>
+<li><strong>Creación:</strong> Se crean con comillas simples (<code>'</code>) o dobles (<code>"</code>).
+    <code>python
+    saludo = "Hola, mundo"
+    despedida = 'Adiós'</code></li>
+<li><strong>Concatenación:</strong> Se pueden unir (concatenar) con el operador <code>+</code>.
+    <code>python
+    nombre = "Ana"
+    mensaje = "Hola, " + nombre # Resultado: "Hola, Ana"</code></li>
+<li><strong>Repetición (*):</strong> Se pueden repetir usando el operador de multiplicación con un número entero.</li>
+</ol>
+<pre><code class="language-python">risa = &quot;ja&quot; * 4      # Resultado: &quot;jajajaja&quot;
+separador = &quot;-&quot; * 20 # Resultado: &quot;--------------------&quot;
+print(separador)
+</code></pre>
+<ol>
+<li><strong>Entrada y Salida:</strong> Las usamos con <code>print()</code> y siempre las obtenemos de <code>input()</code>.</li>
+<li><strong>Longitud:</strong> Podemos saber cuántos caracteres tienen con la función <code>len()</code>.
+    <code>python
+    print(len("Python")) # Muestra 6</code></li>
+</ol>
+<p>Pero las cadenas son mucho más que eso. Vamos a ver todo lo que se puede hacer con ellas.</p>
+<h2 id="las-cadenas-son-secuencias-indexacion-y-slicing">Las cadenas son secuencias: Indexación y <em>Slicing</em></h2>
+<p>La característica más importante de una cadena es que es una <strong>secuencia ordenada de caracteres</strong>. Esto significa que cada carácter tiene una posición (un <strong>índice</strong>) y podemos acceder a él.</p>
+<h3 id="indexacion-acceder-a-un-caracter">Indexación (acceder a un carácter)</h3>
+<p>En Python, los índices empiezan a contar desde <strong>cero (0)</strong>.</p>
+<p>Imagina la palabra <code>"PYTHON"</code> como una serie de cajas numeradas:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">P</th>
+<th style="text-align: center;">Y</th>
+<th style="text-align: center;">T</th>
+<th style="text-align: center;">H</th>
+<th style="text-align: center;">O</th>
+<th style="text-align: center;">N</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+</tr>
+</tbody>
+</table>
+<p>Para acceder a un carácter, usamos corchetes <code>[]</code> después de la variable.</p>
+<pre><code class="language-python">palabra = &quot;PYTHON&quot;
+print(palabra[0])  # Muestra 'P' (el primer carácter)
+print(palabra[3])  # Muestra 'H'
+</code></pre>
+<blockquote>
+<p><strong>Tip: Indexación negativa</strong>
+Python también permite contar desde el final usando números negativos. El <code>-1</code> es el último carácter, <code>-2</code> el penúltimo, y así sucesivamente.</p>
+</blockquote>
+<pre><code class="language-python">print(palabra[-1]) # Muestra 'N' (el último carácter)
+print(palabra[-2]) # Muestra 'O'
+</code></pre>
+<h3 id="slicing-extraer-sub-cadenas"><em>Slicing</em> (Extraer sub-cadenas)</h3>
+<p>El <em>slicing</em> (rebanado) nos permite extraer una porción de la cadena. La sintaxis es <code>[inicio:fin]</code>.</p>
+<ul>
+<li><code>inicio</code>: El índice donde empieza la rebanada (incluido).</li>
+<li><code>fin</code>: El índice donde termina la rebanada (<strong>no incluido</strong>).</li>
+</ul>
+<pre><code class="language-python">palabra = &quot;PYTHON&quot;
+print(palabra[0:3])  # Desde el índice 0 hasta el 3 (sin incluirlo). Muestra &quot;PYT&quot;
+print(palabra[2:5])  # Desde el índice 2 hasta el 5 (sin incluirlo). Muestra &quot;THO&quot;
+</code></pre>
+<p><strong>Atajos para el <em>slicing</em>:</strong></p>
+<ul>
+<li>Si omites el <code>inicio</code>, Python asume que es desde el principio (<code>0</code>).</li>
+<li>Si omites el <code>fin</code>, Python asume que es hasta el final.</li>
+</ul>
+<pre><code class="language-python">print(palabra[:3]) # Desde el principio hasta el 3. Muestra &quot;PYT&quot;
+print(palabra[3:]) # Desde el 3 hasta el final. Muestra &quot;HON&quot;
+print(palabra[:])  # Muestra una copia de la cadena completa &quot;PYTHON&quot;
+</code></pre>
+<h2 id="inmutabilidad-las-cadenas-no-se-pueden-cambiar">Inmutabilidad: Las cadenas no se pueden cambiar</h2>
+<p>Este es un concepto clave en Python. Una vez que creas una cadena, <strong>no puedes modificar sus caracteres</strong>. A esto se le llama <strong>inmutabilidad</strong>.</p>
+<p>Si intentas cambiar un carácter directamente, obtendrás un error:</p>
+<pre><code class="language-python">nombre = &quot;Josu&quot;
+# nombre[0] = &quot;j&quot; # ¡Esto dará un TypeError!
+</code></pre>
+<p><strong>¿Entonces cómo «modificamos» una cadena?</strong></p>
+<p>Creamos una <strong>nueva</strong> cadena a partir de la original.</p>
+<pre><code class="language-python">nombre = &quot;Josu&quot;
+nombre_minuscula = &quot;j&quot; + nombre[1:] # Concatenamos 'j' con la rebanada 'osu'
+print(nombre_minuscula) # Muestra &quot;josu&quot;
+print(nombre)           # La original sigue intacta: &quot;Josu&quot;
+</code></pre>
+<h3 id="la-caja-de-herramientas-metodos-y-operadores-de-string">La «caja de herramientas»: Métodos y operadores de String</h3>
+<p>Las cadenas tienen muchas «funciones» incorporadas llamadas <strong>métodos</strong> y operadores especiales que nos facilitan la vida.</p>
+<h4 id="operador-in-comprobando-pertenencia">Operador <code>in</code>: Comprobando pertenencia</h4>
+<p>A menudo, no necesitamos saber <em>dónde</em> está algo, sino simplemente si <em>está o no</em>. Para esto usamos el operador <code>in</code>, que devuelve un booleano (<code>True</code> o <code>False</code>). Es perfecto para usarlo en condicionales <code>if</code>.</p>
+<p>Sintaxis: <code>subcadena in cadena_principal</code></p>
+<pre><code class="language-python">frase = &quot;El veloz zorro marrón salta sobre el perro perezoso.&quot;
+
+if &quot;zorro&quot; in frase:
+    print(&quot;¡Sí, la palabra 'zorro' está en la frase!&quot;)
+
+if &quot;gato&quot; not in frase:
+    print(&quot;No, la palabra 'gato' no está en la frase.&quot;)
+</code></pre>
+<blockquote>
+<p><strong>Importante:</strong> El operador <code>in</code> distingue entre mayúsculas y minúsculas.</p>
+</blockquote>
+<pre><code class="language-python">texto = &quot;Hola Mundo&quot;
+print(&quot;mundo&quot; in texto) # Muestra False, porque la 'M' es mayúscula.
+# Solución: convertir todo a minúsculas para la comprobación.
+print(&quot;mundo&quot; in texto.lower()) # Muestra True
+</code></pre>
+<h4 id="cambio-de-mayusculas-y-minusculas">Cambio de mayúsculas y minúsculas</h4>
+<ul>
+<li><code>.upper()</code>: Convierte toda la cadena a mayúsculas.</li>
+<li><code>.lower()</code>: Convierte toda la cadena a minúsculas.</li>
+<li><code>.capitalize()</code>: Pone en mayúscula solo el primer carácter.</li>
+<li><code>.title()</code>: Pone en mayúscula el primer carácter de cada palabra.</li>
+</ul>
+<pre><code class="language-python">frase = &quot;hola, bienvenido al MUNDO de python&quot;
+print(frase.upper())      # Muestra: &quot;HOLA, BIENVENIDO AL MUNDO DE PYTHON&quot;
+print(frase.capitalize()) # Muestra: &quot;Hola, bienvenido al mundo de python&quot;
+print(frase.title())      # Muestra: &quot;Hola, Bienvenido Al Mundo De Python&quot;
+</code></pre>
+<h4 id="busqueda-y-reemplazo">Búsqueda y reemplazo</h4>
+<ul>
+<li><code>.find('texto')</code>: Busca <code>'texto'</code> dentro de la cadena y devuelve el índice de su <strong>primera aparición</strong>. Si no lo encuentra, devuelve <code>-1</code>.</li>
+<li><code>.replace('viejo', 'nuevo')</code>: Devuelve una nueva cadena reemplazando todas las apariciones de <code>'viejo'</code> por <code>'nuevo'</code>.</li>
+</ul>
+<pre><code class="language-python">email = &quot;alumno@ejemplo.com&quot;
+print(email.find('@'))      # Muestra 6 (la posición de la arroba)
+print(email.find('xyz'))    # Muestra -1 (no lo encuentra)
+
+frase_fea = &quot;Python es aburrido.&quot;
+frase_bonita = frase_fea.replace(&quot;aburrido&quot;, &quot;divertido&quot;)
+print(frase_bonita) # Muestra &quot;Python es divertido.&quot;
+</code></pre>
+<h4 id="limpieza-de-espacios-en-blanco">Limpieza de espacios en blanco</h4>
+<ul>
+<li><code>.strip()</code>: Elimina los espacios en blanco (o saltos de línea) al principio y al final de la cadena. Muy útil para limpiar la entrada del usuario.</li>
+</ul>
+<pre><code class="language-python">usuario_input = &quot;  josu  &quot;
+print(usuario_input.strip()) # Muestra &quot;josu&quot; (sin los espacios)
+</code></pre>
+<h2 id="formateo-de-cadenas-las-f-strings">Formateo de cadenas, las f-strings</h2>
+<p>Hasta ahora, para combinar texto y variables, hemos usado <code>+</code>:</p>
+<pre><code class="language-python">nombre = &quot;Carla&quot;
+edad = 30
+# Forma antigua y poco práctica:
+print(&quot;Hola, &quot; + nombre + &quot;. Tienes &quot; + str(edad) + &quot; años.&quot;)
+</code></pre>
+<p>Esto es engorroso: hay que tener cuidado con los espacios y convertir los números a <code>str()</code> manualmente.</p>
+<p>Python nos ofrece una forma mucho mejor: las <strong>f-strings</strong>.</p>
+<p><strong>¿Cómo se usan?</strong></p>
+<ol>
+<li>Pon una <code>f</code> justo antes de las comillas de apertura.</li>
+<li>Inserta tus variables directamente dentro de la cadena, rodeadas por llaves <code>{}</code>.</li>
+</ol>
+<pre><code class="language-python">nombre = &quot;Carla&quot;
+edad = 30
+# Forma moderna con f-string:
+print(f&quot;Hola, {nombre}. Tienes {edad} años.&quot;)
+</code></pre>
+<p>Como ves, es mucho más limpio y legible. Dentro de las llaves puedes poner incluso operaciones:</p>
+<pre><code class="language-python">print(f&quot;El año que viene tendrás {edad + 1} años.&quot;)
+</code></pre>
+<h3 id="aprovechando-las-f-strings">Aprovechando las f-strings</h3>
+<p>La utilidad real de las f-strings aparece cuando añadimos <strong>opciones de formato</strong> dentro de las llaves, justo después de la variable, separadas por dos puntos (<code>:</code>).</p>
+<p>Sintaxis: <code>f"{variable:formato}"</code></p>
+<p>Veamos los casos más útiles.</p>
+<h3 id="controlando-el-ancho-y-la-alineacion">Controlando el ancho y la alineación</h3>
+<p>Podemos reservar un número de espacios para nuestra variable y decidir cómo se alinea dentro de ese espacio. Esto es ideal para mostrar datos en columnas bien ordenadas.</p>
+<ul>
+<li><code>&lt;</code> : Alinear a la izquierda (por defecto para texto).</li>
+<li><code>^</code> : Centrar.</li>
+<li><code>&gt;</code> : Alinear a la derecha (por defecto para números).</li>
+</ul>
+<pre><code class="language-python"># Reservamos 15 caracteres para cada nombre
+nombre1 = &quot;Ana&quot;
+nombre2 = &quot;Rodrigo&quot;
+nombre3 = &quot;Margarita&quot;
+
+print(f&quot;|{nombre1:&lt;15}|&quot;) # Alinear a la izquierda
+print(f&quot;|{nombre2:^15}|&quot;) # Centrar
+print(f&quot;|{nombre3:&gt;15}|&quot;) # Alinear a la derecha
+</code></pre>
+<p><strong>Salida:</strong></p>
+<pre><code>|Ana            |
+|    Rodrigo    |
+|      Margarita|
+</code></pre>
+<blockquote>
+<p><strong>Tip: Carácter de relleno</strong>
+Puedes especificar qué carácter usar para rellenar el espacio sobrante, poniéndolo justo antes del símbolo de alineación.</p>
+</blockquote>
+<pre><code class="language-python">print(f&quot;|{nombre2:*^15}|&quot;) # Centra y rellena con asteriscos
+# Salida: |***Rodrigo****|
+</code></pre>
+<h3 id="formateando-numeros-decimales-float">Formateando números decimales (<code>float</code>)</h3>
+<p>Cuando trabajamos con cálculos, a menudo obtenemos resultados con demasiados decimales. Podemos controlar con precisión cuántos queremos mostrar.</p>
+<p>La sintaxis es <code>:.Nf</code>, donde <code>N</code> es el número de decimales que queremos.</p>
+<pre><code class="language-python">pi = 3.14159265
+division = 10 / 3
+
+print(f&quot;El valor de pi es: {pi}&quot;)
+print(f&quot;El resultado de la división es: {division}&quot;)
+
+print(&quot;--- Formateado ---&quot;)
+# Mostramos pi con solo 2 decimales
+print(f&quot;El valor de pi es: {pi:.2f}&quot;)
+
+# Mostramos la división con 4 decimales
+print(f&quot;El resultado de la división es: {division:.4f}&quot;)
+</code></pre>
+<p><strong>Salida:</strong></p>
+<pre><code>El valor de pi es: 3.14159265
+El resultado de la división es: 3.3333333333333335
+--- Formateado ---
+El valor de pi es: 3.14
+El resultado de la división es: 3.3333
+</code></pre>
+<h3 id="combinando-formatos-y-otros-trucos-utiles">Combinando formatos y otros trucos útiles</h3>
+<p>Lo mejor es que puedes combinar estas reglas. Por ejemplo, alinear un número y a la vez limitar sus decimales.</p>
+<pre><code class="language-python">precio = 49.9
+# Reservar 10 espacios, alinear a la derecha y mostrar 2 decimales
+print(f&quot;Precio: ${precio:&gt;10.2f}&quot;)
+# Salida: Precio: $     49.90
+</code></pre>
+<p><strong>Otros formatos muy prácticos:</strong></p>
+<ul>
+<li><strong>Separador de miles (<code>:,</code>):</strong> Añade comas para hacer los números grandes más legibles.
+    <code>python
+    numero_grande = 1234567890
+    print(f"Población mundial aproximada: {numero_grande:,}")
+    # Salida: Población mundial aproximada: 1,234,567,890</code></li>
+<li><strong>Porcentajes (<code>:%</code>):</strong> Multiplica el número por 100 y le añade el símbolo <code>%</code>.
+    <code>python
+    descuento = 0.25
+    print(f"Oferta especial: ¡Un {descuento:.0%} de descuento!")
+    # Salida: Oferta especial: ¡Un 25% de descuento!</code></li>
+</ul>
+<h2 id="ejercicios-practicos">Ejercicios prácticos</h2>
+<h3 id="1-extractor-de-informacion">1. Extractor de información</h3>
+<p>Pide al usuario que introduzca su dirección de email. Luego, usando <em>slicing</em>, extrae y muestra por separado el nombre de usuario y el dominio.</p>
+<ul>
+<li><strong>Pista:</strong> Primero, encuentra la posición del <code>@</code> con el método <code>.find()</code>.</li>
+<li><strong>Ejemplo:</strong> Si el email es <code>nombre.apellido@gmail.com</code>, el programa debería mostrar:<ul>
+<li>Nombre de usuario: <code>nombre.apellido</code></li>
+<li>Dominio: <code>gmail.com</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-formateador-de-nombres">2. Formateador de nombres</h3>
+<ol>
+<li>Pide al usuario su nombre completo (puede que lo escriba con mayúsculas, minúsculas y espacios extra).</li>
+<li>Limpia los espacios en blanco al principio y al final.</li>
+<li>Formatea el nombre para que aparezca en formato de título (la primera letra de cada palabra en mayúscula).</li>
+<li>Muestra un saludo personalizado usando una f-string, por ejemplo: <code>¡Bienvenido, Nombre Apellido!</code></li>
+</ol>
+<h3 id="3-censor-de-palabras">3. Censor de palabras</h3>
+<ol>
+<li>Pide al usuario una palabra que quiera censurar de esa frase.</li>
+<li>Pide al usuario que introduzca una frase, para censurarla.</li>
+<li>Usa el método <code>.replace()</code> para sustituir esa palabra por <code>"[CENSURADO]"</code>.</li>
+<li>Muestra la frase original y la frase censurada.</li>
+<li><strong>Extra:</strong> Integra los pasos 2-4 dentro de un bucle <code>while</code> para que el usuario pueda continuar introduciendo frases y aparezca censurado. Además, puedes usar el carácter ▮ para censurar.</li>
+</ol>
+<h3 id="4-palindromos">4. Palíndromos</h3>
+<p>Un palíndromo es una palabra o frase que se lee igual de izquierda a derecha que de derecha a izquierda (ej: "ana", "radar", "oso").</p>
+<ol>
+<li>Pide al usuario una palabra.</li>
+<li>Limpia la palabra: conviértela a minúsculas y quítale los espacios con <code>.replace(" ", "")</code>.</li>
+<li>Crea una versión invertida de la palabra. <em>Pista: puedes usar slicing con un paso negativo</em> <code>palabra\[\:\:-1]</code></li>
+<li>Compara la palabra limpia con su versión invertida y dile al usuario si es un palíndromo o no.</li>
+</ol>
+<h3 id="6-dibujante-de-separadores">6. Dibujante de separadores</h3>
+<p>Escribe un programa que haga lo siguiente:</p>
+<ol>
+<li>Pida al usuario un título para una sección.</li>
+<li>Pida al usuario un carácter para usar como adorno (ej: <code>-</code>, <code>*</code>, =, <code>#</code>).</li>
+<li>Calcule la longitud del título.</li>
+<li>Usando la multiplicación de cadenas, cree una línea de adorno que sea 4 caracteres más larga que el título (dos por cada lado).</li>
+<li>Muestre el título centrado con sus adornos.</li>
+</ol>
+<p><strong>Ejemplo de ejecución:</strong></p>
+<pre><code>Introduce el título: Conceptos Básicos
+Introduce el carácter de adorno: =
+
+&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;===
+  Conceptos Básicos
+&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;===
+</code></pre>
+<p><em>Pista: Para la línea del título, puedes concatenar <code>adorno + " " + titulo + " " + adorno</code>.</em></p>
+<h3 id="7-generador-de-tickets-de-compra">7. Generador de tickets de compra</h3>
+<p><strong>Objetivo:</strong> Crear un programa que simule un ticket de compra simple. El objetivo es que la salida esté perfectamente formateada y alineada, como un ticket real, utilizando las capacidades avanzadas de las f-strings.</p>
+<p><strong>Instrucciones:</strong></p>
+<ol>
+<li>
+<p><strong>Define las variables:</strong>
+    Crea variables para al menos tres productos diferentes. Cada producto debe tener un nombre (texto), una cantidad (puede ser entero o flotante) y un precio unitario (flotante). También define una variable para el tipo de IVA (por ejemplo, 21% se escribe como <code>0.21</code>).</p>
+<p>```python</p>
+<h1 id="datos-de-los-productos">Datos de los productos</h1>
+<p>producto1_nombre = "Barra de pan"
+producto1_cant = 2
+producto1_precio = 0.85</p>
+<p>producto2_nombre = "Leche (litro)"
+producto2_cant = 1
+producto2_precio = 1.05</p>
+<p>producto3_nombre = "Manzanas (kg)"
+producto3_cant = 1.5
+producto3_precio = 1.99</p>
+<h1 id="iva">IVA</h1>
+<p>IVA = 0.21
+```</p>
+</li>
+<li>
+<p><strong>Realiza los cálculos:</strong></p>
+<ul>
+<li>Calcula el total para cada producto (cantidad * precio).</li>
+<li>Calcula el subtotal (la suma de los totales de todos los productos).</li>
+<li>Calcula la cantidad de IVA a aplicar sobre el subtotal.</li>
+<li>Calcula el total final (subtotal + IVA).</li>
+</ul>
+</li>
+<li><strong>Imprime el Ticket Formateado:</strong> Utiliza f-strings para imprimir el ticket. Debe tener:<ul>
+<li>Un encabezado para el ticket.</li>
+<li>Cabeceras para las columnas: "Producto", "Cant.", "Precio Unit.", "Total". Asegúrate de que estén bien alineadas.</li>
+<li>Una línea por cada producto, con los datos alineados bajo sus cabeceras. Los precios y totales deben mostrarse siempre con <strong>2 decimales</strong>.</li>
+<li>Una línea separadora.</li>
+<li>Las líneas para el Subtotal, el IVA (mostrando el porcentaje aplicado) y el Total Final. Estas deben estar alineadas a la derecha.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Salida esperada:</strong></p>
+<p>Tu programa debería generar una salida que se vea exactamente así (con los mismos espacios y alineación):</p>
+<pre><code>&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;
+                 TICKET DE COMPRA
+&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;&lt;mark&gt;=&lt;/mark&gt;
+Producto             Cant.  Precio Unit.     Total
+--------------------------------------------------
+Barra de pan             2          0.85      1.70
+Leche (litro)            1          1.05      1.05
+Manzanas (kg)          1.5          1.99      2.98
+--------------------------------------------------
+                             Subtotal:       5.73
+                            IVA (21%):       1.20
+                        TOTAL A PAGAR:       6.93
+</code></pre>
+<p><strong>Pistas:</strong></p>
+<ul>
+<li>Para las cabeceras y las líneas de productos, combina la alineación a la izquierda (<code>&lt;</code>) para el nombre del producto y a la derecha (<code>&gt;</code>) para los números.</li>
+<li>Usa el formato <code>:.2f</code> para todos los precios y totales.</li>
+<li>Para la línea del IVA, puedes anidar una f-string dentro de otra para mostrar el porcentaje: <code>f"IVA ({IVA:.0%}):"</code></li>
+<li>Juega con los números de ancho en tus f-strings (ej: <code>{variable:&gt;10.2f}</code>) hasta que las columnas queden perfectamente alineadas como en el ejemplo.</li>
+</ul>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

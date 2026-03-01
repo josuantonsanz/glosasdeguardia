@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de tareas | Digital Garden</title>
+
+    <meta name="description"
+        content="Gestor de tareas Objetivo Crear una aplicación de consola para gestionar una lista de tareas pendientes. Este ejercicio es un pequeño proyecto que te permiti...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/Gestor de tareas.html">
+    <meta property="og:title" content="Gestor de tareas">
+    <meta property="og:description"
+        content="Gestor de tareas Objetivo Crear una aplicación de consola para gestionar una lista de tareas pendientes. Este ejercicio es un pequeño proyecto que te permiti...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/Gestor de tareas.html">
+    <meta property="twitter:title" content="Gestor de tareas">
+    <meta property="twitter:description"
+        content="Gestor de tareas Objetivo Crear una aplicación de consola para gestionar una lista de tareas pendientes. Este ejercicio es un pequeño proyecto que te permiti...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#objetivo">Objetivo</a></li>
+<li><a href="#requisitos">Requisitos</a></li>
+<li><a href="#ejemplo-de-ejecucion">Ejemplo de ejecución</a></li>
+<li><a href="#pistas-y-consejos">Pistas y consejos</a></li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Gestor de tareas</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                4 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <h2 id="objetivo">Objetivo</h2>
+<p>Crear una aplicación de consola para gestionar una lista de tareas pendientes. Este ejercicio es un pequeño proyecto que te permitirá combinar todo lo que has aprendido: variables, bucles while y for, listas y sus métodos, y condicionales if/elif/else para crear un programa interactivo y útil.</p>
+<h2 id="requisitos">Requisitos</h2>
+<ol>
+<li><strong>Bucle principal:</strong> El programa debe ejecutarse continuamente en un bucle while True, mostrando la lista de tareas y el menú de opciones en cada iteración, hasta que el usuario decida salir.</li>
+<li><strong>Mostrar tareas:</strong> Al inicio de cada iteración del bucle, el programa debe mostrar la lista actual de tareas.<ul>
+<li>Si no hay tareas, debe mostrar un mensaje como "No tienes tareas pendientes.".</li>
+<li>Si hay tareas, debe mostrarlas numeradas para que el usuario pueda identificarlas fácilmente (pista: <em>enumerate</em> es perfecto para esto).</li>
+</ul>
+</li>
+<li><strong>Menú de opciones:</strong> Debajo de la lista de tareas, debe aparecer un menú claro con las acciones que el usuario puede realizar.</li>
+<li><strong>Añadir tarea (opción 1):</strong> Si el usuario elige esta opción, el programa le pedirá que escriba la descripción de la nueva tarea y la añadirá al final de la lista.</li>
+<li><strong>Completar tarea (opción 2):</strong><ul>
+<li>Si el usuario elige esta opción, el programa le pedirá el <strong>número</strong> de la tarea que desea completar.</li>
+<li>El programa debe eliminar la tarea correspondiente de la lista.</li>
+<li><strong>Importante:</strong> Debes controlar posibles errores. ¿Qué pasa si el usuario introduce un número que no corresponde a ninguna tarea (por ejemplo, el número 5 si solo hay 3 tareas)? El programa no debe fallar, sino mostrar un mensaje de error amigable.</li>
+</ul>
+</li>
+<li><strong>Salir (opción 3):</strong> Si el usuario elige esta opción, el programa debe mostrar un mensaje de despedida y terminar su ejecución (pista: break).</li>
+</ol>
+<h2 id="ejemplo-de-ejecucion">Ejemplo de ejecución</h2>
+<p>Así es como debería verse la interacción con tu programa en la consola:</p>
+<pre><code>--- GESTOR DE TAREAS ---
+No tienes tareas pendientes.
+
+Elige una opción:
+1. Añadir una nueva tarea
+2. Marcar una tarea como completada
+3. Salir
+&gt; 1
+Escribe la nueva tarea: Estudiar listas de Python
+
+--- GESTOR DE TAREAS ---
+Tus tareas pendientes:
+1. Estudiar listas de Python
+
+Elige una opción:
+1. Añadir una nueva tarea
+2. Marcar una tarea como completada
+3. Salir
+&gt; 1
+Escribe la nueva tarea: Hacer la compra
+
+--- GESTOR DE TAREAS ---
+Tus tareas pendientes:
+1. Estudiar listas de Python
+2. Hacer la compra
+
+Elige una opción:
+1. Añadir una nueva tarea
+2. Marcar una tarea como completada
+3. Salir
+&gt; 2
+Introduce el número de la tarea a completar: 1
+
+Tarea &quot;Estudiar listas de Python&quot; completada.
+
+--- GESTOR DE TAREAS ---
+Tus tareas pendientes:
+1. Hacer la compra
+
+Elige una opción:
+1. Añadir una nueva tarea
+2. Marcar una tarea como completada
+3. Salir
+&gt; 2
+Introduce el número de la tarea a completar: 99
+Error: El número de tarea no es válido.
+
+--- GESTOR DE TAREAS ---
+Tus tareas pendientes:
+1. Hacer la compra
+
+Elige una opción:
+1. Añadir una nueva tarea
+2. Marcar una tarea como completada
+3. Salir
+&gt; 3
+¡Hasta luego!
+</code></pre>
+<h2 id="pistas-y-consejos">Pistas y consejos</h2>
+<ul>
+<li><strong>Estructura del programa:</strong><ul>
+<li>Empieza creando una lista vacía al principio de tu script: tareas = [].</li>
+<li>Usa un while True: para el bucle principal.</li>
+<li>Dentro del bucle, usa if/elif/else para gestionar la opción elegida por el usuario.</li>
+</ul>
+</li>
+<li><strong>Mostrar la lista:</strong><ul>
+<li>Usa un if not tareas: para comprobar si la lista está vacía.</li>
+<li>Usa un bucle for con enumerate(tareas, start=1) para mostrar las tareas numeradas empezando desde el 1.</li>
+</ul>
+</li>
+<li><strong>Completar una tarea:</strong><ul>
+<li>Pide al usuario el número de la tarea y guárdalo como texto.</li>
+<li>Usa el método de cadena .isdigit() para comprobar si la entrada del usuario es un número.</li>
+<li>Si es un número, conviértelo a entero con int().</li>
+<li>Recuerda que los usuarios ven los números desde 1, pero los índices de las listas empiezan en 0. Tendrás que restar 1 para obtener el índice correcto.</li>
+<li>Antes de intentar borrar, comprueba si el índice es válido (es decir, si está dentro del rango de la lista).</li>
+<li>El método .pop(indice) es perfecto para eliminar un elemento por su índice. Además, devuelve el elemento eliminado, ¡lo que puedes usar para mostrar un mensaje de confirmación!</li>
+</ul>
+</li>
+<li><strong>Limpieza de pantalla (Opcional pero recomendado):</strong><ul>
+<li>Para que la consola no se llene de texto, puedes "limpiar" la pantalla al inicio de cada iteración del bucle. Esto es un extra, pero hace que la aplicación parezca mucho más profesional.</li>
+<li>Añade al comienzo del código <code>from IPython.display import clear_output</code> y al comienzo del bucle escribe <code>clear_output(wait=True)</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Retos extra (si te sientes con confianza):</strong></p>
+<ol>
+<li><strong>Evitar duplicados:</strong> Antes de añadir una nueva tarea, comprueba si ya existe en la lista para no tener tareas repetidas.</li>
+<li><strong>Limpiar toda la lista:</strong> Añade una opción "4. Eliminar todas las tareas" que vacíe la lista por completo.</li>
+<li><strong>Contador de tareas:</strong> Muestra siempre el número total de tareas pendientes en el encabezado. Por ejemplo: <code>--- GESTOR DE TAREAS (3 pendientes) ---</code>.</li>
+<li><strong>Tareas completadas:</strong> Puedes guardar un contador que diga cuántas tareas has completado ya. Y puedes también guardar otra lista con las tareas completadas, de forma que se puedan ver debajo de las tareas que faltan por completar.</li>
+</ol>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

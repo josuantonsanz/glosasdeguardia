@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalación de Python con uv | Digital Garden</title>
+
+    <meta name="description"
+        content="Instalación de Python con uv Siempre que tengo que volver a instalar Python, el gestor de paquetes y demás acabo buscando en internet, así que lo voy a dejar...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/Proyectos/Tips & Tricks/Instalación de Python + ... con uv.html">
+    <meta property="og:title" content="Instalación de Python con uv">
+    <meta property="og:description"
+        content="Instalación de Python con uv Siempre que tengo que volver a instalar Python, el gestor de paquetes y demás acabo buscando en internet, así que lo voy a dejar...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/Proyectos/Tips & Tricks/Instalación de Python + ... con uv.html">
+    <meta property="twitter:title" content="Instalación de Python con uv">
+    <meta property="twitter:description"
+        content="Instalación de Python con uv Siempre que tengo que volver a instalar Python, el gestor de paquetes y demás acabo buscando en internet, así que lo voy a dejar...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-instalar-uv-gestor-de-paquetes">1. Instalar uv (gestor de paquetes)</a></li>
+<li><a href="#2-instalar-python">2. Instalar python</a></li>
+<li><a href="#3-instalar-jupyter-notebook">3. Instalar Jupyter Notebook</a></li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Instalación de Python con uv</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                1 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <p>Siempre que tengo que volver a instalar Python, el gestor de paquetes y demás acabo buscando en internet, así que lo voy a dejar aquí puesto.</p>
+<h2 id="1-instalar-uv-gestor-de-paquetes">1. Instalar uv (gestor de paquetes)</h2>
+<p>En terminal, escribir: <code>powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"</code></p>
+<h2 id="2-instalar-python">2. Instalar python</h2>
+<ul>
+<li>En general: <code>uv python install</code> → Instala el comando <code>python3.13</code></li>
+<li>Una versión concreta <code>uv python install 3.12</code></li>
+<li>Para instalar <code>python</code> y <code>python3</code>: <code>uv python install --default</code></li>
+</ul>
+<h2 id="3-instalar-jupyter-notebook">3. Instalar Jupyter Notebook</h2>
+<ul>
+<li>En general: <code>uvx jupyter lab</code></li>
+<li>Una versión concreta: <code>uvx --python 3.13 jupyter lab</code></li>
+</ul>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

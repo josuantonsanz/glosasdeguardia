@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código del portativo | Digital Garden</title>
+
+    <meta name="description"
+        content="Código del portativo python import wiringpi import time from enum import Enum from wiringpi import GPIO from pynput.keyboard import Controller, Key from abc ...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/Proyectos/Órgano portativo/Código.html">
+    <meta property="og:title" content="Código del portativo">
+    <meta property="og:description"
+        content="Código del portativo python import wiringpi import time from enum import Enum from wiringpi import GPIO from pynput.keyboard import Controller, Key from abc ...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/Proyectos/Órgano portativo/Código.html">
+    <meta property="twitter:title" content="Código del portativo">
+    <meta property="twitter:description"
+        content="Código del portativo python import wiringpi import time from enum import Enum from wiringpi import GPIO from pynput.keyboard import Controller, Key from abc ...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Código del portativo</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                4 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <pre><code class="language-python">import wiringpi
+import time
+from enum import Enum
+from wiringpi import GPIO
+from pynput.keyboard import Controller, Key
+from abc import ABC, abstractmethod
+
+keyboard = Controller()
+
+class ControlMode(ABC):
+    def __init__(self, controller):
+        self.controller = controller
+
+    @abstractmethod
+    def click(self, button_index):
+        &quot;&quot;&quot;Maneja un click de botón en este modo&quot;&quot;&quot;
+        pass
+
+    def activate(self):
+        &quot;&quot;&quot;Llamado cuando se activa este modo&quot;&quot;&quot;
+        pass
+
+    def deactivate(self):
+        &quot;&quot;&quot;Llamado cuando se desactiva este modo&quot;&quot;&quot;
+        pass
+
+class RegisterMode(ControlMode):
+    def __init__(self, controller):
+        super().__init__(controller)
+        self.led_states = [False] * 7
+        self.register_keys = ['1', '2', '3', '4', '5', '6', '7']
+
+    def click(self, button_index):
+        # Cambiar estado del registro
+        self.led_states[button_index] = not self.led_states[button_index]
+        wiringpi.digitalWrite(self.controller.LED_PINS[button_index], 
+                           1 if self.led_states[button_index] else 0)
+
+        # Enviar tecla correspondiente
+        keyboard.press(self.register_keys[button_index])
+        time.sleep(0.05)
+        keyboard.release(self.register_keys[button_index])
+
+        print(f&quot;Registro {button_index + 1} {'activado' if self.led_states[button_index] else 'desactivado'}&quot;)
+
+class TransposeMode(ControlMode):
+    def __init__(self, controller):
+        super().__init__(controller)
+        self.transpose_value = 0
+
+    def click(self, button_index):
+        if button_index == 1:
+            self.transpose_value += 1
+            print(f&quot;Transposición: +{self.transpose_value} semitonos&quot;)
+        elif button_index == 2:
+            self.transpose_value -= 1
+            print(f&quot;Transposición: {self.transpose_value} semitonos&quot;)
+        elif button_index == 6:
+            self.transpose_value = 0
+            print(&quot;Transposición reseteada&quot;)
+
+    def activate(self):
+        self.blink_all_leds()
+        print(f&quot;Modo Transposición activo. Valor actual: {self.transpose_value}&quot;)
+
+    def blink_all_leds(self):
+        for pin in self.controller.LED_PINS:
+            wiringpi.digitalWrite(pin, 1)
+        time.sleep(0.2)
+        for pin in self.controller.LED_PINS:
+            wiringpi.digitalWrite(pin, 0)
+
+class VolumeMode(ControlMode):
+    def __init__(self, controller):
+        super().__init__(controller)
+        self.volume_level = 100
+
+    def click(self, button_index):
+        if button_index == 1:
+            self.volume_level = min(100, self.volume_level + 10)
+            self.update_led_display()
+            print(f&quot;Volumen: {self.volume_level}%&quot;)
+        elif button_index == 2:
+            self.volume_level = max(0, self.volume_level - 10)
+            self.update_led_display()
+            print(f&quot;Volumen: {self.volume_level}%&quot;)
+
+    def update_led_display(self):
+        num_leds = round((self.volume_level / 100.0) * len(self.controller.LED_PINS))
+        for i in range(len(self.controller.LED_PINS)):
+            wiringpi.digitalWrite(self.controller.LED_PINS[i], 1 if i &lt; num_leds else 0)
+
+    def activate(self):
+        self.update_led_display()
+        print(f&quot;Modo Volumen activo. Nivel actual: {self.volume_level}%&quot;)
+
+class OrganController:
+    def __init__(self):
+        # Configuración de pines
+        self.LED_PINS = [3, 4, 5, 6, 7, 8, 9]
+        self.BUTTON_PINS = [2, 10, 11, 12, 13, 14, 15]
+
+        # Inicializar hardware
+        wiringpi.wiringPiSetup()
+        self.setup_pins()
+
+        # Estado de los botones
+        self.last_button_states = [True] * 7
+        self.button_press_times = [0] * 7
+
+        # Inicializar modos
+        self.modes = {
+            'register': RegisterMode(self),
+            'transpose': TransposeMode(self),
+            'volume': VolumeMode(self)
+        }
+        self.current_mode = self.modes['register']
+
+        print(&quot;Controlador inicializado en modo Registros&quot;)
+
+    def setup_pins(self):
+        for pin in self.LED_PINS:
+            wiringpi.pinMode(pin, GPIO.OUTPUT)
+            wiringpi.digitalWrite(pin, 0)
+
+        for pin in self.BUTTON_PINS:
+            wiringpi.pinMode(pin, GPIO.INPUT)
+            wiringpi.pullUpDnControl(pin, GPIO.PUD_UP)
+
+    def is_modifier_active(self, button_index, current_time):
+        &quot;&quot;&quot;Determina si estamos en una acción de modificador&quot;&quot;&quot;
+        if button_index == 0:
+            return False
+
+        first_button_time = self.button_press_times[0]
+
+    # Falta saber si el botón está, de hecho, pulsado.
+
+        return (first_button_time &gt; 0 and 
+                current_time - first_button_time &lt; 1.0)
+
+    def handle_mode_change(self, button_index):
+        &quot;&quot;&quot;Cambia el modo basado en el botón presionado&quot;&quot;&quot;
+        self.current_mode.deactivate()
+
+        if button_index == 1:
+            self.current_mode = self.modes['register']
+            print(&quot;Cambiado a modo: Registros&quot;)
+        elif button_index == 2:
+            self.current_mode = self.modes['transpose']
+            print(&quot;Cambiado a modo: Transposición&quot;)
+        elif button_index == 3:
+            self.current_mode = self.modes['volume']
+            print(&quot;Cambiado a modo: Volumen&quot;)
+
+        self.current_mode.activate()
+
+    def run(self):
+        print(&quot;Iniciando controlador. Presiona Ctrl+C para salir&quot;)
+        try:
+            while True:
+                for i in range(7):
+                    button_state = wiringpi.digitalRead(self.BUTTON_PINS[i])
+                    current_time = time.time()
+
+                    # Detectar presión del botón
+                    if button_state &lt;mark&gt; False and self.last_button_states[i] &lt;/mark&gt; True:
+                        self.button_press_times[i] = current_time
+
+                    # Detectar liberación del botón
+                    elif button_state &lt;mark&gt; True and self.last_button_states[i] &lt;/mark&gt; False:
+                        # Si es una acción de modificador
+                        if self.is_modifier_active(i, current_time):
+                            self.handle_mode_change(i)
+                        else:
+                            # Click normal en el modo actual
+                            self.current_mode.click(i)
+
+                        self.button_press_times[i] = 0
+
+                    self.last_button_states[i] = button_state
+
+                time.sleep(0.01)
+
+        except KeyboardInterrupt:
+            print(&quot;\nPrograma terminado&quot;)
+        finally:
+            for pin in self.LED_PINS:
+                wiringpi.digitalWrite(pin, False)
+
+if __name__ == &quot;__main__&quot;:
+    controller = OrganController()
+    controller.run()
+</code></pre>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

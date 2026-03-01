@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canciones en LaTeX | Digital Garden</title>
+
+    <meta name="description"
+        content="Canciones en LaTeX El paquete songs Suponemos aquí que el documento, con todos los paquetes que se necesiten, ya está generado y estructurado. A partir de ah...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">
+    <meta property="og:title" content="Canciones en LaTeX">
+    <meta property="og:description"
+        content="Canciones en LaTeX El paquete songs Suponemos aquí que el documento, con todos los paquetes que se necesiten, ya está generado y estructurado. A partir de ah...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">
+    <meta property="twitter:title" content="Canciones en LaTeX">
+    <meta property="twitter:description"
+        content="Canciones en LaTeX El paquete songs Suponemos aquí que el documento, con todos los paquetes que se necesiten, ya está generado y estructurado. A partir de ah...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#el-paquete-songs">El paquete songs</a><ul>
+<li><a href="#traduciendo-al-castellano">Traduciendo al castellano</a></li>
+</ul>
+</li>
+<li><a href="#estructura-del-cancionero">Estructura del cancionero</a></li>
+<li><a href="#la-cancion">La canción</a><ul>
+<li><a href="#las-estrofas-y-estribillos">Las estrofas y estribillos</a></li>
+<li><a href="#acordes">Acordes</a></li>
+<li><a href="#saltos-en-el-texto">Saltos en el texto</a></li>
+<li><a href="#repeticiones-y-respuestas">Repeticiones y respuestas</a></li>
+<li><a href="#notas">Notas</a></li>
+</ul>
+</li>
+<li><a href="#entre-canciones">Entre canciones</a></li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Canciones en LaTeX</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                3 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <h2 id="el-paquete-songs">El paquete <em>songs</em></h2>
+<p>Suponemos aquí que el documento, con todos los paquetes que se necesiten, ya está generado y estructurado. A partir de ahí, empezamos.</p>
+<p>Lo primero que necesitamos es el paquete <code>songs</code>, que añadimos en el preámbulo con:</p>
+<pre><code class="language-latex">\usepackage{songs}
+</code></pre>
+<p>Este paquete permite también crear hojas de diapositivas solo con las letras y hojas de canciones sin acordes; pero, por el momento, no lo tratamos.</p>
+<h3 id="traduciendo-al-castellano">Traduciendo al castellano</h3>
+<p>Por defecto, los nombres de los acordes y los símbolos son ingleses, para que el sistema reconozca los nombres en castellano, escribimos debajo</p>
+<pre><code class="language-latex">\solfedge
+</code></pre>
+<p>Y, para hacer el símbolo de sostenido un poco más pequeño y superíndice:</p>
+<pre><code class="language-latex">\renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}
+</code></pre>
+<h2 id="estructura-del-cancionero">Estructura del cancionero</h2>
+<p>Además de poder usar los típicos <code>\chapter</code> y <code>\section</code>, el paquete añade <code>\songchapter</code> y <code>\songsection</code>, que centran el título y lo formatean en sans-serif sin número.</p>
+<p>Toda canción que escribamos debe ir dentro de un «bloque de canciones», que se añade con:</p>
+<pre><code class="language-latex">\begin{songs}
+    // Aquí van las canciones
+\end{songs}
+</code></pre>
+<h2 id="la-cancion">La canción</h2>
+<p>Cada canción también necesita un bloque propio, de la siguiente manera:</p>
+<pre><code class="language-latex">\beginsong{(título)}[información extra]
+.
+.
+.
+\endsong
+</code></pre>
+<p>La «información extra» que se puede añadir es:
+- by={autores}
+- cr={copyright}
+- li={licencia}
+- sr={referencias bíblicas}
+- index={frase para el índice}
+- ititle={título alternativo para el índice}</p>
+<h3 id="las-estrofas-y-estribillos">Las estrofas y estribillos</h3>
+<p>Cada estrofa numerada debe estar entre <code>\beginverse</code> y <code>\endverse</code>; y cada estribillo entre <code>\beginchorus</code> y <code>\endchorus</code>.</p>
+<p>Las intros, finales y cosas por el estilo, se pueden escribir como estrofas sin numerar, con <code>\beginverse*</code> y <code>\endverse</code>.</p>
+<p>Dentro de cada estrofa, cada línea de la estrofa debe ir escrita en una línea diferente.</p>
+<h3 id="acordes">Acordes</h3>
+<p>Los acordes se escriben con <code>\[]</code> <em>delante</em> de la sílaba que les corresponde. Para escribir los sostenidos y bemoles se usa <code>#</code> y <code>&amp;</code>, respectivamente. </p>
+<p>Algunos detalles:</p>
+<ul>
+<li>Si se deja un espacio después de <code>\[]</code>, el acorde aparecerá sobre un espacio en blanco.</li>
+<li>Para poner varios acordes encima de una sola sílaba, se pueden escribir todos ellos dentro de un solo <code>\[]</code>.</li>
+<li>Si necesitas especificar qué cantidad de texto va debajo de un acorde, lo puedes hacer escribiendo <code>{\[acores]texto}</code>.</li>
+<li>Para poner acordes sin letra debajo, se puede usar <code>{\nolyrics Texto: \[A] \[G]}</code></li>
+<li>Si una estrofa tiene los mismos acordes que la estrofa anterior, escribiendo <code>^</code> en lugar del acorde que correspondería.</li>
+</ul>
+<h3 id="saltos-en-el-texto">Saltos en el texto</h3>
+<p>Si hay que dividir una línea de una estrofa, por ser demasiado larga, puedes fijar el punto en el que se corta escribiendo <code>\brk</code> en medio de la frase. Si necesitas forzar un salto de columna, puedes hacerlo con <code>\nextcol</code>.</p>
+<h3 id="repeticiones-y-respuestas">Repeticiones y respuestas</h3>
+<p>Para añadir una repetición al final de una frase, basta con poner <code>\rep{(n)}</code>. Para escribir una respuesta o eco (entre paréntesis y en cursiva), se escribe con <code>\echo{texto}</code>.</p>
+<h3 id="notas">Notas</h3>
+<p><strong>Cejilla:</strong> Para señalar la cejilla recomendada, puede escribir <code>\capo{(n)}</code>. Si lo que quieres es que automáticamente se transporte una canción, puedes usar <code>\transpose{(n)}</code>.</p>
+<h1 id="entre-canciones">Entre canciones</h1>
+<p>Se puede añadir distinto material entre unas canciones y otras. Para ello, se usa el bloque <code>intersong</code>, así:</p>
+<pre><code class="language-latex">\begin{intersong}
+.
+.
+.
+\end{intersong}
+</code></pre>
+<p>Este bloque está limitado al ancho de la columna de las canciones; pero se puede ampliar al ancho de la página con <code>\begin{intersong*}</code> y <code>\end{intersong*}</code>.</p>
+<p>Aquí tienes el esquema general:
+1. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/1. Introducción - Latex.html">Introducción, estructura y formato</a>
+2. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/2. Elementos más complejos - Latex.html">Imágenes, tablas y notas al pie</a>
+3. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/4. Idiomas - Latex.html">Idiomas (castellano, griego, hebreo y fonética)</a> 
+4. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">Canciones</a> (esta página)</p>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

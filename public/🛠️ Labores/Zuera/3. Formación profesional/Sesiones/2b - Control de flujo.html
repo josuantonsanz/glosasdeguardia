@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de flujo: `if` y `while` | Digital Garden</title>
+
+    <meta name="description"
+        content="Control de flujo: if y while Hasta ahora, nuestros programas se ejecutan línea por línea, de arriba a abajo. Las estructuras de control de flujo nos permiten...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/2b - Control de flujo.html">
+    <meta property="og:title" content="Control de flujo: `if` y `while`">
+    <meta property="og:description"
+        content="Control de flujo: if y while Hasta ahora, nuestros programas se ejecutan línea por línea, de arriba a abajo. Las estructuras de control de flujo nos permiten...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/2b - Control de flujo.html">
+    <meta property="twitter:title" content="Control de flujo: `if` y `while`">
+    <meta property="twitter:description"
+        content="Control de flujo: if y while Hasta ahora, nuestros programas se ejecutan línea por línea, de arriba a abajo. Las estructuras de control de flujo nos permiten...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#si-si-no-si-si-no-ifelifelse">Si / Si no, si / Si no if/elif/else</a></li>
+<li><a href="#mientras-while">Mientras while</a></li>
+<li><a href="#saliendo-del-bucle-break-y-continue">Saliendo del bucle: break y continue</a></li>
+<li><a href="#ejercicios-para-practicar">Ejercicios para practicar</a><ul>
+<li><a href="#1-adivina-el-numero">1. Adivina el número</a></li>
+<li><a href="#3-login-simple-desafio">3. Login simple (desafío)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Control de flujo: `if` y `while`</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                4 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <p>Hasta ahora, nuestros programas se ejecutan línea por línea, de arriba a abajo. Las estructuras de control de flujo nos permiten cambiar ese orden, tomando decisiones (<code>if</code>) o repitiendo acciones (<code>while</code>). Más adelante veremos una tercera, <code>for</code>.</p>
+<h3 id="si-si-no-si-si-no-ifelifelse">Si / Si no, si / Si no <code>if</code>/<code>elif</code>/<code>else</code></h3>
+<p>Ya vimos el <code>if</code>/<code>else</code> básico. Pero ¿qué pasa si tenemos más de dos posibilidades? Para eso usamos <code>elif</code> (una contracción de «else if»).</p>
+<p>Python evalúa las condiciones en orden:</p>
+<ol>
+<li>Comprueba la condición del <code>if</code>. Si es <code>True</code>, ejecuta su bloque y salta todo lo demás.</li>
+<li>Si el <code>if</code> es <code>False</code>, comprueba la condición del primer <code>elif</code>. Si es <code>True</code>, ejecuta su bloque y salta el resto.</li>
+<li>Así sucesivamente con todos los <code>elif</code>.</li>
+<li>Si ninguna de las condiciones anteriores es <code>True</code>, ejecuta el bloque del <code>else</code>.</li>
+</ol>
+<p><strong>Ejemplo práctico:</strong></p>
+<pre><code class="language-python">nota = float(input(&quot;Introduce tu nota (0-10): &quot;))
+
+if nota &gt;= 9:
+  print(&quot;¡Sobresaliente!&quot;)
+elif nota &gt;= 7:
+  print(&quot;Notable.&quot;)
+elif nota &gt;= 5:
+  print(&quot;Aprobado.&quot;)
+else:
+  print(&quot;Suspendido.&quot;)
+</code></pre>
+<blockquote>
+<p><strong>La palabra <code>pass</code></strong>
+A veces, al diseñar el código, sabemos que necesitaremos un <code>if</code>, pero aún no sabemos qué código poner dentro. Si dejamos el bloque vacío, Python dará un error. Para evitarlo, usamos la palabra <code>pass</code>, que simplemente significa «no hacer nada».</p>
+</blockquote>
+<pre><code class="language-python">if nota &lt; 5:
+  # TODO: Enviar un email de aviso a los padres
+  pass # El programa funciona sin error
+</code></pre>
+<h3 id="mientras-while">Mientras <code>while</code></h3>
+<p>El bucle <code>while</code> repite un bloque de código <strong>mientras</strong> una condición sea verdadera. Es como un <code>if</code> que se ejecuta una y otra vez.</p>
+<p>¡Cuidado! Si la condición nunca se vuelve falsa, el programa entrará en un <strong>bucle infinito</strong> y se quedará «colgado».</p>
+<p><strong>Ejemplo 1: Un contador hacia atrás</strong></p>
+<pre><code class="language-python">contador = 5
+while contador &gt; 0:
+  print(contador)
+  contador -= 1 # ¡Muy importante! Modificamos la variable para que la condición eventualmente sea falsa.
+
+print(&quot;¡Despegue!&quot;)
+# Salida:
+# 5
+# 4
+# 3
+# 2
+# 1
+# ¡Despegue!
+</code></pre>
+<p><strong>Ejemplo 2: Esperar una entrada específica del usuario</strong></p>
+<pre><code class="language-python">respuesta = &quot;&quot;
+while respuesta != &quot;salir&quot;: # Mientras la respuesta sea distinta de 'salir'...
+  respuesta = input(&quot;Escribe 'salir' para terminar: &quot;)
+  print(&quot;Has escrito: &quot; + respuesta)
+
+print(&quot;¡Programa terminado!&quot;)
+</code></pre>
+<h3 id="saliendo-del-bucle-break-y-continue">Saliendo del bucle: <code>break</code> y <code>continue</code></h3>
+<p>A veces necesitamos más control sobre el bucle que simplemente la condición del <code>while</code>.</p>
+<ul>
+<li><code>break</code>: Interrumpe y sale del bucle <strong>inmediatamente</strong>, sin importar si la condición del <code>while</code> sigue siendo verdadera.</li>
+<li><code>continue</code>: Interrumpe la iteración <strong>actual</strong> y salta directamente al inicio de la siguiente, para volver a comprobar la condición.</li>
+</ul>
+<p><strong>Ejemplo de <code>break</code>:</strong></p>
+<p>Un bucle <code>while True:</code> por sí solo sería infinito. Pero podemos usar <code>break</code> para salir cuando se cumpla una condición interna.</p>
+<pre><code class="language-python">while True: # Bucle infinito a propósito
+    nombre = input(&quot;Adivina mi nombre: &quot;)
+    if nombre == &quot;Josu&quot;:
+        print(&quot;¡Correcto!&quot;)
+        break # Salimos del bucle
+    else:
+        print(&quot;Inténtalo de nuevo.&quot;)
+</code></pre>
+<p><strong>Ejemplo de <code>continue</code>:</strong></p>
+<p>Vamos a imprimir solo los números impares. Si el número es par, nos saltamos el <code>print</code> de esa iteración con <code>continue</code>.</p>
+<pre><code class="language-python">numero = 0
+while numero &lt; 10:
+    numero += 1
+    if numero % 2 == 0: # Si el resto de dividir entre 2 es 0, es par
+        continue # Saltamos a la siguiente iteración, ignorando el print
+
+    print(numero) # Solo se ejecuta si el número es impar
+# Salida: 1, 3, 5, 7, 9
+</code></pre>
+<h2 id="ejercicios-para-practicar">Ejercicios para practicar</h2>
+<h3 id="1-adivina-el-numero">1. Adivina el número</h3>
+<ol>
+<li>Crea una variable llamada <code>numero_secreto</code> y asígnale un número entero (el que tú quieras).</li>
+<li>Crea un bucle <code>while</code> que se ejecute continuamente (<code>while True:</code>).</li>
+<li>Dentro del bucle, pide al usuario que adivine el número con <code>input()</code>.</li>
+<li>Convierte la entrada del usuario a un número entero.</li>
+<li>Comprueba si el número del usuario es:<ul>
+<li>Igual al <code>numero_secreto</code>. Si lo es, imprime «¡Has acertado!» y usa <code>break</code> para salir del bucle.</li>
+<li>Menor que el <code>numero_secreto</code>. Si lo es, imprime «El número secreto es mayor».</li>
+<li>Mayor que el <code>numero_secreto</code>. Si lo es, imprime «El número secreto es menor».</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-login-simple-desafio">3. Login simple (desafío)</h3>
+<ol>
+<li>Define dos variables: <code>usuario_correcto</code> y <code>contrasena_correcta</code>. Asígnales los valores que quieras.</li>
+<li>Crea un bucle <code>while</code> que pida al usuario su nombre de usuario y su contraseña.</li>
+<li>Comprueba si ambos coinciden con las variables que definiste.</li>
+<li>Si coinciden, imprime «Acceso concedido» y sal del bucle con <code>break</code>.</li>
+<li>Si no coinciden, imprime «Datos incorrectos, inténtalo de nuevo».</li>
+</ol>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

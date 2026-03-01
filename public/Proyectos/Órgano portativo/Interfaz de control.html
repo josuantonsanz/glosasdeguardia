@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz del control | Digital Garden</title>
+
+    <meta name="description"
+        content="Interfaz del control Sección del Órgano portativo electrónico ../../Órgano portativo electrónico.html Los órganos portativos, tradicionalmente, tenían un sol...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/Proyectos/Órgano portativo/Interfaz de control.html">
+    <meta property="og:title" content="Interfaz del control">
+    <meta property="og:description"
+        content="Interfaz del control Sección del Órgano portativo electrónico ../../Órgano portativo electrónico.html Los órganos portativos, tradicionalmente, tenían un sol...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/Proyectos/Órgano portativo/Interfaz de control.html">
+    <meta property="twitter:title" content="Interfaz del control">
+    <meta property="twitter:description"
+        content="Interfaz del control Sección del Órgano portativo electrónico ../../Órgano portativo electrónico.html Los órganos portativos, tradicionalmente, tenían un sol...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#configuracion-de-los-pines">Configuración de los pines</a><ul>
+<li><a href="#configuracion-de-los-pines-de-los-pulsadores">Configuración de los pines de los pulsadores</a></li>
+<li><a href="#configuracion-de-los-pines-de-las-luces-led">Configuración de los pines de las luces LED</a></li>
+<li><a href="#distribucion-del-gpio">Distribución del GPIO</a></li>
+</ul>
+</li>
+<li><a href="#instalacion-del-software">Instalación del software</a></li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Interfaz del control</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                4 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <p><em>Sección del <a href="../../Órgano portativo electrónico.html">Órgano portativo electrónico</a></em></p>
+<p>Los órganos portativos, tradicionalmente, tenían un solo registro. Pero el nuestro —por aquello de que es electrónico— se puede permitir tener varios.</p>
+<p>Para controlar estos registros —y para algunas funciones extra, que luego veremos— necesitamos algunos botones. Me he decidido por siete pulsadores momentáneos, cada uno con su lucecita LED. Con estos siete registros a mano creo que tendré variedad suficiente para acompañar las eucaristías y las oraciones varias.</p>
+<p>Para que esto funcione, vamos a aprovechar el GPIO (que viene a ser la Entrada/Salida de Propósito General) de la OrangePi. Como tenemos siete botones con sus correspondientes luces, necesitamos 14 pines en total (la mitad para entradas y la otra mitad para salidas). Y no nos olvidemos de las resistencias: una para cada LED.</p>
+<h2 id="configuracion-de-los-pines">Configuración de los pines</h2>
+<h3 id="configuracion-de-los-pines-de-los-pulsadores">Configuración de los pines de los pulsadores</h3>
+<p>En este caso, no necesitamos usar resistencias externas, porque los pines del GPIO tienen resistencias internas que podemos controlar por software. En nuestro caso:</p>
+<ul>
+<li>Vamos a configurar los pines como «pull up»</li>
+<li>En cada pulsador, conectaremos un terminal al GPIO y otro terminal a tierra</li>
+</ul>
+<h3 id="configuracion-de-los-pines-de-las-luces-led">Configuración de los pines de las luces LED</h3>
+<p>En este caso sí tenemos que usar resistencias. Las conectaremos entre el pin del GPIO y la luz LED, mientras que el otro terminal del LED irá a tierra. Usaremos resistencias de 330Ω (aproximadamente).</p>
+<p>De esta manera necesitamos únicamente 15 cables entre los pulsadores y el GPIO: 7 de entrada, 7 de salida y uno a tierra. De hecho, en cada pulsador podemos conectar entre sí los pines de tierra del botón y del LED, y desde ahí sacar un solo cable a tierra.</p>
+<h3 id="distribucion-del-gpio">Distribución del GPIO</h3>
+<p>La siguiente tabla muestra la distribución de pines, donde B0-B6 son los botones y L0-L6 son los LED correspondientes.</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Pines</th>
+<th>wPi</th>
+<th>Botón/LED</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.3V</td>
+<td><strong>1</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5V</td>
+<td><strong>2</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>3</strong></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>5V</td>
+<td><strong>4</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>5</strong></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>GND</td>
+<td><strong>6</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>7</strong></td>
+<td>2</td>
+<td>B0</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>8</strong></td>
+<td>3</td>
+<td>L0</td>
+</tr>
+<tr>
+<td>GND</td>
+<td><strong>9</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>10</strong></td>
+<td>4</td>
+<td>B1</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>11</strong></td>
+<td>5</td>
+<td>L1</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>12</strong></td>
+<td>6</td>
+<td>B2</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>13</strong></td>
+<td>7</td>
+<td>L2</td>
+</tr>
+<tr>
+<td>GND</td>
+<td><strong>14</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>15</strong></td>
+<td>8</td>
+<td>B3</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>16</strong></td>
+<td>9</td>
+<td>L3</td>
+</tr>
+<tr>
+<td>3.3V</td>
+<td><strong>17</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>18</strong></td>
+<td>10</td>
+<td>B4</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>19</strong></td>
+<td>11</td>
+<td>L4</td>
+</tr>
+<tr>
+<td>GND</td>
+<td><strong>20</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>21</strong></td>
+<td>12</td>
+<td>B5</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>22</strong></td>
+<td>13</td>
+<td>L5</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>23</strong></td>
+<td>14</td>
+<td>B6</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>24</strong></td>
+<td>15</td>
+<td>L6</td>
+</tr>
+<tr>
+<td>GND</td>
+<td><strong>25</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>26</strong></td>
+<td>16</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="instalacion-del-software">Instalación del software</h2>
+<p>Lo primero es instalar python3 y la librería wiringOP. Es importante recordar que los comandos hay que ejecutarlos en root.</p>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get -y install git swig python3-dev python3-setuptools
+git clone --recursive https://github.com/orangepi-xunlong/wiringOP-Python -b next
+cd wiringOP-Python
+git submodule update --init --remote
+cd wiringOP-Python
+python3 generate-bindings.py &gt; bindings.i
+sudo python3 setup.py install
+</code></pre>
+<p>Vamos a poner un ejemplo de script que conecta un botón y una luz, y enciende y apaga el LED conforme se pulsa el botón.</p>
+<pre><code class="language-python">import wiringpi
+import time
+from wiringpi import GPIO
+
+# Inicializar wiringPi 
+wiringpi.wiringPiSetup() 
+
+# Configuración de pines 
+LED_PIN = 3 
+BUTTON_PIN = 2 
+
+# Configurar LED como salida 
+wiringpi.pinMode(LED_PIN, GPIO.OUTPUT) 
+
+# Configurar botón como entrada con pull-up 
+wiringpi.pinMode(BUTTON_PIN, GPIO.INPUT) 
+wiringpi.pullUpDnControl(BUTTON_PIN, GPIO.PUD_UP)
+
+def main():
+    led_state = False  # Estado inicial del LED
+    last_button_state = True  # Estado inicial del botón (pull-up = True cuando no está presionado)
+
+    print(&quot;Presiona Ctrl+C para salir&quot;)
+
+    try:
+        while True:
+            # Leer el estado actual del botón
+            button_state = wiringpi.digitalRead(BUTTON_PIN)
+
+            # Detectar cambio de estado del botón (flanco descendente)
+            if button_state &lt;mark&gt; False and last_button_state &lt;/mark&gt; True:
+                # Cambiar estado del LED
+                led_state = not led_state
+                wiringpi.digitalWrite(LED_PIN, led_state)
+                print(f&quot;LED {'encendido' if led_state else 'apagado'}&quot;)
+
+                # Pequeña pausa para evitar rebotes
+                time.sleep(0.05)
+
+            last_button_state = button_state
+            time.sleep(0.01)  # Pequeña pausa para no saturar la CPU
+
+    except KeyboardInterrupt:
+        print(&quot;\nPrograma terminado&quot;)
+        # Apagar LED antes de salir
+        wiringpi.digitalWrite(LED_PIN, False)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p><a href="../../Proyectos/Órgano portativo/Código.html">Código completo</a></p>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

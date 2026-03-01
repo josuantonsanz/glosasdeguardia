@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{{ site_url }}/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    {% for note in notes %}
+    <url>
+        <loc>{{ site_url }}/{{ note.url }}</loc>
+        {% if note.date %}
+        <!-- Basic assumption that date is somewhat formatted -->
+        <lastmod>{{ note.date }}</lastmod>
+        {% endif %}
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    {% endfor %}
+</urlset>

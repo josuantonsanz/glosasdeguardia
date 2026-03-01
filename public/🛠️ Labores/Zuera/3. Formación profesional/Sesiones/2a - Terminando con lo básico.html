@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminando con lo básico | Digital Garden</title>
+
+    <meta name="description"
+        content="Terminando con lo básico Variables Cómo nombrar las variables En Python, las variables no se pueden llamar de cualquier modo, aunque hay mucho margen. Las no...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/2a - Terminando con lo básico.html">
+    <meta property="og:title" content="Terminando con lo básico">
+    <meta property="og:description"
+        content="Terminando con lo básico Variables Cómo nombrar las variables En Python, las variables no se pueden llamar de cualquier modo, aunque hay mucho margen. Las no...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/2a - Terminando con lo básico.html">
+    <meta property="twitter:title" content="Terminando con lo básico">
+    <meta property="twitter:description"
+        content="Terminando con lo básico Variables Cómo nombrar las variables En Python, las variables no se pueden llamar de cualquier modo, aunque hay mucho margen. Las no...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#variables">Variables</a><ul>
+<li><a href="#como-nombrar-las-variables">Cómo nombrar las variables</a></li>
+</ul>
+</li>
+<li><a href="#funciones-internas">Funciones internas</a><ul>
+<li><a href="#longitud-de-una-cadena-funcion-len">Longitud de una cadena, función len()</a></li>
+<li><a href="#tipo-de-variable-funcion-type">Tipo de variable, función type()</a></li>
+<li><a href="#metodos-de-una-variable-funcion-dir">Métodos de una variable, función dir()</a></li>
+</ul>
+</li>
+<li><a href="#operadores">Operadores</a><ul>
+<li><a href="#operadores-aritmeticos">Operadores aritméticos</a></li>
+<li><a href="#operadores-logicos-y-de-comparacion">Operadores lógicos y de comparación</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Terminando con lo básico</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                5 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <h2 id="variables">Variables</h2>
+<h3 id="como-nombrar-las-variables">Cómo nombrar las variables</h3>
+<p>En Python, las variables no se pueden llamar de cualquier modo, aunque hay mucho margen. Las normas son las siguientes:</p>
+<ol>
+<li>Solo puede ser una palabra (sin espacios en blanco).</li>
+<li>Solo puede tener letras, números y el guion bajo (<code>_</code>).</li>
+<li>No puede empezar por un número.</li>
+</ol>
+<p>Es importante que las variables tengan nombres reconocibles, que ayuden al programador a saber qué contiene la variable. Python distingue entre mayúsculas y minúsculas al escribir variables y, normalmente, siempre empiezan a escribirse en minúsculas. Si queremos poner dos o más palabras como nombre de una variable <code>podemosHacerloAsi</code> (estilo <em>camelCase</em>) o <code>podemos_hacerlo_asi</code> (estilo <em>snake_case</em>). Lo mejor es elegir uno de los estilos y usarlo siempre.</p>
+<p>Además, Python se reserva unas pocas palabras que no pueden ser nombres de variables, porque se usan en otras partes del código, son las siguientes: <code>False</code>, <code>None</code>, <code>True</code>, <code>and</code>, <code>as</code>, <code>assert</code>, <code>async</code>, <code>await</code>, <code>break</code>, <code>class</code>, <code>continue</code>, <code>def</code>, <code>del</code>, <code>elif</code>, <code>else</code>, <code>except</code>, <code>finally</code>, <code>for</code>, <code>from</code>, <code>global</code>, <code>if</code>, <code>import</code>, <code>in</code>, <code>is</code>, <code>lambda</code>, <code>nonlocal</code>, <code>not</code>, <code>or</code>, <code>pass</code>, <code>raise</code>, <code>return</code>, <code>try</code>, <code>while</code>, <code>with</code>, <code>yield</code>.</p>
+<h2 id="funciones-internas">Funciones internas</h2>
+<p>Python viene de serie con algunas funciones muy útiles. Ya hemos visto <code>print()</code>, <code>input()</code>, <code>str()</code>, <code>int()</code> y <code>float()</code>.</p>
+<h3 id="longitud-de-una-cadena-funcion-len">Longitud de una cadena, función <code>len()</code></h3>
+<p>La función <code>len()</code> sirve para saber cuál es la longitud de una cadena (el número de caracteres que contiene).</p>
+<pre><code class="language-python">nombre = &quot;Josu&quot;
+print(len(nombre)) # Muestra 4
+
+frase = &quot;Hola mundo&quot;
+print(len(frase)) # Muestra 10 (el espacio también cuenta)
+</code></pre>
+<h3 id="tipo-de-variable-funcion-type">Tipo de variable, función <code>type()</code></h3>
+<p>Con la función <code>type()</code> podemos conocer el tipo de una variable (si es cadena, número entero, número decimal…) y aprovechar ese dato, por ejemplo, para hacer una conversión de uno a otro.</p>
+<pre><code class="language-python">type('17') # Devuelve str de string (cadena)
+type(17)   # Devuelve int de integer (entero)
+type(17.0) # Devuelve float (número decimal)
+</code></pre>
+<h3 id="metodos-de-una-variable-funcion-dir">Métodos de una variable, función <code>dir()</code></h3>
+<p>La función <code>dir()</code> es un poco más avanzada, pero nos da una pista de todo lo que podemos <em>hacer</em> con una variable. Nos muestra una lista de sus «métodos» (acciones que se pueden realizar sobre ella). No te preocupes por entenderlos todos, pero es útil para explorar.</p>
+<p>Por ejemplo, las cadenas de texto (<code>str</code>) tienen métodos para convertirlas a mayúsculas (<code>.upper()</code>) o minúsculas (<code>.lower()</code>).</p>
+<pre><code class="language-python"># dir(mi_variable) nos daría una lista enorme de cosas
+# Pero podemos usar sus métodos directamente:
+
+saludo = &quot;Hola, ¿qué tal?&quot;
+print(saludo.upper()) # Muestra: HOLA, ¿QUÉ TAL?
+
+nombre = &quot;JOSU&quot;
+print(nombre.lower()) # Muestra: josu
+</code></pre>
+<h2 id="operadores">Operadores</h2>
+<p>En Python, más allá de la suma y de la resta, hay muchos operadores.</p>
+<h3 id="operadores-aritmeticos">Operadores aritméticos</h3>
+<p>Estos son los operadores para cuestiones «matemáticas».</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Operador</th>
+<th style="text-align: left;">Operación</th>
+<th style="text-align: left;">Ejemplo</th>
+<th style="text-align: left;">Evalúa a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>+</code></td>
+<td style="text-align: left;">Suma</td>
+<td style="text-align: left;"><code>2 + 3</code></td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-</code></td>
+<td style="text-align: left;">Resta</td>
+<td style="text-align: left;"><code>3 - 2</code></td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">Multiplicación</td>
+<td style="text-align: left;"><code>2 * 3</code></td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/</code></td>
+<td style="text-align: left;">División</td>
+<td style="text-align: left;"><code>7 / 2</code></td>
+<td style="text-align: left;">3.5</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>**</code></td>
+<td style="text-align: left;">Potencia</td>
+<td style="text-align: left;"><code>3 ** 2</code></td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>//</code></td>
+<td style="text-align: left;">División entera</td>
+<td style="text-align: left;"><code>7 // 2</code></td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>%</code></td>
+<td style="text-align: left;">Resto (Módulo)</td>
+<td style="text-align: left;"><code>7 % 2</code></td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Tip: Operadores de asignación compuestos</strong>
+A menudo queremos modificar el valor de una variable basándonos en su valor actual (ej: <code>x = x + 1</code>). Python tiene un atajo para esto:</p>
+<ul>
+<li><code>x += 3</code> es lo mismo que <code>x = x + 3</code></li>
+<li><code>x -= 2</code> es lo mismo que <code>x = x - 2</code></li>
+<li><code>x *= 5</code> es lo mismo que <code>x = x * 5</code></li>
+<li><code>x /= 4</code> es lo mismo que <code>x = x / 4</code></li>
+</ul>
+</blockquote>
+<h3 id="operadores-logicos-y-de-comparacion">Operadores lógicos y de comparación</h3>
+<p>Estos operadores no devuelven un número, sino un valor booleano: <code>True</code> (verdadero) o <code>False</code> (falso). Son la base para tomar decisiones en el código con los condicionales <code>if</code>.</p>
+<p><strong>Operadores de Comparación</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Operador</th>
+<th style="text-align: left;">Significado</th>
+<th style="text-align: left;">Ejemplo</th>
+<th style="text-align: left;">Evalúa a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><mark></td>
+<td style="text-align: left;">Igual a</td>
+<td style="text-align: left;"><code>5 &lt;/mark&gt; 5</code></td>
+<td style="text-align: left;"><code>True</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>!=</code></td>
+<td style="text-align: left;">No igual a (distinto)</td>
+<td style="text-align: left;"><code>5 != 3</code></td>
+<td style="text-align: left;"><code>True</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&lt;</code></td>
+<td style="text-align: left;">Menor que</td>
+<td style="text-align: left;"><code>3 &lt; 5</code></td>
+<td style="text-align: left;"><code>True</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&gt;</code></td>
+<td style="text-align: left;">Mayor que</td>
+<td style="text-align: left;"><code>3 &gt; 5</code></td>
+<td style="text-align: left;"><code>False</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&lt;=</code></td>
+<td style="text-align: left;">Menor o igual que</td>
+<td style="text-align: left;"><code>5 &lt;= 5</code></td>
+<td style="text-align: left;"><code>True</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&gt;=</code></td>
+<td style="text-align: left;">Mayor o igual que</td>
+<td style="text-align: left;"><code>5 &gt;= 6</code></td>
+<td style="text-align: left;"><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Operadores Lógicos</strong></p>
+<p>Nos permiten combinar varias condiciones.</p>
+<ul>
+<li><strong><code>and</code> (y)</strong>: Devuelve <code>True</code> solo si <strong>ambas</strong> condiciones son verdaderas.
+    <code>python
+    edad = 25
+    tiene_entrada = True
+    # ¿Puede pasar al concierto?
+    puede_pasar = edad &gt;= 18 and tiene_entrada == True
+    print(puede_pasar) # Muestra True</code></li>
+<li><strong><code>or</code> (o)</strong>: Devuelve <code>True</code> si <strong>al menos una</strong> de las condiciones es verdadera.
+    <code>python
+    es_fin_de_semana = True
+    esta_de_vacaciones = False
+    # ¿Puede dormir hasta tarde?
+    puede_dormir = es_fin_de_semana or esta_de_vacaciones
+    print(puede_dormir) # Muestra True</code></li>
+<li><strong><code>not</code> (no)</strong>: Invierte el resultado. Lo que era <code>True</code> se vuelve <code>False</code>, y viceversa.
+    <code>python
+    llueve = False
+    print(not llueve) # Muestra True</code></li>
+</ul>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

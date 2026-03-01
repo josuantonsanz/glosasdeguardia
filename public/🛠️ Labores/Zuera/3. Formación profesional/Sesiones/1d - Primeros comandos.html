@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos básicos de programación en Python | Digital Garden</title>
+
+    <meta name="description"
+        content="Conceptos básicos de programación en Python 1. Comentarios Los comentarios son líneas de texto dentro del código que Python ignora al ejecutar el programa. S...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/1d - Primeros comandos.html">
+    <meta property="og:title" content="Conceptos básicos de programación en Python">
+    <meta property="og:description"
+        content="Conceptos básicos de programación en Python 1. Comentarios Los comentarios son líneas de texto dentro del código que Python ignora al ejecutar el programa. S...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/1d - Primeros comandos.html">
+    <meta property="twitter:title" content="Conceptos básicos de programación en Python">
+    <meta property="twitter:description"
+        content="Conceptos básicos de programación en Python 1. Comentarios Los comentarios son líneas de texto dentro del código que Python ignora al ejecutar el programa. S...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-comentarios">1. Comentarios</a></li>
+<li><a href="#2-variables-y-asignacion">2. Variables y asignación</a></li>
+<li><a href="#3-tipos-de-datos-basicos">3. Tipos de datos básicos</a><ul>
+<li><a href="#a-numeros-enteros-int">a) Números enteros (int)</a></li>
+<li><a href="#b-numeros-flotantes-o-decimales-float">b) Números flotantes o decimales (float)</a></li>
+<li><a href="#c-cadenas-de-texto-str-o-string">c) Cadenas de texto (str o string)</a></li>
+</ul>
+</li>
+<li><a href="#4-operadores-aritmeticos">4. Operadores aritméticos</a></li>
+<li><a href="#5-la-funcion-print-salida-de-datos">5. La función print() (salida de datos)</a></li>
+<li><a href="#6-concatenacion-de-cadenas">6. Concatenación de cadenas</a></li>
+<li><a href="#7-la-funcion-input-entrada-de-datos">7. La función input() (entrada de datos)</a></li>
+<li><a href="#8-conversion-de-tipos-casting">8. Conversión de tipos (Casting)</a></li>
+<li><a href="#9-estructuras-de-control-condicionales-ifelse">9. Estructuras de control: Condicionales (if/else)</a><ul>
+<li><a href="#operadores-de-comparacion">Operadores de comparación</a></li>
+<li><a href="#indentacion">Indentación</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Conceptos básicos de programación en Python</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                5 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <h2 id="1-comentarios">1. Comentarios</h2>
+<p>Los comentarios son líneas de texto dentro del código que Python ignora al ejecutar el programa. Sirven para que los programadores dejen notas, explicaciones o recordatorios para sí mismos o para otros que lean el código.</p>
+<p>En Python, un comentario de una sola línea comienza con el símbolo de almohadilla (<code>#</code>).</p>
+<p><strong>Ejemplo del notebook:</strong></p>
+<pre><code class="language-python"># Primer programa
+x = 2 + 3 # Esto suma 2 y 3
+</code></pre>
+<p>En este caso, <code># Primer programa</code> y <code># Esto suma 2 y 3</code> son comentarios que explican lo que hace el código, pero no afectan a su funcionamiento.</p>
+<h2 id="2-variables-y-asignacion">2. Variables y asignación</h2>
+<p>Una <strong>variable</strong> es como una caja con un nombre donde podemos guardar un valor (un número, un texto, etc.). El proceso de guardar un valor en una variable se llama <strong>asignación</strong>, y se realiza con el operador igual (=).</p>
+<p><strong>Ejemplo del notebook:</strong></p>
+<pre><code class="language-python">x = 2 + 3
+</code></pre>
+<ul>
+<li><code>x</code> es el nombre de la variable.</li>
+<li>= es el operador de asignación.</li>
+<li><code>2 + 3</code> es la operación cuyo resultado (en este caso, <code>5</code>) se guardará dentro de la variable <code>x</code>.</li>
+</ul>
+<p>Las variables pueden cambiar de valor (por eso se llaman «variables»):</p>
+<pre><code class="language-python">x = 3      # Ahora x vale 3
+x = 2 + x  # Ahora x guardará el valor 5 (2 + 3)
+</code></pre>
+<h2 id="3-tipos-de-datos-basicos">3. Tipos de datos básicos</h2>
+<p>Hemos visto tres tipos de datos fundamentales</p>
+<h4 id="a-numeros-enteros-int">a) Números enteros (<code>int</code>)</h4>
+<p>Son números completos, sin decimales.</p>
+<pre><code class="language-python">x = 5
+a = 10
+</code></pre>
+<h4 id="b-numeros-flotantes-o-decimales-float">b) Números flotantes o decimales (<code>float</code>)</h4>
+<p>Son números que tienen una parte decimal.</p>
+<pre><code class="language-python">division = 10 / 4  # El resultado es 2.5, que es un float
+x = float(3)       # Convierte el entero 3 al flotante 3.0
+</code></pre>
+<h4 id="c-cadenas-de-texto-str-o-string">c) Cadenas de texto (<code>str</code> o string)</h4>
+<p>Son secuencias de caracteres (letras, números, símbolos) que se escriben entre comillas dobles (<code>"</code>) o simples (<code>'</code>).</p>
+<pre><code class="language-python">texto = &quot;Hola, mundo&quot;
+nombre = &quot;Josu&quot;
+</code></pre>
+<h2 id="4-operadores-aritmeticos">4. Operadores aritméticos</h2>
+<p>Son los símbolos que nos permiten realizar operaciones matemáticas básicas.</p>
+<ul>
+<li><code>+</code> : Suma</li>
+<li><code>-</code> : Resta</li>
+<li><code>*</code> : Multiplicación</li>
+<li><code>/</code> : División (en Python 3, el resultado siempre es un <code>float</code>)</li>
+</ul>
+<p><strong>Ejemplo del notebook:</strong></p>
+<pre><code class="language-python">a = 10
+b = 5
+suma = a + b        # suma valdrá 15
+resta = a - b       # resta valdrá 5
+multi = a * b       # multi valdrá 50
+division = a / b    # division valdrá 2.0
+</code></pre>
+<h2 id="5-la-funcion-print-salida-de-datos">5. La función <code>print()</code> (salida de datos)</h2>
+<p>La función <code>print()</code> se utiliza para mostrar valores o texto en la pantalla. Es la forma estándar de ver el resultado de nuestro programa.</p>
+<p><strong>Ejemplo del notebook:</strong></p>
+<pre><code class="language-python">y = 5
+print(y)  # Muestra el número 5 en la pantalla
+
+texto = &quot;Hola, mundo&quot;
+print(texto) # Muestra el texto &quot;Hola, mundo&quot;
+</code></pre>
+<blockquote>
+<p><strong>Nota sobre Jupyter Notebook:</strong> En un notebook, si la última línea de una celda es una variable o un valor, Jupyter lo muestra automáticamente. Sin embargo, <code>print()</code> es explícito y siempre mostrará lo que le pidas, sin importar en qué línea de la celda esté.</p>
+</blockquote>
+<h2 id="6-concatenacion-de-cadenas">6. Concatenación de cadenas</h2>
+<p>Cuando se usa el operador de suma (<code>+</code>) con cadenas de texto, en lugar de sumar, las <strong>une</strong> o <strong>concatena</strong>.</p>
+<p><strong>Ejemplo del notebook:</strong></p>
+<pre><code class="language-python">texto1 = &quot;Hola&quot;
+texto2 = &quot;Josu&quot;
+saludo = texto1 + &quot; &quot; + texto2 # Une &quot;Hola&quot;, un espacio &quot; &quot; y &quot;Josu&quot;
+print(saludo) # Muestra &quot;Hola Josu&quot;
+</code></pre>
+<h2 id="7-la-funcion-input-entrada-de-datos">7. La función <code>input()</code> (entrada de datos)</h2>
+<p>La función <code>input()</code> pausa la ejecución del programa, muestra un mensaje al usuario y espera a que este escriba algo y presione "Enter". <strong>Importante:</strong> todo lo que el usuario escribe se recibe siempre como una <strong>cadena de texto (<code>str</code>)</strong>.</p>
+<p><strong>Ejemplo del notebook:</strong></p>
+<pre><code class="language-python">nombre = input(&quot;Pon tu nombre: &quot;)
+print(nombre)
+</code></pre>
+<h2 id="8-conversion-de-tipos-casting">8. Conversión de tipos (Casting)</h2>
+<p>Como <code>input()</code> siempre devuelve texto, si queremos hacer operaciones matemáticas con lo que el usuario introduce, primero debemos <strong>convertir</strong> ese texto a un tipo de dato numérico. A este proceso se le llama "casting".</p>
+<ul>
+<li><code>int(valor)</code>: Convierte el <code>valor</code> a un número entero.</li>
+<li><code>float(valor)</code>: Convierte el <code>valor</code> a un número flotante (con decimales).</li>
+<li><code>str(valor)</code>: Convierte el <code>valor</code> a una cadena de texto.</li>
+</ul>
+<p><strong>Ejemplo del notebook (de <code>str</code> a <code>int</code>):</strong></p>
+<pre><code class="language-python">entrada1 = input(&quot;Escribe el primer número: &quot;) # entrada1 es &quot;10&quot; (texto)
+a = int(entrada1)                              # a es 10 (número)
+</code></pre>
+<p><strong>Ejemplo del notebook (de <code>int</code> a <code>str</code> para imprimir):</strong></p>
+<p>No se puede concatenar un texto con un número directamente (<code>"Suma: " + 15</code> daría error). Hay que convertir el número a texto primero.</p>
+<pre><code class="language-python">suma = 15
+print(&quot;Suma: &quot; + str(suma)) # Convierte el número 15 a texto &quot;15&quot;
+</code></pre>
+<h2 id="9-estructuras-de-control-condicionales-ifelse">9. Estructuras de control: Condicionales (<code>if</code>/<code>else</code>)</h2>
+<p>Los condicionales nos permiten que nuestro código tome decisiones y ejecute diferentes bloques de código según si una condición se cumple o no.</p>
+<ul>
+<li><code>if</code>: Ejecuta el bloque de código que le sigue <strong>si</strong> la condición es verdadera.</li>
+<li><code>else</code>: Ejecuta el bloque de código que le sigue <strong>si</strong> la condición del <code>if</code> es falsa.</li>
+</ul>
+<h4 id="operadores-de-comparacion">Operadores de comparación</h4>
+<p>Para comprobar si dos valores son iguales, se usa el doble igual (\=\=). ¡No confundir con el = de asignación! También podemos comprobar si algo es distinto (<code>!=</code>) es mayor o menor que otro algo (<code>&gt;</code>, <code>&lt;</code>) o mayor o igual y menor o igual (<code>&gt;=</code>, <code>&lt;=</code>).</p>
+<h4 id="indentacion">Indentación</h4>
+<p>En Python, los bloques de código que pertenecen a un <code>if</code> o a un <code>else</code> deben estar <strong>indentados</strong> (tener un espacio o tabulación al principio). Así es como Python sabe qué código ejecutar en cada caso.</p>
+<p><strong>Ejemplo del notebook:</strong></p>
+<pre><code class="language-python">x = float(input(&quot;Escribe un número: &quot;)) # Pide un número y lo convierte a float
+
+if x == 3:  # Comprueba si el valor de x es igual a 3
+  # Este bloque solo se ejecuta si la condición es verdadera
+  print(&quot;X es igual 3&quot;)
+else:
+  # Este bloque solo se ejecuta si la condición es falsa
+  print(&quot;X no es 3&quot;)
+</code></pre>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

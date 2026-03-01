@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurar TexStudio con Sumatra | Digital Garden</title>
+
+    <meta name="description"
+        content="Configurar TexStudio con Sumatra 1\. Configuración de TexStudio Vamos a Opciones Configurar TexStudio Órdenes «Visor externo de PDF». Escribimos: Si Sumatra ...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/Proyectos/Tips & Tricks/Configurar TexStudio con Sumatra.html">
+    <meta property="og:title" content="Configurar TexStudio con Sumatra">
+    <meta property="og:description"
+        content="Configurar TexStudio con Sumatra 1\. Configuración de TexStudio Vamos a Opciones Configurar TexStudio Órdenes «Visor externo de PDF». Escribimos: Si Sumatra ...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/Proyectos/Tips & Tricks/Configurar TexStudio con Sumatra.html">
+    <meta property="twitter:title" content="Configurar TexStudio con Sumatra">
+    <meta property="twitter:description"
+        content="Configurar TexStudio con Sumatra 1\. Configuración de TexStudio Vamos a Opciones Configurar TexStudio Órdenes «Visor externo de PDF». Escribimos: Si Sumatra ...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-configuracion-de-texstudio">1. Configuración de TexStudio</a></li>
+<li><a href="#2-configuracion-de-sumatra">2. Configuración de Sumatra</a></li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Configurar TexStudio con Sumatra</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                1 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <h2 id="1-configuracion-de-texstudio">1. Configuración de TexStudio</h2>
+<p>Vamos a Opciones&gt;Configurar TexStudio&gt;Órdenes&gt; «Visor externo de PDF». Escribimos:</p>
+<p>Si Sumatra está instalado para un solo usuario: </p>
+<blockquote>
+<p><code>"%localappdata%\SumatraPDF\SumatraPDF.exe" -reuse-instance %.pdf</code></p>
+</blockquote>
+<p>Si Sumatra está instalado para todos:</p>
+<blockquote>
+<p><code>"C:\Program Files\SumatraPDF\SumatraPDF.exe" -reuse-instance %.pdf</code></p>
+</blockquote>
+<h2 id="2-configuracion-de-sumatra">2. Configuración de Sumatra</h2>
+<p>Vamos al Menu&gt;Ajustes&gt;Opciones…</p>
+<ul>
+<li>En la opción «Configurar la línea de órdenes de la búsqueda inversa» escribimos:<ul>
+<li><code>"C:/Program Files/texstudio/texstudio.exe" "%f" -line %l</code> o la ruta adecuada.</li>
+</ul>
+</li>
+</ul>
+<p>Si no aparece esa opción vamos a <code>Menu&gt;Ajustes&gt;Opciones avanzadas...</code> y añadimos esta línea:</p>
+<blockquote>
+<p><code>InverseSearchCmdLine = "C:/Program Files/texstudio/texstudio.exe" "%f" -line %l</code></p>
+<p>Fuente original: <a href="https://www.alperyazar.com/sumatrapdf-texstudio-synctex-search-link.html">Create search link between SumatraPDF and TeXstudio with SyncTeX | Alper Yazar</a></p>
+</blockquote>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

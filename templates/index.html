@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Digital Garden{% endblock %}
+
+{% block content %}
+<h1>Welcome to My Digital Garden</h1>
+<p>This is my personal knowledge space. Here you will find notes on various topics, interconnected and open for
+    exploration.</p>
+
+<h2>Published Notes</h2>
+<ul style="list-style-type: none; padding: 0;">
+    {% for note in notes %}
+    <li style="margin-bottom: 1rem; border: 1px solid #ddd; padding: 1rem; border-radius: 4px;">
+        <a href="{{ note.url }}" style="font-size: 1.2rem; font-weight: bold;">{{ note.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block toc %}
+<!-- No TOC on the index page -->
+{% endblock %}

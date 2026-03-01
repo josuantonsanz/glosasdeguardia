@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El bucle for y las listas | Digital Garden</title>
+
+    <meta name="description"
+        content="El bucle for y las listas Hasta ahora, hemos visto el bucle while , que repite una tarea mientras se cumpla una condición. Ahora vamos a ver el bucle for , q...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/3a - Listas y bucles for.html">
+    <meta property="og:title" content="El bucle for y las listas">
+    <meta property="og:description"
+        content="El bucle for y las listas Hasta ahora, hemos visto el bucle while , que repite una tarea mientras se cumpla una condición. Ahora vamos a ver el bucle for , q...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/🛠️ Labores/Zuera/3. Formación profesional/Sesiones/3a - Listas y bucles for.html">
+    <meta property="twitter:title" content="El bucle for y las listas">
+    <meta property="twitter:description"
+        content="El bucle for y las listas Hasta ahora, hemos visto el bucle while , que repite una tarea mientras se cumpla una condición. Ahora vamos a ver el bucle for , q...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#el-bucle-for-repitiendo-un-numero-exacto-de-veces">El bucle for: Repitiendo un número exacto de veces</a><ul>
+<li><a href="#la-funcion-range-nuestro-generador-de-numeros">La función range(): Nuestro generador de números</a></li>
+</ul>
+</li>
+<li><a href="#listas-las-estanterias-de-python">Listas: Las estanterías de Python</a><ul>
+<li><a href="#accediendo-a-los-elementos-indices">Accediendo a los elementos: Índices</a></li>
+<li><a href="#la-gran-diferencia-las-listas-son-mutables">La gran diferencia: Las listas son MUTABLES</a></li>
+<li><a href="#la-caja-de-herramientas-de-las-listas-metodos">La caja de herramientas de las listas: Métodos</a><ul>
+<li><a href="#cuidado-copiar-listas-no-es-lo-que-parece">Cuidado: Copiar listas no es lo que parece</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#la-combinacion-perfecta-bucles-for-y-listas">La combinación perfecta: Bucles for y Listas</a><ul>
+<li><a href="#dos-formas-de-recorrer-una-lista">Dos formas de recorrer una lista</a></li>
+</ul>
+</li>
+<li><a href="#ejercicios-practicos">Ejercicios prácticos</a><ul>
+<li><a href="#1-lista-de-la-compra-interactiva">1. Lista de la compra interactiva</a></li>
+<li><a href="#2-analisis-de-notas-de-clase">2. Análisis de notas de clase</a></li>
+<li><a href="#3-el-sorteo">3. El sorteo</a></li>
+<li><a href="#4-inversor-de-listas">4. Inversor de listas</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">El bucle for y las listas</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                10 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <p>Hasta ahora, hemos visto el bucle <code>while</code>, que repite una tarea <em>mientras</em> se cumpla una condición. Ahora vamos a ver el bucle <code>for</code>, que procesa cada elemento de una secuencia, uno por uno.</p>
+<h2 id="el-bucle-for-repitiendo-un-numero-exacto-de-veces">El bucle <code>for</code>: Repitiendo un número exacto de veces</h2>
+<p>La principal utilidad del bucle <code>for</code> es ejecutar un bloque de código un número predefinido de veces. Para ello, lo combinamos con la función <code>range()</code>.</p>
+<p>La estructura es siempre la misma:</p>
+<ul>
+<li>La palabra clave <code>for</code>.</li>
+<li>Una <strong>variable de control</strong> (que tomará un valor distinto en cada vuelta, por ejemplo <code>i</code> de "índice" o <code>num</code> de "número").</li>
+<li>La palabra clave <code>in</code>.</li>
+<li>La secuencia que queremos recorrer (por ejemplo, <code>range(5)</code>).</li>
+<li>Dos puntos (<code>:</code>) y el bloque de código indentado.</li>
+</ul>
+<p><strong>Ejemplo 1: Una cuenta atrás</strong></p>
+<pre><code class="language-python">print(&quot;Preparando el despegue&quot;)
+# range(5, 0, -1) genera los números 5, 4, 3, 2, 1
+for numero in range(5, 0, -1):
+    print(f&quot;{numero}...&quot;)
+
+print(&quot;Despegue&quot;)
+</code></pre>
+<p><strong>Salida:</strong></p>
+<pre><code>Preparando el despegue
+5...
+4...
+3...
+2...
+1...
+Despegue
+</code></pre>
+<p>En cada "vuelta" o <strong>iteración</strong> del bucle, la variable <code>numero</code> toma el siguiente valor que genera <code>range()</code>.</p>
+<h3 id="la-funcion-range-nuestro-generador-de-numeros">La función <code>range()</code>: Nuestro generador de números</h3>
+<p><code>range()</code> es increíblemente versátil. Puede usarse de tres maneras:</p>
+<ol>
+<li>
+<p><strong><code>range(fin)</code></strong>: Genera números desde <code>0</code> hasta <code>fin - 1</code>.
+    <code>python
+    # Imprime los números del 0 al 3
+    for i in range(4):
+        print(i) # Salida: 0, 1, 2, 3</code></p>
+</li>
+<li>
+<p><strong><code>range(inicio, fin)</code></strong>: Genera números desde <code>inicio</code> hasta <code>fin - 1</code>.
+    <code>python
+    # Aprendiendo a contar del 1 al 20
+    for numero in range(1, 21):
+        print(f"¿Cómo se dice el número {numero}?")</code></p>
+</li>
+<li>
+<p><strong><code>range(inicio, fin, paso)</code></strong>: Genera números desde <code>inicio</code> hasta <code>fin - 1</code>, saltando de <code>paso</code> en <code>paso</code>.
+    <code>python
+    # Muestra solo los números pares del 0 al 10
+    for par in range(0, 11, 2):
+        print(par) # Salida: 0, 2, 4, 6, 8, 10</code></p>
+</li>
+</ol>
+<h2 id="listas-las-estanterias-de-python">Listas: Las estanterías de Python</h2>
+<p>Imagina que tienes una estantería con baldas numeradas. En cada balda puedes poner lo que quieras: un libro, una foto, una planta... Una <strong>lista</strong> en Python es exactamente eso: una colección ordenada de elementos.</p>
+<p>A diferencia de las cadenas (que solo guardan caracteres), las listas pueden guardar cualquier tipo de dato: números, texto, booleanos e incluso otras listas.</p>
+<p>Se definen con corchetes <code>[]</code> y sus elementos se separan por comas.</p>
+<pre><code class="language-python"># Una lista de la compra
+lista_compra = [&quot;Leche&quot;, &quot;Pan&quot;, &quot;Huevos&quot;, &quot;Manzanas&quot;]
+
+# Una lista de notas de un examen
+notas = [7.5, 9.0, 5.2, 10.0]
+
+# Una lista vacía, para ir llenándola después
+tareas_pendientes = []
+</code></pre>
+<h3 id="accediendo-a-los-elementos-indices">Accediendo a los elementos: Índices</h3>
+<p>Igual que en las cadenas, accedemos a los elementos de una lista por su <strong>índice</strong>, que empieza en <strong>0</strong>.</p>
+<pre><code class="language-python">lista_compra = [&quot;Leche&quot;, &quot;Pan&quot;, &quot;Huevos&quot;, &quot;Manzanas&quot;]
+
+primer_producto = lista_compra[0]  # &quot;Leche&quot;
+tercer_producto = lista_compra[2]  # &quot;Huevos&quot;
+
+print(f&quot;No te olvides de comprar {primer_producto} y {tercer_producto}&quot;)
+</code></pre>
+<p>También funcionan los <strong>índices negativos</strong> (<code>-1</code> es el último, <code>-2</code> el penúltimo...) y el <strong><em>slicing</em></strong> (<code>[inicio:fin]</code>) para obtener sub-listas, exactamente igual que con las cadenas.</p>
+<h3 id="la-gran-diferencia-las-listas-son-mutables">La gran diferencia: Las listas son MUTABLES</h3>
+<p>Este es un concepto muy importante. Recuerda que las cadenas son <strong>inmutables</strong>: una vez creadas, no puedes cambiar un carácter individual.</p>
+<p>Esto significa que podemos modificar, añadir o eliminar elementos de una lista en cualquier momento.</p>
+<pre><code class="language-python">lista_compra = [&quot;Leche&quot;, &quot;Pan&quot;, &quot;Huevos&quot;]
+print(f&quot;Lista original: {lista_compra}&quot;)
+
+# 1. Modificar un elemento
+# Ah, no, no quiero pan normal, quiero pan integral.
+lista_compra[1] = &quot;Pan integral&quot;
+print(f&quot;Lista modificada: {lista_compra}&quot;)
+
+# 2. Eliminar un elemento con `del`
+# Ya tengo huevos en casa.
+del lista_compra[2]
+print(f&quot;Lista tras eliminar: {lista_compra}&quot;)
+</code></pre>
+<p><strong>Salida:</strong></p>
+<pre><code>Lista original: ['Leche', 'Pan', 'Huevos']
+Lista modificada: ['Leche', 'Pan integral', 'Huevos']
+Lista tras eliminar: ['Leche', 'Pan integral']
+</code></pre>
+<h3 id="la-caja-de-herramientas-de-las-listas-metodos">La caja de herramientas de las listas: Métodos</h3>
+<p>Las listas, al igual que las cadenas, vienen con sus propias "funciones" incorporadas, llamadas <strong>métodos</strong>. Estos métodos nos permiten manipular las listas de formas muy potentes. </p>
+<ul>
+<li><strong><code>.append(elemento)</code></strong>: Añade un elemento <strong>al final</strong> de la lista. Es la forma más común de agregar datos.
+    <code>python
+    tareas = ["Lavar los platos"]
+    tareas.append("Sacar al perro")
+    print(tareas) # Muestra: ['Lavar los platos', 'Sacar al perro']</code></li>
+<li><strong><code>.pop(indice)</code></strong>: Elimina y <strong>devuelve</strong> el elemento de un índice. Si no le das un índice, elimina el último.
+    <code>python
+    numeros = [10, 20, 30, 40]
+    ultimo_numero = numeros.pop() # Elimina el 40
+    print(f"He quitado el {ultimo_numero}") # Muestra "He quitado el 40"
+    print(numeros) # Muestra [10, 20, 30]</code></li>
+<li><strong><code>.sort()</code></strong>: Ordena la lista <strong>permanentemente</strong> (in-place). Funciona con números (de menor a mayor) y con texto (alfabéticamente).
+    <code>python
+    invitados = ["Carla", "Ana", "David", "Bruno"]
+    invitados.sort()
+    print(invitados) # Muestra: ['Ana', 'Bruno', 'Carla', 'David']</code></li>
+<li><strong><code>.reverse()</code></strong>: Invierte el orden de los elementos de la lista <strong>permanentemente</strong> (in-place).
+    <code>python
+    numeros = [1, 2, 3, 4]
+    numeros.reverse()
+    print(numeros) # Muestra: [4, 3, 2, 1]</code></li>
+<li><strong><code>.copy()</code></strong>: Crea una copia <strong>independiente</strong> de la lista. Esto es fundamental, como veremos a continuación.</li>
+</ul>
+<h4 id="cuidado-copiar-listas-no-es-lo-que-parece">Cuidado: Copiar listas no es lo que parece</h4>
+<p>Observa este comportamiento extraño:</p>
+<pre><code class="language-python">lista_original = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+lista_mal_copiada = lista_original # ¡Esto NO es una copia!
+
+lista_mal_copiada[0] = &quot;Z&quot;
+
+print(f&quot;Lista 'copiada': {lista_mal_copiada}&quot;)
+print(f&quot;Lista original: {lista_original}&quot;) # ¡La original también ha cambiado!
+# Salida: ['Z', 'b', 'c']
+</code></pre>
+<p>Cuando hacemos <code>lista_b = lista_a</code>, no estamos creando una nueva lista. Estamos creando una nueva "etiqueta" que apunta a la <strong>misma lista en la memoria</strong>. Cualquier cambio a través de una de las etiquetas afectará a la otra.</p>
+<p><strong>La forma correcta de copiar una lista</strong> es usando el método <code>.copy()</code> o slicing <code>[:]</code>:</p>
+<pre><code class="language-python">lista_original = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+lista_bien_copiada = lista_original.copy() # O lista_original[:]
+
+lista_bien_copiada[0] = &quot;Z&quot;
+
+print(f&quot;Lista copiada: {lista_bien_copiada}&quot;) # Muestra ['Z', 'b', 'c']
+print(f&quot;Lista original: {lista_original}&quot;)   # Muestra ['a', 'b', 'c'], ¡intacta!
+</code></pre>
+<p>Recuerda: si necesitas una versión modificada de una lista pero quieres conservar la original, crea siempre una copia.</p>
+<h2 id="la-combinacion-perfecta-bucles-for-y-listas">La combinación perfecta: Bucles <code>for</code> y Listas</h2>
+<p>Hasta ahora, el bucle <code>for</code> parecía no tener demasiada utilidad. Ahora, en cambio, con las listas, podemos usar un bucle <code>for</code> para "visitar" y operar con cada uno de los elementos de una lista.</p>
+<p><strong>El modo correcto (con listas y bucles):</strong></p>
+<pre><code class="language-python">tareas = [&quot;Hacer la cama&quot;, &quot;Estudiar Python&quot;, &quot;Pasear al perro&quot;]
+
+print(&quot;Mis tareas para hoy:&quot;)
+for tarea in tareas:
+    print(f&quot;- {tarea}&quot;)
+</code></pre>
+<p>Este bucle es muy fácil de leer: "Para cada <code>tarea</code> en la lista <code>tareas</code>, imprime la <code>tarea</code>".</p>
+<h3 id="dos-formas-de-recorrer-una-lista">Dos formas de recorrer una lista</h3>
+<ol>
+<li>
+<p><strong>Recorrer por elemento (la más común y legible):</strong>
+    Es la que acabamos de ver. Úsala cuando solo te importa el valor de cada elemento.</p>
+<p><code>python
+alumnos = ["Ana", "Luis", "Carla", "David"]
+for alumno in alumnos:
+    print(f"Bienvenido, {alumno}")</code></p>
+</li>
+<li>
+<p><strong>Recorrer por índice (cuando necesitas la posición):</strong>
+    A veces, además del elemento, necesitas saber su posición. Para ello, combinamos <code>range()</code> y <code>len()</code>.</p>
+<p><code>python
+alumnos = ["Ana", "Luis", "Carla", "David"]
+print("Clasificación de la competición:")
+for i in range(len(alumnos)):
+    # i valdrá 0, 1, 2, 3
+    # alumnos[i] será "Ana", "Luis", etc.
+    print(f"{i + 1}º puesto: {alumnos[i]}")</code>
+Usamos <code>i + 1</code> para que la lista para el usuario empiece en 1, que es más natural.
+3. <strong>Recorrer con enumerate() (combinando ambas opciones):</strong><br />
+   ¿Y si necesitamos el índice y el elemento a la vez? El método anterior funciona, pero Python nos da una herramienta mucho más elegante y fácil de leer: la función enumerate().
+   Esta función "envuelve" nuestra lista y, en cada vuelta del bucle, nos devuelve una pareja: (índice, elemento).</p>
+</li>
+</ol>
+<pre><code class="language-python">alumnos = [&quot;Ana&quot;, &quot;Luis&quot;, &quot;Carla&quot;, &quot;David&quot;] 
+print(&quot;Clasificación (con enumerate):&quot;) 
+for indice, alumno in enumerate(alumnos):
+     print(f&quot;{indice + 1}º puesto: {alumno}&quot;)`
+  ```
+
+Como ves, el resultado es idéntico al del método anterior, pero el código es más directo. No necesitamos acceder a alumnos[i], ya que enumerate nos da el alumno directamente en cada iteración. **Esta es la forma preferida en Python** cuando se necesitan ambas cosas: el índice y el valor.
+
+### Comprobar si un elemento está en la lista: `in` y `not in`
+
+Igual que con las cadenas, podemos verificar la pertenencia de un elemento de forma muy sencilla. Esto es ideal para usar en condicionales `if`.
+
+```python
+ingredientes_receta = [&quot;harina&quot;, &quot;azúcar&quot;, &quot;huevos&quot;, &quot;chocolate&quot;]
+
+ingrediente_a_buscar = &quot;huevos&quot;
+
+if ingrediente_a_buscar in ingredientes_receta:
+    print(f&quot;Perfecto. Tenemos {ingrediente_a_buscar} para la receta.&quot;)
+else:
+    print(f&quot;Oh, no. Nos falta {ingrediente_a_buscar}.&quot;)
+</code></pre>
+<p><strong>Atajo de programador: Valores verdaderos y falsos</strong></p>
+<p>En Python, algunos valores se comportan como <code>False</code> en un <code>if</code> sin serlo. Los más comunes son: el número <code>0</code>, la cadena vacía <code>""</code> y la <strong>lista vacía <code>[]</code></strong>.</p>
+<p>Todos los demás valores se comportan como <code>True</code>. Esto nos permite escribir código más limpio.</p>
+<pre><code class="language-python"># Forma larga
+mi_lista = []
+if len(mi_lista) == 0:
+    print(&quot;La lista está vacía.&quot;)
+# Forma pythonica usando False
+if not mi_lista:
+    print(&quot;La lista está vacía.&quot;)
+</code></pre>
+<p>Ambos códigos hacen lo mismo, pero el segundo es más directo y común entre programadores de Python.</p>
+<h2 id="ejercicios-practicos">Ejercicios prácticos</h2>
+<h3 id="1-lista-de-la-compra-interactiva">1. Lista de la compra interactiva</h3>
+<p>Crea un programa que permita al usuario construir una lista de la compra.</p>
+<ol>
+<li>El programa debe usar un bucle <code>while</code> para pedir al usuario que introduzca productos uno por uno.</li>
+<li>Cada producto introducido se debe añadir a una lista usando <code>.append()</code>.</li>
+<li>Si el usuario introduce la palabra "FIN", el bucle debe terminar.</li>
+<li>Al final, el programa debe mostrar un resumen:<ul>
+<li>La cantidad de productos en la lista.</li>
+<li>La lista de productos completa, ordenada alfabéticamente.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Ejemplo de ejecución:</strong></p>
+<pre><code>Introduce un producto (o 'FIN' para terminar): Leche
+Introduce un producto (o 'FIN' para terminar): Pan
+Introduce un producto (o 'FIN' para terminar): Manzanas
+Introduce un producto (o 'FIN' para terminar): FIN
+
+--- Tu lista de la compra ---
+Total de productos: 3
+- Manzanas
+- Leche
+- Pan
+</code></pre>
+<h3 id="2-analisis-de-notas-de-clase">2. Análisis de notas de clase</h3>
+<p>Escribe un programa que analice una lista de notas de un examen.</p>
+<ol>
+<li>Define una lista con varias notas (números flotantes), por ejemplo: <code>notas = [4.5, 8.0, 7.5, 9.0, 3.2, 6.5, 5.0, 10.0, 2.5]</code></li>
+<li>Usa un bucle <code>for</code> para recorrer la lista y calcular lo siguiente:<ul>
+<li>El número total de aprobados (nota &gt;= 5.0).</li>
+<li>El número total de suspensos.</li>
+<li>La suma de todas las notas.</li>
+</ul>
+</li>
+<li>Calcula la nota media de la clase (suma total / número de notas).</li>
+<li>Muestra un resumen con todos los datos calculados, formateando la nota media para que solo muestre 2 decimales.</li>
+</ol>
+<h3 id="3-el-sorteo">3. El sorteo</h3>
+<p>Crea un programa que simule un sorteo entre una lista de participantes.</p>
+<ol>
+<li>Crea una lista con los nombres de los participantes.</li>
+<li>Usa un bucle para pedir al usuario que introduzca los nombres de los participantes, de forma similar al ejercicio 1. El usuario debe poder introducir tantos nombres como quiera hasta escribir "YA".</li>
+<li>Una vez introducidos los nombres, el programa debe seleccionar un ganador al azar. Para ello, necesitarás importar el módulo <code>random</code> y usar la función <code>random.choice(tu_lista)</code>.</li>
+<li>Muestra por pantalla el nombre del ganador.</li>
+<li><strong>Extra:</strong> Después de anunciar al ganador, elimínalo de la lista de participantes usando <code>.pop()</code> o <code>del</code> y vuelve a realizar otro sorteo para el segundo premio entre los restantes.</li>
+</ol>
+<pre><code class="language-python"># Pista para el sorteo
+import random
+
+participantes = [&quot;Ana&quot;, &quot;Juan&quot;, &quot;Marta&quot;]
+ganador = random.choice(participantes)
+print(f&quot;Y el ganador es... {ganador}!&quot;)
+</code></pre>
+<h3 id="4-inversor-de-listas">4. Inversor de listas</h3>
+<p>Crea un programa que invierta el orden de los elementos de una lista <strong>sin usar el método <code>.reverse()</code></strong>.</p>
+<ol>
+<li>Define una lista inicial, por ejemplo: <code>mi_lista = [1, 2, 3, "a", "b", "c"]</code>.</li>
+<li>Crea una segunda lista, <code>lista_invertida</code>, que al principio estará vacía.</li>
+<li>Recorre la lista original <strong>desde el final hacia el principio</strong>. <em>Pista: puedes usar un bucle <code>for</code> con <code>range()</code> y un paso negativo.</em></li>
+<li>En cada iteración, añade el elemento actual de la lista original a <code>lista_invertida</code>.</li>
+<li>Al final, muestra tanto la lista original como la <code>lista_invertida</code>.</li>
+</ol>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

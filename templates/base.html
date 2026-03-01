@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Digital Garden{% endblock %}</title>
+
+    <meta name="description"
+        content="{{ description | default('A digital garden and personal knowledge base.', true) }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site_url }}/{{ url | default('', true) }}">
+    <meta property="og:title" content="{{ title | default('Digital Garden', true) }}">
+    <meta property="og:description"
+        content="{{ description | default('A digital garden and personal knowledge base.', true) }}">
+    {% if image %}
+    <meta property="og:image" content="{{ site_url }}/{{ image }}">
+    {% endif %}
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ site_url }}/{{ url | default('', true) }}">
+    <meta property="twitter:title" content="{{ title | default('Digital Garden', true) }}">
+    <meta property="twitter:description"
+        content="{{ description | default('A digital garden and personal knowledge base.', true) }}">
+    {% if image %}
+    <meta property="twitter:image" content="{{ site_url }}/{{ image }}">
+    {% endif %}
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ root_path }}style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="{{ root_path }}Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            {% block toc_sidebar %}{% endblock %}
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+    </div>
+</body>
+
+</html>

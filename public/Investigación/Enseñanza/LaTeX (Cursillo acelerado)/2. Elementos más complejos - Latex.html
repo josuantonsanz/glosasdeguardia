@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elementos más complejos | Digital Garden</title>
+
+    <meta name="description"
+        content="Elementos más complejos Imágenes Para añadir imágenes en LaTeX, debes importar el paquete graphicx utilizando \usepackage{graphicx} en el preámbulo del docum...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/Investigación/Enseñanza/LaTeX (Cursillo acelerado)/2. Elementos más complejos - Latex.html">
+    <meta property="og:title" content="Elementos más complejos">
+    <meta property="og:description"
+        content="Elementos más complejos Imágenes Para añadir imágenes en LaTeX, debes importar el paquete graphicx utilizando \usepackage{graphicx} en el preámbulo del docum...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/Investigación/Enseñanza/LaTeX (Cursillo acelerado)/2. Elementos más complejos - Latex.html">
+    <meta property="twitter:title" content="Elementos más complejos">
+    <meta property="twitter:description"
+        content="Elementos más complejos Imágenes Para añadir imágenes en LaTeX, debes importar el paquete graphicx utilizando \usepackage{graphicx} en el preámbulo del docum...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#imagenes">Imágenes</a></li>
+<li><a href="#tablas">Tablas</a></li>
+<li><a href="#notas-a-pie-de-pagina">Notas a pie de página</a></li>
+<li><a href="#referencias-cruzadas">Referencias cruzadas</a><ul>
+<li><a href="#a-donde-ir-desde-aqui">A dónde ir desde aquí</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Elementos más complejos</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                3 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <h1 id="imagenes">Imágenes</h1>
+<p>Para añadir imágenes en LaTeX, debes importar el paquete <code>graphicx</code> utilizando <code>\usepackage{graphicx}</code> en el preámbulo del documento. Asegúrate de que tu imagen esté en un formato compatible con LaTeX, como JPEG o PNG. Luego, para insertar la imagen en tu documento, colócala dentro del entorno <code>figure</code>. Utiliza el comando <code>\includegraphics[width=0.6\textwidth]{nombre_de_tu_imagen.png}</code> para insertar la imagen, asegurándote de reemplazar <code>"nombre_de_tu_imagen.png"</code> con el nombre y la ubicación de tu imagen. El ancho de la imagen se puede ajustar cambiando el valor de la opción <code>width</code> en <code>\includegraphics</code>. Además, puedes añadir una descripción a la imagen utilizando el comando <code>\caption{Descripción de la imagen}</code>. Al compilar el documento, LaTeX ubicará automáticamente la imagen en el lugar apropiado y la numerará. Asegúrate de que el archivo de imagen esté en la misma carpeta que tu archivo <code>.tex</code> o proporciona la ruta completa al archivo de imagen si se encuentra en otra ubicación. Así quedaría en conjunto:</p>
+<pre><code class="language-tex">\begin{figure} 
+    \centering 
+    \includegraphics[width=0.6\textwidth]{nombre_de_tu_imagen.png} 
+    \caption{Descripción de la imagen.} 
+\end{figure}
+</code></pre>
+<h1 id="tablas">Tablas</h1>
+<p>Para agregar tablas en LaTeX, comienza importando el paquete <code>tabularx</code> en el preámbulo de tu documento con el comando <code>\usepackage{tabularx}</code>. Luego, dentro del cuerpo del documento, utiliza el entorno <code>tabular</code> para crear la tabla. Por ejemplo:</p>
+<pre><code class="language-tex">\begin{tabular}{|c|c|c|} 
+    \hline Encabezado 1 &amp; Encabezado 2 &amp; Encabezado 3 \\ 
+    \hline Dato 1 &amp; Dato 2 &amp; Dato 3 \\ 
+    \hline Dato 4 &amp; Dato 5 &amp; Dato 6 \\ 
+    \hline 
+\end{tabular}
+</code></pre>
+<p>En el ejemplo anterior, hemos creado una tabla simple con tres columnas. Las letras "c" dentro de <code>\begin{tabular}</code> indican que las columnas están centradas. Puedes utilizar "l" para alinear a la izquierda o "r" para alinear a la derecha.</p>
+<p>Para agregar líneas horizontales en la tabla, utilizamos <code>\hline</code> para las líneas horizontales de la parte superior e inferior y para separar las filas.</p>
+<p>También puedes utilizar comandos como <code>\toprule</code>, <code>\midrule</code>, y <code>\bottomrule</code> del paquete <code>booktabs</code> para crear líneas horizontales de estilo profesional en lugar de <code>\hline</code>. Aquí te muestro cómo se hace:</p>
+<pre><code class="language-tex">\usepackage{tabularx}  % Importa el paquete tabularx
+\usepackage{booktabs}  % Importa el paquete booktabs
+
+\begin{document}
+
+\begin{tabular}{ccc}
+    \toprule
+    Encabezado 1 &amp; Encabezado 2 &amp; Encabezado 3 \\
+    \midrule
+    Dato 1 &amp; Dato 2 &amp; Dato 3 \\
+    Dato 4 &amp; Dato 5 &amp; Dato 6 \\
+    \bottomrule
+\end{tabular}
+
+\end{document}
+</code></pre>
+<h1 id="notas-a-pie-de-pagina">Notas a pie de página</h1>
+<p>Para insertar una nota al pie de página en LaTeX, simplemente utiliza el comando <code>\footnote{Texto de la nota al pie de página}</code> en el lugar donde desees que aparezca la nota. Por ejemplo:</p>
+<pre><code class="language-tex">Este es un ejemplo de texto con una nota al pie de página\footnote{Esta es la nota al pie de página que proporciona información adicional.}.
+</code></pre>
+<h1 id="referencias-cruzadas">Referencias cruzadas</h1>
+<p>Para crear referencias cruzadas en LaTeX que incluyan hipervínculos, necesitas seguir estos pasos:
+1. Asegúrate de que el paquete <code>hyperref</code> esté importado en el preámbulo de tu documento con <code>\usepackage{hyperref}</code>.
+2. Donde quieras hacer referencia a un elemento, coloca una etiqueta utilizando el comando <code>\label{nombre_de_etiqueta}</code>. 
+3. Luego, en el lugar donde quieras crear un hipervínculo a esa etiqueta, utiliza el comando <code>\hyperref[nombre_de_etiqueta]{texto_a_mostrar}</code>. </p>
+<p>Cuando utilizas <code>\hyperref[sec:intro]{introducción}</code>, LaTeX generará un hipervínculo que muestra tanto el número de la sección como el texto «introducción». Si deseas que la referencia solo incluya el número de la sección (sin el texto), puedes utilizar <code>\ref{sec:intro}</code> en lugar de <code>\hyperref[sec:intro]{introducción}</code>. En ese caso, solo se mostrará el número de la sección en la referencia cruzada. Por ejemplo:</p>
+<pre><code class="language-tex">\documentclass{article}
+\usepackage{hyperref}  % Importa el paquete hyperref
+
+\begin{document}
+
+\section{Introducción}\label{sec:intro}
+
+En esta sección, vamos a explorar cómo usar referencias cruzadas con hipervínculos en LaTeX.
+
+\subsection{Referencia a la Sección}
+
+Para obtener más detalles, consulta la \hyperref[sec:intro]{introducción}.
+
+\end{document}
+</code></pre>
+<h2 id="a-donde-ir-desde-aqui">A dónde ir desde aquí</h2>
+<p>Aquí tienes el esquema general:
+1. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/1. Introducción - Latex.html">Introducción, estructura y formato</a>
+2. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/2. Elementos más complejos - Latex.html">Imágenes, tablas, notas y referencias</a> (esta página)
+4. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/4. Idiomas - Latex.html">Idiomas (castellano, griego, hebreo y fonética)</a> 
+4. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">5. Canciones</a></p>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción | Digital Garden</title>
+
+    <meta name="description"
+        content="Introducción Esta introducción la he creado valiéndome en gran medida de ChatGPT para la redacción de los párrafos. El esquema, orden y revisión final son mí...">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://glosasdeguardia.es/Investigación/Enseñanza/LaTeX (Cursillo acelerado)/1. Introducción - Latex.html">
+    <meta property="og:title" content="Introducción">
+    <meta property="og:description"
+        content="Introducción Esta introducción la he creado valiéndome en gran medida de ChatGPT para la redacción de los párrafos. El esquema, orden y revisión final son mí...">
+    
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://glosasdeguardia.es/Investigación/Enseñanza/LaTeX (Cursillo acelerado)/1. Introducción - Latex.html">
+    <meta property="twitter:title" content="Introducción">
+    <meta property="twitter:description"
+        content="Introducción Esta introducción la he creado valiéndome en gran medida de ChatGPT para la redacción de los párrafos. El esquema, orden y revisión final son mí...">
+    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../style.min.css">
+</head>
+
+<body>
+    <div class="layout container-fluid">
+
+        <!-- Sidebar: Table of Contents -->
+        <aside class="sidebar-left">
+            <nav class="explorer">
+                <a href="../../../Garden-home.html" class="home-link">Glosas de guardia</a>
+            </nav>
+            
+
+    <div class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#que-es-latex">¿Qué es LaTeX?</a><ul>
+<li><a href="#como-acceder-a-latex">Cómo acceder a LaTeX</a></li>
+<li><a href="#conceptos-basicos">Conceptos básicos</a></li>
+</ul>
+</li>
+<li><a href="#domando-a-latex-comandos-y-formato">Domando a LaTeX: Comandos y formato</a><ul>
+<li><a href="#unidades-basicas-de-actuacion-comandos-y-entornos">Unidades básicas de actuación: comandos y entornos</a></li>
+<li><a href="#estructura-de-un-documento-de-latex">Estructura de un documento de LaTeX</a><ul>
+<li><a href="#titulo-autor-y-fecha">Título, autor y fecha</a></li>
+<li><a href="#espacios-y-parrafos">Espacios y párrafos</a></li>
+</ul>
+</li>
+<li><a href="#capitulos-y-secciones">Capítulos y secciones</a></li>
+<li><a href="#dando-formato">Dando formato</a><ul>
+<li><a href="#tamano-de-letra">Tamaño de letra</a></li>
+</ul>
+</li>
+<li><a href="#negrita-cursiva-y-subrayado">Negrita, cursiva y subrayado</a></li>
+<li><a href="#listas">Listas</a></li>
+</ul>
+</li>
+<li><a href="#un-ejemplo-completo">Un ejemplo completo</a><ul>
+<li><a href="#a-donde-ir-desde-aqui">A dónde ir desde aquí</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </div>
+    
+    
+        </aside>
+
+        <!-- Main Reading Area -->
+        <main class="main-content">
+            
+<article class="garden-note">
+    <header class="note-header">
+        <h1 class="title">Introducción</h1>
+        
+
+        <div class="metadata">
+            
+
+            
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                9 min read
+            </span>
+            
+        </div>
+    </header>
+
+    <div class="prose">
+        <p><em>Esta introducción la he creado valiéndome en gran medida de ChatGPT para la redacción de los párrafos. El esquema, orden y revisión final son míos.</em></p>
+<h1 id="que-es-latex">¿Qué es LaTeX?</h1>
+<p>LaTeX es un sistema de composición de documentos ampliamente utilizado en entornos académicos y científicos. A diferencia de los procesadores de texto convencionales, LaTeX se basa en el marcado de texto, lo que significa que agregas comandos especiales a tu documento para definir su estructura y formato. Luego, LaTeX procesa estos comandos y genera un documento final con una apariencia profesional y consistente. Es una herramienta esencial para aquellos en el mundo académico que desean producir documentos de alta calidad con facilidad.</p>
+<h2 id="como-acceder-a-latex">Cómo acceder a LaTeX</h2>
+<p>Para acceder a LaTeX, tienes dos opciones populares. La primera es utilizar <a href="https://es.overleaf.com/">Overleaf</a>, una plataforma en línea que te permite crear y editar documentos LaTeX directamente en tu navegador, sin necesidad de instalar software adicional. Es una opción conveniente, especialmente si trabajas en diferentes computadoras o sistemas operativos. La segunda opción es instalar una distribución LaTeX como <a href="https://miktex.org/download">MikTeX</a> y un editor como <a href="https://www.texstudio.org/">TeXstudio</a> en tu ordenador. Esto te proporciona un entorno de LaTeX local, lo que puede ser útil si prefieres trabajar sin conexión a internet o si necesitas un mayor control sobre tu sistema. Ambas opciones son efectivas, y la elección depende de tus preferencias personales y necesidades.</p>
+<h2 id="conceptos-basicos">Conceptos básicos</h2>
+<p>En LaTeX, es fundamental comprender algunos conceptos clave. En primer lugar, LaTeX separa el contenido del documento del formato, lo que significa que puedes enfocarte en escribir tu texto sin preocuparte por el diseño. Esto resulta muy útil, ya que te permite centrarte en la creación de contenido de manera eficiente.</p>
+<p>Además, LaTeX funciona mediante un proceso de compilación. En otras palabras, no es un procesador de texto en tiempo real como Word. Necesitas un programa intermedio, llamado compilador, para transformar tus archivos de texto con formato LaTeX en documentos finales. Esto asegura que el formato sea coherente y profesional en todo momento.</p>
+<p>Es importante destacar que LaTeX, en su estado inicial, proporciona solo las funcionalidades básicas. Sin embargo, puedes personalizarlo a tus necesidades mediante el uso de "paquetes". Estos son complementos que añaden funciones adicionales, como fuentes específicas o estilos de página personalizados, permitiéndote adaptar LaTeX para satisfacer tus requerimientos particulares.</p>
+<h1 id="domando-a-latex-comandos-y-formato">Domando a LaTeX: Comandos y formato</h1>
+<h2 id="unidades-basicas-de-actuacion-comandos-y-entornos">Unidades básicas de actuación: comandos y entornos</h2>
+<p>En LaTeX, un comando es una instrucción especial que empieza con una barra invertida, como <code>\comando</code>. Algunos comandos tienen argumentos, que son información adicional que le dices al comando para que sepa qué hacer. Por ejemplo, el comando <code>\section</code> se usa para crear una sección en tu documento y el argumento es el título de la sección, como <code>\section{Introducción}</code>. Además, algunos comandos pueden tener argumentos opcionales entre corchetes, como <code>\comando{argumento}[opcion]</code>. Estos comandos son fundamentales para dar formato y estructura a tu documento de manera precisa.</p>
+<p>En LaTeX, un entorno o grupo es una forma de delimitar un conjunto de comandos que afectan a un bloque específico de texto. Se inicia con <code>\\begin{entorno}</code> y se cierra con <code>\end{entorno}</code>. Por ejemplo, <code>\begin{quote}</code> y <code>\end{quote}</code> crean un entorno que formatea el texto como una cita. Otro ejemplo es el entorno <code>itemize</code>, que se usa para crear listas con viñetas, comenzando con <code>\begin{itemize}</code> y terminando con <code>\end{itemize}</code>. Los entornos son útiles para aplicar formato a secciones específicas de tu documento.</p>
+<h2 id="estructura-de-un-documento-de-latex">Estructura de un documento de LaTeX</h2>
+<p>En LaTeX, la estructura de un documento sigue un proceso sencillo pero organizado.  </p>
+<p><strong>Cabecera:</strong> Comienza por elegir el tipo de documento que deseas crear, lo que es como seleccionar una plantilla predefinida. Esto establece las reglas básicas de formato para tu documento. Todo documento comienza con <code>\documentclass[opciones]{clase de documento}</code>. Hay muchas clases de documento entre las que elegir, pero estas son las principales:
+1. <strong><code>article</code>:</strong> Para documentos tipo artículo, como informes, ensayos o trabajos académicos.
+2. <strong><code>report</code>:</strong> Para documentos más largos, como informes extensos o tesis.
+3. <strong><code>book</code>:</strong> Para la creación de libros y documentos más largos que se dividen en capítulos.
+4. <strong><code>letter</code>:</strong> Para escribir cartas.
+5. <strong><code>beamer</code>:</strong> Para la creación de presentaciones.</p>
+<p>Además, estás son las opciones comunes:
+1. <strong><code>10pt</code>, <code>11pt</code>, <code>12pt</code>:</strong> Establecen el tamaño de fuente del documento a 10, 11 o 12 puntos, respectivamente.
+2. <strong><code>a4paper</code>, <code>letterpaper</code>:</strong> Define el tamaño del papel del documento como A4 o carta (tamaño estándar de EE. UU.).
+3. <strong><code>twocolumn</code>:</strong> Formato de dos columnas en lugar de una.
+4. <strong><code>titlepage</code>, <code>notitlepage</code>:</strong> Indica si se debe crear una página de título o no.
+5. <strong><code>twoside</code>, <code>oneside</code>:</strong> Configura el documento para impresión a doble cara o a una sola cara.
+6. <strong><code>openright</code>, <code>openany</code>:</strong> Controla si los capítulos comienzan en una página derecha o en cualquier página.
+7. <strong><code>landscape</code>:</strong> Cambia la orientación de la página a apaisada (horizontal).</p>
+<p><strong>Preámbulo:</strong> Aquí es donde defines todas las configuraciones y ajustes especiales que deseas aplicar a tu documento. Esto incluye la inclusión de paquetes adicionales (como mencionamos antes) y la definición de elementos como el título, el autor y otros detalles de formato. Esta parte es como establecer las reglas específicas de tu documento.</p>
+<p><strong>Documento:</strong> Finalmente, está el «contenido». Esta es la parte principal de tu documento, donde escribirás el texto y agregas elementos como títulos, secciones, tablas, imágenes y ecuaciones. LaTeX se encargará de formatear todo según las reglas que estableciste en el preámbulo. </p>
+<pre><code class="language-tex">\begin{document}
+    Aquí va el contenido
+\end{document}
+</code></pre>
+<p>Esta estructura te brinda un alto grado de control sobre el formato y la organización de tus documentos.</p>
+<h3 id="titulo-autor-y-fecha">Título, autor y fecha</h3>
+<p>El título, autor y fecha en un documento LaTeX son elementos metadatos que se utilizan para dar información básica sobre el documento. El comando <code>\title{}</code> se usa para definir el título del documento, que generalmente aparece en la página de título. <code>\author{}</code> establece el nombre del autor del documento. Por último, <code>\date{}</code> se utiliza para especificar la fecha, que puede ser la fecha actual, una fecha personalizada o estar en blanco. Una vez que se han definido estos elementos, se utiliza <code>\maketitle</code> para generar la página de título con la información proporcionada. Esto asegura que el título, autor y fecha se muestren de manera uniforme y profesional en todo el documento. Aquí tienes un ejemplo:</p>
+<pre><code class="language-tex">\documentclass{article} 
+
+\title{Mi Primer Documento en LaTeX} 
+\author{Josu} 
+\date{\today} 
+
+\begin{document} 
+
+\maketitle 
+
+Este es un ejemplo de documento en LaTeX que incluye el título, autor y fecha.
+
+\end{document}
+</code></pre>
+<h3 id="espacios-y-parrafos">Espacios y párrafos</h3>
+<ol>
+<li><strong>Espacios:</strong><ul>
+<li>Para agregar un espacio en blanco simple entre palabras, simplemente escribe un espacio en el texto.</li>
+<li>LaTeX no tiene en cuenta múltiples espacios o líneas en blanco seguidas. Si necesitas espacios adicionales, puedes usar <code>\quad</code> para un espacio grande o <code>\hspace{1em}</code> , poniendo en <code>1em</code> el tamaño que necesites</li>
+<li>Para crear un espacio no rompible, utiliza <code>\~{}</code> en lugar de un espacio normal. Esto evitará que LaTeX lo divida al final de una línea.</li>
+</ul>
+</li>
+<li><strong>Nueva Línea:</strong><ul>
+<li>Para comenzar una nueva línea sin comenzar un nuevo párrafo, simplemente usa <code>\\</code> al final de una línea.</li>
+</ul>
+</li>
+<li><strong>Nuevo Párrafo:</strong><ul>
+<li>Para comenzar un nuevo párrafo, simplemente deja una línea en blanco en tu código fuente. LaTeX entenderá que estás iniciando un nuevo párrafo.</li>
+</ul>
+</li>
+</ol>
+<h2 id="capitulos-y-secciones">Capítulos y secciones</h2>
+<p>En LaTeX, la organización de documentos se logra mediante una jerarquía que incluye «partes» (<code>\part{}</code>), «capítulos» (<code>\chapter{}</code>), «secciones» (<code>\section{}</code>), y "subsecciones" (<code>\subsection{}</code>). Cada uno de estos elementos se utiliza para estructurar el contenido de manera organizada y lógica, permitiendo una fácil navegación a través del documento. Las partes son la división más alta, seguidas de los capítulos, secciones y subsecciones, lo que proporciona una jerarquía que se refleja en la numeración automática de estas divisiones en el documento final.</p>
+<h2 id="dando-formato">Dando formato</h2>
+<h3 id="tamano-de-letra">Tamaño de letra</h3>
+<ol>
+<li><code>\tiny{Texto}</code>: Texto muy pequeño.</li>
+<li><code>\scriptsize{Texto}</code>: Texto un poco más grande que <code>\tiny</code>.</li>
+<li><code>\footnotesize{Texto}</code>: Tamaño de fuente de nota a pie de página.</li>
+<li><code>\small{Texto}</code>: Tamaño de fuente pequeño.</li>
+<li><code>\normalsize{Texto}</code>: Tamaño de fuente normal.</li>
+<li><code>\large{Texto}</code>: Tamaño de fuente grande.</li>
+<li><code>\Large{Texto}</code>: Tamaño de fuente aún más grande.</li>
+<li><code>\LARGE{Texto}</code>: Texto muy grande.</li>
+<li><code>\huge{Texto}</code>: Texto extremadamente grande.</li>
+<li><code>\Huge{Texto}</code>: Tamaño de fuente máximo.</li>
+</ol>
+<h2 id="negrita-cursiva-y-subrayado">Negrita, cursiva y subrayado</h2>
+<ol>
+<li><code>\textbf{Texto}</code>: Para texto en negrita.</li>
+<li><code>\textit{Texto}</code>: Para texto en cursiva.</li>
+<li><code>\underline{Texto}</code>: Para subrayar texto.</li>
+<li><code>\texttt{Texto}</code>: Para texto de tipo de máquina.</li>
+<li><code>\textsc{Texto}</code>: Para texto en versalitas.</li>
+</ol>
+<h2 id="listas">Listas</h2>
+<p>En LaTeX, puedes crear listas de diferentes tipos: numeradas, con viñetas o de descripción. Aquí te explico cómo hacerlo:</p>
+<p><strong>Lista Numerada:</strong> Para crear una lista numerada, utiliza el entorno <code>enumerate</code>. Aquí tienes un ejemplo:</p>
+<pre><code class="language-tex">\begin{enumerate}     
+    \item Primer elemento.     
+    \item Segundo elemento.     
+    \item Tercer elemento. 
+\end{enumerate}
+</code></pre>
+<p>Esto generará una lista con números, como:</p>
+<ol>
+<li>Primer elemento.</li>
+<li>Segundo elemento.</li>
+<li>Tercer elemento.</li>
+</ol>
+<p><strong>Lista con Viñetas:</strong> Para crear una lista con viñetas, utiliza el entorno <code>itemize</code>. Aquí tienes un ejemplo:</p>
+<pre><code class="language-tex">\begin{itemize}     
+    \item Elemento con viñeta.     
+    \item Otro elemento con viñeta.     
+    \item Y otro más. 
+\end{itemize}
+</code></pre>
+<p>Esto generará una lista con viñetas, como:</p>
+<ul>
+<li>Elemento con viñeta.</li>
+<li>Otro elemento con viñeta.</li>
+<li>Y otro más.</li>
+</ul>
+<p><strong>Lista de Descripción:</strong> Para crear una lista de descripción, utiliza el entorno <code>description</code>. Aquí tienes un ejemplo:</p>
+<pre><code class="language-tex">\begin{description}     
+    \item[Etiqueta 1] Descripción del primer elemento.     
+    \item[Etiqueta 2] Descripción del segundo elemento.     
+    \item[Etiqueta 3] Descripción del tercer elemento. 
+\end{description}
+</code></pre>
+<p>Esto generará una lista en la que puedes etiquetar cada elemento con una descripción, como:</p>
+<p>Etiqueta 1: Descripción del primer elemento. 
+Etiqueta 2: Descripción del segundo elemento. 
+Etiqueta 3: Descripción del tercer elemento.</p>
+<p>Estos entornos de lista son muy útiles para organizar la información en tu documento de una manera clara y ordenada. Puedes personalizar aún más el formato de estas listas si es necesario.</p>
+<h1 id="un-ejemplo-completo">Un ejemplo completo</h1>
+<pre><code class="language-tex">\documentclass{article} 
+
+\title{Mi Primer Documento en LaTeX} 
+\author{Josu} 
+\date{\today} 
+
+\begin{document} 
+    \maketitle 
+
+    \section{Introducción} 
+
+    Este es un ejemplo de documento en LaTeX que incluye el título, autor y fecha. 
+
+     \subsection{Subsección} 
+
+     Aquí tienes una subsección dentro del cuerpo del documento. Tiene \textbf{texto en negrita} o \huge{muy grande}. 
+
+\end{document}
+</code></pre>
+<h2 id="a-donde-ir-desde-aqui">A dónde ir desde aquí</h2>
+<p>Ya tenemos lo básico, pero nos falta mucho. Aquí tienes el esquema general:
+1. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/1. Introducción - Latex.html">Introducción, estructura y formato</a> (esta página)
+2. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/2. Elementos más complejos - Latex.html">Imágenes, tablas, notas y referencias</a>
+3. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/4. Idiomas - Latex.html">Idiomas (castellano, griego, hebreo y fonética)</a>
+4. <a href="../../../3. Paquetes fundamentales - Latex.html">Paquetes fundamentales</a>
+4. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">5. Canciones</a></p>
+    </div>
+</article>
+
+        </main>
+
+    </div>
+</body>
+
+</html>
