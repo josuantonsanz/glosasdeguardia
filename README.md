@@ -1,27 +1,24 @@
 
 
-# How to copy this project to your github
+# Glosas de Guardia - Digital Garden
 
-- Create a new empty repository
-- Download all the data in this one to a folder. 
-- In that folder, execute the following commands:
+## Publicación en 1-Click (Recomendado)
 
-```
-git init
-edit .gitignore to add 'content/'
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin <your-repo-url>
-git push -u origin main
-```
+Para publicar los cambios de tu vault de Obsidian en GitHub Pages:
+- Simplemente haz doble click en el archivo **`Publicar_Web.bat`** (o en el acceso directo en tu Escritorio: **`Publicar Glosas de Guardia`**).
 
-# How to run the build
+Este script realiza automáticamente:
+1. La **sincronización** del contenido desde tu vault (`C:\Users\josua\OneDrive\Documents\ObsidianVault`) hacia `content/` (reflejando borrados y des-publicaciones).
+2. La **compilación** del sitio web (`build.py`).
+3. El **commit y push** a GitHub, lo que activa el despliegue automático de GitHub Pages.
+
+---
+
+# How to run manually
 
 - Use uv to install the dependencies: `uv sync`
-- Run the build: `uv run python build.py`
-- Commit the changes: `git add .` and `git commit -m "<your message>"`
-- Push the changes: `git push origin main`
+- Sync & publish via Python: `uv run python publish.py`
+- Or run the build manually: `uv run python build.py`
 
 # How to set up Github pages
 

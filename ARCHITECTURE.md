@@ -43,8 +43,21 @@ The build process (`uv run python build.py`) follows these steps:
 6. **Index Generation**: Renders `index.html` showcasing all compiled notes.
 7. **Asset Pipeline**: Reads `templates/style.css`, minifies it, and saves it to `public/style.min.css`.
 
+## Automated Publishing Pipeline (`publish.py` & `Publicar_Web.bat`)
+
+The 1-click publishing workflow handles synchronization, building, and deployment seamlessly:
+
+1. **Vault Synchronization**: Mirror copies notes from the Obsidian Vault (`C:\Users\josua\OneDrive\Documents\ObsidianVault`) to `content/`, ignoring hidden system folders (`.obsidian`, `.trash`, `.smart-connections`, etc.).
+   - *Deletions handling*: `content/` is cleaned before syncing, ensuring files deleted in Obsidian are removed from `content/`.
+2. **Static Site Build**: Invokes `build.py` to recreate `public/` from scratch.
+   - *Unpublish handling*: Notes with `dg-publish: false` or deleted notes are omitted from `public/`.
+3. **Git & GitHub Pages Deployment**: Detects changes (`git status`), stages added/modified/deleted files (`git add .`), creates a timestamped commit, and pushes to `origin main`.
+   - GitHub Actions (`.github/workflows/static.yml`) automatically deploys `public/` to GitHub Pages upon push.
+4. **Double-Click Execution**: `Publicar_Web.bat` provides a Windows terminal wrapper that pauses at completion, and a Desktop shortcut (`Publicar Glosas de Guardia.lnk`) is available for quick access.
+
 ## Completed Features
 
+- **1-Click Publishing Pipeline**: `publish.py`, `Publicar_Web.bat`, and Desktop shortcut for seamless synchronization from Obsidian to GitHub Pages.
 - **TDD Integration**: A robust test suite (`tests/`) checking link resolution, transclusions, and metadata extraction.
 - **Nested Folder Support**: Notes retain their folder structure in the `public/` output. Relative paths (like `../../`) are perfectly calculated so links work locally (`file:///`) without needing a web server.
 - **Wikilinks & Aliases**: Supports `[[Note Name]]` and `[[Note Name|Custom Alias]]`.
@@ -59,4 +72,4 @@ The build process (`uv run python build.py`) follows these steps:
 - **Sidebar Explorer**: Read the directory hierarchy and generate a tree-view navigation panel in the left sidebar.
 - **Tags Page**: Aggregate notes by their YAML tags.
 - **Hover Previews**: Implement Javascript tooltip popups for internal links to preview content before clicking.
-- **Automatic Deployments**: Set up GitHub Actions to run the build script and publish to GitHub Pages on `git push`.
+
