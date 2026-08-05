@@ -123,21 +123,14 @@ def build_link_map(notes, base_dir=Path(CONTENT_DIR)):
     """
     link_map = {}
     for filepath, post in notes:
-        # The path relative to the content directory
         rel_path = filepath.relative_to(base_dir)
-        # The URL destination maintain the same folder structure
-        url = f"{rel_path.with_suffix('.html').as_posix()}" 
+        is_home = post.metadata.get("dg-home") is True or str(post.metadata.get("dg-home")).lower() == "true"
+        url = "index.html" if is_home else f"{rel_path.with_suffix('.html').as_posix()}" 
         
-        # 1. Map the exact relative path without extension
         exact_match = rel_path.with_suffix('').as_posix()
         link_map[exact_match] = url
-        
-        # 2. Map just the stem (filename) as a fallback
-        # If multiple files have the same name, this will get overwritten by the last one scanned.
-        # This mirrors Obsidian's behavior of preferring exact paths or letting the user choose.
         link_map[filepath.stem] = url
         
-        # Also map aliases if any
         aliases = post.metadata.get("aliases", [])
         if isinstance(aliases, list):
             for alias in aliases:
@@ -497,7 +490,8 @@ def build_backlinks_map(notes, link_map):
     titles_map = {}
     for filepath, post in notes:
         rel_path = filepath.relative_to(Path(CONTENT_DIR))
-        url = rel_path.with_suffix('.html').as_posix()
+        is_home = post.metadata.get("dg-home") is True or str(post.metadata.get("dg-home")).lower() == "true"
+        url = "index.html" if is_home else rel_path.with_suffix('.html').as_posix()
         first_h1 = re.search(r'^#\s+(.+)$', post.content, re.MULTILINE)
         title = post.metadata.get("title") or (first_h1.group(1).strip() if first_h1 else filepath.stem)
         titles_map[url] = title
@@ -507,7 +501,8 @@ def build_backlinks_map(notes, link_map):
 
     for filepath, post in notes:
         rel_path = filepath.relative_to(Path(CONTENT_DIR))
-        source_url = rel_path.with_suffix('.html').as_posix()
+        is_home = post.metadata.get("dg-home") is True or str(post.metadata.get("dg-home")).lower() == "true"
+        source_url = "index.html" if is_home else rel_path.with_suffix('.html').as_posix()
         source_title = titles_map.get(source_url, filepath.stem)
 
         matches = pattern_wikilink.findall(post.content)
@@ -536,7 +531,15 @@ def build_backlinks_map(notes, link_map):
                 })
 
     for target_url in backlinks_map:
-        backlinks_map[target_url].sort(key=lambda x: x["title"].lower())
+        unique_bls = []
+        seen_keys = set()
+        for bl in backlinks_map[target_url]:
+            key = (bl["url"], bl["title"])
+            if key not in seen_keys:
+                seen_keys.add(key)
+                unique_bls.append(bl)
+        unique_bls.sort(key=lambda x: x["title"].lower())
+        backlinks_map[target_url] = unique_bls
 
     return backlinks_map
 
@@ -584,7 +587,8 @@ def build_site():
     for filepath, post in notes:
         # The path relative to the content directory
         rel_path = filepath.relative_to(Path(CONTENT_DIR))
-        url = f"{rel_path.with_suffix('.html').as_posix()}"
+        is_home = post.metadata.get("dg-home") is True or str(post.metadata.get("dg-home")).lower() == "true"
+        url = "index.html" if is_home else f"{rel_path.with_suffix('.html').as_posix()}"
         
         # 1. Filter proprietary content
         content = filter_proprietary_content(post.content)
