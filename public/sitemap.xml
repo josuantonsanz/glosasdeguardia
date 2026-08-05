@@ -21,13 +21,6 @@
     </url>
     
     <url>
-        <loc>https://glosasdeguardia.es/Servidor instantáneo con Python.html</loc>
-        
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
         <loc>https://glosasdeguardia.es/Investigación/Enseñanza/LaTeX (Cursillo acelerado)/1. Introducción - Latex.html</loc>
         
         <changefreq>weekly</changefreq>
@@ -239,6 +232,13 @@
     
     <url>
         <loc>https://glosasdeguardia.es/Proyectos/Tips & Tricks/Páginas web útiles.html</loc>
+        
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://glosasdeguardia.es/Proyectos/Tips & Tricks/Servidor instantáneo con Python.html</loc>
         
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
