@@ -511,6 +511,7 @@ def build_site():
     
     all_notes_data = []
     all_used_images = set()
+    home_note_data = None
     
     # 1. Pre-build dictionary for transclusions { "Note Name": "Content" }
     # Load ALL markdown files in the content directory to support transclusions from any note
@@ -587,6 +588,11 @@ def build_site():
         }
         all_notes_data.append(note_data)
         
+        # Check if note is designated as home page
+        is_home = post.metadata.get("dg-home") is True or str(post.metadata.get("dg-home")).lower() == "true"
+        if is_home:
+            home_note_data = note_data
+        
         # Render and save
         output_html = note_template.render(**note_data)
         
@@ -607,14 +613,22 @@ def build_site():
             shutil.copy2(src, dst)
 
     # Generate Index page
-    index_html = index_template.render(
-        notes=all_notes_data, 
-        root_path="./", 
-        site_url=SITE_URL, 
-        title="Digital Garden", 
-        description="A digital garden and personal knowledge base.", 
-        url=""
-    )
+    if home_note_data:
+        print(f"Generating index.html from home note '{home_note_data['title']}' (dg-home: true)...")
+        index_note_data = dict(home_note_data)
+        index_note_data["root_path"] = "./"
+        index_note_data["url"] = "index.html"
+        index_html = note_template.render(**index_note_data)
+    else:
+        print("Generating fallback index.html listing page...")
+        index_html = index_template.render(
+            notes=all_notes_data, 
+            root_path="./", 
+            site_url=SITE_URL, 
+            title="Digital Garden", 
+            description="A digital garden and personal knowledge base.", 
+            url=""
+        )
     with open(Path(OUTPUT_DIR) / "index.html", "w", encoding="utf-8") as f:
         f.write(index_html)
         
