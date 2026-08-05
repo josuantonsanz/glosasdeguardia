@@ -64,4 +64,17 @@
         </nav>
     </div>
     {% endif %}
-    {% endblock %}
+
+    {% if url != 'index.html' and backlinks and backlinks|length > 0 %}
+    <div class="backlinks-container">
+        <div class="backlinks-title">Enlazado desde</div>
+        <ul class="backlinks-list">
+            {% for bl in backlinks %}
+            <li>
+                <a href="{{ root_path }}{{ bl.url }}">{{ bl.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+{% endblock %}

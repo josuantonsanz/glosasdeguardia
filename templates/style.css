@@ -756,3 +756,43 @@ body .toc-container {
 .transclusion {
   border-left: 3px solid var(--color-principal);
 }
+
+/* Backlinks (Enlazado desde) */
+.backlinks-container {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ui-2);
+}
+
+.backlinks-title {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--color-principal);
+  margin-bottom: 1rem;
+}
+
+.backlinks-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.backlinks-list li {
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+  font-size: 0.875rem;
+}
+
+.backlinks-list a {
+  display: block;
+  color: var(--tx-2);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.backlinks-list a:hover {
+  color: var(--color-principal);
+}

@@ -489,6 +489,57 @@ def convert_wikilinks(content, link_map, current_filepath):
     
     return content
 
+def build_backlinks_map(notes, link_map):
+    """
+    Computes a dictionary mapping each target note URL to a list of source notes
+    that link to it via wikilinks.
+    """
+    titles_map = {}
+    for filepath, post in notes:
+        rel_path = filepath.relative_to(Path(CONTENT_DIR))
+        url = rel_path.with_suffix('.html').as_posix()
+        first_h1 = re.search(r'^#\s+(.+)$', post.content, re.MULTILINE)
+        title = post.metadata.get("title") or (first_h1.group(1).strip() if first_h1 else filepath.stem)
+        titles_map[url] = title
+
+    pattern_wikilink = re.compile(r'(?<!!)\[\[([^\]\|]+)(?:\|[^\]]+)?\]\]')
+    backlinks_map = {}
+
+    for filepath, post in notes:
+        rel_path = filepath.relative_to(Path(CONTENT_DIR))
+        source_url = rel_path.with_suffix('.html').as_posix()
+        source_title = titles_map.get(source_url, filepath.stem)
+
+        matches = pattern_wikilink.findall(post.content)
+        seen_targets = set()
+
+        for raw_target in matches:
+            target = raw_target.strip()
+            if target.endswith('\\'):
+                target = target[:-1].strip()
+            if '#' in target:
+                target = target.split('#')[0].strip()
+            if not target:
+                continue
+
+            if any(target.lower().endswith(ext) for ext in ['.png', '.jpg', '.jpeg', '.gif', '.svg']):
+                continue
+
+            target_url = link_map.get(target)
+            if target_url and target_url != source_url and target_url not in seen_targets:
+                seen_targets.add(target_url)
+                if target_url not in backlinks_map:
+                    backlinks_map[target_url] = []
+                backlinks_map[target_url].append({
+                    "title": source_title,
+                    "url": source_url
+                })
+
+    for target_url in backlinks_map:
+        backlinks_map[target_url].sort(key=lambda x: x["title"].lower())
+
+    return backlinks_map
+
 def build_site():
     setup_directories()
     
@@ -500,6 +551,7 @@ def build_site():
     print(f"Found {len(notes)} notes to publish.")
     
     link_map = build_link_map(notes, base_dir=Path(CONTENT_DIR))
+    backlinks_map = build_backlinks_map(notes, link_map)
     
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
     note_template = env.get_template("note.html")
@@ -584,7 +636,8 @@ def build_site():
             "url": url,
             "site_url": SITE_URL,
             "filepath": rel_path, # Store this to help with tree rendering later
-            "root_path": root_path
+            "root_path": root_path,
+            "backlinks": backlinks_map.get(url, [])
         }
         all_notes_data.append(note_data)
         
