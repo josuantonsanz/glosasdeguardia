@@ -2,15 +2,20 @@
 
 # Glosas de Guardia - Digital Garden
 
-## Publicación en 1-Click (Recomendado)
+## Publicación en 1-Click (Manual)
 
-Para publicar los cambios de tu vault de Obsidian en GitHub Pages:
+Para publicar los cambios de tu vault de Obsidian en GitHub Pages en cualquier momento:
 - Simplemente haz doble click en el archivo **`Publicar_Web.bat`** (o en el acceso directo en tu Escritorio: **`Publicar Glosas de Guardia`**).
 
-Este script realiza automáticamente:
-1. La **sincronización** del contenido desde tu vault (`C:\Users\josua\OneDrive\Documents\ObsidianVault`) hacia `content/` (reflejando borrados y des-publicaciones).
-2. La **compilación** del sitio web (`build.py`).
-3. El **commit y push** a GitHub, lo que activa el despliegue automático de GitHub Pages.
+---
+
+## Automatización 100% Automática (Diaria y al Encender el PC)
+
+Ya hemos configurado el sistema para que se ejecute **en segundo plano sin ventanas ni molestias**:
+- **Al encender el ordenador**: Cada vez que enciendas el PC (a cualquier hora), Windows ejecutará la sincronización en segundo plano de forma 100% invisible.
+- **Tarea programada diaria**: Se ejecuta a las 12:00 PM si el equipo permanece encendido.
+- **Si quieres reconfigurar o verificar esta automatización en el futuro**:
+  - Simplemente ejecuta: `uv run python configurar_tarea_diaria.py`
 
 ---
 
