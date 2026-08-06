@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">1. La reflexión antropológica sobre la gracia</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -139,6 +150,48 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#introduccion-al-tema-de-la-gracia">Introducción al tema de la Gracia</a></li>
+<li><a href="#proceso-narrativo-del-lenguaje-de-la-gracia">Proceso narrativo del lenguaje de la Gracia</a></li>
+<li><a href="#11-el-don-de-dios-es-dios-mismo">1.1. El don de Dios es Dios mismo</a><ul>
+<li><a href="#caracteristica">Característica</a></li>
+<li><a href="#conclusiones">Conclusiones</a></li>
+</ul>
+</li>
+<li><a href="#12-que-significa-gracia">1.2. ¿Qué significa Gracia?</a><ul>
+<li><a href="#que-es-la-gracia">¿Qué es la Gracia?</a></li>
+<li><a href="#conclusiones_1">Conclusiones</a></li>
+<li><a href="#gracia-divinizacion-y-humanizacion">Gracia: divinización y humanización</a></li>
+</ul>
+</li>
+<li><a href="#13-el-caracter-historico-de-la-gracia">1.3. El carácter histórico de la Gracia</a><ul>
+<li><a href="#la-historicidad-de-la-gracia">La historicidad de la Gracia</a></li>
+<li><a href="#dualismo-entre-gracia-e-historia">Dualismo entre Gracia e historia</a></li>
+<li><a href="#gracia-como-posibilitadora-de-la-transformacion-de-la-historia">Gracia como posibilitadora de la transformación de la historia</a></li>
+<li><a href="#dialogo-por-grupos">Diálogo por grupos</a></li>
+</ul>
+</li>
+<li><a href="#14-la-universalidad-de-la-gracia-como-presupuesto-fundamental-de-la-antropologia-teologica">1.4. La universalidad de la Gracia como presupuesto fundamental de la Antropología Teológica</a><ul>
+<li><a href="#la-universalidad-de-la-gracia">La universalidad de la Gracia</a></li>
+<li><a href="#el-problema-de-la-predestinacion">El problema de la predestinación</a></li>
+<li><a href="#unas-consecuencias-amenzadoras">Unas consecuencias amenzadoras</a></li>
+<li><a href="#un-problema-de-lenguaje-sobre-dios">Un problema de lenguaje sobre Dios</a></li>
+<li><a href="#la-experiencia-de-la-gracia-en-las-experiencias-humanas">La experiencia de la Gracia en las experiencias humanas</a></li>
+<li><a href="#conclusiones-sobre-la-universalidad-de-la-gracia">Conclusiones sobre la universalidad de la Gracia</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Primer tema del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Antr. teológica III/Antropología Teológica III.html">Antropología Teológica III</a>.</em></p>
@@ -281,11 +334,44 @@
 <h3 id="conclusiones-sobre-la-universalidad-de-la-gracia">Conclusiones sobre la universalidad de la Gracia</h3>
 <p>La no universalidad de la Gracia destruye la fraternidad y el proyecto de Dios hermanador entre todos los seres humanos. Pensar la Gracia en términos más físicos (como un objeto que se posee) que personales conlleva a una pérdida del horizonte de la concepción de la Gracia como relación.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Antr. teológica III/Antropología Teológica III.html">Antropología Teológica III</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

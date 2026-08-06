@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Preguntas de historia</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -121,6 +132,30 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-papado-en-el-siglo-xv">1. Papado en el siglo XV</a></li>
+<li><a href="#2-diferentes-estamentos-eclesiales-a-principios-del-siglo-xvi">2. Diferentes estamentos eclesiales a principios del siglo XVI</a></li>
+<li><a href="#3-religiosidad-a-principios-del-siglo-xvi">3. Religiosidad a principios del siglo XVI</a></li>
+<li><a href="#4-erasmo-de-rotterdam-formacion-escritos-pensamiento-humanista-y-relacion-con-lutero">4. Erasmo de Rotterdam. Formación, escritos, pensamiento humanista y relación con Lutero</a></li>
+<li><a href="#5-formacion-del-pensamiento-de-la-justificacion-por-la-fe-en-lutero">5. Formación del pensamiento de la «justificación por la fe» en Lutero</a></li>
+<li><a href="#6-las-95-tesis-de-lutero-sobre-las-indulgencias">6. Las «95 tesis» de Lutero sobre las indulgencias</a></li>
+<li><a href="#7-vida-y-pensamiento-de-lutero-entre-las-bulas-exsurge-domine-y-decet-romanum-pontificem">7. Vida y pensamiento de Lutero entre las bulas «Exsurge Domine» y «Decet Romanum Pontificem»</a></li>
+<li><a href="#8-encuentro-entre-lutero-y-carlos-v-en-la-dieta-de-worms-pensamiento-y-circunstancias-historicas">8. Encuentro entre Lutero y Carlos V en la dieta de Worms. Pensamiento y circunstancias históricas</a></li>
+<li><a href="#9-popularidad-de-lutero-y-decepcion-posterior-del-pueblo">9. Popularidad de Lutero y decepción posterior del pueblo</a></li>
+<li><a href="#10-encuentro-catolico-y-luterano-en-la-dieta-de-augsburgo-de-1530">10. Encuentro católico y luterano en la dieta de Augsburgo de 1530</a></li>
+<li><a href="#11-preludio-historico-y-consecuencias-de-la-paz-religiosa-de-augsburgo-de-1555">11. Preludio histórico y consecuencias de la paz religiosa de Augsburgo de 1555</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="1-papado-en-el-siglo-xv">1. Papado en el siglo XV</h2>
@@ -789,11 +824,44 @@ Hay miedo a la reforma y al conciliarismo. Por eso no se convoca Trento a tiempo
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Historia moderna/Historia moderna.html">Historia moderna</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Dejarse amar y amar, síntesis</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -124,6 +135,8 @@
         </div>
     </header>
 
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Misterio del Dios Trinitario.html">Misterio del Dios Trinitario</a></em></p>
 <ul>
@@ -136,11 +149,68 @@
 <li><a href="../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar/6. Desviaciones sobre la Trinidad.html">6. Desviaciones sobre la Trinidad</a></li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar/1. Acceso a la Trinidad.html">1\. Acceso a la Trinidad</a>
+            </li>
+            
+            <li>
+                <a href="../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar/2. La Trinidad como misterio revelado y alabado.html">2\. La Trinidad como misterio revelado y alabado</a>
+            </li>
+            
+            <li>
+                <a href="../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar/3. Lenguaje y contenido.html">3\. El lenguaje y los contenidos</a>
+            </li>
+            
+            <li>
+                <a href="../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar/4. Presentación renovada de los contenidos centrales.html">4\. Presentación renovada de los contenidos centrales</a>
+            </li>
+            
+            <li>
+                <a href="../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar/5. Enraizamiento de la Trinidad.html">5\. Enraizamiento de la Trinidad</a>
+            </li>
+            
+            <li>
+                <a href="../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar/6. Desviaciones sobre la Trinidad.html">6\. Desviaciones sobre la Trinidad</a>
+            </li>
+            
+            <li>
+                <a href="../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar/Prólogo e introducción.html">Prólogo e introducción</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

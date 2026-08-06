@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">7. Hechos de los Apóstoles y escritos paulinos</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -123,6 +134,31 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-libro-de-los-hechos-introduccion-general">1. Libro de los Hechos: introducción general</a></li>
+<li><a href="#2-hch-11-542-jerusalen">2. Hch 1,1-5,42: Jerusalén</a></li>
+<li><a href="#3-hch-61-1428-de-jerusalen-a-antioquia">3. Hch 6,1-14,28: de Jerusalén a Antioquía</a></li>
+<li><a href="#4-hch-151-35-jerusalen-confirma-a-antioquia-la-asamblea-de-jerusalen">4. Hch 15,1-35: Jerusalén confirma a Antioquía: la asamblea de Jerusalén</a></li>
+<li><a href="#5-escritos-de-san-pablo-introduccion-general">5. Escritos de san Pablo: introducción general</a></li>
+<li><a href="#6-la-parusia-en-tesalonicenses">6. La Parusía en Tesalonicenses</a></li>
+<li><a href="#7-las-discordias-en-corintios">7. Las discordias en Corintios</a></li>
+<li><a href="#8-los-codigos-domesticos">8. Los códigos domésticos</a></li>
+<li><a href="#9-la-eclesiologia-en-efesios">9. La eclesiología en Efesios</a></li>
+<li><a href="#10-pablo-y-la-esclavitud-filemon">10. Pablo y la esclavitud: Filemón</a></li>
+<li><a href="#11-galatas-y-romanos-el-problema-de-la-justificacion">11. Gálatas y Romanos: el problema de la justificación</a></li>
+<li><a href="#12-el-himno-cristologico-flp-26-11">12. El himno cristológico: Flp 2,6-11</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="1-libro-de-los-hechos-introduccion-general">1. Libro de los Hechos: introducción general</h2>
 <p>La obra conocida como Hechos de los Apóstoles se entiende, en continuidad orgánica con el tercer evangelio, como el segundo gran díptico lucano, dirigido a Teófilo. Este dato de destinatario —que aparece como elemento literario de encuadre— sitúa el escrito en el registro de una historiografía con intención doctrinal: no se trata de una mera crónica, sino de una narración configurada teológicamente, en la que los hechos seleccionados, ordenados y articulados aspiran a manifestar el sentido salvífico del acontecer eclesial primitivo. La autoría se atribuye a Lucas, presentado asimismo por la tradición como colaborador del círculo paulino; el perfil del autor aparece asociado a un dominio suficiente del griego común (koiné) y a una capacidad compositiva que alterna narración y grandes bloques discursivos.</p>
@@ -200,11 +236,44 @@
 <p><strong>v. 10:</strong> «el nombre de Jesús»: no dice «de Cristo». El exaltado es el Jesús terreno; subraya así la realidad humana del que es exaltado. «Toda rodilla se doble»: referencia a Is 53,23 («ante mí se doblará toda rodilla»); la única diferencia es que en Isaías se habla de Yahveh y en Flp de Cristo. «De los seres celestes, de los terrenos e infraternenos»: parece un añadido anterior a Pablo, que no aparece en él en ninguna otra parte; indicaba la soberanía cósmica del Jesús exaltado.</p>
 <p><strong>v. 11:</strong> «y toda lengua confiese que Cristo Jesús es Señor»: Kirios traduce la palabra Yahveh en la Biblia griega; se le atribuye a Jesús la soberanía propia de Dios. Es la confesión fundamental del cristianismo: Dios actúa en el mundo en y por Cristo. «Para gloria de Dios Padre»: esto es propio de Pablo (Rm 15,7); indica que la finalidad última de todo, también de este proyecto de salvación, es el Padre.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">7. El diálogo con Dios</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -119,6 +130,28 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-la-vida-sacramental">1. La vida sacramental</a></li>
+<li><a href="#2-la-palabra-de-dios">2. La Palabra de Dios</a><ul>
+<li><a href="#21-la-importancia-de-la-palabra-de-dios">2.1. La importancia de la Palabra de Dios</a></li>
+<li><a href="#22-el-caracter-dinamico-de-la-palabra-de-dios">2.2. El carácter dinámico de la Palabra de Dios</a></li>
+<li><a href="#23-la-oracion-contemplativa">2.3. La oración contemplativa</a></li>
+<li><a href="#24-la-oracion-liturgica">2.4. La oración litúrgica</a></li>
+<li><a href="#nota-bibliografica">Nota bibliográfica</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Del libro «Introducción a la Teología Espiritual», de Charles André Bernard. Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Teología Espiritual/Teología Espiritual.html">Teología Espiritual</a>.</em></p>
@@ -398,11 +431,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Teología Espiritual/Teología Espiritual.html">Teología espiritual</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

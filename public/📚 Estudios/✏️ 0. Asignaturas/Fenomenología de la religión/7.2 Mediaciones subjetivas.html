@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">7.2. Mediaciones subjetivas</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -129,6 +140,38 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#diferencias-objetivosubjetivo-en-mediaciones">Diferencias objetivo/subjetivo (en mediaciones)</a></li>
+<li><a href="#necesidad-de-la-expresion-religiosa">Necesidad de la expresión religiosa</a></li>
+<li><a href="#1-nivel-racional">1. Nivel racional</a><ul>
+<li><a href="#11-mito-y-mitologias">1.1. Mito y mitologías</a></li>
+<li><a href="#12-doctrina-religiosa-profesiones-de-fe-dogmas-teologia">1.2. Doctrina religiosa, profesiones de fe, dogmas, teología</a></li>
+</ul>
+</li>
+<li><a href="#2-nivel-de-la-accion">2. Nivel de la acción</a><ul>
+<li><a href="#21-el-culto">2.1. El culto</a></li>
+<li><a href="#22-servicio-a-la-divinidad-accion-moral-vinculada-al-misterio">2.2. Servicio a la divinidad (=acción moral vinculada al Misterio)</a></li>
+</ul>
+</li>
+<li><a href="#3-nivel-del-sentimientoemocion">3. Nivel del sentimiento/emoción</a></li>
+<li><a href="#4-nivel-comunitario">4. Nivel comunitario</a><ul>
+<li><a href="#41-caracter-social-constitutivo-de-la-religion">4.1. ¿Carácter social: constitutivo de la religión?</a></li>
+<li><a href="#42-principios-que-determinan-caracter-social-de-lo-religioso">4.2. Principios que determinan carácter social de lo religioso:</a></li>
+</ul>
+</li>
+<li><a href="#conclusiones">Conclusiones</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>.</em></p>
@@ -296,11 +339,44 @@
 <p>Las mediaciones subjetivas ⊂ la estructura interna humana y son imprescindibles para la vivencia del hecho religioso, pues la experiencia del Misterio requiere necesariamente ser expresada simbólicamente (mito, doctrina, culto, moral, emoción, vida comunitaria). Cada dimensión de la existencia encuentra en la religión su modo de expresión, interconectándose y dando lugar a una realidad religiosa esencialmente social y simbólica. Sin la presencia inobjetiva y trascendente del Misterio, no hay experiencia religiosa; las expresiones no son el fin, sólo vías para responder, sin nunca agotar lo religioso.</p>
 </details>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

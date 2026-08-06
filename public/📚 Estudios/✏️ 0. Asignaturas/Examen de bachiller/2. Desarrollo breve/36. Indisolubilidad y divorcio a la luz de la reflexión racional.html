@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">36. Indisolubilidad y divorcio a la luz de la reflexión racional</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -123,6 +134,32 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#crisis-de-la-pareja-fracaso-de-la-familia-y-fracaso-de-la-iglesia">Crisis de la pareja: ¿fracaso de la familia? y ¿fracaso de la Iglesia?</a></li>
+<li><a href="#amarga-sumision-separacion-y-divorcio">Amarga sumisión, separación y divorcio.</a></li>
+<li><a href="#la-iglesia-y-el-divorcio-la-fidelidad-creativa-como-ideal-o-como-exigencia">La Iglesia y el divorcio: ¿La fidelidad creativa como ideal o como exigencia?</a></li>
+<li><a href="#perspectiva-biblica-y-juridica">Perspectiva bíblica y jurídica.</a><ul>
+<li><a href="#cobertura-biblica-de-la-indisolubilidad-y-su-problematica-hermeneutica">Cobertura bíblica de la indisolubilidad y su problemática hermenéutica</a></li>
+<li><a href="#cobertura-biblica-de-la-solubilidad-condicionada-privilegio-paulino-y-textos-conexos">Cobertura bíblica de la solubilidad condicionada: privilegio paulino y textos conexos</a></li>
+<li><a href="#cobertura-magisterial-y-recepcion-historica-padres-oriente-trento">Cobertura magisterial y recepción histórica: Padres, Oriente, Trento</a></li>
+<li><a href="#perspectiva-juridica-canonizacion-distinciones-y-casuistica">Perspectiva jurídica: canonización, distinciones y casuística</a></li>
+<li><a href="#revision-de-la-doctrina-tradicional-instancias-biblica-ecumenica-juridica-y-pastoral">Revisión de la doctrina tradicional: instancias bíblica, ecuménica, jurídica y pastoral</a></li>
+<li><a href="#revision-continuista-clarificacion-de-ratum-y-consummatum-causas-de-nulidad-o-solubilidad">Revisión «continuista»: clarificación de «ratum» y «consummatum»; causas de nulidad o solubilidad</a></li>
+</ul>
+</li>
+<li><a href="#la-iglesia-y-los-divorciados-acogida-atencion-pastoral-y-sacramentos">La Iglesia y los divorciados: acogida, atención pastoral, y ¿sacramentos?</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="crisis-de-la-pareja-fracaso-de-la-familia-y-fracaso-de-la-iglesia">Crisis de la pareja: ¿fracaso de la familia? y ¿fracaso de la Iglesia?</h2>
@@ -302,11 +339,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

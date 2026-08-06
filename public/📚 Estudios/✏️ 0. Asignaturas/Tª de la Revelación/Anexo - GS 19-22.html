@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Gaudium et Spes (19-22)</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -100,6 +111,8 @@
         </div>
     </header>
 
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª de la Revelación/Teología de la Revelación.html">Teología de la Revelación</a>.</em></p>
 <p><em><strong>Formas y raíces del ateísmo</strong></em></p>
@@ -125,11 +138,44 @@
 <p>Esto vale no solamente para los cristianos, sino también para todos los hombres de buena voluntad, en cuyo corazón obra la gracia de modo invisible. Cristo murió por todos, y la vocación suprema del hombre en realidad es una sola, es decir, la divina. En consecuencia, debemos creer que el Espíritu Santo ofrece a todos la posibilidad de que, en la forma de sólo Dios conocida, se asocien a este misterio pascual.</p>
 <p>Este es el gran misterio del hombre que la Revelación cristiana esclarece a los fieles. Por Cristo y en Cristo se ilumina el enigma del dolor y de la muerte, que fuera del Evangelio nos envuelve en absoluta obscuridad. Cristo resucitó; con su muerte destruyó la muerte y nos dio la vida, para que, hijos en el Hijo, clamemos en el Espíritu: <em>Abba!,¡Padre!</em></p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª de la Revelación/Teología de la Revelación.html">Teología de la Revelación</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

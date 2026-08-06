@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Tema 6. La Eucaristía como comunión</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -127,6 +138,36 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-fundamentos-simbolicos">1. Fundamentos simbólicos</a></li>
+<li><a href="#2-problematica-moderna-de-la-comunion">2. Problemática moderna de la comunión</a></li>
+<li><a href="#3-renovacion-liturgica-posconciliar">3. Renovación litúrgica posconciliar</a></li>
+<li><a href="#4-criticas-contemporaneas-a-la-transustanciacion">4. Críticas contemporáneas a la transustanciación</a><ul>
+<li><a href="#derivaciones">Derivaciones</a></li>
+</ul>
+</li>
+<li><a href="#5-banquete-eucaristico-comunion-e-iglesia">5. Banquete eucarístico, comunión e iglesia</a></li>
+<li><a href="#6-dos-tendencias-eclesiales-actuales">6. Dos tendencias eclesiales actuales</a><ul>
+<li><a href="#comunidades-eclesiales-de-base-latinoamerica">Comunidades eclesiales de base (Latinoamérica)</a></li>
+<li><a href="#experiencias-emocionales-paises-ricos">Experiencias emocionales (Países ricos)</a></li>
+</ul>
+</li>
+<li><a href="#7-protagonismo-en-la-eucaristia">7. Protagonismo en la Eucaristía</a></li>
+<li><a href="#8-sintesis-teologica">8. Síntesis teológica</a></li>
+<li><a href="#9-dimension-de-servicio-diaconia">9. Dimensión de servicio (diaconía)</a></li>
+<li><a href="#10-derivaciones-magisteriales">10. Derivaciones magisteriales</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Eucaristía/Eucaristía.html">Eucaristía</a>.</em></p>
@@ -271,11 +312,44 @@
 </li>
 </ol>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Eucaristía/Eucaristía.html">Eucaristía</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

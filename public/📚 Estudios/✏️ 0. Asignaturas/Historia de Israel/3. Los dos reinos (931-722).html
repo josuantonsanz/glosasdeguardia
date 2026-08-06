@@ -15,7 +15,7 @@
     <meta property="og:title" content="3. Los dos reinos (931-722)">
     <meta property="og:description" content="3\. Los dos reinos 931-722 Parte del curso de Historia de Israel ../../../📚 Estudios/✏️ 0. Asignaturas/Historia de Israel/Historia de Israel.html . 1\. La di...">
     
-    <meta property="og:image" content="https://glosasdeguardia.es/Pasted image 20250123083323.png">
+    <meta property="og:image" content="https://glosasdeguardia.es/Fuentes/Completas/Iglesia/../../../Pasted image 20250122163743.png">
     
 
     <!-- Twitter -->
@@ -24,7 +24,7 @@
     <meta property="twitter:title" content="3. Los dos reinos (931-722)">
     <meta property="twitter:description" content="3\. Los dos reinos 931-722 Parte del curso de Historia de Israel ../../../📚 Estudios/✏️ 0. Asignaturas/Historia de Israel/Historia de Israel.html . 1\. La di...">
     
-    <meta property="twitter:image" content="https://glosasdeguardia.es/Pasted image 20250123083323.png">
+    <meta property="twitter:image" content="https://glosasdeguardia.es/Fuentes/Completas/Iglesia/../../../Pasted image 20250122163743.png">
     
 
     <!-- Google Fonts -->
@@ -42,6 +42,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">3. Los dos reinos (931-722)</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -146,6 +157,51 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-la-division">1. La división</a></li>
+<li><a href="#2-fuentes">2. Fuentes</a><ul>
+<li><a href="#21-1re-121-19">2.1. 1Re 12,1-19</a></li>
+<li><a href="#22-1re-1129-40-1221-24-141-18">2.2. 1Re 11,29-40; 12,21-24; 14,1-18</a></li>
+<li><a href="#1129-40">11,29-40:</a></li>
+<li><a href="#1221-24">12,21-24:</a></li>
+<li><a href="#141-18">14,1-18:</a></li>
+<li><a href="#23-1re-1225-31-1421-31">2.3. 1Re 12,25-31; 14,21-31</a></li>
+<li><a href="#los-libros-de-los-reyes">Los libros de los Reyes</a></li>
+</ul>
+</li>
+<li><a href="#3-las-guerras">3. Las guerras</a><ul>
+<li><a href="#31-guerras-entre-reinos">3.1. Guerras entre reinos</a></li>
+<li><a href="#32-conflictos-principales">3.2. Conflictos principales</a></li>
+<li><a href="#33-intervencion-aramea">3.3. Intervención aramea</a></li>
+<li><a href="#34-resultados-territoriales">3.4. Resultados territoriales</a></li>
+<li><a href="#35-los-arameos">3.5. Los arameos</a></li>
+</ul>
+</li>
+<li><a href="#4-los-reyes-del-norte">4. Los reyes del Norte</a><ul>
+<li><a href="#41-antes-de-omri">4.1. Antes de Omrí</a></li>
+<li><a href="#42-la-dinastia-de-omri">4.2. La dinastía de Omrí</a></li>
+<li><a href="#43-ajab">4.3. Ajab</a></li>
+<li><a href="#44-ocozias-y-joran">4.4. Ocozías y Jorán</a></li>
+<li><a href="#la-estela-de-mesha">La estela de Mesha</a></li>
+<li><a href="#45-jehu">4.5. Jehú</a></li>
+<li><a href="#el-obelisco-negro-de-salmanasar-iii">El Obelisco negro de Salmanasar III</a></li>
+<li><a href="#46-jeroboan-ii">4.6. Jeroboán II</a></li>
+<li><a href="#47-zacarias-sallum-y-menajem">4.7. Zacarías, Sallum y Menajem</a></li>
+<li><a href="#48-pecajias-pecaj-y-oseas">4.8. Pecajías, Pecaj y Oseas</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Historia de Israel/Historia de Israel.html">Historia de Israel</a>.</em></p>
@@ -813,11 +869,44 @@ se menciona varias veces a Omrí como reconquistador del país, así como de un 
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Historia de Israel/Historia de Israel.html">Historia de Israel</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

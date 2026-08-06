@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Introducción</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -147,6 +158,44 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#que-es-latex">¿Qué es LaTeX?</a><ul>
+<li><a href="#como-acceder-a-latex">Cómo acceder a LaTeX</a></li>
+<li><a href="#conceptos-basicos">Conceptos básicos</a></li>
+</ul>
+</li>
+<li><a href="#domando-a-latex-comandos-y-formato">Domando a LaTeX: Comandos y formato</a><ul>
+<li><a href="#unidades-basicas-de-actuacion-comandos-y-entornos">Unidades básicas de actuación: comandos y entornos</a></li>
+<li><a href="#estructura-de-un-documento-de-latex">Estructura de un documento de LaTeX</a><ul>
+<li><a href="#titulo-autor-y-fecha">Título, autor y fecha</a></li>
+<li><a href="#espacios-y-parrafos">Espacios y párrafos</a></li>
+</ul>
+</li>
+<li><a href="#capitulos-y-secciones">Capítulos y secciones</a></li>
+<li><a href="#dando-formato">Dando formato</a><ul>
+<li><a href="#tamano-de-letra">Tamaño de letra</a></li>
+</ul>
+</li>
+<li><a href="#negrita-cursiva-y-subrayado">Negrita, cursiva y subrayado</a></li>
+<li><a href="#listas">Listas</a></li>
+</ul>
+</li>
+<li><a href="#un-ejemplo-completo">Un ejemplo completo</a><ul>
+<li><a href="#a-donde-ir-desde-aqui">A dónde ir desde aquí</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Esta introducción la he creado valiéndome en gran medida de ChatGPT para la redacción de los párrafos. El esquema, orden y revisión final son míos.</em></p>
@@ -310,11 +359,56 @@ Etiqueta 3: Descripción del tercer elemento.</p>
 4. Paquetes fundamentales
 4. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">5. Canciones</a></p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">Canciones en LaTeX</a>
+            </li>
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/2. Elementos más complejos - Latex.html">Elementos más complejos</a>
+            </li>
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/4. Idiomas - Latex.html">Idiomas en LaTeX</a>
+            </li>
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/Material de trabajo.html">Material de trabajo</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

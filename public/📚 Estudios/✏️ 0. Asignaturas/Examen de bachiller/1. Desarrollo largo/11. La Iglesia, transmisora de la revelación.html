@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">11. La Iglesia, transmisora de la revelación</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -117,6 +128,25 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#la-revelacion-en-la-historia-segun-el-vaticano-ii">La Revelación en la historia, según el Vaticano II</a></li>
+<li><a href="#la-permanencia-de-la-revelacion-en-la-iglesia">La permanencia de la Revelación en la Iglesia</a></li>
+<li><a href="#la-revelacion-como-iluminacion-interior-y-como-mediacion-historica">La revelación como iluminación interior y como mediación histórica</a></li>
+<li><a href="#la-historicidad-de-la-transmision-de-la-revelacion-y-la-iglesia-el-sujeto-de-esta-transmision">La historicidad de la transmisión de la Revelación y la Iglesia; el sujeto de esta transmisión</a></li>
+<li><a href="#la-actualizacion-de-la-revelacion-en-la-iglesia">La actualización de la Revelación en la Iglesia</a></li>
+<li><a href="#el-problema-de-la-unidad-eclesial">El problema de la unidad eclesial</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="la-revelacion-en-la-historia-segun-el-vaticano-ii">La Revelación en la historia, según el Vaticano II</h2>
 <p>La aportación decisiva del Vaticano II, formulada programáticamente en la constitución <em>Dei Verbum</em>, consiste en situar la Revelación en la historia como un acontecimiento vital y personal antes que como mera comunicación de “verdades” aisladas: Dios no se limita a transmitir proposiciones, sino que se comunica a sí mismo, comunicando vida y abriendo comunión. El punto de partida es el Padre, que entra en comunión con los hombres y se manifiesta realizando su designio. Esta autocomunicación no acontece al margen del devenir humano, sino por intervención histórica: Dios “interviene en la historia” solidarizándose con el hombre, de modo que la historia humana queda implicada en la economía salvífica.</p>
@@ -167,11 +197,44 @@
 </ul>
 <p>Estas discrepancias no cancelan la búsqueda de unidad, sino que la articulan como tarea teológica concreta: es en estos puntos precisamente donde el diálogo ecuménico debe ser más riguroso, más paciente y más enraizado en la escucha común de la Palabra.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

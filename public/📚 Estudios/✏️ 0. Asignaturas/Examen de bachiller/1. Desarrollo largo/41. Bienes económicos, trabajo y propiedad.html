@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">41. Bienes económicos, trabajo y propiedad</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -115,6 +126,23 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#el-nuevo-testamento-ante-los-bienes-economicos-principios-y-actitudes-mas-destacados">El Nuevo Testamento ante los bienes económicos: principios y actitudes más destacados</a></li>
+<li><a href="#argumentos-para-justificar-el-discernimiento-moral-de-la-economia-como-relacion-practica-y-utopica">Argumentos para justificar el discernimiento moral de la economía como relación práctica y utópica</a></li>
+<li><a href="#categorias-y-fenomenos-que-expresan-lo-nuevo-del-actual-capitalismo">Categorías y fenómenos que expresan «lo nuevo» del actual capitalismo</a></li>
+<li><a href="#la-propiedad-privada-y-la-tradicion-moral-cristiana-sintesis-historica-y-conclusiones">La propiedad (privada) y la tradición moral cristiana: síntesis histórica y conclusiones</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="el-nuevo-testamento-ante-los-bienes-economicos-principios-y-actitudes-mas-destacados">El Nuevo Testamento ante los bienes económicos: principios y actitudes más destacados</h2>
 <p>La consideración neotestamentaria de los bienes económicos se sitúa en el horizonte del plan de salvación, donde la creación —precisamente por ser creada— posee una positividad originaria: los bienes temporales, en cuanto obra de Dios, son buenos en sí mismos y quedan bajo el señorío del hombre, constituido en cierto sentido «dueño y señor» respecto de lo creado. Esta afirmación, sin embargo, no se clausura en un antropocentrismo autosuficiente, sino que queda internamente ordenada a una perspectiva cristológica y escatológica: la creación, «gracias a Cristo», aparece ordenada a la redención, de modo que la consumación última remite a «unos cielos nuevos y una tierra nueva». En consecuencia, lo económico no puede ser pensado como un sistema cerrado, autosuficiente o definitivamente autosignificativo: queda relativizado por una teleología teologal y por la orientación de la historia a su cumplimiento en el Reino.</p>
@@ -150,11 +178,44 @@
 <p>La subordinación de la propiedad al trabajo ocupa aquí un lugar normativo: la propiedad se adquiere ante todo por el trabajo, y la propiedad de los medios de producción —privada o pública— tiene como fin servir al trabajo, en coherencia con el principio de prioridad del trabajo frente al capital. Este principio, articulado en la enseñanza social, traduce el primado antropológico del hombre sobre las cosas, del ser sobre el tener, y exige que las instituciones económicas no conviertan al trabajador en mercancía ni reduzcan su dignidad.</p>
 <p>Finalmente, la tendencia contemporánea a la socialización de la propiedad no debe ser impedida por la ética cristiana con la sola invocación del derecho de propiedad, siempre que se cumplan condiciones: que no se entienda socialización como estatización; que se reconozca remuneración obligada en caso de expropiación; y que se tienda a formas de gestión autogestionarias. En conjunto, la tradición moral cristiana converge en una tesis: la propiedad privada es moralmente legítima en cuanto instrumento al servicio de la persona y de la comunidad, pero deviene moralmente problemática cuando se absolutiza, se naturaliza como derecho originario ilimitado o se configura de modo que monopoliza poderes y excluye del acceso efectivo a los bienes a individuos y pueblos. La función crítica de la ética económica cristiana consiste, por ello, en mantener abierta la subordinación de toda apropiación al destino universal de los bienes creados, a la justicia social y a la dignidad humana, y en orientar reformas estructurales cuando la organización real de la propiedad impide que los bienes lleguen a todos de forma equitativa bajo la égida de la justicia y con la compañía de la caridad.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

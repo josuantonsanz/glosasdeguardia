@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Conceptos básicos de programación en Python</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -128,6 +139,37 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-comentarios">1. Comentarios</a></li>
+<li><a href="#2-variables-y-asignacion">2. Variables y asignación</a></li>
+<li><a href="#3-tipos-de-datos-basicos">3. Tipos de datos básicos</a><ul>
+<li><a href="#a-numeros-enteros-int">a) Números enteros (int)</a></li>
+<li><a href="#b-numeros-flotantes-o-decimales-float">b) Números flotantes o decimales (float)</a></li>
+<li><a href="#c-cadenas-de-texto-str-o-string">c) Cadenas de texto (str o string)</a></li>
+</ul>
+</li>
+<li><a href="#4-operadores-aritmeticos">4. Operadores aritméticos</a></li>
+<li><a href="#5-la-funcion-print-salida-de-datos">5. La función print() (salida de datos)</a></li>
+<li><a href="#6-concatenacion-de-cadenas">6. Concatenación de cadenas</a></li>
+<li><a href="#7-la-funcion-input-entrada-de-datos">7. La función input() (entrada de datos)</a></li>
+<li><a href="#8-conversion-de-tipos-casting">8. Conversión de tipos (Casting)</a></li>
+<li><a href="#9-estructuras-de-control-condicionales-ifelse">9. Estructuras de control: Condicionales (if/else)</a><ul>
+<li><a href="#operadores-de-comparacion">Operadores de comparación</a></li>
+<li><a href="#indentacion">Indentación</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="1-comentarios">1. Comentarios</h2>
@@ -248,11 +290,44 @@ else:
   print(&quot;X no es 3&quot;)
 </code></pre>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../../🛠️ Labores/Zuera/3. Formación profesional/Python/Curso de Python.html">Programación en Python (CS101)</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

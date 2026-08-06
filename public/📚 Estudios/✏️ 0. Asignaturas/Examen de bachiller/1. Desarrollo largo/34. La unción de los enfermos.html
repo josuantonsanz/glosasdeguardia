@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">34. La unción de los enfermos</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -116,6 +127,24 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#la-enfermedad-como-contexto-antropologico">La enfermedad como contexto antropológico</a></li>
+<li><a href="#los-datos-de-la-escritura">Los datos de la Escritura</a></li>
+<li><a href="#el-sacramento-de-la-uncion-de-enfermos-en-su-evolucion-historica">El sacramento de la unción de enfermos en su evolución histórica</a></li>
+<li><a href="#el-vaticano-ii-y-el-ritual-de-pablo-vi">El Vaticano II y el ritual de Pablo VI</a></li>
+<li><a href="#los-praenotanda-del-nuevo-ritual-y-la-pastoral-de-los-enfermos">Los Praenotanda del nuevo ritual y la pastoral de los enfermos</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="la-enfermedad-como-contexto-antropologico">La enfermedad como contexto antropológico</h2>
 <p>La unción de los enfermos sólo puede comprenderse adecuadamente si se parte del espesor antropológico de la enfermedad. La salud supone vitalidad, integridad operativa, posibilidad de relación, capacidad de acción y cierta experiencia de dominio sobre la propia existencia. La enfermedad, en cambio, introduce al sujeto en la fragilidad, en la debilidad, en la impotencia y en la limitación. Quien enferma descubre de modo existencial que no dispone de sí de manera absoluta: se experimenta dependiente, finito, vulnerable, necesitado de otros, expuesto a una pasividad que no había elegido. La inactividad, el aislamiento, la pérdida de autonomía, la percepción del cuerpo como límite y la proximidad posible de la muerte suscitan preguntas radicales: por qué me ocurre esto, qué sentido tiene, si hay culpa, si la enfermedad podía haberse evitado, si la vida puede seguir siendo buena cuando ya no es productiva o fuerte. La enfermedad es, por tanto, una situación límite de la persona: afecta al cuerpo, pero no queda encerrada en lo corporal; repercute en la interioridad, en la relación con los demás, en la imagen de Dios, en la esperanza y en la capacidad de aceptar la propia condición.</p>
@@ -163,11 +192,44 @@
 <p>El tercer principio es la solidaridad entre las comunidades cristianas y los enfermos, como signo de comunión. Desde antiguo existe una tradición de misericordia vinculada a la preocupación de Jesús por los enfermos. Los enfermos solicitan la oración de la comunidad cristiana, y la comunidad tiene la obligación humana y cristiana de acompañarlos. Esta solidaridad se manifiesta de dos modos principales. Desde el cuerpo eucarístico, por la reserva eucarística y la comunión llevada a los enfermos; desde el cuerpo eclesial, por la ayuda física, fraterna y espiritual. La visita, la oración, la cercanía, la asistencia material, la escucha y la ternura pertenecen a la verdad pastoral del sacramento. La unción no sustituye el cuidado; lo exige y lo corona sacramentalmente.</p>
 <p>En resumen, la unción de los enfermos debe entenderse dentro de tres coordenadas inseparables: lucha contra el mal, unión a Cristo y comunión en la Iglesia. Planteado en este horizonte, el sacramento no será jamás un acto aislado, privado o cuasi mágico. Es celebración eclesial de Cristo sanador; es gracia del Espíritu para el alma y el cuerpo; es perdón cuando hay pecado; es consuelo cuando hay angustia; es posible curación cuando conviene a la salvación; es participación del enfermo en el misterio pascual; es signo de que la comunidad cristiana no abandona a sus miembros cuando son débiles, improductivos o cercanos a la muerte. La unción proclama, en el lenguaje humilde del aceite, de la oración y de la imposición de manos, que el Señor resucitado permanece junto al enfermo y que la Iglesia lo acompaña como miembro vivo del Cuerpo de Cristo.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

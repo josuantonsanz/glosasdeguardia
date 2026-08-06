@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">5.2. El Misterio como transcendencia</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -124,6 +135,33 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-introduccion-vias-de-acceso-al-misterio-desde-las-categorias-de-la-vida-ordinaria-suficiente">1. Introducción: Vías de acceso al Misterio desde las categorías de la vida ordinaria. ¿Suficiente?</a></li>
+<li><a href="#2-vias-de-acceso-al-misterio-desde-la-tradicion-religiosa-de-la-humanidad-misterio-como-trascendencia">2. Vías de acceso al Misterio desde la tradición religiosa de la humanidad (Misterio como trascendencia)</a><ul>
+<li><a href="#21-el-misterio-como-lo-totalmente-otro-elemento-formal">2.1. El Misterio como lo totalmente otro (elemento formal)</a></li>
+<li><a href="#22-el-misterio-como-realidad-ontologicamente-suprema">2.2. El Misterio como realidad ontológicamente suprema</a></li>
+<li><a href="#23-el-misterio-y-su-absoluta-superioridad-axiologica">2.3. El Misterio y su absoluta superioridad axiológica</a></li>
+<li><a href="#24-el-misterio-como-santidad-augusta">2.4. El Misterio como santidad augusta</a></li>
+</ul>
+</li>
+<li><a href="#3-representaciones-religiosas-de-la-trascendencia-como-elemento-constitutivo-del-misterio">3. Representaciones religiosas de la trascendencia como elemento constitutivo del Misterio</a><ul>
+<li><a href="#rasgos-del-misterio">Rasgos del Misterio</a></li>
+<li><a href="#formas-de-representacion-de-la-trascendencia">Formas de representación de la trascendencia</a></li>
+<li><a href="#conclusiones">Conclusiones</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>.</em></p>
@@ -352,11 +390,44 @@
 <li>Comprensión fenomenológica requiere estudio de este nuevo aspecto</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

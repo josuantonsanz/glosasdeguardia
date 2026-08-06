@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">2. Los fundamentos de la ética teológica (resumen)</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -127,6 +138,36 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-influo-de-la-fe-en-la-etica">1. Influo de la fe en la ética</a><ul>
+<li><a href="#a-moral-vivida-fe-compromiso-etico">a) Moral vivida: fe → compromiso ético</a></li>
+<li><a href="#b-moral-formulada-reflexion-teologico-moral">b) Moral formulada: reflexión teológico-moral</a></li>
+</ul>
+</li>
+<li><a href="#2-especificidad-formal-del-ethos-cristiano">2. Especificidad formal (del ethos cristiano) 📑</a></li>
+<li><a href="#3-identidad-real-relacion-del-ethos-cristiano-con-otros-proyectos-historicos">3. Identidad real (relación del ethos cristiano con otros proyectos históricos)</a><ul>
+<li><a href="#31-en-el-terreno-de-los-fines">3.1. En el terreno de los “fines”</a></li>
+<li><a href="#32-ethos-cristiano-alternativa-de-racionalidad-etica-humana">3.2. Ethos cristiano ≠ “alternativa” de racionalidad ética humana</a></li>
+<li><a href="#33-ni-gueto-ni-colonialismo-imperialista">3.3. Ni gueto ni colonialismo imperialista</a></li>
+<li><a href="#34-actuacion-del-compromiso-cristiano-reconocer-rechazar-proponer">3.4. Actuación del compromiso cristiano: reconocer, rechazar, proponer</a></li>
+</ul>
+</li>
+<li><a href="#4-la-praxis-humana-como-horizonte-ineludible">4. La praxis humana como horizonte ineludible</a></li>
+<li><a href="#5-superacion-del-imperialismo-moral">5. Superación del «imperialismo moral»</a></li>
+<li><a href="#6-colaboracion-en-la-remoralizacion-de-la-vida-social">6. Colaboración en la «remoralización» de la vida social</a></li>
+<li><a href="#7-oportunidad-para-la-nueva-formulacion-de-la-identidad-etica-de-los-cristianos">7. Oportunidad para la nueva formulación de la identidad ética de los cristianos</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="1-influo-de-la-fe-en-la-etica">1. Influo de la fe en la ética</h2>
@@ -300,11 +341,44 @@
 <li>La diferencia cristiana = alternativa estimulante, abrazar diversidad ética como riqueza democrática, no amenaza</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

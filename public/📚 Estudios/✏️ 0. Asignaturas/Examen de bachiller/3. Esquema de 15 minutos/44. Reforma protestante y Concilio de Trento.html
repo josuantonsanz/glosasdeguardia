@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">44. Reforma protestante y Concilio de Trento (15 min)</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -138,6 +149,47 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#i-la-prereforma-catolica">I. La prereforma católica</a><ul>
+<li><a href="#a-crisis-de-fondo-contexto-comun-a-todo-el-s-xvi">A. Crisis de fondo (contexto común a todo el s. XVI)</a></li>
+<li><a href="#b-corrientes-reformadoras-internas">B. Corrientes reformadoras internas</a></li>
+<li><a href="#c-espana-modelo-de-reforma-sin-ruptura">C. España: modelo de reforma sin ruptura</a></li>
+</ul>
+</li>
+<li><a href="#ii-la-reforma-luterana">II. La reforma luterana</a><ul>
+<li><a href="#a-lutero-el-hombre-y-la-pregunta">A. Lutero: el hombre y la pregunta</a></li>
+<li><a href="#b-de-la-controversia-a-la-ruptura-15171521">B. De la controversia a la ruptura (1517–1521)</a></li>
+<li><a href="#c-claves-doctrinales">C. Claves doctrinales</a></li>
+<li><a href="#d-expansion-y-diversificacion">D. Expansión y diversificación</a></li>
+</ul>
+</li>
+<li><a href="#iii-el-concilio-de-trento-15451563">III. El concilio de Trento (1545–1563)</a><ul>
+<li><a href="#a-el-camino-a-trento">A. El camino a Trento</a></li>
+<li><a href="#b-tres-periodos">B. Tres períodos</a></li>
+<li><a href="#c-sintesis-dogmatica-respuestas-directas-al-protestantismo">C. Síntesis dogmática: respuestas directas al protestantismo</a></li>
+<li><a href="#d-limites-de-trento">D. Límites de Trento</a></li>
+</ul>
+</li>
+<li><a href="#iv-el-postconcilio">IV. El postconcilio</a><ul>
+<li><a href="#a-papas-reformadores-e-institucionalizacion">A. Papas reformadores e institucionalización</a></li>
+<li><a href="#b-instrumentos-de-renovacion">B. Instrumentos de renovación</a></li>
+<li><a href="#c-balance-luces-y-sombras">C. Balance: luces y sombras</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusión</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="introduccion">Introducción</h2>
@@ -338,11 +390,44 @@
 <li><strong>Apertura</strong>: las cuestiones que Trento no cerró del todo — primado, colegialidad, relación gracia-libertad, lugar del laico — serán las grandes agendas de los concilios posteriores (Vaticano I, 1869–1870; Vaticano II, 1962–1965)</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

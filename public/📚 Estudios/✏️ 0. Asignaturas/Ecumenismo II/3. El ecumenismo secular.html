@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">3. El ecumenismo secular</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -124,6 +135,33 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#31-en-que-consiste-el-ecumenismo-secular">3.1 ¿En qué consiste el ecumenismo secular?</a><ul>
+<li><a href="#vaticano-ii">Vaticano II</a></li>
+<li><a href="#s-juan-pablo-ii-ut-unum-sint-74-75">S. Juan Pablo II — Ut unum sint 74-75</a></li>
+<li><a href="#fundamentacion">Fundamentación</a></li>
+</ul>
+</li>
+<li><a href="#32-ejemplo-y-contraejemplo-de-ecumenismo-secular">3.2 Ejemplo y contraejemplo de ecumenismo secular</a></li>
+<li><a href="#33-es-un-ecumenismo-secularizado">3.3 ¿Es un ecumenismo secularizado?</a></li>
+<li><a href="#34-ecumenismo-secular-y-mision">3.4 Ecumenismo secular y misión</a></li>
+<li><a href="#35-una-cuestion-ecumenica">3.5 ¿Una cuestión ecuménica?</a><ul>
+<li><a href="#excursus-dimension-secular-del-dialogo-interreligioso">Excursus: dimensión secular del diálogo interreligioso</a></li>
+</ul>
+</li>
+<li><a href="#jornada-del-perdon-12-de-marzo-2000-ano-jubilar">Jornada del perdón (12 de marzo 2000 — Año Jubilar)</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo II/Ecumenismo II.html">Ecumenismo II</a>.</em></p>
@@ -323,11 +361,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo II/Ecumenismo II.html">Teología del Ecumenismo</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

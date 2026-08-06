@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">6. El racionalismo</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -100,6 +111,8 @@
         </div>
     </header>
 
+    
+
     <div class="prose">
         <p><em>Sexto tema del <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Hermenéutica/Hermenéutica.html">curso de hermenéutica</a>.</em></p>
 <p>Con Baruc Spinoza (1632-1677) comienza el racionalismo. Él fue el primero en interpretar la Escritura con esta filosofía. Fue expulsado de la sinagoga y de la comunidad judía por esto mismo. Para Spinoza, Dios no es personal y trascendente, sino el orden geométrico impersonal que rige el universo, sin voluntad ni finalidad. Recurrir a la «voluntad de Dios» para explicar el mundo era pura ignorancia.  </p>
@@ -108,11 +121,44 @@
 <p>Las mayores críticas bíblicas se dieron con la vida de Jesús. Hermann Samuel Reimarus (1694-1768) sostuvo que Jesús predicó la cercanía del Reino en sentido político y se hizo reconocer como Rey-Mesías. Como su insurrección fracasó, fue condenado a muerte. Sus discípulos hicieron desaparecer su cuerpo y luego anunciaron la Resurrección; apoyándose en la segunda venida del Hijo del Hombre (Dan 7). A Reimarus le siguió Heinrich Paulus. En su Vida de Jesús (1828) intenta explicar los milagros dentro de los límites de la razón. La única intervención sobrenatural que acepta fue el nacimiento de Jesús, como aquel que tiene el «Espíritu del Mesías». </p>
 <p>El racionalismo historicista alcanza su culmen en Bruno Bauer (1809-1882) quien, considerando la teología de los Evangelios, niega que Jesús existiera; y ve los evangelios como novelas mediterráneas y apocalípticas. Friedrich Schleiermacher (1788-1834) introducirá el racionalismo histórico en la teología protestante, que llevará al escepticismo doctrinal e histórico, hasta la vuelta de la ortodoxia protestante con Karl Barth (1886-1968).</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Hermenéutica/Hermenéutica.html">Sagrada Escritura - Hermenéutica</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

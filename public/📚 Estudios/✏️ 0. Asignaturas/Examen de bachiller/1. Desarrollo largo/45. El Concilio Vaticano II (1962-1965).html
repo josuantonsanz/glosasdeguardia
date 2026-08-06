@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">45. El Concilio Vaticano II (1962-1965)</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -119,6 +130,28 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#juan-xxiii-y-el-inesperado-acontecimiento-del-concilio">Juan XXIII y el inesperado acontecimiento del Concilio</a></li>
+<li><a href="#dos-fases-preparatorias-informacion-y-elaboracion-de-temas">Dos fases preparatorias: información y elaboración de temas</a></li>
+<li><a href="#importancia-estrategica-del-discurso-inaugural-pontificio">Importancia estratégica del discurso inaugural pontificio</a></li>
+<li><a href="#sociologia-de-la-asamblea-sinodal-numero-de-padres-geografia-tendencias-doctrinales-y-pastorales">Sociología de la asamblea sinodal: número de padres, geografía, tendencias doctrinales y pastorales</a><ul>
+<li><a href="#itinerario-de-las-cuatro-etapas-conciliares">Itinerario de las cuatro etapas conciliares</a></li>
+</ul>
+</li>
+<li><a href="#resultados-del-concilio-los-16-documentos-las-dos-constituciones-fundamentales">Resultados del Concilio: los 16 documentos; las dos Constituciones fundamentales</a></li>
+<li><a href="#luces-y-sombras-del-inmediato-postconcilio">Luces y sombras del inmediato postconcilio</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="juan-xxiii-y-el-inesperado-acontecimiento-del-concilio">Juan XXIII y el inesperado acontecimiento del Concilio</h2>
@@ -268,11 +301,44 @@
 <p>También quedaron abiertas cuestiones delicadas en la relación entre fe y ciencia moderna, Iglesia y Estado moderno, y fe cristiana y religiones no cristianas. El Concilio abrió caminos decisivos, especialmente con <em>Dignitatis Humanae</em> y <em>Nostra Aetate</em>, pero su recepción no fue sencilla. La libertad religiosa, el diálogo interreligioso y la valoración de las religiones no cristianas exigían una reflexión teológica cuidadosa para evitar tanto el exclusivismo cerrado como el relativismo. Igualmente, la relación con la ciencia moderna y con el Estado moderno requería superar viejos antagonismos sin diluir la identidad cristiana. Estas cuestiones muestran que el Vaticano II no clausuró todos los problemas, sino que abrió un horizonte nuevo para afrontarlos.</p>
 <p>El balance del inmediato postconcilio debe mantener unida la esperanza y el discernimiento. Las luces fueron inmensas: renovación litúrgica, impulso ecuménico, apertura al mundo, recuperación de la Palabra de Dios, conciencia del laicado, eclesiología de comunión, colegialidad episcopal, reforma de estructuras, retorno a las fuentes y nuevo dinamismo misionero. Las sombras fueron reales: recepción lenta, polarizaciones, cambios bruscos, lecturas de ruptura, crisis vocacional y dificultades culturales. El Vaticano II no puede reducirse ni a una idealización ingenua ni a una valoración negativa. Fue un concilio pastoral, universal y renovador, que quiso custodiar fielmente el depósito de la fe mediante una forma nueva de anunciarlo, celebrarlo y vivirlo en el mundo contemporáneo. Su recepción exige precisamente lo que Juan XXIII pidió en la apertura: fidelidad a la verdad recibida, inteligencia histórica, misericordia pastoral y capacidad de reconocer los signos de los tiempos.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Algunas anotaciones sobre el rosario</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -125,6 +136,34 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#marialis-cultus-de-pablo-vi">Marialis Cultus, de Pablo VI</a></li>
+<li><a href="#rosarium-virginis-mariae-de-juan-pablo-ii">Rosarium Virginis Mariae, de Juan Pablo II</a><ul>
+<li><a href="#estructura-y-contenido-del-rosario">Estructura y contenido del Rosario</a></li>
+</ul>
+</li>
+<li><a href="#historia-del-rosario">Historia del Rosario</a><ul>
+<li><a href="#1-el-hogar-benedictino">1. El hogar benedictino</a></li>
+<li><a href="#2-la-consolidacion-en-el-hogar-de-la-cartuja">2. La consolidación en el hogar de la Cartuja</a></li>
+<li><a href="#3-la-orden-de-santo-domingo-y-la-difusion-del-rosario">3. La Orden de Santo Domingo y la difusión del Rosario</a></li>
+<li><a href="#4-creacion-de-nuevas-cofradias">4. Creación de nuevas cofradías</a></li>
+<li><a href="#5-institucion-de-la-fiesta-de-la-virgen-del-rosario">5. Institución de la fiesta de la Virgen del Rosario</a></li>
+<li><a href="#la-piedad-popular-y-el-rosario">La piedad popular y el Rosario</a></li>
+<li><a href="#7-el-rosario-en-el-magisterio-de-los-ultimos-pontifices">7. El Rosario en el magisterio de los últimos Pontífices</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="marialis-cultus-de-pablo-vi"><em>Marialis Cultus</em>, de Pablo VI</h2>
@@ -236,11 +275,44 @@ La llegada al mundo latino de la piedad repetitiva oriental se encuentra con una
 <p>Finalmente Juan Pablo II, que escribió la ya citada Carta Apostólica <em>Rosarium Virginis Mariae</em>, del 16-X-2002. Es un documento casi exhaustivo. En la Introducción, el Pontífice sintetiza la historia del Magisterio Pontificio sobre el Rosario y se plantea su vigencia actual. En el capítulo 1, Contemplar a Cristo en María, insiste con profundidad en el carácter contemplativo de la oración del Rosario. El capítulo 2, Misterios de Cristo, misterios de la Madre, explica la naturaleza y las raíces profundamente evangélicas del Rosario, y cómo por la Madre se llega al Hijo. Es en este capítulo donde introduce el Papa la novedad de los Misterios de luz. Estas escenas de la vida de Jesús ya estaban en la tradición de la Cartuja, pero no pasaron a la tradición dominicana del Rosario. El capítulo 3, Para mí la vida es Cristo, explica que el Rosario es un camino válido para la profundización en el misterio, un buen método de oración. Con este fin repasa las distintas oraciones del Rosario, explicando su naturaleza y su contenido.   </p>
 <p>Con este último documento pontificio, se hace patente el interés que siempre han tenido los pastores de la Iglesia y los santos en inculcar el rezo del Rosario, pero enseñando a pasar de la mera recitación a la interiorización y a la oración contemplativa.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../index.html">Bienvenido</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

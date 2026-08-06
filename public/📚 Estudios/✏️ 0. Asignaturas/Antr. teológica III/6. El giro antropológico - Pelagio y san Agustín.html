@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">6. El giro antropológico: Pelagio y san Agustín</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -133,6 +144,42 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-pelagio-vida-contexto-y-doctrina">1. Pelagio: Vida, contexto y doctrina</a></li>
+<li><a href="#2-el-pecado-original-significado-y-doctrina">2. El pecado original: significado y doctrina</a></li>
+<li><a href="#3-pensamiento-y-doctrina-de-pelagio">3. Pensamiento y doctrina de Pelagio</a></li>
+<li><a href="#4-san-agustin-de-hipona">4. San Agustín de Hipona</a></li>
+<li><a href="#5-el-giro-antropologico-de-la-gracia-en-pelagio-y-san-agustin">5. El giro antropológico de la Gracia en Pelagio y san Agustín</a><ul>
+<li><a href="#pelagio-la-primacia-de-la-libertad-humana">Pelagio: la primacía de la libertad humana.</a></li>
+<li><a href="#san-agustin-la-primacia-de-la-gracia-divina">San Agustín: la primacía de la gracia divina</a></li>
+</ul>
+</li>
+<li><a href="#6-conclusiones">6. Conclusiones</a><ul>
+<li><a href="#naturaleza-humana-y-pecado-original">Naturaleza humana y pecado original</a></li>
+<li><a href="#salvacion-y-merito">Salvación y mérito</a></li>
+<li><a href="#consecuencias-eclesiasticas">Consecuencias eclesiásticas</a></li>
+</ul>
+</li>
+<li><a href="#7-semipelagianismo">7. Semipelagianismo</a><ul>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#el-semipelagianismo">El semipelagianismo</a></li>
+<li><a href="#doctrina-semipelagiana">Doctrina semipelagiana</a></li>
+<li><a href="#semipelagianismo-como-via-media-en-dos-aspectos-clave">Semipelagianismo como «vía media» en dos aspectos clave</a></li>
+<li><a href="#impacto-e-influencia-del-semipelagianismo">Impacto e influencia del semipelagianismo</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Tema del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Antr. teológica III/Antropología Teológica III.html">Antropología Teológica III</a>.</em></p>
@@ -241,11 +288,44 @@
 <p>El semipelagianismo fue oficialmente condenado por la Iglesia. La condena más importante ocurrió en el Concilio de Orange (529 d.C.).</p>
 <p><strong>Razones de la Condena:</strong> La Iglesia consideró que el semipelagianismo subestimaba la necesidad de la gracia divina al enseñar que el ser humano podía dar el primer paso hacia la fe sin ayuda de la gracia. Se veía como una minimización del pecado original y una exageración del libre albedrío humano.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Antr. teológica III/Antropología Teológica III.html">Antropología Teológica III</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

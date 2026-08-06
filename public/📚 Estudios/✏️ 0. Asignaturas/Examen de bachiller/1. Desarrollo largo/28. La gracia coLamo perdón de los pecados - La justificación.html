@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">28. La gracia como perdón de los pecados: la justificación</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -117,6 +128,25 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-el-pecado-y-la-justicia-de-dios-desde-la-sagrada-escritura-y-desde-la-teologia">1. El pecado y la justicia de Dios desde la Sagrada Escritura y desde la teología</a></li>
+<li><a href="#2-la-dinamica-de-la-justicia-de-dios-la-justificacion-por-la-fe-en-pablo-en-la-historia-de-la-teologia-reforma-y-concilio-de-trento-y-en-el-dialogo-ecumenico-actual-declaracion-conjunta-sobre-la-doctrina-de-la-justificacion-de-1999">2. La dinámica de la justicia de Dios: la justificación por la fe en Pablo, en la historia de la teología —Reforma y Concilio de Trento— y en el diálogo ecuménico actual —Declaración conjunta sobre la doctrina de la justificación de 1999—</a></li>
+<li><a href="#3-la-justificacion-por-la-fe-como-salvacion-del-pecador-estructura-de-la-justificacion">3. La justificación por la fe como salvación del pecador —estructura de la justificación—</a></li>
+<li><a href="#4-la-incapacidad-para-el-bien">4. La incapacidad para el bien</a></li>
+<li><a href="#5-la-conversion-y-la-justificacion-por-la-fe">5. La conversión y la justificación por la fe</a></li>
+<li><a href="#6-a-la-vez-justo-y-pecador">6. «A la vez justo y pecador»</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="1-el-pecado-y-la-justicia-de-dios-desde-la-sagrada-escritura-y-desde-la-teologia">1. El pecado y la justicia de Dios desde la Sagrada Escritura y desde la teología</h2>
 <p>La doctrina de la justificación nace del encuentro entre dos afirmaciones centrales de la fe cristiana: Dios es amor y misericordia, y el destinatario histórico de esa misericordia es el hombre pecador. El designio divino de autocomunicarse no se dirige a una humanidad abstracta, neutra o intacta, sino al hombre real, nacido en una condición marcada por el pecado original y configurado además por pecados personales libres. En Jesucristo, Dios se vuelve hacia el hombre, no para confirmar su autosuficiencia, sino para perdonarlo, reconciliarlo y hacer de él una criatura nueva. Por eso la doctrina de la justificación no constituye un tema marginal dentro de la teología de la gracia, sino una de sus formas más densas: la gracia aparece aquí como perdón de los pecados, como justicia de Dios comunicada al injusto, como salvación del pecador y como renovación interior. Tiene, además, un valor antropológico decisivo, porque revela qué es el hombre en su verdad última: un ser llamado al diálogo con Dios, incapaz de consumarse sin la gracia, abierto a recibir a Dios y a realizarse en esa recepción.</p>
@@ -177,11 +207,44 @@
 <p>En sentido ecuménico, la fórmula «a la vez justo y pecador» puede ser aceptada si se entiende que el justificado depende siempre de la misericordia, permanece expuesto a la tentación, conserva concupiscencia y puede caer en pecado. Pero no puede aceptarse si significa que el hombre justificado sigue siendo pecador en el mismo sentido en que lo era antes, o que la justicia recibida es solo una imputación externa sin renovación real. La doctrina católica afirma simultáneamente la verdad del perdón, la realidad de la transformación y la permanencia de la lucha. El pecado no es la esencia del hombre; es resistencia a Dios, tendencia desordenada, ruptura de la relación. La gracia restaura la verdad del hombre, lo introduce en la comunión trinitaria y lo hace capaz de amar.</p>
 <p>La vida nueva en la gracia de Dios es, en definitiva, alianza: encuentro entre dos amores, solicitud permanente de Dios y respuesta favorable del hombre. Es presencia de Dios en nosotros como gracia increada y don humano perfeccionado como gracia creada. Es nueva creación, regeneración y renovación. Es filiación adoptiva, participación en la naturaleza divina y liberación del pecado. Es experiencia real, aunque no posesiva, de la presencia de Dios. Es vida eclesial, sacramental, caritativa y social. Es libertad liberada. Y es esperanza escatológica: el justificado vive ya de la justicia de Dios manifestada en Cristo, pero camina todavía hacia la plena conformación con Él, cuando la gracia se consume en gloria y el perdón recibido se despliegue definitivamente como comunión plena con Dios.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

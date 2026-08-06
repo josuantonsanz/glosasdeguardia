@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">16. El mundo y el ser humano a la luz del Creador</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -133,6 +144,42 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#de-la-alianza-a-la-creacion">De la alianza a la creación</a></li>
+<li><a href="#claves-de-lectura-de-gn-1-2-por-que-crea-dios">Claves de lectura de Gn 1-2. ¿Por qué crea Dios?</a></li>
+<li><a href="#creacion-mas-alla-de-produccion-y-emanacion-de-monismo-y-dualismo">«Creación», más allá de producción y emanación, de monismo y dualismo</a></li>
+<li><a href="#creacion-por-el-espiritu">Creación por el Espíritu</a></li>
+<li><a href="#creacion-en-cristo">Creación en Cristo</a></li>
+<li><a href="#la-doctrina-de-la-creacion-en-la-historia-addendum">La doctrina de la creación en la historia (Addendum)</a><ul>
+<li><a href="#1-los-santos-padres-y-las-confesiones-de-fe">1. Los Santos Padres y las confesiones de fe</a></li>
+<li><a href="#2-origenes-san-agustin-y-el-pseudo-dionisio">2. Orígenes, San Agustín y el Pseudo-Dionisio</a></li>
+<li><a href="#3-la-teologia-de-la-creacion-en-el-medievo">3. La teología de la creación en el Medievo</a></li>
+<li><a href="#4-renacimiento-ilustracion-y-concilio-vaticano-i">4. Renacimiento, Ilustración y Concilio Vaticano I</a></li>
+<li><a href="#5-concilio-vaticano-ii-y-posmodernidad">5. Concilio Vaticano II y posmodernidad</a></li>
+<li><a href="#6-creacion-primer-articulo-del-credo">6. Creación, primer artículo del Credo</a></li>
+<li><a href="#7-la-fe-en-la-creacion-desarrollo-teologico">7. La fe en la creación: desarrollo teológico</a></li>
+</ul>
+</li>
+<li><a href="#creacion-y-evolucion-creacion-continua-proyecto-y-azar">Creación y evolución, creación continua; proyecto y azar</a></li>
+<li><a href="#creacion-y-providencia">Creación y providencia</a></li>
+<li><a href="#terminos-de-la-antropologia-biblica">Términos de la antropología bíblica</a></li>
+<li><a href="#creacion-y-origen-de-la-especie-humana">Creación y origen de la especie humana</a></li>
+<li><a href="#el-origen-del-alma">El «origen del alma»</a></li>
+<li><a href="#el-ser-humano-imagen-de-dios">El ser humano, imagen de Dios</a></li>
+<li><a href="#la-libertad-humana-situada-y-emergente">La libertad humana situada y emergente</a></li>
+<li><a href="#libertad-para-hacerse-y-para-ser">Libertad para hacerse y para ser</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="de-la-alianza-a-la-creacion">De la alianza a la creación</h2>
@@ -247,11 +294,44 @@
 <p>La verdad última de esta libertad sólo se conoce en Cristo. Él revela al hombre su propia verdad y la medida de sus posibilidades. Cristo es el prototipo de la humanidad lograda, el canon de lo humano, la antropología perfecta. En Él se ve qué significa existir como hijo ante Dios, como hermano entre los hombres y como señor humilde de la creación. La libertad humana alcanza su plenitud no cuando pretende ser como Dios sin Dios, sino cuando entra en la obediencia filial y amorosa del Hijo. Por eso el pecado es siempre una falsa libertad, un intento de autodivinización; mientras que la gracia reordena la libertad para el ser verdadero.</p>
 <p>En definitiva, la libertad humana es vocación. Es capacidad de respuesta al Creador, posibilidad de construirse históricamente según la imagen del Hijo y apertura a una comunión que salva. La creación no entrega al hombre una esencia muda ni una libertad vacía, sino una llamada. Hacerse y ser no son dos tareas opuestas: el hombre se hace precisamente llegando a ser aquello para lo que ha sido creado. Y ese «para» es, en último término, Dios mismo, su verdad, su gloria y la participación en la vida de Cristo.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">35. La identidad del presbiterado en el Vaticano II</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -116,6 +127,24 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-la-sacramentalidad-del-presbiterado">1. La sacramentalidad del presbiterado</a></li>
+<li><a href="#2-la-dimension-relacional-de-la-identidad-del-presbiterado">2. La dimensión relacional de la identidad del presbiterado</a></li>
+<li><a href="#3-la-relacion-con-cristo-y-con-la-comunidad-eclesial">3. La relación con Cristo y con la comunidad eclesial</a></li>
+<li><a href="#4-la-relacion-entre-el-presbiterado-y-el-obispo">4. La relación entre el presbiterado y el Obispo</a></li>
+<li><a href="#5-la-relacion-con-el-presbiterio-las-funciones-del-presbitero">5. La relación con el presbiterio. Las funciones del presbítero</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="1-la-sacramentalidad-del-presbiterado">1. La sacramentalidad del presbiterado</h2>
 <p>La comprensión conciliar de la identidad presbiteral exige partir de su sacramentalidad, y no de un análisis primariamente funcional de las tareas que el presbítero desempeña. El punto de arranque no es, por tanto, la enumeración de competencias eclesiales, sino la realidad ontológico-sacramental de la ordenación. En esta perspectiva, la sacramentalidad no equivale a una «sacralización» sociológica o a una segregación del ministro respecto de la condición común de los bautizados; designa, más bien, que el origen de la identidad y de la misión del presbítero nace del sacramento como don: la ordenación no es un acto meramente jurídico ni una simple encomienda de servicio, sino un acontecimiento sacramental que configura al sujeto y determina el sentido de su acción eclesial. Por ello, el presbítero se define por el significado teológico de lo que es y de lo que hace en virtud del sacramento, no por una autocomprensión derivada de la funcionalidad o de la demanda comunitaria.</p>
@@ -150,11 +179,44 @@
 <p>Esta tríada funcional puede especificarse con formulaciones convergentes: el presbítero es ministro de la Palabra de Dios; ministro de los sacramentos; ministro de la Eucaristía; ministro de la Reconciliación; y rector (pastor y guía) del pueblo de Dios. Estas expresiones no multiplican ministerios diversos, sino que concretan la misma realidad desde distintos ángulos: la Eucaristía se menciona con relieve propio dentro del ministerio sacramental; la Reconciliación aparece como forma concreta del servicio de santificación y restauración de la comunión; la rectoría pastoral se comprende como presidencia-servicio orientada a la unidad y al crecimiento del pueblo de Dios.</p>
 <p>El planteamiento conciliar, finalmente, insiste en una lectura teológica de estas funciones que evite su reducción sociológica. El ministerio no debe entenderse como mera función ni como simple dependencia de las necesidades de la comunidad. La clave hermenéutica es la sucesión apostólica mediada por la comunión jerárquica: desde ahí se salvaguarda el sentido sacramental del ministerio dentro de la comunidad, se impide la polarización unilateral (por ejemplo, hacia un exclusivismo profético o hacia un inmovilismo autorreferencial) y se mantiene la relación necesaria entre estilo de vida, ejercicio de las funciones y concepción verdadera del sacerdocio. La identidad presbiteral, en consecuencia, se verifica en la unidad entre lo que el presbítero es por el sacramento, las relaciones que lo constituyen (Cristo, Iglesia, obispo, presbiterio, pueblo de Dios) y el modo concreto —de siervo y pastor— en que realiza el único ministerio que le ha sido confiado.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

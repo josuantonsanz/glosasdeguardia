@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">31. La eucaristía como cena del Señor</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -120,6 +131,29 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-significado-antropologico-y-teologico-de-la-comida-como-presupuesto-comprensivo-de-la-eucaristia-le-733-35-me-218-me-213-17-le-191-10-me-630-46-me-714-23">1. Significado antropológico y teológico de la comida, como presupuesto comprensivo de la eucaristía: Le 7,33-35; Me 2,18; Me 2,13-17; Le 19,1-10; Me 6,30-46; Me 7,14-23</a></li>
+<li><a href="#2-fue-la-ultima-cena-de-jesus-una-cena-pascual">2. ¿Fue la última cena de Jesús una cena pascual?</a></li>
+<li><a href="#3-los-textos-de-la-escritura-mt-2626-28-me-1422-24-le-2219-20-1-cor-1123b-25-semejanzas-y-diferencias">3. Los textos de la Escritura (Mt 26,26-28; Me 14,22-24; Le 22,19-20; 1 Cor 11,23b-25): semejanzas y diferencias</a><ul>
+<li><a href="#la-cena-del-senor-en-corinto-1-cor-1120-conflicto-e-interpretacion">La «cena del Señor» en Corinto (1 Cor 11,20): conflicto e interpretación</a></li>
+<li><a href="#evolucion-del-esquema-celebrativo-y-cambio-de-nomenclatura">Evolución del esquema celebrativo y cambio de nomenclatura</a></li>
+</ul>
+</li>
+<li><a href="#4-significado-del-pan-y-del-vino">4. Significado del pan y del vino</a></li>
+<li><a href="#5-el-discurso-del-pan-de-vida-en-jn-635-66">5. El discurso del pan de vida en Jn 6,35-66</a></li>
+<li><a href="#6-relacion-iglesia-eucaristia-cuerpo-de-cristo-cuerpo-real-eucaristico-iglesia-cuerpo-de-cristo-eucaristia-como-prenda-del-reino-futuro">6. Relación Iglesia-Eucaristía: cuerpo de Cristo, cuerpo «real» eucarístico, Iglesia «cuerpo» de Cristo, eucaristía como prenda del reino futuro</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="1-significado-antropologico-y-teologico-de-la-comida-como-presupuesto-comprensivo-de-la-eucaristia-le-733-35-me-218-me-213-17-le-191-10-me-630-46-me-714-23">1. Significado antropológico y teológico de la comida, como presupuesto comprensivo de la eucaristía: Le 7,33-35; Me 2,18; Me 2,13-17; Le 19,1-10; Me 6,30-46; Me 7,14-23</h2>
@@ -383,11 +417,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

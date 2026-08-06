@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">8. La revelación como promesa (15 min)</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -119,6 +130,28 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#seccion-1-la-revelacion-como-promesa-y-cumplimiento">Sección 1. La revelación como promesa y cumplimiento</a><ul>
+<li><a href="#at-la-revelacion-como-promesa">AT: la revelación como promesa</a></li>
+<li><a href="#nt-cumplimiento-en-jesucristo">NT: cumplimiento en Jesucristo</a></li>
+</ul>
+</li>
+<li><a href="#seccion-2-la-revelacion-como-desvelacion-y-ocultamiento">Sección 2. La revelación como desvelación y ocultamiento</a></li>
+<li><a href="#seccion-3-autorrevelacion-hegeliana-y-palabra-de-dios-en-el-vaticano-ii">Sección 3. Autorrevelación hegeliana y Palabra de Dios en el Vaticano II</a></li>
+<li><a href="#conclusion">Conclusión</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="introduccion">Introducción</h2>
@@ -203,11 +236,44 @@
 <li><strong>Frase de cierre</strong>: la revelación no es un conjunto de verdades añadidas desde fuera, ni una pura autoconciencia humana de lo divino; es la irrupción gratuita de Dios en la historia —acontecida como Palabra, culminada en Cristo, preservada como misterio— que convoca al hombre a la fe como respuesta total</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

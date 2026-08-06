@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Cadenas en Python</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -144,6 +155,53 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#repaso-rapido-lo-que-ya-sabemos-de-las-cadenas">Repaso rápido: Lo que ya sabemos de las cadenas</a></li>
+<li><a href="#las-cadenas-son-secuencias-indexacion-y-slicing">Las cadenas son secuencias: Indexación y Slicing</a><ul>
+<li><a href="#indexacion-acceder-a-un-caracter">Indexación (acceder a un carácter)</a></li>
+<li><a href="#slicing-extraer-sub-cadenas">Slicing (Extraer sub-cadenas)</a></li>
+</ul>
+</li>
+<li><a href="#inmutabilidad-las-cadenas-no-se-pueden-cambiar">Inmutabilidad: Las cadenas no se pueden cambiar</a><ul>
+<li><a href="#la-caja-de-herramientas-metodos-y-operadores-de-string">La «caja de herramientas»: Métodos y operadores de String</a><ul>
+<li><a href="#operador-in-comprobando-pertenencia">Operador in: Comprobando pertenencia</a></li>
+<li><a href="#cambio-de-mayusculas-y-minusculas">Cambio de mayúsculas y minúsculas</a></li>
+<li><a href="#busqueda-y-reemplazo">Búsqueda y reemplazo</a></li>
+<li><a href="#limpieza-de-espacios-en-blanco">Limpieza de espacios en blanco</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#formateo-de-cadenas-las-f-strings">Formateo de cadenas, las f-strings</a><ul>
+<li><a href="#aprovechando-las-f-strings">Aprovechando las f-strings</a></li>
+<li><a href="#controlando-el-ancho-y-la-alineacion">Controlando el ancho y la alineación</a></li>
+<li><a href="#formateando-numeros-decimales-float">Formateando números decimales (float)</a></li>
+<li><a href="#combinando-formatos-y-otros-trucos-utiles">Combinando formatos y otros trucos útiles</a></li>
+</ul>
+</li>
+<li><a href="#ejercicios-practicos">Ejercicios prácticos</a><ul>
+<li><a href="#1-extractor-de-informacion">1. Extractor de información</a></li>
+<li><a href="#2-formateador-de-nombres">2. Formateador de nombres</a></li>
+<li><a href="#3-censor-de-palabras">3. Censor de palabras</a></li>
+<li><a href="#4-palindromos">4. Palíndromos</a></li>
+<li><a href="#6-dibujante-de-separadores">6. Dibujante de separadores</a></li>
+<li><a href="#7-generador-de-tickets-de-compra">7. Generador de tickets de compra</a></li>
+</ul>
+</li>
+<li><a href="#datos-de-los-productos">Datos de los productos</a></li>
+<li><a href="#iva">IVA</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="repaso-rapido-lo-que-ya-sabemos-de-las-cadenas">Repaso rápido: Lo que ya sabemos de las cadenas</h2>
@@ -506,11 +564,44 @@ Manzanas (kg)          1.5          1.99      2.98
 <li>Juega con los números de ancho en tus f-strings (ej: <code>{variable:&gt;10.2f}</code>) hasta que las columnas queden perfectamente alineadas como en el ejemplo.</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../../🛠️ Labores/Zuera/3. Formación profesional/Python/Curso de Python.html">Programación en Python (CS101)</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

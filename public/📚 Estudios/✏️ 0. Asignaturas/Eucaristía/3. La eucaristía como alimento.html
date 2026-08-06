@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Tema 3. La Eucaristía como alimento (pan/cuerpo)</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -151,6 +162,60 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-historia-del-problema">1. Historia del problema</a><ul>
+<li><a href="#mito-de-la-caverna-de-platon">Mito de la caverna de Platón</a></li>
+<li><a href="#primera-controversia-eucaristica-six">Primera controversia eucarística (s.IX)</a><ul>
+<li><a href="#ratrammo-simbolista">Ratrammo (simbolista)</a></li>
+<li><a href="#pascasio-radberto-realista">Pascasio Radberto (realista)</a></li>
+</ul>
+</li>
+<li><a href="#segunda-controversia-eucaristica-s-xi">Segunda controversia eucarística (s. XI)</a><ul>
+<li><a href="#berengario-de-tours-simbolista">Berengario de Tours (simbolista)</a></li>
+<li><a href="#respuesta-de-ascelino-posicion-roma">Respuesta de Ascelino (posición Roma)</a></li>
+<li><a href="#matizacion-posterior-de-roma">Matización posterior de Roma</a></li>
+</ul>
+</li>
+<li><a href="#j-wicleff-1330-1384">J. Wicleff (1330-1384)</a></li>
+<li><a href="#martin-lutero">Martín Lutero</a></li>
+<li><a href="#ulrich-zwinglio">Ulrich Zwinglio</a></li>
+<li><a href="#calvino">Calvino</a><ul>
+<li><a href="#concepcion-de-la-eucaristia">Concepción de la Eucaristía</a></li>
+<li><a href="#presencia-de-cristo">Presencia de Cristo</a></li>
+<li><a href="#relacion-signo-realidad">Relación signo-realidad</a></li>
+<li><a href="#contra-la-adoracion-al-santisimo">Contra la adoración al Santísimo</a></li>
+<li><a href="#problema-de-fondo-imagen-de-dios">Problema de fondo: imagen de Dios</a></li>
+<li><a href="#resumen-global-calvino">Resumen global (Calvino)</a></li>
+</ul>
+</li>
+<li><a href="#catolicos-concilio-de-trento-decreto-11-10-1551">Católicos (Concilio de Trento, Decreto 11-10-1551)</a><ul>
+<li><a href="#doctrina-de-la-presencia-real">Doctrina de la Presencia Real</a></li>
+<li><a href="#integridad-del-don-eucaristico">Integridad del don eucarístico</a></li>
+<li><a href="#presencia-objetiva">Presencia objetiva</a></li>
+<li><a href="#manducacion-comer">Manducación (comer):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-la-transubstanciacion">2. La transubstanciación</a><ul>
+<li><a href="#1-concepto-y-formulacion-teologica">1. Concepto y formulación teológica</a></li>
+<li><a href="#2-dogma-de-trento-ds-1642-1652">2. Dogma de Trento (DS 1642, 1652)</a></li>
+<li><a href="#3-criticas-y-alternativas">3. Críticas y alternativas</a></li>
+</ul>
+</li>
+<li><a href="#3-conclusiones">3. Conclusiones</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Eucaristía/Eucaristía.html">Eucaristía</a>.</em></p>
@@ -756,11 +821,44 @@
 </li>
 </ol>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Eucaristía/Eucaristía.html">Eucaristía</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

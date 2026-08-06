@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">1. Dimensión literaria del Evangelio de Juan</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -152,6 +163,72 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-rasgos-caracteristicos-del-ev-de-jn">1. Rasgos característicos del Ev de Jn</a><ul>
+<li><a href="#lengua-y-estilo">Lengua y estilo</a></li>
+<li><a href="#similitudes">Similitudes</a></li>
+<li><a href="#diferencias">Diferencias</a></li>
+<li><a href="#vocabulario">Vocabulario</a></li>
+<li><a href="#estilo-narrativo-de-juan">Estilo narrativo de Juan</a></li>
+<li><a href="#escenas-con-paralelos-sinopticos-pero-reelaborados">Escenas con paralelos sinópticos pero reelaborados</a></li>
+</ul>
+</li>
+<li><a href="#2-estructura-del-ev-de-jn">2. Estructura del Ev. de Jn</a><ul>
+<li><a href="#prologo-al-evangelio-11-18">Prólogo al evangelio (1,1-18)</a></li>
+<li><a href="#libro-de-los-signos-21-1250">Libro de los Signos (2,1*- 12,50)</a></li>
+<li><a href="#libro-de-la-hora-1321">Libro de la hora (13–21)</a></li>
+<li><a href="#conclusion-y-apendice">Conclusión y Apéndice</a></li>
+<li><a href="#insercion-de-jn-753-811-la-adultera">Inserción de Jn 7,53 – 8,11 (La adúltera)</a></li>
+</ul>
+</li>
+<li><a href="#3-tradicion-narrativa-de-los-signos">3. Tradición narrativa de los signos</a><ul>
+<li><a href="#seleccion-de-7-signos">Selección de «7 signos»</a></li>
+<li><a href="#de-actos-poderosos-rdd-a-signos">De δυναμις (actos poderosos, RdD) a σημεῖον (signos)</a></li>
+<li><a href="#relacion-de-los-signos-con-la-fe">Relación de los signos con la FE</a></li>
+<li><a href="#sentido-de-los-signos-joanicos">Sentido de los SIGNOS joánicos</a></li>
+<li><a href="#simbolismo">Simbolismo</a></li>
+</ul>
+</li>
+<li><a href="#4-dialogos-controversias-y-discursos-de-jesus">4. Diálogos, controversias y discursos de Jesús</a><ul>
+<li><a href="#dialogos">Diálogos</a></li>
+<li><a href="#controversias">Controversias</a></li>
+</ul>
+</li>
+<li><a href="#5-el-relato-de-la-pasion">5. El relato de la Pasión</a><ul>
+<li><a href="#tema-de-la-hora">Tema de la HORA</a></li>
+<li><a href="#oposicion-constante-contra-jesus">Oposición constante contra Jesús</a></li>
+<li><a href="#existen-3-pasajes-vinculados-a-la-cruz-de-jesus">Existen 3 pasajes vinculados a la Cruz de Jesús</a></li>
+<li><a href="#claves-de-lectura">Claves de lectura</a></li>
+<li><a href="#predicciones-de-la-cruz">Predicciones de la Cruz</a></li>
+<li><a href="#reivindicacion-de-dios-por-jesus">«Reivindicación» de Dios por Jesús</a></li>
+</ul>
+</li>
+<li><a href="#el-relato-de-la-pasion-discurso-de-despedida">El relato de la Pasión - Discurso de despedida</a></li>
+<li><a href="#el-relato-de-la-pasion-muerte-de-jesus">El relato de la Pasión - Muerte de Jesús</a><ul>
+<li><a href="#muerte-de-jesus-como-cordero-pascual">Muerte de Jesús como Cordero Pascual</a></li>
+<li><a href="#muerte-de-jesus-como-glorificacion">Muerte de Jesús como glorificación</a></li>
+<li><a href="#muerte-de-jesus-como-entronizacion-de-un-rey">Muerte de Jesús como entronización de un Rey</a></li>
+</ul>
+</li>
+<li><a href="#6-encuentro-con-jesus-resucitado">6. Encuentro con Jesús Resucitado</a><ul>
+<li><a href="#maria-magdalena-201-18">María Magdalena (20,1-18)</a></li>
+<li><a href="#los-discipulos-en-jerusalen-2019-29">Los discípulos en Jerusalén (20,19-29)</a></li>
+<li><a href="#pedro-y-el-da-2115-23">Pedro y el D.A. (21,15-23)</a></li>
+<li><a href="#discipulos-en-el-lago-de-galilea-211-14">Discípulos en el Lago de Galilea (21,1-14)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="1-rasgos-caracteristicos-del-ev-de-jn">1. Rasgos característicos del Ev de Jn</h2>
@@ -819,11 +896,33 @@
 <li>Pedro necesita el Testimonio del D.A. para reconocer al Señor → Mediación del D.A.</li>
 </ul>
     </div>
+
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

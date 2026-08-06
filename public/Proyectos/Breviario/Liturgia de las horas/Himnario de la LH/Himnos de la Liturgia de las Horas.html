@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Himnos de la Liturgia de las Horas</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -167,6 +178,87 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#-httpswwwmercabaorgespiritualidadrufinocartel_rufinohtmtextel20pan20de20unos20versos">- https://www.mercaba.org/Espiritualidad/Rufino/Cartel_Rufino.htm#:~:text=EL%20PAN%20DE%20UNOS%20VERSOS</a></li>
+<li><a href="#adviento">Adviento</a><ul>
+<li><a href="#hasta-el-dia-16">Hasta el día 16</a></li>
+<li><a href="#desde-el-17">Desde el 17</a></li>
+</ul>
+</li>
+<li><a href="#navidad">Navidad</a><ul>
+<li><a href="#hasta-la-epifania">Hasta la Epifanía</a></li>
+<li><a href="#natividad-del-senor">Natividad del Señor</a></li>
+<li><a href="#desde-la-epifania">Desde la Epifanía</a></li>
+</ul>
+</li>
+<li><a href="#cuaresma">Cuaresma</a><ul>
+<li><a href="#hasta-el-sabado-v">Hasta el sábado V</a></li>
+<li><a href="#semana-santa">Semana Santa</a></li>
+<li><a href="#triduo-pascual">Triduo Pascual</a></li>
+</ul>
+</li>
+<li><a href="#tiempo-pascual">Tiempo pascual</a><ul>
+<li><a href="#hasta-la-ascension">Hasta la Ascensión</a></li>
+<li><a href="#desde-la-ascension">Desde la Ascensión</a></li>
+</ul>
+</li>
+<li><a href="#ordinario">Ordinario</a><ul>
+<li><a href="#solemnidades-del-tiempo-ordinario">Solemnidades del Tiempo Ordinario</a></li>
+<li><a href="#comunes">Comunes</a></li>
+</ul>
+</li>
+<li><a href="#salterio">Salterio</a><ul>
+<li><a href="#primera-semana">Primera semana</a></li>
+<li><a href="#segunda-semana">Segunda semana</a></li>
+<li><a href="#tercera-semana">Tercera semana</a></li>
+<li><a href="#cuarta-semana">Cuarta semana</a></li>
+<li><a href="#completas">Completas</a></li>
+</ul>
+</li>
+<li><a href="#propio-de-los-santos">Propio de los santos</a><ul>
+<li><a href="#enero">Enero</a></li>
+<li><a href="#febrero">Febrero</a></li>
+<li><a href="#marzo">Marzo</a></li>
+<li><a href="#abril">Abril</a></li>
+<li><a href="#mayo">Mayo</a></li>
+<li><a href="#junio">Junio</a></li>
+<li><a href="#julio">Julio</a></li>
+<li><a href="#agosto">Agosto</a></li>
+<li><a href="#septiembre">Septiembre</a></li>
+<li><a href="#octubre">Octubre</a></li>
+<li><a href="#noviembre">Noviembre</a></li>
+<li><a href="#diciembre">Diciembre</a></li>
+</ul>
+</li>
+<li><a href="#oficios-comunes">Oficios comunes</a><ul>
+<li><a href="#dedicacion-de-una-iglesia">Dedicación de una iglesia</a></li>
+<li><a href="#santa-maria-virgen">Santa María Virgen</a></li>
+<li><a href="#santa-maria-en-sabado">Santa María en sábado</a></li>
+<li><a href="#apostoles">Apóstoles</a></li>
+<li><a href="#martires">Mártires</a></li>
+<li><a href="#pastores">Pastores</a></li>
+<li><a href="#doctores">Doctores</a></li>
+<li><a href="#virgenes">Vírgenes</a></li>
+<li><a href="#santos-varones">Santos varones</a></li>
+<li><a href="#santas-mujeres">Santas mujeres</a></li>
+<li><a href="#religiosos">Religiosos</a></li>
+<li><a href="#consagrados">Consagrados</a></li>
+<li><a href="#educadores">Educadores</a></li>
+<li><a href="#difuntos">Difuntos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <details class="callout callout-info" open="open">
@@ -394,11 +486,33 @@
 <h3 id="educadores">Educadores</h3>
 <h3 id="difuntos">Difuntos</h3>
     </div>
+
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

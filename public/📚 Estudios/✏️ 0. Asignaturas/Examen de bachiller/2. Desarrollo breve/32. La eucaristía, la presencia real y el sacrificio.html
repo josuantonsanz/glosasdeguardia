@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">32. La eucaristía, presencia real y sacrificio</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -131,6 +142,40 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#a-la-eucaristia-y-la-presencia-real">a) La eucaristía y la presencia real</a><ul>
+<li><a href="#historia-del-problema-1a-y-2a-controversia-eucaristica-lutero-zwinglio-calvino-trento-decreto-sobre-el-sacramento-de-la-eucaristia-ds-1635-1641">Historia del problema: 1ª y 2ª controversia eucarística, Lutero, Zwinglio, Calvino, Trento: «Decreto sobre el sacramento de la eucaristía», DS 1635-1641</a></li>
+<li><a href="#la-consubstanciacion-luterana-y-la-transubstanciacion-catolica">La consubstanciación luterana y la transubstanciación católica</a></li>
+<li><a href="#postura-de-trento-ds-1642">Postura de Trento, DS 1642</a></li>
+<li><a href="#como-entender-hoy-la-transubstanciacion">Cómo entender hoy la transubstanciación</a></li>
+<li><a href="#tres-conclusiones-sobre-la-presencia-real">Tres conclusiones sobre la presencia real</a></li>
+</ul>
+</li>
+<li><a href="#b-la-eucaristia-como-sacrificio">b) La eucaristía como sacrificio</a><ul>
+<li><a href="#objeciones-protestantes-y-respuesta-catolica-trento-doctrina-y-canones-sobre-el-sacrificio-de-la-misa-ds-1739-1743-1751-1754">Objeciones protestantes y respuesta católica: Trento, «Doctrina y cánones sobre el sacrificio de la misa», DS 1739-1743; 1751-1754</a></li>
+<li><a href="#la-eucaristia-es-tambien-un-sacrificio-conclusiones">La eucaristía es «también» un sacrificio: conclusiones</a></li>
+</ul>
+</li>
+<li><a href="#c-relacion-iglesia-eucaristia-dimensiones-y-problematica-pastoral-addendum">c) Relación Iglesia-Eucaristía: dimensiones y problemática pastoral (Addendum)</a><ul>
+<li><a href="#sobre-el-cuerpo-cuatro-ambitos">Sobre el cuerpo: cuatro ámbitos</a></li>
+<li><a href="#consecuencias-pastorales-distorsiones-historicas">Consecuencias pastorales (distorsiones históricas)</a></li>
+<li><a href="#la-eucaristia-como-encuentro-de-cristo-y-la-iglesia">La Eucaristía como encuentro de Cristo y la Iglesia</a></li>
+<li><a href="#breve-estudio-liturgico">Breve estudio litúrgico</a></li>
+<li><a href="#problematica-pastoral">Problemática pastoral</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="a-la-eucaristia-y-la-presencia-real">a) La eucaristía y la presencia real</h2>
@@ -368,11 +413,44 @@
 <li><strong>Participación</strong>: Necesidad de fe activa, escucha de la Palabra, canto, oración y asimilación de la plegaria eucarística. Importancia de la preparación previa y la acción de gracias posterior.</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

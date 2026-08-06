@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">8. Aportaciones de la fenomenología de la religión a la teología cristiana de las religiones</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -123,6 +134,32 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-pluralismo-cultural-y-religioso">1. Pluralismo cultural y religioso</a><ul>
+<li><a href="#11-pluralismo-cultural">1.1. Pluralismo cultural</a></li>
+<li><a href="#12-pluralismo-religioso">1.2. Pluralismo religioso</a></li>
+</ul>
+</li>
+<li><a href="#2-aportaciones-de-las-ciencias-de-las-religiones">2. Aportaciones de las ciencias de las religiones</a></li>
+<li><a href="#3-aportaciones-a-la-teologia-de-las-religiones-desde-la-fenomenologia-de-la-religion">3. Aportaciones a la teología de las religiones desde la fenomenología de la religión</a><ul>
+<li><a href="#31-revelacion-en-la-perspectiva-de-las-cienciasfenomenologia-de-la-religion">3.1. Revelación en la perspectiva de las ciencias/fenomenología de la religión</a></li>
+<li><a href="#32-interpretacion-teologica-cristiana">3.2. Interpretación teológica cristiana</a></li>
+<li><a href="#33-categoria-revelacion-significadofinalidad">3.3. Categoría «Revelación» – Significado/finalidad</a></li>
+<li><a href="#34-riesgos-relativismo-e-identidad-cristiana">3.4. Riesgos: relativismo e identidad cristiana</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="1-pluralismo-cultural-y-religioso">1. Pluralismo cultural y religioso</h2>
@@ -259,11 +296,44 @@
 <p>Pluralismo cultural/religioso = contexto irreversible ⇒ necesidad urgente de relaciones y diálogo interreligioso. Ciencia y fenomenología de la religión aportan datos históricos/metodológicos que desmitifican originalidad absoluta (y supranatural) del cristianismo; revelación = estructura universal de toda religión (todas afirman respuesta humana condicionada históricamente ante la presencia del Misterio/Absoluto); cada tradición formula "lo divino" desde su ámbito cultural/histórico, no como dictado directo de Dios. El mayor desafío para la teología cristiana actual es articular singularidad de Jesucristo sin caer en exclusivismo ni en relativismo e indiferencia, abriéndose a la colaboración y el diálogo desde una identidad "purificada". Revelación = refuerzo de identidad y "clausura" de tradiciones, no origen absoluto; función: mantener cohesión y legitimidad. El diálogo fenomenológico puede ayudar a la teología cristiana a repensar su relación con las demás religiones en términos de verdad no agotada, convivencia y apertura, condición clave para la paz y la humanidad global.</p>
 </details>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

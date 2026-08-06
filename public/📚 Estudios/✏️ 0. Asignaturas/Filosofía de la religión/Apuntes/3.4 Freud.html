@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">3.4 Freud, la religión y el psicoanálisis</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -122,6 +133,30 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-psicoanalisis-y-religion">1. Psicoanálisis y religión</a></li>
+<li><a href="#2-freud-y-la-religion">2. Freud y la religión</a><ul>
+<li><a href="#21-primeros-escritos-de-la-paranoia-a-la-neurosis-obsesiva">2.1. Primeros escritos. De la paranoia a la neurosis obsesiva.</a></li>
+<li><a href="#22-totem-y-tabu-1912-1913">2.2. Tótem y tabú (1912-1913)</a></li>
+<li><a href="#23-el-porvenir-de-una-ilusion-1927">2.3. El porvenir de una ilusión (1927)</a></li>
+<li><a href="#24-malestar-en-la-civilizacion-1930">2.4. Malestar en la civilización (1930)</a></li>
+<li><a href="#25-moises-y-el-monoteismo-1939">2.5. Moisés y el monoteísmo (1939)</a></li>
+</ul>
+</li>
+<li><a href="#3-un-problema-personal-de-freud">3. Un problema personal de Freud</a></li>
+<li><a href="#4-conclusiones">4. Conclusiones</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>.</em></p>
 <h2 id="1-psicoanalisis-y-religion">1. Psicoanálisis y religión</h2>
@@ -161,11 +196,44 @@
 <p><strong>Paranoia:</strong> La paranoia, o trastorno de ideas delirantes, es un trastorno psicótico caracterizado por delirios recurrentes y obsesivos sobre un tema específico. La palabra proviene del griego "paránoia", que significa ‘fuera de la mente’. Se asocia a personas con conductas narcisistas y ególatras que han enfrentado grandes frustraciones. Otros rasgos comunes incluyen baja autoestima, frialdad emocional, inflexibilidad, autoritarismo, desconfianza, resentimientos y depresiones.</p>
 <p><strong>Neurosis Obsesiva:</strong> La neurosis obsesiva, término acuñado por Sigmund Freud en 1894, hoy se conoce como Desarreglo Obsesivo Compulsivo. Es un trastorno psicológico asociado a tensiones nerviosas y desarreglos psíquicos, manifestándose en comportamientos obsesivos y maníacos. Según los psicoanalistas, es el resultado del conflicto entre pulsiones eróticas y destructivas, predominando las destructivas. Los síntomas incluyen la necesidad de comprobaciones constantes y conductas extremadamente meticulosas, cuya ruptura genera profunda angustia. La neurosis obsesiva se relaciona con experiencias traumáticas de la niñez que emergen en la adolescencia o adultez; y demuestra culpabilidad, sin saber explicar de dónde procede. Freud asocia este trastorno con rasgos como avaricia, testarudez, cólera, religiosidad y escrupulosidad.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">6. Las Iglesias históricas de paz y moravas</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -113,6 +124,21 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#las-iglesias-de-paz">Las Iglesias de paz</a></li>
+<li><a href="#la-iglesia-morava">La Iglesia morava</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>.</em></p>
 <h2 id="las-iglesias-de-paz">Las Iglesias de paz</h2>
@@ -130,11 +156,44 @@
 <p>La expansión de la Iglesia morava comenzó durante la Guerra de los Treinta Años (1618), cuando muchos moravos se vieron forzados a huir de su tierra. Aunque fueron inicialmente suprimidos, la iglesia experimentó un nuevo crecimiento en Alemania a partir de 1720.</p>
 <p>Los moravos sostienen que no existe ninguna barrera para la comunión cristiana y valoran especialmente la unidad, específicamente la de todos los seres humanos a través de la reconciliación de Jesucristo. La iglesia está completamente integrada en el movimiento ecuménico, y en 2013, junto con las iglesias históricas de paz, se presentaron ante el Consejo Mundial de Iglesias como una sola familia.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

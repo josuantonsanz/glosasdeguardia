@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">3. Carta de Santiago</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -126,6 +137,35 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#31-introduccion">3.1. Introducción</a></li>
+<li><a href="#32-dimension-literaria">3.2. Dimensión literaria</a></li>
+<li><a href="#33-dimension-teologica">3.3. Dimensión teológica</a><ul>
+<li><a href="#331-dios">3.3.1. Dios</a></li>
+<li><a href="#332-cristo">3.3.2. Cristo</a></li>
+<li><a href="#333-similitud-con-el-corpus-paulino">3.3.3 Similitud con el corpus paulino</a></li>
+<li><a href="#334-propuesta-etica">3.3.4 Propuesta ética</a></li>
+</ul>
+</li>
+<li><a href="#34-dimension-socio-historica">3.4. Dimensión socio-histórica</a><ul>
+<li><a href="#341-autoria">3.4.1. Autoría</a></li>
+<li><a href="#342-destinatarios">3.4.2. Destinatarios</a></li>
+<li><a href="#343-lugar-y-fecha-de-composicion">3.4.3. Lugar y fecha de composición</a></li>
+<li><a href="#344-canon-del-nt">3.4.4. Canon del NT</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Cartas católicas/Cartas católicas.html">Cartas católicas</a>.</em></p>
@@ -441,11 +481,44 @@
 </ul>
 <p><em>Nota:</em> No aparece en el canon muratoriano.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Cartas católicas/Cartas católicas.html">Cartas católicas</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

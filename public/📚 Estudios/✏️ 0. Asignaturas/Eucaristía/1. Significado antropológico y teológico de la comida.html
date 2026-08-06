@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Tema 1. Significado antropológico y teológico de la comida</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -132,6 +143,41 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#identidad-judia-proceso-lento-3-momentos-clave">Identidad judía = proceso lento, 3 momentos clave</a><ul>
+<li><a href="#comentario-al-texto-1-crisis-griega-170-160-ac">Comentario al texto 1 – Crisis griega (170-160 a.C.)</a></li>
+<li><a href="#comentario-al-texto-2-jose-y-asenet">Comentario al texto 2 – José y Asenet</a></li>
+<li><a href="#comentario-al-texto-3-terapeutas">Comentario al texto 3 – Terapeutas</a></li>
+<li><a href="#comentario-al-texto-4-esenios">Comentario al texto 4 – Esenios</a></li>
+<li><a href="#comentario-al-texto-5-misna">Comentario al texto 5 – Misná</a></li>
+<li><a href="#comentario-al-texto-6-jesus-y-las-comidas">Comentario al texto 6 – Jesús y las comidas</a></li>
+<li><a href="#comentario-al-texto-7-mc-218-tres-grupos-alimenticios">Comentario al texto 7 – Mc 2,18; tres grupos alimenticios</a><ul>
+<li><a href="#fariseosesenios">Fariseos/Esenios</a></li>
+<li><a href="#discipulos-de-juan-bautista">Discípulos de Juan Bautista</a></li>
+<li><a href="#discipulos-de-jesus">Discípulos de Jesús</a></li>
+</ul>
+</li>
+<li><a href="#juan-bautista-vida-y-sentido">Juan Bautista: vida y sentido</a></li>
+<li><a href="#comentario-al-texto-8-conversion-de-mateo">Comentario al texto 8 – Conversión de Mateo</a></li>
+<li><a href="#comentario-al-texto-9-encuentro-con-zaqueo">Comentario al texto 9 – Encuentro con Zaqueo</a></li>
+<li><a href="#comentario-al-texto-10-multiplicacion-de-los-panes-y-peces-mc-630-42">Comentario al texto 10 – Multiplicación de los panes y peces (Mc 6,30-42)</a></li>
+<li><a href="#comentario-al-texto-11-mc-71-23-puroimpuro">Comentario al texto 11 – Mc 7,1-23 (puro/impuro)</a></li>
+<li><a href="#hch-152029-2125-controversia-cristianos-de-origen-judiogentil">Hch 15,20.29; 21,25 – Controversia cristianos de origen judío/gentil</a></li>
+</ul>
+</li>
+<li><a href="#conclusiones">Conclusiones</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Eucaristía/Eucaristía.html">Eucaristía</a>.</em></p>
@@ -447,11 +493,44 @@
 - <strong>Eucaristía cristiana = memoria de compartir en comunidad y fraternidad universal</strong></p>
 </blockquote>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Eucaristía/Eucaristía.html">Eucaristía</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

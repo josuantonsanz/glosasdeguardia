@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">3. Las Iglesias luteranas</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -100,6 +111,8 @@
         </div>
     </header>
 
+    
+
     <div class="prose">
         <p><em>Parte del curso <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>.</em></p>
 <p>Las Iglesias luteranas son un conjunto de Iglesias que se formaron a partir de la separación de Lutero con la Iglesia católica en el siglo XVI. En 1517, Martín Lutero, viendo los excesos que se estaban dando en la Iglesia católica –sobre todo con la venta de indulgencias y con el poder que tenía la Iglesia en ámbitos políticos–, decide escribir y publicar sus famosas «95 tesis». Con estas tesis, Lutero no quería fundar una Iglesia nueva, ni una institución, sino corregir los excesos de la Iglesia católica y mejorar sus defectos. Aún así, parte de las tesis se salían de las creencias católicas y, en 1521, la Iglesia condena a Lutero con parte de sus ideas.</p>
@@ -112,11 +125,44 @@ Además, muchos luteranos practican también la confesión antes de la santa cen
 <p>En cuanto a la liturgia, el estilo es similar al que existía antes en las iglesias católicas, incluso los sacerdotes luteranos usan una vestimenta similar a la que usan los católicos. A diferencia de los sacerdotes católicos, sus ministros –el equivalente luterano– sí que se pueden casar. El ministerio de las mujeres es un tema discutido, y mientras que algunas Iglesias luteranas lo permiten, otras no. </p>
 <p>Las Iglesias luteranas forman parte del amplio grupo de Iglesias protestantes; entre las que se incluye el calvinismo, el anglicanismo o el anabaptismo. Además, la unión principal de las Iglesias luteranas es la Federación Mundial Luterana, y cuenta entre sus fieles a unos 74 millones de personas.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">4. Cartas de Juan</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -133,6 +144,42 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#41-introduccion">4.1. Introducción</a></li>
+<li><a href="#42-composicion-e-historia">4.2. Composición e historia</a><ul>
+<li><a href="#421-1a-etapa-30-80">4.2.1. 1ª Etapa (30-80)</a></li>
+<li><a href="#422-2a-etapa-90-100">4.2.2. 2ª Etapa (90-100)</a></li>
+<li><a href="#423-3a-etapa-100-110">4.2.3. 3ª Etapa (100-110)</a></li>
+</ul>
+</li>
+<li><a href="#43-autor">4.3. Autor</a><ul>
+<li><a href="#431-1-jn">4.3.1. 1 Jn</a></li>
+<li><a href="#432-2-jn-y-3-jn">4.3.2. 2 Jn y 3 Jn</a></li>
+</ul>
+</li>
+<li><a href="#44-primera-carta">4.4. Primera carta</a><ul>
+<li><a href="#441-contexto-comunitario">4.4.1. Contexto comunitario</a></li>
+<li><a href="#442-genero-y-caracteristicas-literarias">4.4.2. Género y características literarias</a></li>
+<li><a href="#443-dimension-teologica">4.4.3. Dimensión teológica</a></li>
+</ul>
+</li>
+<li><a href="#45-segunda-y-tercera-carta">4.5. Segunda y tercera carta</a><ul>
+<li><a href="#451-2-jn">4.5.1. 2 Jn</a></li>
+<li><a href="#452-3-jn">4.5.2. 3 Jn</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Cartas católicas/Cartas católicas.html">Cartas católicas</a>.</em></p>
@@ -395,11 +442,44 @@
 <li>Se critica a Diótrefes que rechaza al presbítero.</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Cartas católicas/Cartas católicas.html">Cartas católicas</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

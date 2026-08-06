@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Gn 2-3: Eva, la mujer como motor de humanización</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -114,6 +125,23 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#la-soledad-no-es-buena-gn-215-20">La soledad no es buena (Gn 2,15-20)</a></li>
+<li><a href="#quien-es-la-mujer-gn-221-25">¿Quién es la mujer? (Gn 2,21-25)</a></li>
+<li><a href="#la-mujer-la-primera-que-discierne-la-palabra-gn-31-5">La mujer: la primera que discierne la Palabra (Gn 3,1-5)</a></li>
+<li><a href="#la-mujer-descubre-su-autonomia-gn-36-7">La mujer: descubre su autonomía (Gn 3,6-7)</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del <a href="../../../../../📚 Estudios/✏️ 0. Asignaturas/Pentateuco y libros históricos/Pentateuco y libros históricos.html">curso de Pentateuco</a>.</em> 
@@ -212,11 +240,44 @@ Dijo luego YHWH Elohim: «<strong>No es bueno que el adam esté solo</strong>. V
 - Afecta a todos los hombres. Jeremías ya ve que no pueden superarlo.
 - No se habla de pecado porque ya se nace con él.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../../📚 Estudios/✏️ 0. Asignaturas/Pentateuco y libros históricos/Pentateuco y libros históricos.html">Curso de Pentateuco</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

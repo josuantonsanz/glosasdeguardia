@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Asignaturas</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -196,6 +207,24 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#filosofia">Filosofía</a></li>
+<li><a href="#sagrada-escritura">Sagrada Escritura</a></li>
+<li><a href="#teologia-dogmatica">Teología Dogmática</a></li>
+<li><a href="#teologia-moral-espiritual-y-pastoral">Teología moral, espiritual y pastoral</a></li>
+<li><a href="#historia-de-la-iglesia">Historia de la Iglesia</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="filosofia">Filosofía</h2>
 <ul>
@@ -240,11 +269,124 @@
 <li>Historia contemporánea</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Antr. teológica III/Antropología Teológica III.html">Antropología Teológica III</a>
+            </li>
+            
+            <li>
+                <a href="../../index.html">Bienvenido</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Cartas católicas/Cartas católicas.html">Cartas católicas</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Pentateuco y libros históricos/Pentateuco y libros históricos.html">Curso de Pentateuco</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Eucaristía/Eucaristía.html">Eucaristía</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Historia de Israel/Historia de Israel.html">Historia de Israel</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Historia moderna/Historia moderna.html">Historia moderna</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Patrología/Patrología.html">Introducción a los Santos Padres</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Literatura sapiencial/Libros sapienciales.html">Literatura sapiencial</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Liturgia I/Liturgia I.html">Liturgia I</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Misterio del Dios Trinitario.html">Misterio del Dios Trinitario</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Hermenéutica/Hermenéutica.html">Sagrada Escritura - Hermenéutica</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Tª de la Revelación/Teología de la Revelación.html">Teología de la Revelación</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo II/Ecumenismo II.html">Teología del Ecumenismo</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Teología Espiritual/Teología Espiritual.html">Teología espiritual</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral de la persona/Teología moral de la persona.html">Teología moral de la persona</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>
+            </li>
+            
+            <li>
+                <a href="../../📚 Estudios/✏️ 0. Asignaturas/Tª Pastoral/Tª Pastoral.html">Teología Pastoral</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

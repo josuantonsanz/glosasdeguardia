@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">3. El lenguaje y los contenidos</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -133,6 +144,38 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-el-protagonismo-trinitario-en-el-lenguaje">1. El protagonismo trinitario en el lenguaje</a></li>
+<li><a href="#2-dos-ejemplos-de-cambio-en-el-lenguaje">2. Dos ejemplos de cambio en el lenguaje</a></li>
+<li><a href="#3-transformacion-del-lenguaje">3. Transformación del lenguaje</a></li>
+<li><a href="#4-cambio-de-contenidos">4. Cambio de contenidos</a></li>
+<li><a href="#5-la-trinitariologia">5. La trinitariología</a></li>
+<li><a href="#6-principio-fundamental-la-fe-en-la-trinidad">6. Principio fundamental: La fe en la Trinidad</a></li>
+<li><a href="#7-metodo">7. Método</a><ul>
+<li><a href="#71-metodo-inductivo-partir-de-la-experiencia-trinitaria">7.1 Método inductivo: Partir de la experiencia trinitaria</a></li>
+<li><a href="#72-verificacion-de-preguntas-esenciales">7.2 Verificación de preguntas esenciales</a></li>
+<li><a href="#73-caracteristicas-principales">7.3 Características principales</a></li>
+<li><a href="#74-camino-a-seguir">7.4 Camino a seguir</a><ul>
+<li><a href="#741-partir-de-la-experiencia-de-fe">7.4.1 Partir de la experiencia de fe</a></li>
+<li><a href="#742-por-la-experiencia-al-amor-caridad">7.4.2 Por la experiencia al amor caridad</a></li>
+<li><a href="#743-por-el-amor-al-conocimiento-y-a-la-accion">7.4.3 Por el amor al conocimiento y a la acción</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#desenlace-la-fe-que-intenta-contemplar-y-entender">Desenlace: La fe que intenta contemplar y entender</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Resumen del libro <a href="../../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar.html">Dejarse amar y amar</a>.</em></p>
@@ -400,11 +443,48 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar.html">Dejarse amar y amar, síntesis</a>
+            </li>
+            
+            <li>
+                <a href="../../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Misterio del Dios Trinitario.html">Misterio del Dios Trinitario</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

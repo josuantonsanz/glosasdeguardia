@@ -49,9 +49,31 @@
         </div>
     </header>
 
+    {% if toc and '<li>' in toc %}
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            {{ toc | safe }}
+        </nav>
+    </details>
+    {% endif %}
+
     <div class="prose">
         {{ content | safe }}
     </div>
+
+    {% if url != 'index.html' and backlinks and backlinks|length > 0 %}
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            {% for bl in backlinks %}
+            <li>
+                <a href="{{ root_path }}{{ bl.url }}">{{ bl.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </details>
+    {% endif %}
 </article>
 {% endblock %}
 

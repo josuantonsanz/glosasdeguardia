@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">1. El acceso a Jesús</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -122,6 +133,31 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#11-la-cuestion-del-metodo">1.1 La cuestión del método</a></li>
+<li><a href="#12-el-jesus-historico">1.2 El Jesús histórico</a><ul>
+<li><a href="#121-las-etapas-de-la-investigacion">1.2.1 Las etapas de la investigación</a></li>
+<li><a href="#122-los-testimonios">1.2.2 Los testimonios</a></li>
+<li><a href="#13-los-principios-metodologicos-de-la-cristologia">1.3 Los principios metodológicos de la cristología</a><ul>
+<li><a href="#131-el-punto-de-partida-el-misterio-pascual">1.3.1 El punto de partida: el misterio pascual</a></li>
+<li><a href="#132-la-eclesialidad-la-transmision-de-la-revelacion">1.3.2 La eclesialidad: la transmisión de la revelación</a></li>
+<li><a href="#132-verdad-e-historicidad-de-los-evangelios-sic-deberia-ser-133">1.3.2 Verdad e historicidad de los evangelios (sic, debería ser 1.3.3)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <ul>
@@ -297,11 +333,44 @@
 <li><strong>Principio de Tradición:</strong> Implica una <strong>fidelidad creativa</strong>. Los evangelistas comunican fielmente lo que Jesús hizo y enseñó para nuestra salvación, conservando su sentido aunque varíe el orden o la literalidad (DV 19, Comisión Bíblica 1964).</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Cristología/Cristología.html">Cristología</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

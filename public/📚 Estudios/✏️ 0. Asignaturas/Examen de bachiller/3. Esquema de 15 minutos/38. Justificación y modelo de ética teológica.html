@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">38. Justificación y modelo de ética teológica (15 min)</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -125,6 +136,34 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#1-modelos-insuficientes">1. Modelos insuficientes</a><ul>
+<li><a href="#11-modelos-heteronomos">1.1. Modelos heterónomos</a></li>
+<li><a href="#12-modelos-de-naturaleza-normativa">1.2. Modelos de naturaleza normativa</a></li>
+</ul>
+</li>
+<li><a href="#2-el-modelo-de-la-autonomia-teonoma">2. El modelo de la autonomía teónoma</a><ul>
+<li><a href="#21-momento-autonomo-personalismo-de-alteridad-politica">2.1. Momento autónomo: personalismo de alteridad política</a></li>
+<li><a href="#22-momento-teonomo-cosmovision-cristiana-cristonomia-eclesiologia">2.2. Momento teónomo: cosmovisión cristiana + cristonomía + eclesiología</a></li>
+<li><a href="#23-teonomia-concreta-desabsolutizacion-y-garantia-de-la-autonomia">2.3. Teonomía concreta: desabsolutización y garantía de la autonomía</a></li>
+<li><a href="#24-distincion-operativa-clave">2.4. Distinción operativa clave</a></li>
+</ul>
+</li>
+<li><a href="#3-trasfondo-gracia-como-fundamento-de-la-teonomia">3. Trasfondo: gracia como fundamento de la teonomía</a></li>
+<li><a href="#conclusion">Conclusión</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="introduccion">Introducción</h2>
@@ -233,11 +272,44 @@
 <li><strong>Tesis final</strong>: el falso dilema heteronomía vs. autonomía absoluta se supera en la <strong>autonomía teónoma</strong> — lo específico del ethos cristiano no es un elenco de normas distintas, sino la cosmovisión que acompaña los contenidos morales comunes a todo hombre de buena voluntad + la presencia normativa de Cristo como lugar de sentido; esa cosmovisión, sostenida por la experiencia de la gracia, constituye la gran fuerza del dinamismo ético cristiano</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

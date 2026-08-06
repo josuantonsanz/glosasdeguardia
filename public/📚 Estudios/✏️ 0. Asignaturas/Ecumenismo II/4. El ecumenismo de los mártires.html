@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">4. El ecumenismo de los mártires</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -128,6 +139,37 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#41-una-expresion-con-precedentes-en-el-magisterio">4.1 Una expresión con precedentes en el magisterio</a><ul>
+<li><a href="#origen-y-empleo">Origen y empleo</a></li>
+<li><a href="#411-el-concilio-vaticano-ii">4.1.1 El Concilio Vaticano II</a></li>
+<li><a href="#412-magisterio-postconciliar">4.1.2 Magisterio postconciliar</a></li>
+<li><a href="#413-profusion-en-magisterio-de-francisco">4.1.3 Profusión en Magisterio de Francisco</a></li>
+</ul>
+</li>
+<li><a href="#42-algo-mas-que-una-cuestion-circunstancial">4.2 ¿Algo más que una cuestión circunstancial?</a></li>
+<li><a href="#43-los-martires-semillas-de-unidad">4.3 Los mártires, ¿semillas de unidad?</a><ul>
+<li><a href="#44-el-unico-martirologio-de-la-iglesia-de-dios">4.4 ¿El único martirologio de la Iglesia de Dios?</a></li>
+</ul>
+</li>
+<li><a href="#45-y-el-ecumenismo-de-los-santos">4.5 Y, ¿el ecumenismo de los santos?</a></li>
+<li><a href="#excursus-dimension-martirial-del-dialogo-interreligioso">Excursus: ¿Dimensión martirial del diálogo interreligioso?</a><ul>
+<li><a href="#a-sentido-ensanchado-del-martirio-caso-kolbe">A) Sentido ensanchado del martirio: caso Kolbe</a></li>
+<li><a href="#b-martires-del-mismo-dios-con-otra-fe">B) ¿«Mártires» del mismo Dios con otra fe?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo II/Ecumenismo II.html">Ecumenismo II</a>.</em></p>
@@ -286,11 +328,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo II/Ecumenismo II.html">Teología del Ecumenismo</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

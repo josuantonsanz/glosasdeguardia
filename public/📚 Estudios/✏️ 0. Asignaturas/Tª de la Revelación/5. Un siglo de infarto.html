@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">El postconcilio del Vaticano I</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -124,6 +135,33 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-la-teologia-manualistica">1. La teología manualística</a><ul>
+<li><a href="#1-introduccion">1. Introducción</a></li>
+<li><a href="#2-renovacion-reducida-a-doctrina">2. Renovación reducida a doctrina</a></li>
+<li><a href="#3-la-teologia-del-acto-de-fe">3. La teología del acto de fe</a></li>
+<li><a href="#4-john-henry-newman-1801-1900">4. John Henry Newman (1801-1900)</a></li>
+</ul>
+</li>
+<li><a href="#2-la-crisis-de-la-modernidad">2. La crisis de la modernidad</a><ul>
+<li><a href="#1-enciclica-pascendi-dominici-gregis-1907">1. Encíclica Pascendi Dominici Gregis (1907)</a></li>
+<li><a href="#2-el-historicismo-de-a-loisy">2. El Historicismo de A. Loisy</a></li>
+<li><a href="#3-m-blondel-el-metodo-de-la-inmanencia">3. M. Blondel: El método de la inmanencia</a></li>
+</ul>
+</li>
+<li><a href="#3-la-nouvelle-theologie">3. La «nouvelle theologie»</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª de la Revelación/Teología de la Revelación.html">Teología de la Revelación</a> (5/8).</em></p>
@@ -336,11 +374,44 @@ Blondel utiliza la imagen del Panteón de Roma para ilustrar cómo la luz divina
 <p><strong>Romano Guardini</strong> (1885-1968), otro influyente teólogo asociado a la renovación, en Tubinga, defendió un pensamiento cristocéntrico y existencial. En «La esencia del cristianismo» (1938), refutó a Harnack, afirmando que la esencia del cristianismo es Jesús y el vínculo vital de la fe con Él. Guardini sostuvo que en la Revelación, la forma es inseparable del contenido —y la autoridad, de lo revelado— y que se requiere una epistemología teológica cristocéntrica. Para él, la Revelación es un encuentro vital y un evento histórico que se prolonga en la Iglesia, espacio de la interioridad cristiana.</p>
 <p><strong>Pierre Rousselot</strong> (1878-1915) fue un destacado teólogo y filósofo, conocido por su profunda formación y admiración por figuras como Newman y Blondel. Se le consideraba especialmente capacitado para revitalizar el estudio del acto de fe. Rousselot ofreció una lectura renovada de Santo Tomás, destacando el amor como el motor central de toda su teología. Su enfoque partía de la naturaleza teológica, no apologética, del acto de fe. Rousselot describió la fe como una «actividad sintética del entendimiento», donde la revelación actúa como luz que abre los ojos de la fe, permitiendo conocer a Dios a través de las mediaciones externas de la revelación. Además, afirmó que el amor es el acto que suscita la facultad de conocer, convirtiendo el acto de creer en uno libre.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª de la Revelación/Teología de la Revelación.html">Teología de la Revelación</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

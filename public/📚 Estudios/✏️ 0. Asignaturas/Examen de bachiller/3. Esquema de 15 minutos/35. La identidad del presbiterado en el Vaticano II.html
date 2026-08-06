@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">35. La identidad del presbiterado en el Vaticano II (15 min)</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -117,6 +128,26 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#1-la-sacramentalidad-del-presbiterado">1. La sacramentalidad del presbiterado</a></li>
+<li><a href="#2-la-dimension-relacional-como-categoria-global">2. La dimensión relacional como categoría global</a></li>
+<li><a href="#3-la-relacion-con-cristo-y-con-la-comunidad-eclesial">3. La relación con Cristo y con la comunidad eclesial</a></li>
+<li><a href="#4-la-relacion-con-el-obispo">4. La relación con el obispo</a></li>
+<li><a href="#5-la-relacion-con-el-presbiterio-y-las-funciones-del-presbitero">5. La relación con el presbiterio y las funciones del presbítero</a></li>
+<li><a href="#conclusion">Conclusión</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="introduccion">Introducción</h2>
@@ -238,11 +269,44 @@
 <li><strong>Frase de cierre</strong>: el Vaticano II no define al presbítero por lo que <em>hace</em> ni por lo que la comunidad <em>demanda</em>, sino por lo que <em>es</em> en virtud del sacramento y por las relaciones objetivas que ese sacramento instaura → ser «de Cristo» y «para la Iglesia» no son dos notas yuxtapuestas: son una única verdad del ministerio ordenado</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

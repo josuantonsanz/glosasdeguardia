@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">29. Virtudes teologales</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -118,6 +129,26 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-las-virtudes-teologales-en-la-sagrada-escritura-la-triada">1. Las virtudes teologales en la Sagrada Escritura. La triada</a></li>
+<li><a href="#2-caracter-cristologico-de-la-fe-esperanza-y-caridad">2. Carácter cristológico de la fe, esperanza y caridad</a></li>
+<li><a href="#3-dimension-eclesial-de-la-fe-esperanza-y-caridad">3. Dimensión eclesial de la fe, esperanza y caridad</a></li>
+<li><a href="#4-naturaleza-de-la-fe-esperanza-y-caridad">4. Naturaleza de la fe, esperanza y caridad</a></li>
+<li><a href="#5-la-vida-en-cristo-como-vida-de-fe-esperanza-y-caridad">5. La vida en Cristo como vida de fe, esperanza y caridad</a></li>
+<li><a href="#6-unidad-y-distincion-de-las-virtudes-teologales">6. Unidad y distinción de las virtudes teologales</a></li>
+<li><a href="#7-el-orden-de-las-virtudes-teologales">7. El orden de las virtudes teologales</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="1-las-virtudes-teologales-en-la-sagrada-escritura-la-triada">1. Las virtudes teologales en la Sagrada Escritura. La triada</h2>
 <p>La consideración de las virtudes teologales debe situarse en el horizonte del hombre renovado por la gracia. No se trata, ante todo, de tres cualidades psicológicas añadidas a una naturaleza humana ya cerrada sobre sí misma, ni de tres actitudes religiosas genéricas, sino del despliegue de la vida nueva del justificado: el hombre que, por la autocomunicación divina, queda introducido en una relación nueva con Dios, es hecho hijo en el Hijo, templo del Espíritu y partícipe de la vida divina. Por eso, aunque el antiguo tratado escolástico <em>De virtutibus</em> estudiaba las virtudes en una sistemática propia, el interés contemporáneo por las virtudes teologales no puede separarse de la teología de la gracia, de la filiación adoptiva, de la inhabitación trinitaria, de la vida espiritual, de la moral cristiana y de la eclesiología. Las virtudes teologales pertenecen simultáneamente a la teología fundamental, porque en ellas se decide la estructura creyente de la existencia; a la teología dogmática, porque presuponen la autocomunicación de Dios; a la teología moral, porque configuran el obrar cristiano; y a la teología espiritual, porque son la forma viva de la comunión con Dios.</p>
@@ -190,11 +221,44 @@
 <p>El criterio último es cristológico y trinitario. Jesucristo es mediador, pero no término último separado del Padre; por Cristo, en el Espíritu, vamos al Padre. La fe se dirige al Dios revelado en Cristo; la esperanza se funda en Cristo resucitado y espera la comunión plena con Dios; la caridad participa del amor del Padre manifestado en el Hijo y derramado por el Espíritu. Así, el orden de las virtudes no es una simple secuencia lógica, sino el movimiento mismo de la economía salvífica: del Padre procede el don, por el Hijo se realiza la mediación, en el Espíritu se interioriza la vida nueva, y el hombre justificado responde creyendo, esperando y amando.</p>
 <p>En conclusión, la vida del justificado es vida teologal. El hombre renovado por la gracia no vive ya desde sí mismo, sino desde Dios y hacia Dios. La fe lo abre a la verdad de Cristo; la esperanza lo sostiene en el camino hacia el Reino; la caridad lo une ya al amor de Dios y del prójimo. Las tres son dones infusos, principios dinámicos, hábitos de la nueva creación, frutos de la inhabitación trinitaria y forma concreta de la vida en Cristo. Por eso no pueden comprenderse adecuadamente ni como meras virtudes morales, ni como actitudes religiosas genéricas, ni como cualidades privadas: son la estructura misma de la existencia cristiana, personal y eclesial, histórica y escatológica, recibida del Padre, mediada por Cristo y vivificada por el Espíritu.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

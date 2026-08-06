@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">5. Las Iglesias anglicanas</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -100,6 +111,8 @@
         </div>
     </header>
 
+    
+
     <div class="prose">
         <p><em>Parte del curso <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>.</em></p>
 <p>La Iglesia de Inglaterra, precursora del conjunto de Iglesias anglicanas, surge en tiempos de la Reforma, en el siglo XVI. Esta Iglesia, a nivel regional, se vio influenciada muy pronto por la reforma europea; pero, a decir verdad, nace por una cuestión política. A comienzos del siglo XVI la reforma ya se empieza a notar por Inglaterra y, al mismo tiempo, Enrique VIII, rey de Inglaterra, pide al papa que anule su matrimonio para casarse con otra mujer. Como no lo hace, Enrique VIII decide separar su iglesia –es decir, la Iglesia en su territorio– de la Iglesia católica de Roma. Así, Enrique VIII se convierte en cabeza de la Iglesia de Inglaterra.</p>
@@ -110,11 +123,44 @@
 <p>En las eucaristías también encontramos cierta variedad; pero, en general, se parecen bastante a las católicas. Ya sea a las actuales o a las anteriores al Concilio vaticano II. Dentro de la eucaristía, hay un consenso general de que Cristo está realmente presente, aunque algunos tienden más hacia una presencia espiritual (cerca al protestantismo) y otros hacia una más parecida a la que creen los católicos. Algo parecido ocurre con la salvación. Mientras que la tendencia general es similar a la católica, en la que se unen la fe, las buenas obras y los sacramentos para salvarse, una parte del anglicanismo tiende a creer, como los protestantes, que solo es necesaria la fe.
 Como Iglesia, la Iglesia anglicana se considera una, santa, católica y apostólica; al mismo tiempo que reformada. Mantiene una estructura episcopal, igual que los católicos y los ortodoxos, con diáconos, sacerdotes y obispos al frente de cada diócesis. El conjunto de las Iglesias anglicanas, por su parte, no depende de una cabeza común, aunque consideran al obispo de Canterbury como el primero entre todos. Además, tienen distintos encuentros y conferencias para poder mantener una cierta unidad entre todas las Iglesias. La Comunión anglicana, como se suele llamar, se formó en la segunda mitad del siglo XIX, y constituye una de las comuniones más grandes del mundo, junto con los católicos y los ortodoxos.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

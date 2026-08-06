@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Formados, éticos y lúcidos</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -116,6 +127,24 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#de-la-direccion-de-conciencia-al-acompanamiento-espiritual">De la dirección de conciencia al acompañamiento espiritual</a></li>
+<li><a href="#formacion-y-etica-profesional">Formación y ética profesional</a></li>
+<li><a href="#ambiguedades-e-instrumentalizaciones-la-mala-practica">Ambigüedades e instrumentalizaciones: la mala práctica</a></li>
+<li><a href="#iatrogenia-la-colonizacion-emocional">Iatrogenia: la colonización emocional</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>.</em></p>
 <p>Resumen del artículo «Formados, éticos y lúcidos», de Rufino J. Meana</p>
@@ -172,11 +201,44 @@
 </ul>
 <p>El artículo concluye que el buen acompañante combina formación adecuada, personalidad saludable y experiencia de vida, fundamentado en un encuentro personal con Dios que le hace experto en sí mismo sin negar sus limitaciones.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

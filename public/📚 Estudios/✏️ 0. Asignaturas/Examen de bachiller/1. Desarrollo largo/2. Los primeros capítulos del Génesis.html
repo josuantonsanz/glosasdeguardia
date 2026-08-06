@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">2. Los primeros capítulos del Génesis</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -127,6 +138,35 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#introduccion-al-pentateuco-y-al-genesis">Introducción al Pentateuco y al Génesis</a></li>
+<li><a href="#exegesis-de-24b324">Exégesis de 2,4b–3,24</a></li>
+<li><a href="#el-arbol-de-la-vida-y-el-de-la-ciencia-del-bien-y-del-mal">El árbol de la vida y el de la ciencia del bien y del mal</a></li>
+<li><a href="#el-pecado">El pecado</a></li>
+<li><a href="#el-castigo-de-la-serpiente-de-la-mujer-y-del-hombre">El castigo de la serpiente, de la mujer y del hombre</a></li>
+<li><a href="#sentido-general">Sentido general</a></li>
+<li><a href="#creencias-de-la-epoca-y-valores-permanentes">Creencias de la época y valores permanentes</a></li>
+<li><a href="#exegesis-y-teologia-de-los-dos-relatos-de-la-creacion-addendum">Exégesis y teología de los dos relatos de la creación (addendum)</a><ul>
+<li><a href="#1-gn-1124a-el-relato-sacerdotal">1. Gn 1,1–2,4a: el relato sacerdotal</a></li>
+<li><a href="#2-gn-24b25-el-relato-yahvista">2. Gn 2,4b–25: el relato yahvista</a></li>
+<li><a href="#3-la-cristologia-cosmica-paulina">3. La cristología cósmica paulina</a></li>
+<li><a href="#4-el-prologo-de-juan-jn-1">4. El prólogo de Juan (Jn 1)</a></li>
+<li><a href="#5-la-creatio-ex-nihilo-y-su-actualizacion-en-una-cosmovision-evolutiva">5. La creatio ex nihilo y su actualización en una cosmovisión evolutiva</a></li>
+<li><a href="#6-libertad-creadora-divina-y-temporalidad-del-mundo">6. Libertad creadora divina y temporalidad del mundo</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h3 id="introduccion-al-pentateuco-y-al-genesis">Introducción al Pentateuco y al Génesis</h3>
 <p>El Pentateuco —los cinco primeros libros de la Biblia— ha sido durante siglos objeto de un intenso debate sobre su composición. El modelo clásico atribuía las distintas capas del texto a cuatro tradiciones independientes (yahvista, elohísta, deuteronomista y sacerdotal), codificado en la llamada hipótesis documentaria de Graf-Wellhausen. Sin embargo, la investigación bíblica contemporánea ha revisado profundamente ese esquema, y hoy el consenso académico trabaja con un modelo más complejo que reemplaza las cuatro "fuentes" por dos grandes bloques de tradición y una clave histórica distinta: el período persa.</p>
@@ -195,11 +235,44 @@
 <p>El mundo existe porque Dios quiere; y Dios quiere el mundo de tal modo que podría no haberlo querido. La creación no es una necesidad divina sino un acto libre que procede del amor gratuito de Dios. Esta gratuidad descubre que el amor es la textura de la realidad.</p>
 <p>La temporalidad del mundo tiene relevancia teológica precisa: si la creación está ordenada a una historia de salvación, el mundo ha de ser temporal, porque el tiempo es el supuesto básico de toda historia auténtica. La fe bíblica en la creación se opone así al mito del eterno retorno y fundamenta una concepción lineal e irrepetible del tiempo: la historia tiene un comienzo, un desarrollo y una meta. El ideal no estriba en retornar al principio, sino en llegar al final; está ante nosotros, no detrás. En Cristo, el tiempo humano, efímero y caduco, queda habitado por la poderosa eternidad divina: en la transitoriedad se ha implantado un germen de definitividad. El Pantocrátor del Apocalipsis lo resume: "Yo soy el Alfa y la Omega, el principio y el fin."</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

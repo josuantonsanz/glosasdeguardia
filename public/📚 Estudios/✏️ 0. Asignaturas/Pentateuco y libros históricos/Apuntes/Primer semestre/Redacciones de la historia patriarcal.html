@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Las dos redacciones de la historia patriarcal</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -116,6 +127,25 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#triple-relato-de-la-mujerhermana-gn-1210-20-201-18-261-11">Triple Relato de la Mujer/Hermana (Gn 12,10-20; 20,1-18; 26,1-11)</a></li>
+<li><a href="#dos-redacciones-de-la-historia-patriarcal-rph1-y-rph2">Dos Redacciones de la Historia Patriarcal (RPH1 y RPH2)</a><ul>
+<li><a href="#rph1-primera-redaccion-de-la-historia-patriarcal">RPH1: Primera Redacción de la Historia Patriarcal</a></li>
+<li><a href="#rph2-segunda-redaccion-de-la-historia-patriarcal-gn20-22">RPH2: Segunda Redacción de la Historia Patriarcal ^gn20-22</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del <a href="../../../../../📚 Estudios/✏️ 0. Asignaturas/Pentateuco y libros históricos/Pentateuco y libros históricos.html">curso de Pentateuco</a>.</em> 
@@ -214,11 +244,44 @@
 <li>Estas cuestiones se discutieron al principio del exilio, hacia el 562 a. C., pero también el final, 539-520 a. C.</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../../📚 Estudios/✏️ 0. Asignaturas/Pentateuco y libros históricos/Pentateuco y libros históricos.html">Curso de Pentateuco</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

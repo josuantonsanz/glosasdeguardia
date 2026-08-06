@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Introducción a la filosofía de la religión</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -127,6 +138,35 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-religion-como-materia-de-pensamiento">1. Religión como materia de pensamiento</a></li>
+<li><a href="#2-el-tiempo-de-la-reflexion-filosofica-sobre-la-religion">2. El tiempo de la reflexión filosófica sobre la religión</a></li>
+<li><a href="#3-tension-y-complementariedad">3. Tensión y complementariedad</a></li>
+<li><a href="#4-dialectica-del-enfrentamiento-escolastica-idealismo-aleman-finales-del-s-xix">4. Dialéctica del enfrentamiento: escolástica, idealismo alemán, finales del s. XIX</a></li>
+<li><a href="#5-peripecias-historicas-de-la-filosofia-de-la-religion">5. Peripecias históricas de la filosofía de la religión</a><ul>
+<li><a href="#51-de-la-teologia-revelada-a-la-teologia-natural">5.1. De la teología revelada a la teología natural</a></li>
+<li><a href="#52-la-teologia-natural-se-transforma-en-filosofia-de-la-religion">5.2. La teología natural se transforma en filosofía de la religión</a></li>
+</ul>
+</li>
+<li><a href="#6-que-es-entonces-la-filosofia-de-la-religion">6. ¿Qué es entonces la filosofía de la religión?</a><ul>
+<li><a href="#61-el-giro-antropologico">6.1. El giro antropológico</a></li>
+<li><a href="#62-el-hecho-de-la-pluralidad-de-religiones">6.2. El hecho de la pluralidad de religiones</a></li>
+<li><a href="#63-necesidad-del-concurso-de-otras-disciplinas-que-abordan-el-fenomeno-religioso">6.3. Necesidad del concurso de otras disciplinas que abordan el fenómeno religioso</a></li>
+<li><a href="#64-conceptos-de-la-filosofia-de-la-religion">6.4. Conceptos de la filosofía de la religión</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>.</em></p>
 <h2 id="1-religion-como-materia-de-pensamiento">1. Religión como materia de pensamiento</h2>
@@ -165,11 +205,44 @@
 <p>Bernhard Welte lo ve como un empeño de esclarecer intelectualmente la esencia y la forma de la religión. H. G. Pöhlmann y W. Brändle ven la filosofía de la religión como un esfuerzo por descifrar el enigma de lo divino y lo humano. Karl Rahner la describe como el estudio de la relación correcta del hombre con Dios o el Absoluto. La disciplina se encarga de responder a preguntas existenciales fundamentales como la existencia de Dios y el sentido de la vida, basándose en la razón y evaluando críticamente las respuestas proporcionadas por diversas religiones.</p>
 <p>La filosofía de la religión es una disciplina relativamente nueva que busca definir su identidad y se caracteriza por su amplitud temática y su naturaleza de reflexión crítica, abierta y no confesional. A pesar de los riesgos de fanatismo y dogmatismo que puede presentar la religión, la integración con la filosofía podría prevenir estos problemas, ofreciendo un enfoque más equilibrado y reflexivo.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

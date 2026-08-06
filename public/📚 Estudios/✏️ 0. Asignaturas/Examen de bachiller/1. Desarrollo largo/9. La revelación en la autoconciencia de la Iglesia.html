@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">9. La revelación en la autoconciencia de la Iglesia</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -133,6 +144,41 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#la-revelacion-en-el-pelagianismo-y-en-el-semipelagianismo">La revelación en el pelagianismo y en el semipelagianismo</a><ul>
+<li><a href="#pelagianismo-pelagio-y-celestio-principios-del-siglo-v">Pelagianismo (Pelagio y Celestio, principios del siglo V)</a></li>
+<li><a href="#semipelagianismo">Semipelagianismo</a></li>
+<li><a href="#conclusiones-impacto-sobre-la-autoconciencia-eclesial-de-la-revelacion">Conclusiones: impacto sobre la autoconciencia eclesial de la revelación</a></li>
+</ul>
+</li>
+<li><a href="#la-revelacion-en-el-luteranismo-y-en-el-concilio-de-trento">La revelación en el luteranismo y en el concilio de Trento</a><ul>
+<li><a href="#luteranismo">Luteranismo</a></li>
+<li><a href="#concilio-de-trento">Concilio de Trento</a></li>
+</ul>
+</li>
+<li><a href="#la-revelacion-en-el-racionalismo-hermesiano-y-en-el-concilio-vaticano-i">La revelación en el racionalismo hermesiano y en el Concilio Vaticano I</a><ul>
+<li><a href="#racionalismo-moderno-tres-respuestas-ante-la-revelacion">Racionalismo moderno: tres respuestas ante la revelación</a></li>
+<li><a href="#el-racionalismo-hermesiano">El racionalismo hermesiano</a></li>
+<li><a href="#concilio-vaticano-i">Concilio Vaticano I</a></li>
+</ul>
+</li>
+<li><a href="#la-revelacion-en-el-fideismo-y-en-el-modernismo">La revelación en el fideísmo y en el modernismo</a><ul>
+<li><a href="#fideismo">Fideísmo</a></li>
+<li><a href="#modernismo">Modernismo</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="la-revelacion-en-el-pelagianismo-y-en-el-semipelagianismo">La revelación en el pelagianismo y en el semipelagianismo</h2>
 <p>El modo como la Iglesia toma conciencia de la revelación divina aparece inseparablemente vinculado a la conciencia eclesial de la gracia, de la condición real del hombre (creado, herido, llamado y salvado) y de la estructura histórica y eclesial de la economía salvífica. En esa interdependencia, pelagianismo y semipelagianismo representan —cada uno con su lógica propia— una alteración decisiva del nexo entre naturaleza, libertad, gracia y, por consecuencia, de la necesidad misma de la revelación entendida como iniciativa gratuita de Dios para darse a conocer y comunicar su designio de salvación. Cuando la autocomprensión del hombre se absolutiza (autosuficiencia moral) o cuando el comienzo del movimiento hacia el bien se coloca en el sujeto, la revelación deja de percibirse como acontecimiento fontal y gratuito que antecede y posibilita la respuesta humana, y pasa a ser concebida como un añadido extrínseco, o bien como un auxilio de segundo orden, funcional, casi “confirmatorio” de lo que la libertad ya podría alcanzar por sí.</p>
@@ -183,11 +229,44 @@
 <p>Con ello, la revelación deja de ser Palabra de Dios y ya no tiene a Dios por autor; de trascendente se hace inmanente. El dogma se concibe como interpretación de “hechos religiosos” producida por la mente humana, y la revelación, en vez de ser un acontecimiento con iniciativa divina, se vuelve proceso indefinido de autocomprensión humana. La consecuencia interna es clara: si no hay autor divino de la revelación, la diferencia entre recepción obediencial y construcción histórica se difumina.</p>
 <p>Surge también el agnosticismo como “lado negativo” del modernismo: no se puede conocer lo que supera el círculo de los fenómenos; Dios no puede ser objeto de la ciencia; la revelación “exterior” pertenece a un sistema superado, pasado de moda. Esta clausura del conocimiento a lo fenoménico, unida a la reducción de la revelación a inmanencia, afecta de raíz la autoconciencia eclesial: la Iglesia dejaría de reconocerse como depositaria y testigo de una Palabra que le precede y la constituye, para convertirse en instancia que expresa o acompaña una experiencia religiosa cambiante de la humanidad.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">8. La revelación como promesa</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -120,6 +131,28 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#80-marco-sistematico-previo-addendum">8.0 Marco sistemático previo (addendum)</a></li>
+<li><a href="#81-cumplimiento-como-desvelacion-ocultamiento-como-autorrevelacion-y-palabra-de-dios">8.1. Cumplimiento como desvelación, ocultamiento como autorrevelación y Palabra de Dios</a></li>
+<li><a href="#82-la-revelacion-como-proceso-de-promesa-cumplimiento-en-el-at-y-su-cumplimiento-en-jesucristo">8.2. La revelación como proceso de promesa, cumplimiento en el AT y su cumplimiento en Jesucristo</a><ul>
+<li><a href="#821-la-revelacion-como-proceso-de-promesa-en-el-antiguo-testamento">8.2.1. La revelación como proceso de promesa en el Antiguo Testamento</a></li>
+<li><a href="#822-la-revelacion-como-cumplimiento-en-jesucristo-nuevo-testamento">8.2.2. La revelación como cumplimiento en Jesucristo (Nuevo Testamento)</a></li>
+</ul>
+</li>
+<li><a href="#83-la-revelacion-como-desvelacion-y-ocultamiento-como-revelado-o-apocalipsis">8.3. La revelación como desvelación y ocultamiento, como revelado o apocalipsis</a></li>
+<li><a href="#84-la-revelacion-como-autorrevelacion-hegeliana-y-palabra-de-dios-en-el-vaticano-ii">8.4. La revelación como autorrevelación hegeliana y Palabra de Dios en el Vaticano II</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="80-marco-sistematico-previo-addendum">8.0 Marco sistemático previo (addendum)</h2>
 <p>La revelación designa la manifestación de algo oculto; aplicada a Dios, es el acto por el que se da a conocer al hombre con autoridad magisterial. Sus elementos constitutivos en sentido sobrenatural son cinco: (1) acción libre y gratuita de Dios; (2) ser espiritual capaz de recibirla; (3) elevación sobrenatural del receptor; (4) contenido intelectual y objetivo; (5) invitación y exigencia de fe.</p>
@@ -163,11 +196,44 @@
 <p>La Escritura, por su parte, constituye la objetivación temprana de la fe de la Iglesia. Es Palabra de Dios en cuanto portadora del carisma de la inspiración y, por ello, magnitud permanentemente normativa para los tiempos posteriores de la Iglesia. A la vez, la Escritura nace y encuentra su identidad más profunda en referencia a la Iglesia primitiva. Por eso, al esclarecer la relación entre Escritura y Tradición, el Vaticano II habla de una única fuente: la Palabra de Dios, transmitida por escrito y en la vida misma de la Iglesia (DV 9). En esta perspectiva, la Tradición no aparece como camino para nuevos acontecimientos revelatorios, sino como criterio de acceso a la Escritura, esto es, como forma eclesial de custodia e interpretación del testimonio normativo.</p>
 <p>Finalmente, el Magisterio ejerce el papel de garantizar la autenticidad de la revelación: asegura que la palabra salvífica de Cristo está dirigida a todo tiempo en orden a la vida cristiana. Con una formulación programática, se afirma que el Magisterio «no está por encima de la Palabra de Dios, sino a su servicio para enseñar puramente lo transmitido» (DV 10). Así, la comprensión conciliar de la Palabra de Dios integra revelación, transmisión e interpretación en una única economía viva: la revelación se da como Palabra acontecida en la historia y culminada en Cristo; se entrega a la Iglesia para su anuncio y testimonio; y se custodia normativamente en la Escritura inspirada, vivida en la Tradición y autenticada por el servicio magisterial. En este marco puede comprenderse la «promesa–cumplimiento» y la «desvelación–ocultamiento» no como modelos rivales, sino como formas convergentes de describir la única realidad: la automanifestación salvadora de Dios en la historia, acontecida como Palabra y preservada como misterio.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">4. Profetas del Antiguo Testamento</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -121,6 +132,29 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-uso-y-significado-del-termino-profeta-en-los-libros-biblicos">1. Uso y significado del término «profeta» en los libros bíblicos</a></li>
+<li><a href="#2-rasgos-esenciales-del-profeta-biblico-sobre-el-trasfondo-del-profetismo-extrabiblico">2. Rasgos esenciales del profeta bíblico sobre el trasfondo del profetismo extrabíblico</a></li>
+<li><a href="#3-etapas-y-desarrollo-del-profetismo-biblico">3. Etapas y desarrollo del profetismo bíblico</a></li>
+<li><a href="#4-temas-fundamentales-del-mensaje-profetico">4. Temas fundamentales del mensaje profético</a></li>
+<li><a href="#5-profetas-del-antiguo-testamento">5. Profetas del Antiguo Testamento</a><ul>
+<li><a href="#51-isaias">5.1. Isaías</a></li>
+<li><a href="#52-jeremias">5.2. Jeremías</a></li>
+<li><a href="#53-sintesis-conclusiva-definicion-y-rasgos-caracteristicos-del-profeta">5.3. Síntesis conclusiva: definición y rasgos característicos del profeta</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="1-uso-y-significado-del-termino-profeta-en-los-libros-biblicos">1. Uso y significado del término «profeta» en los libros bíblicos</h2>
 <p>El término castellano «profeta» procede del griego <em>prophetes</em>, compuesto por la preposición <em>pro</em> (en sentido de «en lugar de», «por», «a favor de») y el verbo <em>phemi</em> («decir»). La etimología apunta, por tanto, no a la idea reductiva de «predecir», sino al acto representativo de «hablar en nombre de» otro: en la Escritura, ese «otro» es Yahvé. Esta precisión semántica es teológicamente decisiva, porque desplaza el centro de gravedad desde la curiosidad por el futuro hacia la mediación de una Palabra soberana que interpela el presente, juzga, consuela y reconfigura la identidad comunitaria.</p>
@@ -174,11 +208,44 @@
 <p><strong>Los tres grandes mensajes de la profecía bíblica</strong>: (1) el monoteísmo; (2) el mesianismo; (3) la doctrina moral y la justicia social.</p>
 <p>A la luz de los datos precedentes, puede definirse al profeta bíblico como un mediador carismático suscitado por Yahvé, constituido por una vocación que lo vincula personalmente a Dios y lo envía a una misión histórica concreta; su identidad se expresa ante todo como existencia configurada por la Palabra, que recibe y transmite con autoridad, y cuya acogida o rechazo compromete el destino del pueblo. Esta mediación no se reduce a futurología: su núcleo es la proclamación de la voluntad de Dios en el presente, interpretando el pasado del pueblo desde la alianza y abriendo el futuro como juicio y salvación. De ahí que, junto a su condición de «hombre de la Palabra» y «portavoz de Dios», el profeta aparezca también como figura pública con incidencia histórica, capaz de denuncia y de contestación, y, al mismo tiempo, como hombre de obediencia y oración que participa del destino de sus hermanos y encarna, en su propia vida, el drama y la esperanza del pueblo de Dios.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

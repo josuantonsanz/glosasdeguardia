@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">30. Iniciación cristiana, bautismo y confirmación</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -129,6 +140,38 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#iniciacion-cristiana">Iniciación cristiana</a><ul>
+<li><a href="#elementos-esenciales-de-toda-iniciacion-y-elementos-especificos-de-la-iniciacion-cristiana">Elementos esenciales de toda iniciación y elementos específicos de la iniciación cristiana</a></li>
+<li><a href="#bautismo-y-confirmacion">Bautismo y confirmación</a></li>
+<li><a href="#marco-base-de-reflexion-del-sacramento-conforme-a-cuatro-coordenadas">Marco base de reflexión del sacramento conforme a cuatro coordenadas</a></li>
+</ul>
+</li>
+<li><a href="#bautismo">Bautismo</a><ul>
+<li><a href="#1-el-bautismo-en-una-lectura-cristiana-del-antiguo-testamento-datos-del-nuevo-testamento">1. El bautismo en una lectura cristiana del Antiguo Testamento; datos del Nuevo Testamento</a></li>
+<li><a href="#2-patristica-escolastica-medieval-reforma-protestante-y-trento-perspectiva-del-vaticano-ii">2. Patrística, escolástica medieval, reforma protestante y Trento, perspectiva del Vaticano II</a></li>
+<li><a href="#3-necesidad-del-bautismo-salvacion-bautismal-bautismo-y-fe">3. Necesidad del bautismo, salvación bautismal, bautismo y fe</a></li>
+<li><a href="#4-criterios-basicos-para-la-celebracion-bautismal-el-bautismo-de-ninos">4. Criterios básicos para la celebración bautismal. El bautismo de niños</a></li>
+</ul>
+</li>
+<li><a href="#confirmacion">Confirmación</a><ul>
+<li><a href="#1-horizonte-biblico-de-comprension">1. Horizonte bíblico de comprensión</a></li>
+<li><a href="#2-perspectiva-teologica-de-los-padres-factores-de-la-separacion-cronologica-de-la-confirmacion-periodo-medieval-de-trento-al-vaticano-ii-posicion-actual-de-la-iglesia-catolica">2. Perspectiva teológica de los Padres, factores de la separación cronológica de la confirmación, periodo medieval, de Trento al Vaticano II, posición actual de la Iglesia católica</a></li>
+<li><a href="#3-necesidad-de-una-catequesis-catecumenal-edad-de-la-confirmacion">3. Necesidad de una catequesis catecumenal. Edad de la confirmación</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="iniciacion-cristiana">Iniciación cristiana</h2>
@@ -224,11 +267,44 @@
 <p>La catequesis catecumenal debe integrar varias dimensiones. Debe ser kerigmática: presentar a Jesucristo muerto y resucitado como centro de la fe. Debe ser pneumatológica: enseñar quién es el Espíritu Santo, su acción en la Escritura, en Cristo, en Pentecostés, en la Iglesia y en la vida del creyente. Debe ser eclesial: introducir en la comunidad concreta, en la parroquia, en la Iglesia local y en la comunión con el obispo. Debe ser litúrgica: enseñar a celebrar, orar, participar en la eucaristía y comprender los signos. Debe ser moral y existencial: formar en un estilo de vida conforme al Evangelio. Debe ser misionera: educar para el testimonio, el servicio, la defensa de la fe y la caridad. Debe ser mistagógica: después de la celebración, ayudar a interpretar la gracia recibida y a vivirla.</p>
 <p>La confirmación culmina en el testimonio. El confirmado no recibe el Espíritu para sí mismo de modo individualista, sino para la edificación de la Iglesia y la extensión del Reino. El Espíritu que descendió sobre Cristo lo condujo a la misión; el Espíritu que descendió en Pentecostés impulsó a los apóstoles al anuncio; el Espíritu que se comunica en la confirmación fortalece al creyente para confesar la fe, vivir la caridad, defender la Iglesia en el mundo y asumir las alegrías y angustias de los hombres. La autenticidad del sacramento se verifica en una vida cristiana más enraizada, más eclesial y más misionera.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

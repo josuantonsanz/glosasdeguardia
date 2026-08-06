@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Vías de acceso a Dios</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -120,6 +131,28 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-modelos-de-revelacion">1. Modelos de Revelación</a></li>
+<li><a href="#2-via-cosmologica">2. Vía cosmológica</a></li>
+<li><a href="#3-via-antropologica">3. Vía antropológica</a><ul>
+<li><a href="#1-juan-alfaro">1. Juan Alfaro</a></li>
+<li><a href="#2-paul-tillich">2. Paul Tillich</a></li>
+<li><a href="#3-karl-rahner">3. Karl Rahner</a></li>
+<li><a href="#4-la-via-amoris-h-u-von-balthasar">4. La via amoris - H. U. von Balthasar</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª de la Revelación/Teología de la Revelación.html">Teología de la Revelación</a> (7/8).</em></p>
 <h2 id="1-modelos-de-revelacion">1. Modelos de Revelación</h2>
@@ -180,11 +213,44 @@ La muerte es una situación límite (total e incontestable) que desafía nuestra
 <p>¿Tiene sentido? → Vía antropológica
 ¿Me merece la pena? → Postmodernidad</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª de la Revelación/Teología de la Revelación.html">Teología de la Revelación</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

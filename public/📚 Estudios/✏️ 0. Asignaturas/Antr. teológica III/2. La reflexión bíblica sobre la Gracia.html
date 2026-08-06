@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">2. La reflexión bíblica sobre la Gracia</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -133,6 +144,42 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#21-la-reflexion-veterotestamentaria-de-la-gracia">2.1. La reflexión veterotestamentaria de la Gracia</a><ul>
+<li><a href="#211-antecedentes-biblicos-del-concepto-gracia">2.1.1 Antecedentes bíblicos del concepto Gracia</a><ul>
+<li><a href="#el-dios-de-israel-es-un-dios-salvador">El Dios de Israel es un Dios Salvador</a></li>
+</ul>
+</li>
+<li><a href="#212-la-eleccion">2.1.2. La elección</a></li>
+<li><a href="#213-la-alianza">2.1.3. La alianza</a><ul>
+<li><a href="#la-alianza-como-autocompromiso">La alianza como autocompromiso</a></li>
+<li><a href="#la-alianza-implica-una-obligacion">La alianza implica una obligación</a></li>
+<li><a href="#la-alianza-como-compromiso-mutuo">La alianza como compromiso mutuo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#22-la-reflexion-neotestamentaria-de-la-gracia">2.2. La reflexión neotestamentaria de la Gracia</a><ul>
+<li><a href="#cuestiones-generales">Cuestiones generales</a></li>
+<li><a href="#221-la-reflexion-de-la-gracia-en-los-evangelios-sinopticos">2.2.1 La reflexión de la Gracia en los Evangelios Sinópticos</a><ul>
+<li><a href="#gracia-y-reino-de-dios">Gracia y Reino de Dios</a></li>
+<li><a href="#caracteristicas-del-reino-de-dios">Características del Reino de Dios</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Segundo tema del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Antr. teológica III/Antropología Teológica III.html">Antropología Teológica III</a>.</em></p>
@@ -306,11 +353,44 @@ que él ha venido a liberar a su pueblo!
 <p>María Nely Vásquez Pérez, “Escuchar la Palabra: actitud fundamental del discípulo/a”, Lumen 68/3 (2019) 391-423.</p>
 <p>María Nely Vásquez Pérez, “¿Todavía el reino de Dios? Evolución de la teología del Reino y su impacto político, hoy”, Selecciones de Teología 240/60 (2021) 243-256 (Condensación de los mejores artículos de teología).</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Antr. teológica III/Antropología Teológica III.html">Antropología Teológica III</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

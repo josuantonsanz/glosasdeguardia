@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">El concepto de la Revelación</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -130,6 +141,38 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#algunas-consideraciones-previas">Algunas consideraciones previas</a></li>
+<li><a href="#el-testimonio-de-la-escritura">El testimonio de la Escritura</a><ul>
+<li><a href="#la-revelacion-en-el-antiguo-testamento">La Revelación en el Antiguo Testamento</a></li>
+<li><a href="#la-revelacion-en-el-nuevo-testamento">La Revelación en el Nuevo Testamento</a></li>
+</ul>
+</li>
+<li><a href="#la-revelacion-en-los-padres-de-la-iglesia">La Revelación en los Padres de la Iglesia</a><ul>
+<li><a href="#la-unidad-de-los-dos-testamentos">La unidad de los dos Testamentos</a></li>
+<li><a href="#centralidad-de-cristo">Centralidad de Cristo</a></li>
+<li><a href="#inculturacion-teologia-del-logos">Inculturación: teología del Logos</a></li>
+<li><a href="#inaccesibilidad-y-conocimiento-de-dios">Inaccesibilidad y conocimiento de Dios</a></li>
+</ul>
+</li>
+<li><a href="#las-sintesis-medievales-y-el-hiato-nominalista">Las síntesis medievales y el hiato nominalista</a><ul>
+<li><a href="#averroes-1126-1198">Averroes (1126-1198)</a></li>
+<li><a href="#san-buenaventura-1221-1274">San Buenaventura (1221-1274)</a></li>
+<li><a href="#santo-tomas-de-aquino-1225-1274">Santo Tomás de Aquino (1225-1274)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª de la Revelación/Teología de la Revelación.html">Teología de la Revelación</a> (2/8).</em></p>
 <h3 id="algunas-consideraciones-previas">Algunas consideraciones previas</h3>
@@ -191,11 +234,44 @@ con la salvación.</p>
 <p>La revelación es un evento histórico en el que Dios se comunica con la humanidad. A lo largo de la historia, diferentes personas han recibido y transmitido esta revelación. Abraham la recibió y la compartió con su clan, Moisés la recibió y la compartió con su pueblo, y Cristo la compartió con toda la humanidad. A medida que avanzamos en el tiempo, el conocimiento de la revelación ha ido progresando.  </p>
 <p>El paradigma de la revelación se centra en el conocimiento profético y cómo se transmite. Se distingue entre el conocimiento profético en sí mismo y su expresión verbal. El conocimiento profético permite ver lo que está más allá del conocimiento natural y elimina la distancia entre nosotros y Dios. La revelación profética eleva nuestro entendimiento a través de representaciones sensoriales e imaginarias. La luz divina es esencial para comprender las revelaciones y el conocimiento humano. Los profetas reaccionan activamente a la revelación y son conscientes del carisma profético recibido. La revelación se manifiesta a través de la palabra, tanto en su forma sensible como interior, y Cristo es el maestro supremo que enseña tanto con sus palabras como con sus acciones. La fe es la combinación de la palabra predicada y la gracia interior, y está orientada hacia la visión beatífica.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª de la Revelación/Teología de la Revelación.html">Teología de la Revelación</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

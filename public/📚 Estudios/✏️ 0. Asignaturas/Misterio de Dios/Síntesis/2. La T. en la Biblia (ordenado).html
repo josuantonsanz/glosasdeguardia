@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">La Trinidad en la Biblia</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -119,6 +130,23 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#yhwh-el-padre">Yhwh, el Padre</a></li>
+<li><a href="#abba-el-padre-de-jesus">Abbá, el Padre de Jesús</a></li>
+<li><a href="#jesus-hijo-del-padre">Jesús, Hijo del Padre</a></li>
+<li><a href="#el-espiritu-santo-enviado-de-los-dos">El Espíritu Santo, enviado de los dos</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p>La experiencia Trinitaria, en lo que a nosotros respecta, no es algo totalmente subjetivo de cada uno, ni algo que <em>surja</em> —como por generación espontánea— al arbitrio de cada cual. Toda experiencia trinitaria —que es, al mismo tiempo, conocimiento de la Trinidad— tiene su origen en la Trinidad misma, que la hace posible<sup id="fnref:inline-1"><a class="footnote-ref" href="#fn:inline-1">1</a></sup>. </p>
 <p>Además, nuestra experiencia de la Trinidad no parte, usualmente, de una <em>tabula rasa</em>, sino que se entronca y entrelaza con la experiencia de tantos hombres y mujeres que han venido primero. Así, para situar correctamente esta experiencia trinitaria —la nuestra y la de tantos otros— conviene remontarse al punto de partida, al comienzo del cristianismo. Desde el comienzo, los cristianos supusieron un punto de ruptura con los judíos y los griegos que les rodeaban. Jesús testimonia a Yhwh, al Dios del Antiguo Testamento; pero, testimoniándolo, Jesús nos descubre algo más, un cambio en la forma de relacionarse con Yhwh, y una nueva comprensión de Dios.</p>
@@ -151,11 +179,48 @@
 </ol>
 </div>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Misterio del Dios Trinitario.html">Misterio del Dios Trinitario</a>
+            </li>
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis trinitaria.html">Síntesis trinitaria</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

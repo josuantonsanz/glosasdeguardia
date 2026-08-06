@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">3. La reflexión paulina sobre la Gracia</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -125,6 +136,34 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#31-cuestiones-preliminares">3.1. Cuestiones preliminares</a><ul>
+<li><a href="#la-experiencia-de-la-gracia-y-las-consecuencias-teologicas-de-la-vocacion">La experiencia de la gracia y las consecuencias teológicas de la vocación</a></li>
+<li><a href="#gracia-y-transformacion-humana-la-situacion-de-muerte-al-pecado-rom-63-6">Gracia y transformación humana. La situación de muerte al pecado: Rom 6,3-6</a></li>
+<li><a href="#la-justificacion-en-la-carta-a-los-galatas">La Justificación en la Carta a los Gálatas</a></li>
+<li><a href="#gracia-y-libertad">Gracia y libertad</a></li>
+</ul>
+</li>
+<li><a href="#32-la-justificacion-en-la-carta-a-los-romanos">3.2. La justificación en la Carta a los Romanos</a><ul>
+<li><a href="#estado-de-la-cuestion">Estado de la cuestión</a></li>
+<li><a href="#1-la-ira-de-dios-y-la-justicia-de-dios">1. La ira de Dios y la justicia de Dios</a></li>
+<li><a href="#2-la-ley-y-justicia-de-dios">2. La ley y justicia de Dios</a></li>
+<li><a href="#3-la-fe-y-la-justicia-de-dios">3. La fe y la justicia de Dios</a></li>
+</ul>
+</li>
+<li><a href="#33-judios-y-paganos-son-justificados-en-cristo">3.3. Judíos y paganos son justificados en Cristo</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Tema del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Antr. teológica III/Antropología Teológica III.html">Antropología Teológica III</a>.</em></p>
@@ -245,11 +284,44 @@
 <p>¿Es posible mantener que Pablo no modificó los mecanismos de mantenimiento en la alianza para los judíos cuando la identidad de Israel es transformada tan profundamente (haciendo hijos de Abrahán a los paganos)?</p>
 <p>En definitiva, en la cosmovisión de Pablo no parecen caber dos alianzas: circuncisos e incircuncisos son justificados de un mismo modo por medio de la fe en Cristo (Rm 3,30).</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Antr. teológica III/Antropología Teológica III.html">Antropología Teológica III</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

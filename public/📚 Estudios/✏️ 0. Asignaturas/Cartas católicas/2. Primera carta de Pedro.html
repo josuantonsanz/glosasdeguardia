@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">2. Primera carta de Pedro</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -141,6 +152,50 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#21-introduccion">2.1. Introducción</a></li>
+<li><a href="#22-dimension-literaria">2.2. Dimensión literaria</a><ul>
+<li><a href="#221-estructura-de-la-carta">2.2.1. Estructura de la carta</a></li>
+<li><a href="#222-gran-uso-del-at">2.2.2. Gran uso del AT</a></li>
+<li><a href="#223-elementos-tradicionales-de-los-primeros-cristianos">2.2.3 Elementos tradicionales de los primeros cristianos</a></li>
+</ul>
+</li>
+<li><a href="#23-dimension-teologica">2.3. Dimensión teológica</a><ul>
+<li><a href="#231-cristologia">2.3.1. Cristología</a></li>
+<li><a href="#232-dios">2.3.2. Dios</a></li>
+</ul>
+</li>
+<li><a href="#24-dimension-teologica-eclesiologia">2.4. Dimensión teológica (eclesiología)</a><ul>
+<li><a href="#241-comunidad">2.4.1 Comunidad</a></li>
+<li><a href="#242-relacion-con-el-contexto-sociocultural-y-las-autoridades-civiles">2.4.2. Relación con el contexto sociocultural y las autoridades civiles</a></li>
+</ul>
+</li>
+<li><a href="#25-dimension-sociohistorica-destinatarios">2.5. Dimensión sociohistórica (destinatarios)</a><ul>
+<li><a href="#251-datos-sobre-la-condicion-social">2.5.1. Datos sobre la condición social</a></li>
+<li><a href="#252-lugar-y-fecha-de-composicion">2.5.2. Lugar y fecha de composición</a></li>
+<li><a href="#253-estrategia-retorica">2.5.3. Estrategia retórica</a></li>
+</ul>
+</li>
+<li><a href="#26-otros-temas-de-1-pe">2.6 Otros temas de 1 Pe</a><ul>
+<li><a href="#261-eleccion">2.6.1. Elección</a></li>
+<li><a href="#262-autoria">2.6.2. Autoría</a></li>
+<li><a href="#263-sufrimiento-del-inocente">2.6.3. Sufrimiento del inocente</a></li>
+<li><a href="#264-renacimiento">2.6.4. Renacimiento</a></li>
+<li><a href="#265-codigo-domestico">2.6.5. Código doméstico</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Cartas católicas/Cartas católicas.html">Cartas católicas</a>.</em></p>
@@ -541,11 +596,44 @@
 <p>ἀναγεννάω</p>
 <p>Buena conciencia (3,21) «Poder prestar plena atención a su voluntad»</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Cartas católicas/Cartas católicas.html">Cartas católicas</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

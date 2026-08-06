@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Historia de la programación</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -117,6 +128,25 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#mucho-antes-que-un-ordenador">Mucho antes que un ordenador…</a></li>
+<li><a href="#maquinas-programables">Máquinas «programables»</a></li>
+<li><a href="#el-genio-que-definio-los-limites-alan-turing">El genio que definió los límites: Alan Turing</a></li>
+<li><a href="#el-siglo-xx-de-la-guerra-a-la-revolucion-personal">El siglo XX: de la guerra a la revolución personal</a></li>
+<li><a href="#los-lenguajes-nacen">Los lenguajes nacen</a></li>
+<li><a href="#de-laboratorios-a-hogares">De laboratorios a hogares</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="mucho-antes-que-un-ordenador">Mucho antes que un ordenador…</h2>
 <p>Desde el comienzo, la humanidad ha intentado almacenar datos y hacer cuentas con ellos de la manera más rápida y sencilla posible. En Babilonia y Egipto usaban tablillas o papiros para apuntar los datos y hacer cuentas; tenían sus propias tablas de multiplicar y algoritmos manuales para hacer cálculos.</p>
@@ -146,11 +176,44 @@
 <p>En 1981, IBM lanza su PC (Personal Computer), legitimando definitivamente el concepto de ordenador personal. Lo que había comenzado como máquinas de guerra se había convertido en herramientas para el hogar, la oficina y la escuela.</p>
 <p>La computación había pasado de ocupar edificios enteros a caber en una mesa, y de costar fortunas a estar al alcance de estudiantes y familias. El sueño de Leibniz —liberar a los humanos de los cálculos tediosos— finalmente se había hecho realidad.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../../🛠️ Labores/Zuera/3. Formación profesional/Python/Curso de Python.html">Programación en Python (CS101)</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

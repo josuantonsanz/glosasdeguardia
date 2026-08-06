@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">6.1. Actitud religiosa del hombre. Estructura fundamental</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -118,6 +129,27 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#estructura-fundamental-de-la-actitud-religiosa">Estructura fundamental de la actitud religiosa</a></li>
+<li><a href="#1-la-actitud-religiosa-actitud-extatica-trascendimiento-o-de-reconocimiento">1. La actitud religiosa, actitud extática (trascendimiento) o de reconocimiento</a></li>
+<li><a href="#2-la-actitud-religiosa-actitud-salvifica">2. La actitud religiosa, actitud salvífica</a><ul>
+<li><a href="#elementos-esenciales-de-la-dimension-salvifica">Elementos esenciales de la dimensión salvífica</a></li>
+<li><a href="#como-se-vive-actitud-salvifica-vs-realidad-mundana">¿Cómo se vive actitud salvífica vs. realidad mundana?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>.</em></p>
@@ -307,11 +339,44 @@
 <li><strong>Idolatría:</strong> ⛓️ Incapaz riesgo entrega absoluta → entrega a realidad "fabricada" x hombre → no libera, no merece confianza absoluta, esclaviza.</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

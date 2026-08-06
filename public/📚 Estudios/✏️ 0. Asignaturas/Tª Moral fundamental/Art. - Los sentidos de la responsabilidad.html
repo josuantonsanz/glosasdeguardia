@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Los sentidos de la responsabilidad</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -100,6 +111,8 @@
         </div>
     </header>
 
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>.</em></p>
 <p><strong>Resumen del artículo: "Los sentidos de la responsabilidad desde el prisma de la justicia. ¿Quién es responsable de las injusticias estructurales de nuestra sociedad?", de Cristina de la Cruz Ayuso.</strong></p>
@@ -112,11 +125,44 @@
 <p><strong>6. La responsabilidad no siempre (y no solo) es personal. El valor de la acción colectiva</strong> La responsabilidad, especialmente frente a injusticias estructurales, es también colectiva y política. Su carácter intersubjetivo supone el riesgo de diluirla, pero es fundamental entenderla como una corresponsabilidad distribuida según criterios de justicia. Esto implica que tanto el Estado como la sociedad civil y la ciudadanía comparten deberes en la articulación de respuestas responsables. La acción colectiva da contenido y rostro a la responsabilidad, ligándola a valores como el orgullo y la vergüenza por el bien común, y exige que la respuesta esté alineada con las consecuencias reales de las acciones, tanto individuales como colectivas.</p>
 <p><strong>Conclusión</strong> La responsabilidad para enfrentar las injusticias estructurales debe superar limitaciones tradicionales y entenderse como un fenómeno complejo, orientado tanto hacia el pasado como hacia el futuro, compartido por individuos y colectivos, y estrechamente vinculado al poder, la obligación y la acción conjunta en el marco de la justicia.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

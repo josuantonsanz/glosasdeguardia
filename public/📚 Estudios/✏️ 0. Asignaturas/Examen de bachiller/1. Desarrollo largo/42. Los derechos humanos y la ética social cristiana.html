@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">42. Los derechos humanos y la ética social cristiana</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -116,6 +127,24 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-los-derechos-humanos-de-tema-de-la-etica-social-a-categoria-moral-basica">1. Los derechos humanos, de tema de la ética social a categoría moral básica</a></li>
+<li><a href="#2-tres-generaciones-de-derechos-humanos">2. Tres generaciones de derechos humanos</a></li>
+<li><a href="#3-la-iglesia-catolica-ante-los-derechos-humanos-apunte-historico">3. La Iglesia Católica ante los derechos humanos: apunte histórico</a></li>
+<li><a href="#4-concepto-y-funciones-del-significado-etico-de-los-derechos-humanos-perspectivas-sociales-y-eclesiales-que-estan-problematizando-la-categoria-derechos-humanos">4. Concepto y funciones del significado ético de los derechos humanos. Perspectivas sociales y eclesiales que están problematizando la categoría «derechos humanos»</a></li>
+<li><a href="#5-los-derechos-humanos-y-la-etica-civil">5. Los derechos humanos y la ética civil</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="1-los-derechos-humanos-de-tema-de-la-etica-social-a-categoria-moral-basica">1. Los derechos humanos, de tema de la ética social a categoría moral básica</h2>
 <p>Los derechos humanos se han convertido en una categoría fundamental de la ética social contemporánea, hasta el punto de iluminar y medir la moralidad de las demás áreas sociales. Ya no operan únicamente como un apartado temático entre otros dentro de la ética social, sino como una categoría moral básica de alcance transversal: en ellos se expresa un núcleo axiológico que reclama validez pública y configura un umbral de humanidad exigible a instituciones, culturas y estructuras. En este sentido, los derechos humanos actúan como mediación de la justicia —en el registro propio de la ética filosófica— y, simultáneamente, como mediación de la caridad política en el ámbito de la moral social cristiana, en cuanto obligan a traducir el amor social en condiciones históricas efectivas de dignidad para todos mediante instituciones, leyes y prácticas sociales.</p>
@@ -157,11 +186,44 @@
 <p>Las funciones de la ética civil pueden describirse en dos planos. En sentido genérico, mantiene el aliento ético-utópico frente a la razón instrumental; une a los grupos en el trabajo por elevar las cotas de humanización; y desacredita éticamente a los grupos que no respetan ese mínimo moral común. En sentido concreto, orienta la moral pública, sobre todo en su dimensión socio-política; sirve de base para la educación moral (también en la escuela); fundamenta la ética profesional; y contribuye al «rearme moral» de la sociedad, tanto en los ciudadanos como en las estructuras.</p>
 <p>La relación entre ética civil y ética social cristiana se configura, por tanto, como una relación de convergencia y tensión. Convergen en la exigencia básica de respeto a la dignidad de la persona y en la necesidad de que toda moral —incluida la moral religiosa— respete los derechos humanos. Pero no se identifican: la ética social cristiana remite a motivaciones teologales (caridad social y política) y a una comprensión de la dignidad humana abierta a la vocación sobrenatural; al mismo tiempo, asume que en el espacio público plural la articulación de mínimos compartidos es una mediación imprescindible para la justicia y para la convivencia. En esa articulación, el cristiano está llamado a contribuir desde la racionalidad común y desde el testimonio, sin pretender sustituir el mínimo compartido por máximos confesionales, y sin renunciar a una crítica profética cuando el consenso social derive en formalismos, exclusiones o negaciones reales de la dignidad, especialmente de los débiles, oprimidos y extranjeros.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">2.4 Friedrich Schleiermacher</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -116,6 +127,24 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-introduccion">1. Introducción</a></li>
+<li><a href="#2-naturaleza-y-sentido-de-los-discursos-sobre-la-religion">2. Naturaleza y sentido de los Discursos sobre la religión</a></li>
+<li><a href="#3-dios-y-la-religion">3. Dios y la religión</a></li>
+<li><a href="#4-religion-y-religiones">4. Religión y religiones</a></li>
+<li><a href="#5-la-evolucion-despues-de-1799">5. La evolución después de 1799</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>.</em></p>
 <h2 id="1-introduccion">1. Introducción</h2>
@@ -141,11 +170,44 @@
 <h2 id="5-la-evolucion-despues-de-1799">5. La evolución después de 1799</h2>
 <p>A lo largo de su vida, Schleiermacher editó otras tres veces sus Discursos, mostrando una mayor aproximación al cristianismo. En 1821 publicó <em>La fe cristiana</em>, donde habla de piedad en lugar de religión, perteneciente al sentimiento o conciencia inmediata. Define la esencia de la piedad como el <em>sentimiento de nuestra dependencia absoluta, en cuanto experiencia límite.</em></p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

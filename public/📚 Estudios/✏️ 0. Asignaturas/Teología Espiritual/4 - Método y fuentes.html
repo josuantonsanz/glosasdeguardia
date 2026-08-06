@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">4. Método y fuentes</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -125,6 +136,34 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-en-busca-del-metodo">1. En busca del método</a><ul>
+<li><a href="#11-el-metodo-deductivo">1.1. El método deductivo</a></li>
+<li><a href="#12-el-metodo-descriptivo">1.2. El método descriptivo</a></li>
+<li><a href="#13-la-aproximacion-fenomenologica">1.3. La aproximación fenomenológica</a></li>
+<li><a href="#conclusiones-practicas">Conclusiones prácticas</a></li>
+</ul>
+</li>
+<li><a href="#2-las-fuentes-de-la-teologia-espiritual">2. Las fuentes de la teología espiritual</a><ul>
+<li><a href="#21-la-sagrada-escritura">2.1. La sagrada Escritura</a></li>
+<li><a href="#22-la-historia-de-la-espiritualidad">2.2. La historia de la espiritualidad</a></li>
+<li><a href="#23-la-experiencia-pastoral">2.3. La experiencia pastoral</a></li>
+<li><a href="#24-los-textos-doctrinales-que-se-refieren-directamente-a-la-teologia-espiritual">2.4. Los textos doctrinales que se refieren directamente a la teología espiritual</a></li>
+<li><a href="#25-el-conocimiento-del-hombre">2.5. El conocimiento del hombre</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Del libro «Introducción a la Teología Espiritual», de Charles André Bernard. Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Teología Espiritual/Teología Espiritual.html">Teología Espiritual</a>.</em></p>
@@ -368,11 +407,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Teología Espiritual/Teología Espiritual.html">Teología espiritual</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

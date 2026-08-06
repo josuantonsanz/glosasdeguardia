@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Tema 2. Los textos de la Escritura</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -135,6 +146,44 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-fue-la-ultima-cena-de-jesus-una-cena-pascual">1. ¿Fue la última cena de Jesús una cena pascual?</a><ul>
+<li><a href="#11-cronologias-sinopticos-vs-juan">1.1. Cronologías sinópticos vs. Juan</a></li>
+<li><a href="#12-argumentos-si-fue-pascual-j-jeremias">1.2. Argumentos «sí fue pascual» (J. Jeremías)</a></li>
+<li><a href="#13-argumentos-no-fue-pascual-consenso-actual">1.3. Argumentos «no fue pascual» (consenso actual)</a></li>
+</ul>
+</li>
+<li><a href="#2-los-textos-de-la-eucaristia-sinopticos-y-1-cor">2. Los textos de la Eucaristía (Sinópticos y 1 Cor)</a><ul>
+<li><a href="#21-relatos-insertados-a-posteriori">2.1. Relatos insertados a posteriori</a></li>
+<li><a href="#22-cuatro-textos-dos-tradiciones">2.2. Cuatro textos, dos tradiciones</a><ul>
+<li><a href="#tradicion-palestina-mc-mt">Tradición palestina (Mc, Mt)</a></li>
+<li><a href="#tradicion-antioquena-lc-1-cor">Tradición antioquena (Lc, 1 Cor)</a></li>
+</ul>
+</li>
+<li><a href="#23-el-pan">2.3. El pan</a></li>
+</ul>
+</li>
+<li><a href="#24-el-vino">2.4. El vino</a></li>
+<li><a href="#3-el-discurso-del-pan-de-vida-en-jn-635-66">3. El discurso del pan de vida en Jn 6,35-66</a><ul>
+<li><a href="#division">División</a></li>
+<li><a href="#previos">Previos</a></li>
+<li><a href="#1a-parte-35-51b">1ª parte (35-51b)</a></li>
+<li><a href="#2a-parte-51c-59">2ª parte (51c-59)</a></li>
+<li><a href="#3a-parte-60-66">3ª parte (60-66)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Eucaristía/Eucaristía.html">Eucaristía</a>.</em></p>
@@ -529,11 +578,44 @@
 <li>2ª parte (interés del curso): Jesús invita a comer su carne; comida humana sólo sacia humano (sólo Jesús sacia); Juan escribe con conocimiento eucarístico</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Eucaristía/Eucaristía.html">Eucaristía</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

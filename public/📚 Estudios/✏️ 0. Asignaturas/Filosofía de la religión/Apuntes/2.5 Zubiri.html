@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">2.5 Xavier Zubiri</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -116,6 +127,24 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-introduccion-apuntes-de-su-biografia-intelectual">1. Introducción: Apuntes de su biografía intelectual</a></li>
+<li><a href="#2-filosofia-primera-una-alternativa-a-la-fenomenologia-la-aprenhension">2. Filosofía primera. Una alternativa a la fenomenología: la «aprenhensión»</a></li>
+<li><a href="#3-la-religacion-el-poder-de-lo-real">3. La religación: el «poder de lo real»</a></li>
+<li><a href="#4-dios">4. Dios</a></li>
+<li><a href="#5-la-religion">5. La religión</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>.</em></p>
 <h2 id="1-introduccion-apuntes-de-su-biografia-intelectual">1. Introducción: Apuntes de su biografía intelectual</h2>
@@ -152,11 +181,44 @@
 2. La <em>gracia sobrenatural</em>: supone una presencia especial. Esto lo afirman todas las religiones históricas.
 3. La <em>encarnación</em>: es el culmen de la donación divina y de la experiencia de Dios. Dios se hace persona en Cristo. Es ser «en» Dios y ser Dios. Por eso, dice, que Cristo fue la «religión subsistente».</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

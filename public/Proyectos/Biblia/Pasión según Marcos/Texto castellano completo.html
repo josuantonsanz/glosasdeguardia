@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Pasión según san Marcos</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -115,6 +126,23 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#se-decreta-la-muerte-de-jesus">Se decreta la muerte de Jesús</a></li>
+<li><a href="#maria-unge-al-senor">María unge al Señor</a></li>
+<li><a href="#judas-se-ofrece-a-entregar-a-jesus">Judas se ofrece a entregar a Jesús</a></li>
+<li><a href="#preparativos-para-la-cena">Preparativos para la cena</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Traducción en proceso</em></p>
 <h2 id="se-decreta-la-muerte-de-jesus">Se decreta la muerte de Jesús</h2>
@@ -134,11 +162,44 @@
 <p><strong>12</strong> El primer día de los Ázimos, cuando sacrificaban el cordero pascual, le dicen sus discípulos: «¿Dónde quieres que vayamos a hacer los preparativos para que comas el cordero pascual?» Y envía a dos de sus discípulos, y les dice: «Id a la ciudad, y os saldrá al encuentro un hombre que lleva al hombre un cántaro de agua; seguidlo, <strong>14</strong> y, donde entre, decid al dueño de la casa: “El Maestro dice: '¿Dónde está mi estancia en donde pueda comer el cordero pascual con mis discípulos?'”. <strong>15</strong> Él os enseñará una sala grande en el piso de arriba, con alfombras, preparada. Hacednos allí los preparativos». <strong>16</strong> Los discípulos salieron, marcharon a la ciudad, encontraron [todo] tal como les había dicho, y prepararon la cena de Pascua.</p>
 </div>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../Proyectos/Biblia/Pasión según Marcos/Pasión según san Marcos (bilingüe).html">Pasión según san Marcos</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

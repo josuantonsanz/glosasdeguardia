@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">6. Desviaciones sobre la Trinidad</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -136,6 +147,41 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-la-autorreferencialidad">1. La autorreferencialidad</a><ul>
+<li><a href="#11-descubrir-la-trinidad-mediante-una-vida-descentrada">1.1. Descubrir la Trinidad mediante una vida «descentrada»</a></li>
+<li><a href="#12-descubrir-la-trinidad-en-el-sufrimiento-de-los-demas-y-en-uno-mismo">1.2. Descubrir la Trinidad en el sufrimiento de los demás y en uno mismo</a></li>
+<li><a href="#13-contra-el-solipsismo">1.3. Contra el solipsismo</a></li>
+</ul>
+</li>
+<li><a href="#2-la-rutina">2. La rutina</a><ul>
+<li><a href="#21-salir-de-la-monotonia-de-la-mediocridad">2.1. Salir de la Monotonía de la Mediocridad</a></li>
+<li><a href="#22-acabar-con-el-adocenamiento-infructuoso">2.2. Acabar con el Adocenamiento Infructuoso</a></li>
+</ul>
+</li>
+<li><a href="#3-el-egoismo-de-las-sociedades-ricas">3. El egoísmo de las sociedades ricas</a></li>
+<li><a href="#4-ordenar-la-vida-desde-la-trinidad">4. Ordenar la vida desde la Trinidad</a></li>
+<li><a href="#contrapunto-un-fruto-del-espiritu-para-nuestro-tiempo-la-bondad">Contrapunto: Un fruto del Espíritu para nuestro tiempo, la Bondad</a><ul>
+<li><a href="#41-definicion-de-la-bondad">4.1. Definición de la Bondad</a></li>
+<li><a href="#42-la-bondad-y-las-virtudes-teologales">4.2. La bondad y las virtudes teologales</a></li>
+<li><a href="#43-integracion-del-otro-en-el-propio-yo">4.3. Integración del otro en el propio "yo"</a></li>
+<li><a href="#44-contra-la-maldad-y-la-iniquidad">4.4. Contra la maldad y la iniquidad</a></li>
+<li><a href="#45-opcion-por-la-amabilidad">4.5. Opción por la amabilidad</a></li>
+<li><a href="#46-la-amabilidad-de-la-trinidad">4.6. La amabilidad de la Trinidad</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Resumen del libro <a href="../../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar.html">Dejarse amar y amar</a>.</em></p>
@@ -341,11 +387,48 @@
 <li>Cristiano y espiritualidad trinitaria: Un "puede" consentido, no un "debe" impuesto.</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar.html">Dejarse amar y amar, síntesis</a>
+            </li>
+            
+            <li>
+                <a href="../../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Misterio del Dios Trinitario.html">Misterio del Dios Trinitario</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

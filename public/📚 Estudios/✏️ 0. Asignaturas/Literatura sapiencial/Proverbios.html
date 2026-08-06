@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Proverbios</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -131,6 +142,40 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#recursos-literarios">Recursos literarios</a><ul>
+<li><a href="#generos-literarios">Géneros literarios</a></li>
+</ul>
+</li>
+<li><a href="#estructura">Estructura</a></li>
+<li><a href="#prov-19-polos-opuestos-y-paridad">Prov 1–9: Polos opuestos y paridad</a><ul>
+<li><a href="#polos-opuestos">Polos opuestos</a></li>
+<li><a href="#paridad">Paridad</a></li>
+</ul>
+</li>
+<li><a href="#prov-11-7">Prov 1,1-7</a></li>
+<li><a href="#prov-8-la-personificacion-de-la-sabiduria-la-maat-egipcia">Prov 8: La personificación de la Sabiduría. La Ma'at egipcia</a></li>
+<li><a href="#prov-1031">Prov 10–31</a></li>
+<li><a href="#prov-1012216-primera-coleccion-de-proverbios-de-salomon">Prov 10,1–22,16: Primera colección de «Proverbios de Salomón»</a></li>
+<li><a href="#prov-22172422-primera-coleccion-de-dichos-de-los-sabios">Prov 22,17–24,22: Primera colección de «Dichos de los sabios»</a><ul>
+<li><a href="#prov-2423-34-segunda-coleccion-de-dichos-de-los-sabios">Prov 24,23-34: Segunda colección de «Dichos de los sabios»</a></li>
+<li><a href="#segunda-coleccion-de-proverbios-de-salomon-2512927">Segunda colección de «Proverbios de Salomón» (25,1–29,27)</a></li>
+<li><a href="#prov-301-33-palabras-de-agur">Prov 30,1-33: Palabras de Agur</a></li>
+<li><a href="#prov-311-9-palabras-de-lemuel-prov-3110-31-poema-de-la-mujer-de-valia">Prov 31,1-9: Palabras de Lemuel. Prov 31,10-31: Poema de la mujer de valía</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Literatura sapiencial/Libros sapienciales.html">literatura sapiencial</a> (2/6).</em></p>
@@ -332,11 +377,44 @@ de los jóvenes que aspiraban a ocupar un puesto en la administración pública�
 </ol>
 </div>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Literatura sapiencial/Libros sapienciales.html">Literatura sapiencial</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

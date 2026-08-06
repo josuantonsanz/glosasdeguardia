@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">33. Pecado y perdón en el NT</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -123,6 +134,32 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#los-datos-de-la-escritura-el-perdon-de-jesus-y-la-llamada-a-la-conversion">Los datos de la Escritura: el perdón de Jesús y la llamada a la conversión</a></li>
+<li><a href="#mt-1619-1818-jn-2023-interpretaciones-exegeticas">Mt 16,19; 18,18; Jn 20,23. Interpretaciones exegéticas</a></li>
+<li><a href="#sintesis-de-las-tres-formas-principales-en-la-historia-de-este-sacramento-ordo-poenitentium-penitencia-tarifada-penitencia-privada-semejanzas-y-diferencias">Síntesis de las tres formas principales en la historia de este sacramento: ordo poenitentium, penitencia tarifada, penitencia privada. Semejanzas y diferencias</a><ul>
+<li><a href="#ordo-poenitentium-penitencia-canonicapublica">Ordo poenitentium (penitencia canónica/pública)</a></li>
+<li><a href="#penitencia-tarifada">Penitencia tarifada</a></li>
+<li><a href="#penitencia-privada">Penitencia privada</a></li>
+<li><a href="#semejanzas-y-diferencias-globales">Semejanzas y diferencias globales</a></li>
+</ul>
+</li>
+<li><a href="#doctrina-de-trento-sobre-este-sacramento-ds-1667-1693-1701-1715-elementos-fundamentales">Doctrina de Trento sobre este sacramento, DS 1667-1693; 1701-1715: elementos fundamentales</a></li>
+<li><a href="#ritual-actual-las-tres-formas-de-celebracion-del-sacramento">Ritual actual: las tres formas de celebración del sacramento</a></li>
+<li><a href="#la-relacion-con-el-presbiterio">La relación con el presbiterio</a></li>
+<li><a href="#las-funciones-del-presbitero">Las funciones del presbítero</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="los-datos-de-la-escritura-el-perdon-de-jesus-y-la-llamada-a-la-conversion">Los datos de la Escritura: el perdón de Jesús y la llamada a la conversión</h2>
@@ -301,11 +338,44 @@
 <li><strong>Unidad del signo</strong>: Confesión personaliza conversión; absolución personaliza mediación de la ⛪ y perdón divino; satisfacción = reparación activa, no apéndice automático.</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

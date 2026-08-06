@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Preguntas de historia (2º corte)</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -127,6 +138,36 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-formacion-del-pensamiento-en-zwinglio">1. Formación del pensamiento en Zwinglio</a></li>
+<li><a href="#2-desarrollo-del-movimiento-anabaptista">2. Desarrollo del movimiento anabaptista</a></li>
+<li><a href="#3-formacion-del-pensamiento-reformador-en-calvino-eclesiologia-y-doble-predestinacion">3. Formación del pensamiento reformador en Calvino (eclesiología y «doble predestinación»)</a></li>
+<li><a href="#4-comparacion-entre-la-eucaristia-para-la-iglesia-catolica-lutero-zwinglio-y-calvino">4. Comparación entre la Eucaristía para la Iglesia Católica, Lutero, Zwinglio y Calvino</a></li>
+<li><a href="#5-expansion-del-calvinismo-en-francia-guerra-de-los-hugonotes">5. Expansión del Calvinismo en Francia. Guerra de los hugonotes</a></li>
+<li><a href="#6-resume-en-sus-puntos-fundamentales-el-comienzo-del-cisma-anglicano-con-enrique-viii">6. Resume en sus puntos fundamentales el comienzo del cisma anglicano con Enrique VIII</a></li>
+<li><a href="#7-breve-recorrido-por-los-intentos-de-convocatoria-del-concilio-de-trento">7. Breve recorrido por los intentos de convocatoria del Concilio de Trento</a></li>
+<li><a href="#8-por-que-eran-importantes-la-cuestion-de-la-fe-en-el-concilio-de-trento-planteamiento-de-las-discusiones-en-el-concilio">8. ¿Por qué eran importantes la cuestión de la Fe en el Concilio de Trento? Planteamiento de las discusiones en el Concilio.</a></li>
+<li><a href="#9-principales-definiciones-de-las-tres-sesiones-del-concilio-de-trento">9. Principales definiciones de las tres sesiones del Concilio de Trento</a></li>
+<li><a href="#10-breve-resumen-de-la-reforma-de-pio-v-1566-1572-y-de-su-pontificado">10. Breve resumen de la reforma de Pío V (1566-1572) y de su pontificado.</a></li>
+<li><a href="#11-principales-fundaciones-de-ordenes-religiosas-en-el-siglo-xvi-y-xvii">11. Principales fundaciones de órdenes religiosas en el siglo XVI y XVII</a></li>
+<li><a href="#12-san-ignacio-de-loyola-conversion-fundacion-y-teologia-frente-a-la-reforma-protestante">12. San Ignacio de Loyola: conversión, fundación y teología frente a la Reforma protestante</a></li>
+<li><a href="#13-describe-brevemente-la-mision-en-la-epoca-de-los-grandes-descubrimientos-de-portugal-y-espana">13. Describe brevemente la misión en la época de los grandes descubrimientos de Portugal y España</a></li>
+<li><a href="#14-origen-de-la-controversia-de-los-ritos-en-la-india-y-en-china">14. Origen de la «controversia de los ritos» en la India y en China</a></li>
+<li><a href="#15-causas-del-centralismo-romano-postridentino">15. Causas del «centralismo romano» postridentino</a></li>
+<li><a href="#16-explica-brevemente-el-galicanismo-el-jansenismo-el-febronianismo-y-el-josefinismo">16. Explica brevemente: el Galicanismo, el Jansenismo, el «Febronianismo» y el «Josefinismo»</a></li>
+<li><a href="#17-la-ilustracion-en-que-fue-positivo-para-la-iglesia-y-en-que-fue-negativo">17. La Ilustración en qué fue positivo para la Iglesia y en qué fue negativo</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="1-formacion-del-pensamiento-en-zwinglio">1. Formación del pensamiento en Zwinglio</h2>
@@ -1075,11 +1116,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Historia moderna/Historia moderna.html">Historia moderna</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

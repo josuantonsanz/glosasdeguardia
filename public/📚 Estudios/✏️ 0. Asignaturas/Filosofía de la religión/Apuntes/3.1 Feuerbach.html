@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">3.1 Ludwig Feuerbach. El ateísmo antropológico.</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -116,6 +127,24 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-introduccion">1. Introducción</a></li>
+<li><a href="#2-biografia-de-un-proceso-intelectual">2. Biografía de un proceso intelectual</a></li>
+<li><a href="#3-antropologizacion-de-la-religion">3. Antropologización de la religión</a></li>
+<li><a href="#4-recepcion-historica-de-su-pensamiento-su-larguisima-huella">4. Recepción histórica de su pensamiento, su larguísima huella</a></li>
+<li><a href="#5-consideraciones-finales">5. Consideraciones finales</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>.</em></p>
 <blockquote>
@@ -150,11 +179,44 @@
 <p><strong>Deseos y aspiraciones infinitos:</strong> Feuerbach ve la necesidad de contar con una instancia extra-subjetiva, no-humana, para explicar el acto religioso (de infinitud) que surge en la finitud del hombre, pero que no puede ser explicado suficientemente desde ella sola. Recurre a la «naturaleza» como fuente externa de los deseos y aspiraciones infinitos del hombre. La naturaleza aparece como la entidad de una superioridad de lo humano, que la introduce en la dimensión de infinitud. Así, sirve para explicar el surgimiento de la idea de divinidad infinita; elemento necesario, pues el deseo infinito no puede surgir de la finitud humana. </p>
 <p><strong>Replanteamiento de la divinidad:</strong> La insistencia de Feuerbach en el «tú» («el hombre es el Dios del hombre») como raíz del acto moral influye en pensadores posteriores (Buber o Lévinas) que colocan la abstracta infinitud en el «otro», que obliga al yo de manera absoluta y le descubre, en el tú, la oculta presencia de la divinidad. Al reducir la teología a antropología, se acaba reconstruyendo «la antropología a la manera teológica». Su énfasis en el condicionamiento humano de las representaciones religiosas advierte contra pretensiones absolutas en el lenguaje sobre la divinidad.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

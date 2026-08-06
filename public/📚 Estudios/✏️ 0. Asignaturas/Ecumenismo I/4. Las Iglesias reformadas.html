@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">4. Las Iglesias reformadas</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -100,6 +111,8 @@
         </div>
     </header>
 
+    
+
     <div class="prose">
         <p><em>Parte del curso <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>.</em></p>
 <p>Las Iglesias reformadas, como las luteranas, forman parte del gran conjunto de Iglesias protestantes. Sus inicios se sitúan en la misma época que Lutero y el luteranismo, pero su fe y sus ideas se desarrollan de manera independiente.  Éstas comienzan con Ulrico Zuinglio en Suiza. Zuinglio, a diferencia de Lutero –que quería eliminar los excesos de la Iglesia– opta por tomar como base de la Iglesia únicamente aquello que aparece en la Biblia. A Zuinglio le sigue Calvino, que pasará a ser la figura central de la Reforma, tomando incluso su nombre –de ahí que se conozca también a este movimiento como «calvinista»–.</p>
@@ -109,11 +122,44 @@
 <p>Las Iglesias reformadas tienen dos sacramentos, aunque no se pueden entender de la misma manera que los católicos. El bautismo tiene como función principal incorporar a la persona creyente a la Iglesia de Cristo. La eucaristía, por su parte, se conoce como «cena del Señor» y es una celebración que se realiza normalmente una vez al mes. En ella, tiene un peso muy especial la escucha y la predicación de la Palabra de Dios. A diferencia de los católicos o los luteranos, las Iglesias reformadas no creen en la presencia real de Cristo en la eucaristía, sino que creen que se recibe de manera espiritual. Tienen un culto muy sencillo y rechazan el uso de imágenes.</p>
 <p>Las Iglesias reformadas están organizadas siguiendo un modelo apostólico. A nivel local, regional y nacional hay distintas organizaciones o sínodos que ordenan y toman las decisiones necesarias, aunque la única cabeza real es Cristo resucitado. De hecho, las creencias pueden variar de manera considerable entre unas Iglesias reformadas y otras, a pesar de mantener un núcleo común. La organización que aglutina a las Iglesias reformadas es la Comunión mundial de Iglesias reformadas, y cuenta con más de 100 millones de miembros.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

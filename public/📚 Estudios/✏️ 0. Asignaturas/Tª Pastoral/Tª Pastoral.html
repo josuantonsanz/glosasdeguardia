@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Teología Pastoral</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -124,6 +135,20 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#temas">Temas</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Asignaturas.html">Teología</a>.</em></p>
 <h2 id="temas">Temas</h2>
@@ -134,11 +159,56 @@
 <li><a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Pastoral/4. La evangelización. Misión y vocaciones de la Iglesia.html">4. La evangelización. Misión y vocaciones de la Iglesia</a></li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Pastoral/1. La teología pastoral - Un primer acercamiento.html">1\. La teología pastoral: Un primer acercamiento</a>
+            </li>
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Pastoral/2. Historia de la Teología Pastoral.html">2\. Historia de la Teología Pastoral</a>
+            </li>
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Pastoral/3. El giro eclesiológico del Vaticano II.html">3\. El giro eclesiológico del Vaticano II</a>
+            </li>
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Asignaturas.html">Asignaturas</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">2.2 Kant</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -117,6 +128,25 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-introduccion">1. Introducción</a></li>
+<li><a href="#2-la-dimension-religiosa-en-la-filosofia-de-kant-antecedentes-del-teismo-moral">2. La dimensión religiosa en la filosofía de Kant. Antecedentes del teísmo moral</a><ul>
+<li><a href="#21-el-periodo-critico-el-teismo-moral-1781-1790">2.1. El periodo «crítico»: el «teísmo moral» (1781-1790)</a></li>
+<li><a href="#22-la-religion-dentro-de-los-limites-de-la-mera-razon-1792-1798">2.2. La religión dentro de los límites de la mera razón (1792-1798)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>.</em></p>
 <h2 id="1-introduccion">1. Introducción</h2>
@@ -136,11 +166,44 @@
 <p>Kant ve la religión de la razón y la revelada no como círculos inconexos sino concéntricos, donde la revelación (=religión histórica) puede añadir pero no quitar a la religión racional (=la fe religiosa pura). Al final, el intérprete de la revelación <em>es Dios en nosotros</em>; es decir, la legislación moral ilumina el sentido de los textos revelados. Es decir, mantiene la primacía de lo racional, que permite reconocer la revelación como tal. Rechaza tanto el naturalismo que niega la revelación, como el sobrenaturalismo que la tiene por necesaria. Se mantiene como «racionalista puro» que reconoce la posibilidad de la revelación.</p>
 <p>Quedan preguntas abiertas sobre si Kant dijo todo con la imagen de los círculos y si su postura podría verse como «post-cristiana», avanzando desde una identificación cristiana inicial hacia su superación y dilución en religión racional. Su pensamiento sobre la religión siguió evolucionando en sus últimos años, como muestran notas fragmentarias del <em>Opus postumum</em>.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Filosofía de la religión/Filosofía de la religión.html">Filosofía de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

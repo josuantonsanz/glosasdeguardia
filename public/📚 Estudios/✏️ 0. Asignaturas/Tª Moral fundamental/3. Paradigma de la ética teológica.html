@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">3. Paradigma de la ética teológica</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -134,6 +145,43 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-modelos-insuficientes-basados-en-la-heteronomia-normas-de-fuera">1. Modelos insuficientes, basados en la heteronomía (normas de fuera) 📑</a><ul>
+<li><a href="#11-modelo-moral-basado-en-la-prohibicion-tabu">1.1. Modelo moral basado en la «prohibición» (tabú)</a></li>
+<li><a href="#12-modelo-moral-basado-en-la-obligacion-extrinseca-de-fuera">1.2. Modelo moral basado en la «obligación extrínseca» (de fuera)</a></li>
+<li><a href="#13-modelo-moral-basado-en-lo-establecido-lo-de-siempre-lo-que-dicen">1.3. Modelo moral basado en «lo establecido» (lo de siempre, lo que dicen)</a></li>
+</ul>
+</li>
+<li><a href="#2-paradigma-de-la-autonomia-teonoma">2. Paradigma de la autonomía teónoma 📑</a><ul>
+<li><a href="#de-las-costumbres-culturales-a-la-etica-cristiana">De las costumbres culturales a la ética cristiana</a></li>
+<li><a href="#21-la-etica-cristiana-practica-de-la-fe-seguimiento-de-cristo-realizacion-del-reino">2.1. La ética cristiana = práctica de la fe + seguimiento de Cristo + realización del Reino</a></li>
+<li><a href="#22-la-etica-cristiana-se-sintetiza-en-la-realizacion-de-la-caridad-no-limosnerias">2.2. La ética cristiana se sintetiza en la realización de la caridad (no «limosnerías»)</a><ul>
+<li><a href="#el-mensaje-de-jesus">El mensaje de Jesús</a></li>
+<li><a href="#su-peculiaridad">Su peculiaridad</a></li>
+<li><a href="#dimension-universalista-mateo-y-pablo">Dimensión universalista (Mateo y Pablo)</a></li>
+<li><a href="#dimension-cristocentrica-juan">Dimensión cristocéntrica (Juan)</a></li>
+<li><a href="#sintesis-la-caridad-centro-de-la-etica-cristiana">Síntesis: la caridad, centro de la ética cristiana</a></li>
+</ul>
+</li>
+<li><a href="#23-la-etica-cristiana-reflexion-y-ejercicio-del-evangelio">2.3. La ética cristiana: reflexión y ejercicio del Evangelio</a></li>
+</ul>
+</li>
+<li><a href="#3-modelo-valido-basado-en-la-autonomia-teonoma">3. Modelo válido, basado en la «autonomía teónoma» 📑</a><ul>
+<li><a href="#la-responsabilidad-moral-cristiana">La responsabilidad moral cristiana</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>.</em></p>
@@ -504,11 +552,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

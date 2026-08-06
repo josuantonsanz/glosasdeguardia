@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">3. El giro eclesiológico del Vaticano II</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -132,6 +143,41 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-el-caracter-pastoral-del-vaticano-ii">1. El carácter pastoral del Vaticano II</a><ul>
+<li><a href="#11-las-indicaciones-de-juan-xxiii">1.1. Las indicaciones de Juan XXIII</a></li>
+<li><a href="#12-profundizaciones-tematizadas-de-pablo-vi">1.2. Profundizaciones tematizadas de Pablo VI</a></li>
+</ul>
+</li>
+<li><a href="#2-fuente-de-renovacion-pastoral">2. Fuente de renovación pastoral</a><ul>
+<li><a href="#21-antecedentes-de-renovacion-pastoral-antes-del-vaticano-ii">2.1. Antecedentes de renovación pastoral antes del Vaticano II</a></li>
+<li><a href="#22-el-movimiento-misionero-y-el-vaticano-segundo">2.2. El movimiento misionero y el Vaticano segundo</a></li>
+<li><a href="#23-la-constitucion-sobre-la-sagrada-liturgia">2.3. La Constitución sobre la sagrada Liturgia</a></li>
+<li><a href="#24-una-nueva-comprension-del-conjunto-del-misterio-cristiano">2.4. Una nueva comprensión del conjunto del misterio cristiano</a></li>
+<li><a href="#25-una-renovada-comprension-de-la-iglesia">2.5. Una renovada comprensión de la Iglesia</a></li>
+<li><a href="#26-redefinicion-de-la-presencia-de-la-iglesia-en-la-sociedad">2.6. Redefinición de la presencia de la Iglesia en la sociedad</a></li>
+</ul>
+</li>
+<li><a href="#3-la-constitucion-pastoral-del-vaticano-ii">3. La constitución pastoral del Vaticano II</a><ul>
+<li><a href="#31-el-puesto-de-la-gaudium-et-spes-en-el-vaticano-ii">3.1. El puesto de la Gaudium et spes en el Vaticano II</a></li>
+<li><a href="#32-historia-de-su-redaccion">3.2. Historia de su redacción</a></li>
+<li><a href="#33-el-metodo-de-la-constitucion-pastoral">3.3. El método de la Constitución pastoral</a></li>
+<li><a href="#34-el-cristocentrismo-en-la-gaudium-et-spes">3.4. El cristocentrismo en la Gaudium et spes</a></li>
+<li><a href="#35-ideas-centrales-de-la-constitucion-gaudium-et-spes">3.5. Ideas centrales de la Constitución Gaudium et spes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Pastoral/Tª Pastoral.html">Tª Pastoral</a>.</em></p>
@@ -302,11 +348,44 @@
 <li>CVII: valorar tanto su doctrina como su espíritu (capacidad llevar revelación a problemas actuales)</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Pastoral/Tª Pastoral.html">Teología Pastoral</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

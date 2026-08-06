@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">26. María en el designio divino de salvación</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -127,6 +138,36 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-la-mariologia-del-concilio-vaticano-ii">1. La mariología del Concilio Vaticano II</a><ul>
+<li><a href="#descripcion-del-capitulo-viii-de-la-lumen-gentium">Descripción del capítulo VIII de la Lumen gentium</a></li>
+<li><a href="#valoracion-teologica-y-limites-del-texto">Valoración teológica y límites del texto</a></li>
+</ul>
+</li>
+<li><a href="#2-trasfondo-trinitario-del-ser-de-maria">2. Trasfondo trinitario del ser de María</a><ul>
+<li><a href="#maria-y-el-padre-maria-en-el-plan-salvifico-de-dios-hija-predilecta-del-padre">María y el Padre (María en el plan salvífico de Dios; «hija predilecta del Padre»)</a></li>
+<li><a href="#maria-en-el-misterio-de-cristo-centralidad-de-cristo-descubrimos-a-maria-en-el-misterio-de-cristo-maria-como-fruto-mas-esplendido-de-la-redencion-mariologia-y-cristologia">María en el misterio de Cristo (centralidad de Cristo; descubrimos a María en el misterio de Cristo; María como fruto más espléndido de la redención; mariología y cristología)</a></li>
+<li><a href="#maria-en-el-misterio-del-espiritu-maria-en-la-manifestacion-del-espiritu-de-cristo-maria-transparencia-del-espiritu">María en el misterio del Espíritu (María en la manifestación del Espíritu de Cristo; María, transparencia del Espíritu)</a></li>
+</ul>
+</li>
+<li><a href="#3-maria-en-el-misterio-de-la-iglesia-miembro-de-la-iglesia-influencia-de-maria-en-la-iglesia-tipo-y-modelo-de-la-iglesia">3. María en el misterio de la Iglesia: miembro de la Iglesia; influencia de María en la Iglesia; tipo y modelo de la Iglesia</a><ul>
+<li><a href="#miembro-de-la-iglesia">Miembro de la Iglesia</a></li>
+<li><a href="#influencia-de-maria-en-la-iglesia">Influencia de María en la Iglesia</a></li>
+<li><a href="#tipo-y-modelo-de-la-iglesia">Tipo y modelo de la Iglesia</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="1-la-mariologia-del-concilio-vaticano-ii">1. La mariología del Concilio Vaticano II</h2>
@@ -251,11 +292,44 @@
 <li>«Imagen y principio» de la Iglesia consumada y «signo de esperanza cierta y de consuelo» para el pueblo en camino (LG 68).</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

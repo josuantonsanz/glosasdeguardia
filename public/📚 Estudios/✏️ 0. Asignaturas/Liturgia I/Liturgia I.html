@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Liturgia I</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -161,6 +172,69 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-que-es-la-liturgia">1. ¿Qué es la liturgia?</a><ul>
+<li><a href="#11-teologia-de-la-liturgia">1.1. Teología de la liturgia</a></li>
+<li><a href="#12-el-termino-liturgia">1.2. El término liturgia</a></li>
+<li><a href="#13-liturgico-y-no-liturgico">1.3. «Litúrgico» y «no litúrgico»</a></li>
+<li><a href="#14-desarrollo-historico-de-la-liturgia">1.4. Desarrollo histórico de la liturgia</a></li>
+<li><a href="#15-ritos-y-familias-liturgicas">1.5. Ritos y familias litúrgicas</a><ul>
+<li><a href="#rito-africano">Rito africano</a></li>
+<li><a href="#rito-ambrosiano">Rito ambrosiano</a></li>
+<li><a href="#rito-galicano">Rito galicano</a></li>
+<li><a href="#rito-de-irlanda">Rito de Irlanda</a></li>
+<li><a href="#rito-hispano-mozarabe">Rito hispano-mozárabe</a></li>
+<li><a href="#ritos-orientales">Ritos orientales</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-por-que-celebrar">2. ¿Por qué celebrar?</a></li>
+<li><a href="#3-quien-celebra">3. ¿Quién celebra?</a><ul>
+<li><a href="#31-la-iglesia-sujeto-de-la-accion-liturgica">3.1. La Iglesia, sujeto de la acción litúrgica</a></li>
+<li><a href="#32-la-asamblea-celebrante">3.2. La asamblea celebrante</a></li>
+<li><a href="#33-la-participacion-liturgica">3.3. La participación litúrgica</a></li>
+</ul>
+</li>
+<li><a href="#4-como-celebrar">4. ¿Cómo celebrar?</a><ul>
+<li><a href="#41-palabra-de-dios">4.1. Palabra de Dios</a></li>
+<li><a href="#42-plegaria-liturgica">4.2. Plegaria litúrgica</a></li>
+<li><a href="#43-simbolismo-liturgico">4.3. Simbolismo litúrgico</a></li>
+<li><a href="#44-canto-y-musica">4.4. Canto y música</a></li>
+</ul>
+</li>
+<li><a href="#5-donde-celebrar">5. ¿Dónde celebrar?</a><ul>
+<li><a href="#51-iglesia">5.1. Iglesia</a></li>
+<li><a href="#52-altar">5.2. Altar</a></li>
+<li><a href="#53-ambon">5.3. Ambón</a></li>
+<li><a href="#54-sede">5.4. Sede</a></li>
+<li><a href="#55-otros-lugares">5.5. Otros lugares</a></li>
+</ul>
+</li>
+<li><a href="#6-cuando-celebrar">6. ¿Cuándo celebrar?</a><ul>
+<li><a href="#61-domingo">6.1. Domingo</a></li>
+<li><a href="#62-pascua">6.2. Pascua</a></li>
+<li><a href="#63-cuaresma">6.3. Cuaresma</a></li>
+<li><a href="#64-navidad">6.4. Navidad</a></li>
+<li><a href="#65-adviento">6.5. Adviento</a></li>
+<li><a href="#66-celebraciones-del-senor">6.6. Celebraciones del Señor</a></li>
+<li><a href="#67-celebraciones-de-la-virgen-maria">6.7. Celebraciones de la Virgen María</a></li>
+<li><a href="#68-celebraciones-de-los-santos">6.8. Celebraciones de los santos</a></li>
+</ul>
+</li>
+<li><a href="#bibliografia-basica">Bibliografía básica</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Asignaturas.html">Teología</a>.</em></p>
 <h2 id="1-que-es-la-liturgia">1. ¿Qué es la liturgia?</h2>
@@ -269,11 +343,44 @@ Segunda separación, Iglesia ortodoxa (1054).</p>
 </ol>
 </div>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Asignaturas.html">Asignaturas</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

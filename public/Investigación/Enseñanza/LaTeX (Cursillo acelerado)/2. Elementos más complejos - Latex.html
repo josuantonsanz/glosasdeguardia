@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Elementos más complejos</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -130,6 +141,26 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#imagenes">Imágenes</a></li>
+<li><a href="#tablas">Tablas</a></li>
+<li><a href="#notas-a-pie-de-pagina">Notas a pie de página</a></li>
+<li><a href="#referencias-cruzadas">Referencias cruzadas</a><ul>
+<li><a href="#a-donde-ir-desde-aqui">A dónde ir desde aquí</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h1 id="imagenes">Imágenes</h1>
 <p>Para añadir imágenes en LaTeX, debes importar el paquete <code>graphicx</code> utilizando <code>\usepackage{graphicx}</code> en el preámbulo del documento. Asegúrate de que tu imagen esté en un formato compatible con LaTeX, como JPEG o PNG. Luego, para insertar la imagen en tu documento, colócala dentro del entorno <code>figure</code>. Utiliza el comando <code>\includegraphics[width=0.6\textwidth]{nombre_de_tu_imagen.png}</code> para insertar la imagen, asegurándote de reemplazar <code>"nombre_de_tu_imagen.png"</code> con el nombre y la ubicación de tu imagen. El ancho de la imagen se puede ajustar cambiando el valor de la opción <code>width</code> en <code>\includegraphics</code>. Además, puedes añadir una descripción a la imagen utilizando el comando <code>\caption{Descripción de la imagen}</code>. Al compilar el documento, LaTeX ubicará automáticamente la imagen en el lugar apropiado y la numerará. Asegúrate de que el archivo de imagen esté en la misma carpeta que tu archivo <code>.tex</code> o proporciona la ruta completa al archivo de imagen si se encuentra en otra ubicación. Así quedaría en conjunto:</p>
@@ -199,11 +230,56 @@ Para obtener más detalles, consulta la \hyperref[sec:intro]{introducción}.
 4. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/4. Idiomas - Latex.html">Idiomas (castellano, griego, hebreo y fonética)</a> 
 4. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">5. Canciones</a></p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">Canciones en LaTeX</a>
+            </li>
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/4. Idiomas - Latex.html">Idiomas en LaTeX</a>
+            </li>
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/1. Introducción - Latex.html">Introducción</a>
+            </li>
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/Material de trabajo.html">Material de trabajo</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">2. El método fenomenológico y su aplicación al estudio positivo del hecho religioso</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -135,6 +146,44 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#breve-introduccion-por-que-la-necesidad-de-un-nuevo-metodo">Breve introducción: ¿Por qué la necesidad de un nuevo método?</a></li>
+<li><a href="#1-devenir-historico-del-metodo">1. Devenir histórico del método</a><ul>
+<li><a href="#1-primer-proyecto-pierre-daniel-chantepie-1848-1920">1. Primer proyecto: Pierre Daniel Chantepie (1848-1920)</a></li>
+<li><a href="#2-nathan-soderblom-1866-1931">2. Nathan Söderblom (1866-1931)</a></li>
+<li><a href="#3-joachim-wach-1898-1955">3. Joachim Wach (1898-1955)</a></li>
+<li><a href="#4-gerardus-van-der-leeuw-1890-1950">4. Gerardus van der Leeuw (1890-1950)</a></li>
+<li><a href="#5-fenomenologia-alemana">5. Fenomenología alemana</a></li>
+<li><a href="#6-ambito-anglosajon-comparative-religion">6. Ámbito anglosajón («Comparative Religion»)</a></li>
+<li><a href="#7-mircea-eliade-1907-1986">7. Mircea Eliade (1907-1986)</a></li>
+<li><a href="#evolucion-historica">Evolución histórica</a></li>
+</ul>
+</li>
+<li><a href="#2-el-metodo-fenomenologico-elaboracion-sistematica">2. El método fenomenológico. Elaboración sistemática</a><ul>
+<li><a href="#descripcion-sistematica-del-metodo">Descripción sistemática del método</a></li>
+<li><a href="#pre-supuestos">Pre-supuestos</a></li>
+<li><a href="#momentos-principales">Momentos principales</a></li>
+<li><a href="#estatuto-metodologico">Estatuto metodológico</a></li>
+<li><a href="#resultados-significativos">Resultados significativos</a></li>
+</ul>
+</li>
+<li><a href="#conclusiones-de-la-primera-parte">Conclusiones de la Primera Parte</a><ul>
+<li><a href="#evolucion-historica-del-estudio-religioso">Evolución histórica del estudio religioso</a></li>
+<li><a href="#metodo-fenomenologico">Método fenomenológico</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>.</em></p>
@@ -519,11 +568,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">1. Las Iglesias orientales antiguas</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -100,6 +111,8 @@
         </div>
     </header>
 
+    
+
     <div class="prose">
         <p><em>Parte del curso <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>.</em></p>
 <p>Tanto el catolicismo como la ortodoxia tienen su origen en los tiempos de Jesús, y se consideran Iglesias fundadas por Cristo mismo y sus discípulos. Ahora bien, fuera de estas dos grandes ramas, en el Oriente, existen otras Iglesias que, teniendo también tradición apostólica –es decir, fundadas en tiempos de los apóstoles– se han mantenido independientes de los dos grandes bloques del cristianismo desde los primeros siglos. Estas Iglesias se pueden dividir en tres grupos, dependiendo del momento –en los primeros siglos– en el que se separaron de la tradición común al catolicismo y la ortodoxia.</p>
@@ -110,11 +123,44 @@
 <p>El tercer y último grupo lo conforman las Iglesias católicas orientales, llamadas a veces Iglesias unitas. En conjunto, son 23 Iglesias que funcionan de manera autónoma, pero que están unidas totalmente a la Iglesia católica. Así, reconocen la autoridad y la supremacía del papa, pero tienen sus propios ritos, leyes y tradiciones. Lo que las une con la Iglesia católica –además del reconocimiento del Papa– es el hecho de que se reconocen mutuamente el valor de los sacramentos, incluida la comunión. No hay que olvidar que, aun siendo católicas, no han perdido nada de su tradición oriental, y buena parte de su liturgia la comparten con otras Iglesias de su entorno.</p>
 <p>La mayoría de estas Iglesias, que se empezaron a unir a la Iglesia católica a partir del siglo XVI, pertenecían a alguno de los dos grupos anteriormente vistos. Es el caso de la Iglesia caldea católica que, como hemos visto, formaba parte de la Iglesia del Oriente. Hoy en día, las Iglesias católicas orientales cuentan con unos 18 millones de miembros.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Ecumenismo I/Historia del ecumenismo.html">Historia del ecumenismo</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Notas de clase</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -126,6 +137,35 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#semana-1">Semana 1</a><ul>
+<li><a href="#tabla-de-la-teologia-espiritual">Tabla de la Teología espiritual</a></li>
+<li><a href="#perfil-del-acompanante-espiritual">Perfil del acompañante espiritual</a></li>
+</ul>
+</li>
+<li><a href="#semana-2">Semana 2</a></li>
+<li><a href="#semana-3">Semana 3</a></li>
+<li><a href="#semana-4">Semana 4</a></li>
+<li><a href="#semana-5">Semana 5</a></li>
+<li><a href="#semana-6">Semana 6</a><ul>
+<li><a href="#notas-sobre-el-capitulo-6">Notas sobre el capítulo 6</a></li>
+</ul>
+</li>
+<li><a href="#semana-7">Semana 7</a></li>
+<li><a href="#semana-8">Semana 8</a></li>
+<li><a href="#semana-10">Semana 10</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Del libro «Introducción a la Teología Espiritual», de Charles André Bernard. Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Teología Espiritual/Teología Espiritual.html">Teología Espiritual</a>.</em></p>
@@ -410,11 +450,44 @@ La Teología Espiritual discierne la ortopatía (discernir sobre la relación co
 <li>Valoración</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Teología Espiritual/Teología Espiritual.html">Teología espiritual</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

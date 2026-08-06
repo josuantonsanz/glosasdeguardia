@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Gn 12–50: Ciclo patriarcal</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -126,6 +137,35 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#contexto-historico-y-redaccional-de-las-historias-patriarcales">Contexto histórico y redaccional de las historias patriarcales</a><ul>
+<li><a href="#contexto-historico-y-social">Contexto histórico y social</a></li>
+<li><a href="#durante-el-exilio">Durante el Exilio</a></li>
+<li><a href="#promesas-divinas-a-los-patriarcas">Promesas divinas a los Patriarcas</a></li>
+<li><a href="#superacion-de-la-crisis-teologica">Superación de la crisis teológica</a></li>
+<li><a href="#elaboracion-literaria-durante-el-destierro">Elaboración literaria durante el destierro</a></li>
+<li><a href="#significado-profundo-de-las-promesas">Significado profundo de las promesas</a></li>
+</ul>
+</li>
+<li><a href="#elementos-estructurantes-y-teologicos-en-el-ciclo-patriarcal">Elementos estructurantes y teológicos en el ciclo patriarcal</a><ul>
+<li><a href="#promesas-en-los-ciclos-de-abrahan-isaac-y-jacob">Promesas en los Ciclos de Abrahán, Isaac y Jacob</a></li>
+<li><a href="#el-heredero-de-la-promesa">El Heredero de la Promesa</a></li>
+<li><a href="#alianza">Alianza</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del <a href="../../../../../📚 Estudios/✏️ 0. Asignaturas/Pentateuco y libros históricos/Pentateuco y libros históricos.html">curso de Pentateuco</a>.</em> 
@@ -268,11 +308,44 @@
 </ol>
 </div>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../../📚 Estudios/✏️ 0. Asignaturas/Pentateuco y libros históricos/Pentateuco y libros históricos.html">Curso de Pentateuco</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

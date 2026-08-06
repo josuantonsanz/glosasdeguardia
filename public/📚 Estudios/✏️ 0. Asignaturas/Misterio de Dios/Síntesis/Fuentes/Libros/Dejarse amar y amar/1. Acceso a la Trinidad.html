@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">1. Acceso a la Trinidad</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -133,6 +144,38 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-la-fe-confesada-y-vivida">1. La fe confesada y vivida</a><ul>
+<li><a href="#11-la-plenitud-de-la-vida-trinitaria">1.1. La plenitud de la vida trinitaria</a></li>
+<li><a href="#12-la-plenitud-del-amor-trinitario">1.2. La plenitud del amor trinitario</a></li>
+</ul>
+</li>
+<li><a href="#2-que-es-la-experiencia-trinitaria">2. ¿Qué es la experiencia trinitaria?</a><ul>
+<li><a href="#21-el-desbordamiento-experiencial">2.1. El desbordamiento experiencial</a></li>
+<li><a href="#22-la-importancia-de-los-simbolos-y-del-lenguaje">2.2. La importancia de los símbolos y del lenguaje</a></li>
+<li><a href="#23-experiencia-y-fe">2.3. Experiencia y fe</a></li>
+<li><a href="#24-experiencia-y-alabanza">2.4. Experiencia y alabanza</a></li>
+<li><a href="#25-la-experiencia-de-la-trinidad-y-de-los-otros">2.5. La experiencia de la Trinidad y de los otros</a></li>
+</ul>
+</li>
+<li><a href="#3-la-experiencia-de-la-trinidad-y-la-comunicacion-mutua">3. La experiencia de la Trinidad y la comunicación mutua</a></li>
+<li><a href="#4-la-fe-trinitaria-de-la-iglesia">4. La fe trinitaria de la Iglesia</a></li>
+<li><a href="#5-a-traves-de-la-fe-movida-por-el-amor">5. A través de la fe, «movida por el amor»</a></li>
+<li><a href="#6-conocer-y-amar">6. Conocer y amar</a></li>
+<li><a href="#7-una-nueva-relacion-con-la-trinidad-que-nos-hace-bienaventurados">7. Una nueva relación con la Trinidad, que nos hace bienaventurados</a></li>
+<li><a href="#contrapunto-razones-para-la-fe">Contrapunto: Razones para la fe</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Resumen del libro <a href="../../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar.html">Dejarse amar y amar</a>.</em></p>
@@ -400,11 +443,48 @@ Padre, somos pecadores, únenos a tu Hijo, para actualizar hoy su amor,
 su entrega a Ti y a tu proyecto de amor. Que seamos transformados con el
 Espíritu por la fe.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Síntesis/Fuentes/Libros/Dejarse amar y amar.html">Dejarse amar y amar, síntesis</a>
+            </li>
+            
+            <li>
+                <a href="../../../../../../../📚 Estudios/✏️ 0. Asignaturas/Misterio de Dios/Misterio del Dios Trinitario.html">Misterio del Dios Trinitario</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

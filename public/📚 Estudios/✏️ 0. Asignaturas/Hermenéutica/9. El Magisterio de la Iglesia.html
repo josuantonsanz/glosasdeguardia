@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">9. El Magisterio de la Iglesia</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -100,6 +111,8 @@
         </div>
     </header>
 
+    
+
     <div class="prose">
         <p><em>Noveno y último tema del <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Hermenéutica/Hermenéutica.html">curso de hermenéutica</a>.</em></p>
 <p>La Iglesia condenó el racionalismo del siglo XIX y la exégesis católica siguió el método tradicional. León XIII, en la encíclica <em>Providentissimus Deus</em> (1893) subraya que un texto no se puede interpretar en contra de la Tradición, el consenso de los Padres o la analogía de la fe. Es importante que se sigan estudiando los textos difíciles. Se da la clásica definición de «inspiración»: El Espíritu Santo mueve a los autores, con influjo sobrenatural, y los asiste mientras escriben, para que conciban rectamente todo y solo lo que Él quiere, y lo quieran escribir fielmente con verdad infalible.  </p>
@@ -119,11 +132,44 @@
 -  DV 18 y 19, importantes para la crítica y hermenéutica de los evangelios. Se afirma su naturaleza keigmática y su historicidad. Contienen una relación de dichos y hechos de Jesús, vistos a la luz de la Resurrección y del Espíritu, sintetizados en relación con la situación de las iglesias.  </p>
 <p>DV trata los principios útiles para la exégesis, pero no habla de la «hermenéutica como lenguaje» (i. e., traducir el mensaje evangélico, de modo que sea comprensible para el hombre moderno). <em>Evangelii Nuntiandi</em> de Pablo VI (1975) y <em>Catechesi Tradendae</em> de Juan Pablo II (1979) responden a esta cuestión. Más que de «hermenéutica», se habla de «inculturación» y del lenguaje para culturas locales. EN 63: La evangelización tiene que tener en cuenta el pueblo al que se dirige, su lengua, símbolos y signos. Tiene que responde a las cuestiones que el pueblo le plantea. Pero no se puede desvirtuar el contenido, «bajo pretexto de traducirlo». No se puede sacrificar la realidad universal ni la unidad.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Hermenéutica/Hermenéutica.html">Sagrada Escritura - Hermenéutica</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">12. Dificultades y posibilidades de hablar de Dios en la postmodernidad</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -116,6 +127,24 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#el-discurso-sobre-dios-un-campo-minado-de-dificultades">El discurso sobre Dios, un campo minado de dificultades</a></li>
+<li><a href="#la-entronizacion-cultural-del-principio-inmanencia-y-del-sujeto-burgues">La entronización cultural del principio inmanencia y del sujeto burgués</a></li>
+<li><a href="#la-transferencia-de-lo-sagrado-y-los-idolos">La transferencia de lo sagrado y los ídolos</a></li>
+<li><a href="#pautas-y-criterios-metodologicos-para-conocer-nombrar-y-contar-a-dios-la-realidad-el-conocimiento-y-el-acceso-al-misterio-de-dios">Pautas y criterios metodológicos para conocer, nombrar y contar a Dios: la realidad, el conocimiento y el acceso al Misterio de Dios</a></li>
+<li><a href="#el-lenguaje-sobre-dios-posibilidad-limitaciones-y-caracteristicas">El lenguaje sobre Dios: posibilidad, limitaciones y características</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="el-discurso-sobre-dios-un-campo-minado-de-dificultades">El discurso sobre Dios, un campo minado de dificultades</h2>
 <p>Hablar de Dios constituye la tarea propia de la teología, porque Dios es la cuestión verdadera y unificante de la fe. El creyente, en rigor, cree en Dios; y la teología no es otra cosa que la fe que busca su propia inteligibilidad. Precisamente por eso el contexto contemporáneo convierte este discurso en un «campo minado». Decir «creo en Dios» ya no acontece en un horizonte cultural homogéneo, sino en una situación marcada por la increencia, la crítica de la religión, la sospecha frente a toda apelación a la trascendencia, la reducción metodológica de lo real a lo empírico y la frecuente indiferencia religiosa. El discurso sobre Dios no comparece hoy en un espacio neutral, sino en uno previamente tensionado por objeciones teóricas, resistencias prácticas y una profunda transformación cultural.</p>
@@ -164,11 +193,44 @@
 <p>En cuanto a sus características, el lenguaje sobre Dios es radicalmente humano, histórico y temporal. No disponemos de otra lengua que la humana para hablar de Dios; por eso nuestras palabras arrastran historicidad, cultura, metáforas y condicionamientos. Sin embargo, esto no las vuelve arbitrarias. Cuando se ajustan a la revelación, a la fe de la Iglesia y al recto uso de la razón, pueden decir verdad. En la tradición teológica, belleza, verdad y bondad funcionan aquí como referencias fundamentales. El discurso sobre Dios remite a aquello que en la realidad creada apunta hacia su fuente y plenitud. Pero incluso al afirmar a Dios como verdad, bondad y belleza, la teología debe recordar que Dios es siempre mucho más. Ninguna de estas perfecciones lo contiene; todas apuntan hacia Él sin abarcarlo.</p>
 <p>Por eso el lenguaje teológico no puede concluir en sí mismo. Si es auténtico, desemboca en adoración, oración, testimonio y forma de vida. El Dios del que se habla no es un tema neutro, sino el Dios vivo que interpela, juzga, salva y transforma. De ahí que la credibilidad última de la palabra sobre Dios no dependa sólo de su coherencia lógica, aunque la requiera, sino también de su transparencia existencial. La Iglesia hace visible a Dios Padre y a su Hijo encarnado por la continua renovación y purificación de su vida; y el creyente sólo habla rectamente de Dios cuando su palabra es sostenida por una fe viva, adulta, pensada y orante. En la postmodernidad, por tanto, hablar de Dios sigue siendo posible, pero sólo lo es plenamente como palabra humilde y verdadera, intelectualmente responsable, simbólicamente consciente, eclesialmente recibida y existencialmente acreditada.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

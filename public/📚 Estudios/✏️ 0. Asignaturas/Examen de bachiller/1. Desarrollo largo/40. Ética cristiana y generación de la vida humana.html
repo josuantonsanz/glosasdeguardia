@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">40. Ética cristiana y generación de la vida humana</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -123,6 +134,32 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#valoracion-de-la-problematica-que-encontramos-en-la-generacion-de-la-vida-humana-esterilidad-reproduccion-asistida-anticoncepcion-paternidad-maternidad-y-responsabilidad">Valoración de la problemática que encontramos en la generación de la vida humana: esterilidad, reproducción asistida, anticoncepción, paternidad-maternidad y responsabilidad</a><ul>
+<li><a href="#esterilidad-e-infertilidad-valoracion-etica-del-hecho-y-alternativas">Esterilidad e infertilidad: valoración ética del hecho y alternativas</a></li>
+<li><a href="#reproduccion-asistida-tipologias-y-criterios-morales-de-discernimiento">Reproducción asistida: tipologías y criterios morales de discernimiento</a></li>
+<li><a href="#anticoncepcion-nocion-juicio-moral-y-tipologias-cuestion-de-los-medios-abortivos">Anticoncepción: noción, juicio moral y tipologías; cuestión de los medios abortivos</a></li>
+<li><a href="#paternidad-maternidad-responsable-conciencia-recta-criterios-prudenciales-y-responsabilidad-moral">Paternidad-maternidad responsable: conciencia recta, criterios prudenciales y responsabilidad moral</a></li>
+</ul>
+</li>
+<li><a href="#la-eutanasia-addendum">La Eutanasia (Addendum)</a></li>
+<li><a href="#moral-cristiana">Moral cristiana</a><ul>
+<li><a href="#clases-de-justicia-moral-tradicional">Clases de justicia (moral tradicional)</a></li>
+<li><a href="#bien-comun-y-paz-social">Bien común y paz social</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="valoracion-de-la-problematica-que-encontramos-en-la-generacion-de-la-vida-humana-esterilidad-reproduccion-asistida-anticoncepcion-paternidad-maternidad-y-responsabilidad">Valoración de la problemática que encontramos en la generación de la vida humana: esterilidad, reproducción asistida, anticoncepción, paternidad-maternidad y responsabilidad</h2>
@@ -219,11 +256,44 @@
 <h3 id="bien-comun-y-paz-social">Bien común y paz social</h3>
 <p>El <strong>bien común</strong> es fruto del orden social, y la <strong>paz social</strong> es, a su vez, fruto del bien común. La paz social se alcanza con un justo equilibrio y con una justa armonía en las relaciones sociales. No son adecuados para sostenerla el neoliberalismo, el socialismo colectivista ni los totalitarismos, en la medida en que cada uno a su manera reduce o distorsiona la orientación al bien común.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

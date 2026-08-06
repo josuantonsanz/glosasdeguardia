@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">20. Jesús desde Dios: Jesús «Hijo de Dios»</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -120,6 +131,29 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-hijo-de-dios-segun-los-evangelios">1. «Hijo de Dios» según los Evangelios</a></li>
+<li><a href="#2-perspectivas-y-enfoques-del-tema">2. Perspectivas y enfoques del tema</a><ul>
+<li><a href="#la-sintesis-de-juan-pablo-ii">La síntesis de Juan Pablo II</a></li>
+</ul>
+</li>
+<li><a href="#3-la-pretension-de-alteridad-y-trascendencia">3. La pretensión de alteridad y trascendencia</a></li>
+<li><a href="#4-la-relacion-con-dios-como-expresion-del-misterio-personal-de-jesus">4. La relación con Dios como expresión del misterio personal de Jesús</a></li>
+<li><a href="#5-autodesignacion-de-jesus-como-hijo-de-dios">5. ¿Autodesignación de Jesús como Hijo de Dios?</a></li>
+<li><a href="#6-el-hijo-del-hombre-la-cristologia-implicita-prepascual">6. El «Hijo del hombre»: la cristología «implícita» prepascual</a></li>
+<li><a href="#7-la-praxis-del-reino-como-expresion-de-la-filiacion-en-jesus-y-en-los-creyentes">7. La praxis del Reino como expresión de la filiación en Jesús y en los creyentes</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <ul>
@@ -291,11 +325,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

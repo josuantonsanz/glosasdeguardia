@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">1. La cuestión moral o ética</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -145,6 +156,54 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#11-etimologia-ethos-y-mos">1.1. Etimología: ethos y mos</a><ul>
+<li><a href="#el-termino-ethos-y">El término «ethos» (ἦθος y ἔθος)</a></li>
+<li><a href="#el-termino-mos">El término «mos»</a></li>
+</ul>
+</li>
+<li><a href="#12-el-concepto-abstracto-de-moralidad">1.2. El concepto abstracto de moralidad</a><ul>
+<li><a href="#la-moralizacion-como-proceso">La moralización como proceso</a></li>
+</ul>
+</li>
+<li><a href="#13-el-sentido-preciso-de-la-pregunta-moral">1.3. El sentido preciso de la pregunta moral</a><ul>
+<li><a href="#las-costumbres-nivel-sociologico-y-la-pregunta-etica">Las «costumbres» (nivel sociológico) y la pregunta ética</a><ul>
+<li><a href="#a-conexion-necesaria-en-doble-sentido">A. Conexión necesaria, en doble sentido</a></li>
+<li><a href="#b-distincion-neta">B. Distinción neta</a></li>
+</ul>
+</li>
+<li><a href="#lo-licito-nivel-juridico-y-la-pregunta-etica">Lo «lícito» (nivel jurídico) y la pregunta ética</a><ul>
+<li><a href="#a-conexion-necesaria-funciones-de-la-pregunta-etica">A. Conexión necesaria: Funciones de la pregunta ética</a></li>
+<li><a href="#b-distincion-neta_1">B. Distinción neta</a></li>
+</ul>
+</li>
+<li><a href="#la-peculiaridad-de-la-pregunta-etica">La peculiaridad de la pregunta ética</a></li>
+</ul>
+</li>
+<li><a href="#14-condicionamientos-actuales-de-la-pregunta-etica">1.4. Condicionamientos actuales de la pregunta ética</a><ul>
+<li><a href="#la-hipotesis-de-la-desmoralizacion-el-falso-camino-de-la-patetica-moral">La hipótesis de la «desmoralización»: el falso camino de la «patética moral»</a></li>
+<li><a href="#la-hipotesis-del-cambio-el-camino-verdadero-de-la-estimativa-moral">La hipótesis del «cambio»: el camino verdadero de la «estimativa moral»</a></li>
+<li><a href="#la-hermeneutica-de-crisis">La hermenéutica de «crisis»</a></li>
+</ul>
+</li>
+<li><a href="#15-la-renovacion-del-concilio-vaticano-ii">1.5. La renovación del Concilio Vaticano II</a><ul>
+<li><a href="#precursores-de-la-renovacion-decada-de-los-50">Precursores de la renovación: década de los 50</a></li>
+<li><a href="#durante-el-desarrollo-del-concilio">Durante el desarrollo del Concilio</a></li>
+<li><a href="#resultado-final-del-concilio-vaticano-ii">Resultado final del Concilio Vaticano II</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>.</em></p>
@@ -354,11 +413,44 @@
 </ul>
 <p>Esta renovación supuso un cambio paradigmático en la teología moral católica, pasando de una moral de obligaciones y prohibiciones a una ética de la responsabilidad y el discernimiento personal en diálogo con la realidad contemporánea.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

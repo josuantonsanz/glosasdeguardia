@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">8. La revelación como promesa</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -119,6 +130,28 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#80-marco-sistematico-previo-addendum">8.0 Marco sistemático previo (addendum)</a></li>
+<li><a href="#81-cumplimiento-como-desvelacion-ocultamiento-como-autorrevelacion-y-palabra-de-dios">8.1. Cumplimiento como desvelación, ocultamiento como autorrevelación y Palabra de Dios</a></li>
+<li><a href="#82-la-revelacion-como-proceso-de-promesa-cumplimiento-en-el-at-y-su-cumplimiento-en-jesucristo">8.2. La revelación como proceso de promesa, cumplimiento en el AT y su cumplimiento en Jesucristo</a><ul>
+<li><a href="#821-la-revelacion-como-proceso-de-promesa-en-el-antiguo-testamento">8.2.1. La revelación como proceso de promesa en el Antiguo Testamento</a></li>
+<li><a href="#822-la-revelacion-como-cumplimiento-en-jesucristo-nuevo-testamento">8.2.2. La revelación como cumplimiento en Jesucristo (Nuevo Testamento)</a></li>
+</ul>
+</li>
+<li><a href="#83-la-revelacion-como-desvelacion-y-ocultamiento-como-revelado-o-apocalipsis">8.3. La revelación como desvelación y ocultamiento, como revelado o apocalipsis</a></li>
+<li><a href="#84-la-revelacion-como-autorrevelacion-hegeliana-y-palabra-de-dios-en-el-vaticano-ii">8.4. La revelación como autorrevelación hegeliana y Palabra de Dios en el Vaticano II</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h2 id="80-marco-sistematico-previo-addendum">8.0 Marco sistemático previo (addendum)</h2>
@@ -325,11 +358,44 @@
 <li><strong>Síntesis conciliar</strong>: Integra revelación, transmisión e interpretación en una sola economía viva, uniendo los modelos de «promesa-cumplimiento» y «desvelación-ocultamiento».</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

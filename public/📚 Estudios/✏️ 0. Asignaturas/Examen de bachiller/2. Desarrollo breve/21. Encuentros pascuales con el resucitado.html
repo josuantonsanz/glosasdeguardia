@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">21. Encuentros pascuales con el resucitado</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -124,6 +135,33 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#conexion-entre-muerte-y-resurreccion-addendum">Conexión entre muerte y Resurrección (Addendum)</a></li>
+<li><a href="#1-las-apariciones-un-nuevo-comienzo">1. Las «apariciones». ¿«Un nuevo comienzo»?</a></li>
+<li><a href="#2-el-dato-de-las-apariciones-como-normativo-para-la-fe">2. El dato de las «apariciones» como normativo para la fe</a></li>
+<li><a href="#3-las-formulas-de-fe-1-cor-15">3. Las fórmulas de fe (1 Cor 15)</a></li>
+<li><a href="#4-los-relatos-evangelicos-de-encuentros-pascuales-con-el-resucitado">4. Los relatos evangélicos de encuentros pascuales con el Resucitado</a></li>
+<li><a href="#5-lineas-de-fuerza-de-las-narraciones-de-apariciones">5. Líneas de fuerza de las narraciones de apariciones</a></li>
+<li><a href="#6-el-ver-al-resucitado-la-experiencia-de-pablo">6. El «ver» al Resucitado. La experiencia de Pablo</a></li>
+<li><a href="#7-las-presencias-del-viviente-en-la-iglesia-y-en-el-mundo">7. Las presencias del Viviente en la Iglesia y en el mundo</a></li>
+<li><a href="#8-aspecto-historico-teologico-fundamental-y-dogmatico-de-la-resurreccion-de-jesus">8. Aspecto histórico, teológico-fundamental y dogmático de la Resurrección de Jesús</a><ul>
+<li><a href="#81-valor-historico">8.1 Valor histórico</a></li>
+<li><a href="#82-valor-teologico-fundamental">8.2 Valor teológico-fundamental</a></li>
+<li><a href="#83-valor-teologico-dogmatico">8.3 Valor teológico-dogmático</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <h3 id="conexion-entre-muerte-y-resurreccion-addendum">Conexión entre muerte y Resurrección (Addendum)</h3>
@@ -326,11 +364,44 @@
 </li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

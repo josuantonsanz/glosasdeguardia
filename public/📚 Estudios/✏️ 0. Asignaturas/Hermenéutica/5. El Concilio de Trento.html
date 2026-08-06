@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">5. El Concilio de Trento</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -100,6 +111,8 @@
         </div>
     </header>
 
+    
+
     <div class="prose">
         <p><em>Quinto tema del <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Hermenéutica/Hermenéutica.html">curso de hermenéutica</a>.</em></p>
 <p>Busca quitar los errores y que se conserve en la Iglesia la pureza del Evangelio. Lo promulgó Cristo y mando predicarlo a sus Apóstoles a toda criatura. Es fuente de <em>toda saludable verdad y disciplina de costumbres</em>. Estas se contienen en la Escritura y en la Tradición, desde los apóstoles. Se veneran todos los libros del A. T. y N. T. —pues Dios es autor de ambos—, y las mismas tradiciones (de fe y costumbres), dadas por Cristo o por el Espíritu, y conservadas por <em>continua sucesión</em> en la Iglesia Católica. [<em>Se añade aquí el canon de los libros sagrados</em>]. Hay que aceptarlos todos, íntegramente, en la antigua edición vulgata latina, que es la única <em>auténtica</em>.<sup id="fnref:inline-1"><a class="footnote-ref" href="#fn:inline-1">1</a></sup>  </p>
@@ -119,11 +132,44 @@
 </ol>
 </div>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Hermenéutica/Hermenéutica.html">Sagrada Escritura - Hermenéutica</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

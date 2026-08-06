@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Idiomas en LaTeX</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -131,6 +142,27 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#espanol">Español</a></li>
+<li><a href="#griego">Griego</a></li>
+<li><a href="#hebreo">Hebreo</a><ul>
+<li><a href="#parrafos-completos-en-hebreo">Párrafos completos en hebreo</a></li>
+</ul>
+</li>
+<li><a href="#fonetica-y-transliteracion">Fonética y transliteración</a></li>
+<li><a href="#a-donde-ir-desde-aqui">A dónde ir desde aquí</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p>Aunque una vez que funciona es maravilloso, es un poco complicado configurar LaTeX para que funcione con varios idiomas (sobre todo si tienen distinta grafía o dirección). Para los siguientes pasos, se recomienda cambiar el compilador de <code>pdflatex</code> a <code>xelatex</code>. La clase de documento que usaremos será <code>memoir</code>.</p>
 <p>Para todos los casos, conviene usar un tipo de letra que tenga todos los caracteres españoles y griegos, así que vamos a usar <code>libertine</code>:</p>
@@ -202,11 +234,56 @@
 3. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/4. Idiomas - Latex.html">Idiomas (castellano, griego, hebreo y fonética)</a> (esta página)
 4. <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">5. Canciones</a></p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/5. Canciones.html">Canciones en LaTeX</a>
+            </li>
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/2. Elementos más complejos - Latex.html">Elementos más complejos</a>
+            </li>
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/1. Introducción - Latex.html">Introducción</a>
+            </li>
+            
+            <li>
+                <a href="../../../Investigación/Enseñanza/LaTeX (Cursillo acelerado)/Material de trabajo.html">Material de trabajo</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

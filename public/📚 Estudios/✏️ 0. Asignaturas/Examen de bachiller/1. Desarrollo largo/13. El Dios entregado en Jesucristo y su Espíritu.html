@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">13. El Dios entregado en Jesucristo y su Espíritu</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -120,6 +131,28 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#pautas-metodologicas">Pautas metodológicas</a></li>
+<li><a href="#la-experiencia-teologal-de-jesus">La experiencia teologal de Jesús</a></li>
+<li><a href="#la-paternidad-del-dios-del-reino">La paternidad del Dios del Reino</a></li>
+<li><a href="#jesus-el-hijo-del-dios-del-reino">Jesús, el Hijo del Dios del reino</a></li>
+<li><a href="#jesus-una-historia-de-vida-sobreabundante-en-el-espiritu">Jesús, una historia de vida sobreabundante en el Espíritu</a></li>
+<li><a href="#la-pascua-de-jesus-revelacion-definitiva-de-dios">La Pascua de Jesús revelación definitiva de Dios</a></li>
+<li><a href="#la-historia-del-dios-entregado-en-la-cruz-de-jesus">La historia del Dios entregado en la cruz de Jesús</a></li>
+<li><a href="#la-teologia-de-la-entrega-de-dios-a-la-humanidad">La teología de la entrega de Dios a la humanidad</a></li>
+<li><a href="#jesus-crucificado-vestigium-trinitatis">Jesús crucificado «vestigium trinitatis»</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="pautas-metodologicas">Pautas metodológicas</h2>
 <p>Toda teología cristiana queda vinculada de modo constitutivo al acontecimiento Jesucristo. El Dios en quien cree la fe cristiana no es un principio abstracto deducido filosóficamente, sino el Padre de Jesucristo; por ello, la teología no puede contentarse con una reflexión sobre la divinidad en general, sino que ha de pensar a Dios desde su autocomunicación histórica. La teología cristiana es inseparablemente cristológica, y la cristología, si no quiere volverse inadecuada, ha de abrirse a la perspectiva teológica y trinitaria en la que se inscriben la persona, la vida y la misión de Jesús. Hay, por tanto, una complementariedad recíproca entre cristología y teología, y ambas aparecen, además, en el horizonte de la soteriología: el Dios revelado en Jesucristo es el Dios «por nosotros y por nuestra salvación».</p>
@@ -192,11 +225,44 @@ Esta confesión de que Dios es amor exige una articulación trinitaria precisa. 
 <p>La reflexión de Von Balthasar profundiza este misterio con dos categorías decisivas. La <em>kénosis</em> no designa únicamente el vaciamiento histórico del Hijo en la encarnación, sino que apunta a algo que afecta a Dios mismo en su vida trinitaria: la entrega eterna del Padre al Hijo, del Hijo al Padre, constituye ya una forma de autovaciamiento amoroso que hace posible y fundamenta la kénosis histórica. La <em>diástasis</em>, por su parte, nombra la separación real que la cruz introduce entre Padre e Hijo: una separación que no es ruptura, sino la máxima expresión de la distinción personal dentro de la unidad divina. En este horizonte, Von Balthasar propone una distinción iluminadora: el Padre es <em>el Otro</em> —el origen, la fuente, el que da—, mientras que el Hijo es <em>el no-Otro</em> —el que recibe todo del Padre y por ello es su imagen perfecta, su igual—. Esta distinción plantea además una pregunta de hondo alcance soteriológico: si en Dios la alteridad es constitutiva, si el Padre tiene al Hijo como su Otro, ¿somos nosotros, los seres humanos, también "los otros" de Dios? ¿Es la criatura, en algún sentido analógico, el interlocutor hacia el que se orienta el amor trinitario desde la eternidad?</p>
 <p>Este dinamismo trinitario de la entrega y la distinción se expresa de manera más sistemática al contemplar las Tres Divinas Personas en su relación mutua. Cada una se abre libremente a las otras: ninguna está encerrada en sí misma ni domina a las demás. Ninguna persona divina es absorbida o dominada por las otras; cada una conserva su identidad propia precisamente en la relación. Y las tres se apoyan mutuamente en el <em>dejar ser</em> a la otra: no hay imposición, sino reconocimiento y espacio dado al otro. Este "dejar ser" no es pasividad ni indiferencia, sino la ley propia del amor de Dios: una comunicación de sí mismo al otro que no anula al otro, sino que lo afirma y lo constituye. La vida trinitaria es, en definitiva, la forma originaria del amor que luego se despliega en la creación, la encarnación y la redención: un amor que da sin retener, que distingue sin separar, y que une sin confundir.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

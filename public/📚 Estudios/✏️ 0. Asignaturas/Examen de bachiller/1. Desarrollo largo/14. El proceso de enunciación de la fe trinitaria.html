@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">14. El proceso de enunciación de la fe trinitaria e inicios de la doctrina trinitaria</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -119,6 +130,27 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#lineas-maestras-del-proceso-de-enunciacion">Líneas maestras del proceso de enunciación</a></li>
+<li><a href="#los-desplazamientos-y-perdidas-de-acentos-de-la-fe-neotestamentaria">Los desplazamientos y pérdidas de acentos de la fe neotestamentaria</a></li>
+<li><a href="#las-primeras-formulaciones-trinitarias">Las primeras formulaciones trinitarias</a></li>
+<li><a href="#fe-trinitaria-economia-trinitaria-y-teologia-trinitaria">Fe trinitaria, economía trinitaria y teología trinitaria</a></li>
+<li><a href="#el-desafio-del-dios-gnostico-justino-y-la-teologia-del-logos">El desafío del Dios gnóstico. Justino y la teología del Logos</a></li>
+<li><a href="#ireneo-de-lyon-la-teologia-de-las-dos-manos-de-dios">Ireneo de Lyon: la teología de las «dos manos» de Dios</a></li>
+<li><a href="#tertuliano-la-teologia-trinitaria-de-occidente">Tertuliano: la teología trinitaria de Occidente</a></li>
+<li><a href="#los-padres-capadocios-el-dinamismo-esencial-de-dios">Los Padres Capadocios: el dinamismo esencial de Dios</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="lineas-maestras-del-proceso-de-enunciacion">Líneas maestras del proceso de enunciación</h2>
 <p>El proceso de enunciación de la fe trinitaria no comienza con una especulación sobre la esencia divina, sino con la historia de la revelación. El punto de partida es el Dios de Israel, el Dios que se manifiesta en Éx 3,14 como el Dios vivo, libre, no manipulable, el Dios de los padres y de la historia. La revelación veterotestamentaria no presenta a una divinidad cósmica anónima ni a un principio neutral, sino al Dios que crea, llama, libera, acompaña, juzga y salva. Por eso, el itinerario que conduce a la confesión trinitaria arranca de una certeza decisiva: el Dios creador es el mismo Dios salvador. La historia de la salvación no es un añadido extrínseco al ser de Dios, sino su forma histórica de darse a conocer. En ese marco, la afirmación de que Dios es amor resulta decisiva: el Dios bíblico no puede ser pensado al margen de su iniciativa histórica y de su gratuidad salvífica.</p>
@@ -181,11 +213,44 @@
 <p>Aquí se abre paso lo que puede llamarse el dinamismo esencial de Dios. En la medida en que el ser divino es pensado desde la generación, la procesión, la comunión y la inseparabilidad del obrar, la esencia una de Dios deja de ser imaginada como estatismo y se entiende como vida plena. La tradición patrística desarrollará en esta línea la noción de <em>perijóresis</em>, después traducida al latín como circumincesión o circumincesio, para expresar la interpenetración y mutua inhesión de las personas divinas. Aunque la elaboración posterior dé al término mayor precisión, la base está ya en la intuición capadocia: unidad en la distinción y distinción en la unidad, sin división, sin confusión y sin yuxtaposición.</p>
 <p>Gracias a esta síntesis, la doctrina trinitaria alcanza una madurez decisiva. El Padre, el Hijo y el Espíritu Santo son un solo Dios; se distinguen por sus propiedades personales; actúan inseparablemente; la obra salvífica es una, aunque personalizadamente apropiable; la gloria rendida al Espíritu manifiesta su plena divinidad; y la realidad de Dios puede ser entendida como comunión viva y no como soledad absoluta. En los Padres Capadocios la fe de la Iglesia encuentra, así, una de sus expresiones más logradas: la confesión del Dios cristiano como misterio de unidad viva, comunión personal y dinamismo esencial.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

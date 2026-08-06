@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">43. Controversias cristológicas</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -116,6 +127,24 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#datos-del-problema-arrio-y-apolinar">Datos del problema: Arrio y Apolinar</a></li>
+<li><a href="#escuela-de-antioquia-y-escuela-de-alejandria-nestorio-cirilo-concilio-de-efeso">Escuela de Antioquía y Escuela de Alejandría: Nestorio, Cirilo, Concilio de Éfeso</a></li>
+<li><a href="#formula-de-la-union">Fórmula de la unión</a></li>
+<li><a href="#eutiques-latrocinio-de-efeso-concilio-de-calcedonia">Eutiques, Latrocinio de Éfeso, Concilio de Calcedonia</a></li>
+<li><a href="#simbolo-calcedonense">Símbolo calcedonense</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="datos-del-problema-arrio-y-apolinar">Datos del problema: Arrio y Apolinar</h2>
 <p>Las controversias cristológicas se articulan en torno a la dificultad de conciliar en Cristo las dos naturalezas, la humana y la divina, de modo que quede salvaguardada simultáneamente la realidad plena de ambas y la unidad del sujeto de la encarnación. En términos de problemática formal, se trata de responder con rigor a la cuestión «hasta qué punto es Dios y hombre», sin recaer ni en la negación (explícita o implícita) de la humanidad ni en la negación (explícita o implícita) de la divinidad, y sin resolver la unidad por simple yuxtaposición o por absorción. El clima de la controversia no fue exclusivamente doctrinal: quedó atravesado por rivalidades eclesiásticas —particularmente entre Alejandría y Constantinopla—, por tensiones políticas y por la precariedad de una terminología aún no estabilizada (con equívocos en torno a términos como phýsis, hypóstasis y prósopon).</p>
@@ -163,11 +192,44 @@
 <p>Finalmente, respecto de la validez permanente y relecturas actuales, se afirma que Calcedonia, al hablar de dos naturalezas, ofrece una estructura de unidad-dualidad que puede releerse en claves contemporáneas más unitarias. En el pensamiento trascendente actual se habla de «una naturaleza: el hombre», en la que hay dos momentos —inicial y terminal del dinamismo—, una dualidad y una correspondencia unidad-dualidad, aunque la dualidad quede pensada de forma más unitaria. Karl Rahner utiliza el término «portador absoluto de salvación»: la salvación se da en sentido pleno en este hombre Jesús, y en ello está incluido que sea hombre y Dios; su enfoque ve lo divino desde lo soteriológico. El Concilio Vaticano II aparece, en esta perspectiva, con una preocupación central: mostrar cómo en Jesús se esclarece el sentido de la existencia humana desde la revelación de Dios en Cristo. Se señalan tres grandes aportaciones de Cristo a lo humano: la revelación de lo que es la vocación humana, la realización ejemplar de esa revelación y el don que permite descubrirla y llevarla a cabo. Así, la definición calcedonense, aun con sus límites de abstracción, se mantiene como criterio dogmático normativo y como punto de partida para interpretaciones que busquen integrar de modo más existencial e histórico la confesión del único sujeto personal del Verbo encarnado en la plenitud de humanidad y divinidad.</p>
 <p>En suma, el «símbolo calcedonense» culmina un proceso conflictivo en el que la Iglesia, atravesando errores simétricos (separar o absorber), estabiliza una gramática dogmática: dos naturalezas reales y completas en la unidad de una sola persona/hipóstasis, con un lenguaje cuidadosamente delimitado por negaciones que impiden tanto la confusión como la división. Esta gramática define el terreno de juego de la cristología posterior, tanto en la clarificación de aspectos internos de la unión como en su traducción espiritual, soteriológica y antropológica.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

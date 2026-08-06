@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">7.1. Mediaciones objetivas</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -119,6 +130,28 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#1-estructura-de-las-hierofanias">1. Estructura de las hierofanías</a></li>
+<li><a href="#2-morfologia-de-las-hierofanias">2. Morfología de las hierofanías</a></li>
+<li><a href="#3-funciones-de-las-hierofanias">3. Funciones de las hierofanías</a><ul>
+<li><a href="#31-funciones">3.1. Funciones</a></li>
+<li><a href="#32-consecuencia-ambiguedad-de-la-encarnacion">3.2. Consecuencia: ambigüedad de la encarnación</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusión</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>.</em></p>
@@ -269,11 +302,44 @@
 <p>Las «mediaciones objetivas» articulan el vínculo entre Misterio trascendente y existencia humana concreta; su análisis exige considerar estructura (paradoja de la hierofanía, simbolismo), morfología (multiplicidad, variedad, historia) y función. Las hierofanías no son creaciones humanas puras ni simples objetivaciones de lo divino; están condicionadas históricamente y su reconocimiento depende de la relación previa del ser humano con el Misterio. La experiencia religiosa, como actitud, es fundamento de todas las mediaciones objetivas.</p>
 </details>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Fenomenología de la religión/Fenomenología de la religión.html">Fenomenología de la religión</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

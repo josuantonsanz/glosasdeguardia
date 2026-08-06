@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">Una moral para nuestro tiempo</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -138,6 +149,46 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#el-concilio-vaticano-ii">El Concilio Vaticano II</a></li>
+<li><a href="#ante-la-postmodernidad">Ante la postmodernidad</a></li>
+<li><a href="#moral-para-el-nuevo-milenio">Moral para el nuevo milenio</a><ul>
+<li><a href="#una-moral-que-escuche">Una moral que escuche</a></li>
+<li><a href="#una-moral-en-actitud-de-busqueda-sincera">Una moral en actitud de búsqueda sincera</a></li>
+<li><a href="#una-moral-que-acompane-a-las-personas-en-la-toma-de-decisiones">Una moral que acompañe a las personas en la toma de decisiones</a></li>
+<li><a href="#una-moral-reflexionada-desde-la-comunidad">Una moral reflexionada desde la comunidad</a></li>
+<li><a href="#una-moral-que-escuche-el-clamor-de-los-pobres">Una moral que escuche el clamor de los pobres</a></li>
+<li><a href="#una-moral-profetica">Una moral profética</a></li>
+<li><a href="#la-necesidad-de-establecer-una-moral-politica">La necesidad de establecer una moral política</a></li>
+<li><a href="#una-moral-centrada-en-el-corazon-humano">Una moral centrada en el corazón humano</a></li>
+<li><a href="#una-moral-que-respete-la-autonomia-humana-entendida-como-una-autonomia-relacional">Una moral que respete la autonomía humana, entendida como una autonomía relacional</a></li>
+<li><a href="#una-moral-que-intente-ser-mas-coherente">Una moral que intente ser más coherente</a></li>
+<li><a href="#una-moral-con-una-dimension-universal">Una moral con una dimensión universal</a></li>
+<li><a href="#una-moral-que-recupere-una-relacion-adecuada-con-nuestra-tierra">Una moral que recupere una relación adecuada con nuestra Tierra</a></li>
+</ul>
+</li>
+<li><a href="#la-moral-que-dialoga-una-dimension-universal">La moral que dialoga: una dimensión universal</a><ul>
+<li><a href="#fundamentos-y-origen">Fundamentos y origen</a></li>
+<li><a href="#caracteristicas-del-dialogo-autentico">Características del diálogo auténtico</a></li>
+<li><a href="#condiciones-sociales-necesarias">Condiciones sociales necesarias</a></li>
+<li><a href="#el-papel-de-la-comunidad-cristiana">El papel de la comunidad cristiana</a></li>
+<li><a href="#el-discernimiento-como-herramienta">El discernimiento como herramienta</a></li>
+<li><a href="#conclusion">Conclusión</a></li>
+</ul>
+</li>
+<li><a href="#epilogo">Epílogo</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p><em>Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>.</em></p>
 <p>Resumen del artículo «Una moral para nuestro tiempo», de Joan Carrera, S. J.</p>
@@ -186,11 +237,44 @@
 <h2 id="epilogo">Epílogo</h2>
 <p>La moral cristiana debe seguir el principio de "En lo fundamental, unidad; en la duda, libertad; en todo, caridad", creyendo en la presencia del Espíritu de Jesús de Nazaret y tolerando la diversidad en el amor y el diálogo sincero.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Tª Moral fundamental/Teología moral fundamental.html">Teología moral fundamental</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

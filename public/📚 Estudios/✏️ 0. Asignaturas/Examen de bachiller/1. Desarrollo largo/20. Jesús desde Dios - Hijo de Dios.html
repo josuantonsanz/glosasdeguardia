@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">20. Jesús desde Dios: Jesús «Hijo de Dios»</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -121,6 +132,29 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-hijo-de-dios-segun-los-evangelios">1. «Hijo de Dios» según los Evangelios</a></li>
+<li><a href="#2-perspectivas-y-enfoques-del-tema">2. Perspectivas y enfoques del tema</a><ul>
+<li><a href="#la-sintesis-de-juan-pablo-ii">La síntesis de Juan Pablo II</a></li>
+</ul>
+</li>
+<li><a href="#3-la-pretension-de-alteridad-y-trascendencia">3. La pretensión de alteridad y trascendencia</a></li>
+<li><a href="#4-la-relacion-con-dios-como-expresion-del-misterio-personal-de-jesus">4. La relación con Dios como expresión del misterio personal de Jesús</a></li>
+<li><a href="#5-autodesignacion-de-jesus-como-hijo-de-dios">5. ¿Autodesignación de Jesús como Hijo de Dios?</a></li>
+<li><a href="#6-el-hijo-del-hombre-la-cristologia-implicita-prepascual">6. El «Hijo del hombre»: la cristología «implícita» prepascual</a></li>
+<li><a href="#7-la-praxis-del-reino-como-expresion-de-la-filiacion-en-jesus-y-en-los-creyentes">7. La praxis del Reino como expresión de la filiación en Jesús y en los creyentes</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <p>La reflexión «Jesús desde Dios» concentra el problema cristológico en el eje de la relación singular de Jesús con Dios, relación que emerge histórica y narrativamente como pretensión de trascendencia, y que la fe pascual confiesa como filiación divina. El tema no se reduce al origen divino de Jesús en cuanto dato aislable, sino que atiende al misterio de su persona tal como se transparenta en su praxis, en su palabra y en su modo de estar «vueltamente» orientado al Padre; todo ello bajo el impacto decisivo de la muerte y la resurrección como acontecimiento teológico. En este horizonte se comprenden tanto la cristología implícita (prepascual) como la cristología explícita (postpascual), y la unidad y universalidad de la acción salvífica de Jesucristo.</p>
 <h2 id="1-hijo-de-dios-segun-los-evangelios">1. «Hijo de Dios» según los Evangelios</h2>
@@ -173,11 +207,44 @@
 <p>Desde la tradición joánica, el acceso a la filiación se formula como acogida del Enviado: «A los que acogen a Jesús, como Hijo y enviado, Dios les da el poder de hacerse hijos de Dios, si creen en su nombre» (Jn 1,12). Y la finalidad salvífica se enuncia como vida comunicada por el Hijo: «Dios envió a su Hijo único para que vivamos por medio de él» (1 Jn 4,9). En esta perspectiva, el «test» de la filiación es el amor a los hermanos: la comunión fraterna se convierte en verificación existencial de la filiación recibida.</p>
 <p>Finalmente, ser llamados a ser hijos del Padre se traduce en praxis concreta conforme al ser de Dios. Las bienaventuranzas marcan el perfil: «Dichosos los que trabajan por la paz…» y «Dichosos los que prestan ayuda…»; ser «hijos» implica un talante y una praxis de misericordia que corresponda con el mismo ser de Dios. En Mt 5,7 está en juego un talante eclesial y social: misericordia, comprensión y compasión. Se evocan, como referencias, la parábola del siervo sin entrañas, la parábola del samaritano, y, en general, la praxis de Jesús como compasión por las multitudes y acción a favor del hombre. La bienaventuranza de los agentes de paz no se entiende como adhesión a quienes «están a bien con todos» o imponen la paz, sino como disponibilidad a ser instrumentos de reconciliación que posibilitan diálogo, encuentro y comunión. Jesús aparece, así, como «evangelio de la paz», hombre conflictivo y «nuestra paz», en cuanto que reconcilia en una sociedad que margina; de ahí que la comunidad de los hijos se comprenda como fraternidad reconciliada, fundada en la filiación revelada y comunicada por el Hijo.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

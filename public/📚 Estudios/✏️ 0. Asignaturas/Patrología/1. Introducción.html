@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">1. Introducción</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -117,6 +128,25 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#1-los-conceptos-de-padre-de-la-iglesia-doctor-de-la-iglesia-y-escritor-eclesiastico">1. Los conceptos de «Padre de la Iglesia», «Doctor de la Iglesia» y «escritor eclesiástico»</a></li>
+<li><a href="#2-los-padres-y-la-tradicion-de-la-iglesia">2. Los Padres y la Tradición de la Iglesia</a></li>
+<li><a href="#3-historia-de-la-patrologia">3. Historia de la Patrología</a></li>
+<li><a href="#4-patrologia-patristica-y-literatura-cristiana-antigua">4. Patrología, Patrística y Literatura Cristiana Antigua</a></li>
+<li><a href="#5-principales-ediciones-criticas-de-textos-patristicos">5. Principales ediciones críticas de textos patrísticos</a></li>
+<li><a href="#6-traducciones-al-castellano-catalan-y-euskera">6. Traducciones al castellano, catalán y euskera</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="1-los-conceptos-de-padre-de-la-iglesia-doctor-de-la-iglesia-y-escritor-eclesiastico">1. Los conceptos de «Padre de la Iglesia», «Doctor de la Iglesia» y «escritor eclesiástico»</h2>
 <p>Padres de la Iglesia:</p>
@@ -153,11 +183,44 @@
 <h2 id="5-principales-ediciones-criticas-de-textos-patristicos">5. Principales ediciones críticas de textos patrísticos</h2>
 <h2 id="6-traducciones-al-castellano-catalan-y-euskera">6. Traducciones al castellano, catalán y euskera</h2>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Patrología/Patrología.html">Introducción a los Santos Padres</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

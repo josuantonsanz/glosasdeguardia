@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">2. El objeto de la Teología Espiritual</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -129,6 +140,38 @@
             </div>
         </div>
     </header>
+
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#21-la-nocion-de-la-experiencia">2.1. La noción de la experiencia</a></li>
+<li><a href="#22-la-experiencia-religiosa">2.2. La experiencia religiosa</a><ul>
+<li><a href="#221-valoracion-historica">2.2.1. Valoración histórica</a></li>
+<li><a href="#222-el-problema-critico">2.2.2. El problema crítico</a></li>
+<li><a href="#223-la-percepcion-espiritual">2.2.3 La percepción espiritual</a></li>
+</ul>
+</li>
+<li><a href="#23-la-experiencia-cristiana">2.3. La experiencia cristiana</a><ul>
+<li><a href="#231-el-fundamento-propio">2.3.1. El fundamento propio</a></li>
+<li><a href="#232-las-estructuras-de-la-experiencia-cristiana">2.3.2 Las estructuras de la experiencia cristiana</a></li>
+</ul>
+</li>
+<li><a href="#24-oracion-y-vida-mistica">2.4. Oración y vida mística</a><ul>
+<li><a href="#241-papel-de-la-oracion-en-la-experiencia-espiritual">2.4.1 Papel de la oración en la experiencia espiritual</a></li>
+<li><a href="#242-importancia-de-la-mistica">2.4.2 Importancia de la mística</a></li>
+</ul>
+</li>
+<li><a href="#25-la-conciencia-espiritual">2.5. La conciencia espiritual</a></li>
+<li><a href="#conclusion">Conclusión</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
 
     <div class="prose">
         <p><em>Del libro «Introducción a la Teología Espiritual», de Charles André Bernard. Parte del curso de <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Teología Espiritual/Teología Espiritual.html">Teología Espiritual</a>.</em></p>
@@ -440,11 +483,44 @@
 <li>Claridad de la originalidad, comparando la TE con otras disciplinas teológicas.</li>
 </ul>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../📚 Estudios/✏️ 0. Asignaturas/Teología Espiritual/Teología Espiritual.html">Teología espiritual</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

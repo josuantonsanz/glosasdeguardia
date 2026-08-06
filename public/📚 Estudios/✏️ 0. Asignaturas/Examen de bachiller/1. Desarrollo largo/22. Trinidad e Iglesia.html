@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">22. Trinidad e Iglesia</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -123,6 +134,31 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#el-misterio-trinitario-de-dios-como-origen-y-paradigma-de-la-iglesia-gs-40">El misterio trinitario de Dios como origen y paradigma de la Iglesia (GS 40)</a></li>
+<li><a href="#1-el-enfoque-trinitario-y-el-equilibrio-de-la-eclesiologia">1. El enfoque trinitario y el equilibrio de la Eclesiología</a></li>
+<li><a href="#2-dios-como-vida-compartida-trinidad-y-comunion-eclesial">2. Dios como Vida «compartida» (Trinidad y Comunión eclesial)</a></li>
+<li><a href="#3-dios-como-vida-comunicada-trinidad-y-mision-eclesial">3. Dios como Vida «comunicada» (Trinidad y Misión eclesial)</a></li>
+<li><a href="#4-subrayados-esenciales-sobre-la-mision-de-la-iglesia-a-la-luz-de-ad-gentes-25-ag-25">4. Subrayados esenciales sobre la misión de la Iglesia a la luz de Ad gentes 2–5 (AG 2–5)</a><ul>
+<li><a href="#41-fundamento-mision-e-iglesia-desde-las-misiones-trinitarias">4.1. Fundamento: misión e Iglesia desde las misiones trinitarias</a></li>
+<li><a href="#42-ag-2-el-designio-del-padre">4.2. AG 2: el designio del Padre</a></li>
+<li><a href="#43-ag-3-la-mision-del-hijo">4.3. AG 3: la misión del Hijo</a></li>
+<li><a href="#44-ag-4-la-mision-del-espiritu-santo">4.4. AG 4: la misión del Espíritu Santo</a></li>
+<li><a href="#45-ag-5-la-iglesia-enviada-por-cristo">4.5. AG 5: la Iglesia enviada por Cristo</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="el-misterio-trinitario-de-dios-como-origen-y-paradigma-de-la-iglesia-gs-40">El misterio trinitario de Dios como origen y paradigma de la Iglesia (GS 40)</h2>
 <p>La comprensión teológica de la Iglesia queda estructuralmente determinada por su procedencia trinitaria. La fórmula conciliar «nacida del amor del Padre, fundada en el tiempo por Cristo Redentor, reunida en el Espíritu Santo» (GS 40) no funciona como mera expresión devocional, sino como principio de inteligibilidad: el origen (el amor fontal del Padre), la constitución histórica (la obra redentora del Hijo en el tiempo) y la forma vital interna (la reunión/animación en el Espíritu) no son tres explicaciones parciales yuxtapuestas, sino el despliegue de un único misterio de Dios que, al comunicarse, genera un pueblo nuevo y una forma histórica de comunión y de misión. En esa perspectiva, la Iglesia aparece como el nuevo pueblo convocado por la iniciativa amorosa del Padre, configurado en el tiempo por el acontecimiento de Cristo y sostenido como comunión viviente por el Espíritu; y, por lo mismo, como realidad teologal inserta en la historia humana, en diálogo con el mundo, sin absolutizar su propia provisionalidad histórica y orientada a la plenitud escatológica.</p>
@@ -173,11 +209,44 @@
 <p>Lo pospascual introduce la misión como obediencia, pero no externa: la vida que infunde Cristo en sus miembros ha de comunicarse. De ahí que la misión se defina por dos causas: el mandato de Cristo y las dinámicas internas operadas por el Espíritu. Sus destinatarios son todos los hombres; y sus expresiones incluyen el ejemplo de vida, la predicación, los sacramentos como medios de gracia. Se añade un dato de contexto: el pluralismo religioso y la cuestión de los medios de salvación, que obligan a articular presencia, testimonio, anuncio explícito y catequesis, sin reducir la misión a un solo registro. El objetivo es que la Iglesia se haga presente en todo espacio humano; y el talante de su misión se describe con categorías cristológicas: kénosis, diaconía, entrega bajo el signo de la cruz.</p>
 <p>Finalmente, se recogen posibilidades y modalidades: la finalidad es la evangelización; se prolonga según las circunstancias de cada pueblo o cultura; <em>Ad gentes</em> funciona desde una socioantropología, evitando comprender la misión como simple implantación de la Iglesia desde un eclesiocentrismo. La Iglesia no es fin de sí misma, sino ser «de» y «para» Cristo, al servicio del Reino de Dios. Como pueblo mesiánico, tiene como tarea dilatar el Reino hasta el fin de los tiempos. El Reino, como concreción histórica, se articula en opciones y preferencias (se menciona la preferencia por los pobres) para comprender mejor la verdad revelada, interpretando los signos de los tiempos. La Iglesia vive en un ámbito local y universal: existen nuevos desafíos y prioridades discernibles, entre las que se enumeran la defensa de la vida, los derechos humanos, la solidaridad y la justicia, la cultura de la paz y la evangelización cultural en reciprocidad con las culturas.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>

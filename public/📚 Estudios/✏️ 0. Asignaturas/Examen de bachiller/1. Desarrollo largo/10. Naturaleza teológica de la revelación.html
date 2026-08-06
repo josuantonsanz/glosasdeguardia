@@ -38,6 +38,17 @@
 </head>
 
 <body>
+    <!-- Mobile-only top bar: site name links to the homepage and sticks to the top -->
+    <header class="mobile-topbar" id="top">
+        <nav>
+            <a href="../../../../index.html" class="home-link" aria-label="Glosas de guardia — Ir al inicio">
+                <span class="logo-text">Glosas de guardia</span>
+                <span class="logo-mark" aria-hidden="true">G</span>
+            </a>
+            <a href="#top" class="note-title">10. Naturaleza teológica de la revelación según «Dei Verbum»</a>
+        </nav>
+    </header>
+
     <div class="layout container-fluid">
 
         <!-- Sidebar: Table of Contents -->
@@ -117,6 +128,25 @@
         </div>
     </header>
 
+    
+    <details class="mobile-toc">
+        <summary>Contenido</summary>
+        <nav class="toc-nav">
+            <div class="toc">
+<ul>
+<li><a href="#naturaleza-de-la-revelacion">Naturaleza de la revelación</a></li>
+<li><a href="#la-transmision-de-la-revelacion-el-debate-sobre-la-existencia-de-una-o-dos-fuentes-y-sobre-la-tradicion">La transmisión de la revelación: el debate sobre la existencia de una o dos fuentes y sobre la tradición</a></li>
+<li><a href="#inspiracion-hermeneutica-e-inerrancia">Inspiración, hermenéutica e inerrancia</a></li>
+<li><a href="#el-valor-del-antiguo-testamento">El valor del Antiguo Testamento</a></li>
+<li><a href="#el-nuevo-testamento">El Nuevo Testamento</a></li>
+<li><a href="#la-sagrada-escritura-en-la-vida-de-la-iglesia">La Sagrada Escritura en la vida de la Iglesia</a></li>
+</ul>
+</div>
+
+        </nav>
+    </details>
+    
+
     <div class="prose">
         <h2 id="naturaleza-de-la-revelacion">Naturaleza de la revelación</h2>
 <p>El título de la Constitución <em>Dei Verbum</em> explicita su núcleo: el Dios viviente ha hablado a la humanidad (cap. I), y esa Palabra divina—dirigida «una vez para siempre»—permanece viva y actual en la Iglesia a través de los siglos en la Tradición y en la Escritura (cap. II), dominando la unidad de ambos Testamentos (caps. IV y V) y configurando la vida eclesial (cap. VI). En su presentación inicial, la Constitución se sitúa en continuidad con la enseñanza de Trento y del Vaticano I (DV 1), pero releyendo esas mismas enseñanzas en un registro expresivo más trinitario e histórico: la revelación no se concibe primariamente como un depósito de proposiciones abstractas, sino como iniciativa personal de Dios que, en su Palabra, se comunica a sí mismo y conduce al hombre a la comunión salvífica.</p>
@@ -153,11 +183,44 @@
 <p>A la traducción se añade la interpretación constante, entendida como actividad de la Iglesia en su esfuerzo por comprender cada vez más la Escritura. La interpretación pretérita ilumina la nueva comprensión, y se reconoce un valor especial a las interpretaciones de los Padres de la Iglesia y a la liturgia, en las que la Palabra aparece como viva y operativa en la comunidad. En el presente, exégetas y teólogos realizan su tarea con técnicas propias, pero bajo la vigilancia del Magisterio, de modo que el servicio científico no se disocie de la comunión eclesial ni de la finalidad salvífica del texto.</p>
 <p>La relación entre Escritura y teología queda formulada con exigencia programática: la interpretación de la Escritura debe informar toda la teología; el misterio de la Palabra obtiene de la Escritura su alimento y eficacia. En consecuencia, se recomienda la lectura asidua de la Escritura, no sólo en el estudio y en la predicación, sino para todos los fieles y de modo especial para religiosos. Dicha lectura puede realizarse en la liturgia, en privado y por otros medios, pero ha de unirse a la oración, pues la Escritura no se entiende como mero objeto de análisis: «no hay oración sin Escritura», en cuanto la Palabra alimenta el diálogo teologal. De aquí se desprende una tarea pastoral específica: corresponde a los obispos instruir al pueblo en el uso de la Escritura, procurar traducciones y promover su difusión. Se concluye con una convicción de alcance espiritual y eclesial: con la lectura y el estudio de la Palabra de Dios la Iglesia recibirá «un nuevo impulso de vida espiritual» (DV 26), porque la Palabra, en cuanto transmitida, interpretada y celebrada, permanece viva y vivificante en la comunidad creyente.</p>
     </div>
+
+    
+    <details class="mobile-backlinks">
+        <summary>Enlazado desde</summary>
+        <ul class="backlinks-list">
+            
+            <li>
+                <a href="../../../../📚 Estudios/✏️ 0. Asignaturas/Examen de bachiller/Examen de Bachiller.html">Examen de Bachiller</a>
+            </li>
+            
+        </ul>
+    </details>
+    
 </article>
 
         </main>
 
     </div>
+
+    <script>
+        // Mobile top bar: once the note title scrolls past, compact the bar —
+        // the full "Glosas de guardia" gives way to a small "G" mark, and the
+        // note title appears on the left, linking back to the top of the page.
+        (function () {
+            var topbar = document.querySelector('.mobile-topbar');
+            if (!topbar) return;
+            var noteHeader = document.querySelector('.note-header');
+            var update = function () {
+                var pastTitle = noteHeader
+                    ? noteHeader.getBoundingClientRect().bottom < 60
+                    : window.scrollY > 10;
+                topbar.classList.toggle('scrolled', pastTitle);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+    </script>
 </body>
 
 </html>
