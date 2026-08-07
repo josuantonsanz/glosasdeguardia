@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Favicon: paper rounded square, black serif G, orange annotation underline -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Paper background (Flexoki paper) with subtle edge -->
+  <rect x="2" y="2" width="60" height="60" rx="13" fill="#FFFCF0" stroke="#E6E4D9" stroke-width="1.5"/>
+  <!-- Serif G in Flexoki black -->
+  <text x="32" y="46" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700" fill="#100F0F">G</text>
+  <!-- Orange annotation underline (glosas), Flexoki orange-500 -->
+  <path d="M 20 52 Q 32 48 44 52" fill="none" stroke="#CB6120" stroke-width="4" stroke-linecap="round"/>
+</svg>

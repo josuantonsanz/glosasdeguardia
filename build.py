@@ -422,6 +422,13 @@ def find_image(img_name):
                 return p.relative_to(CONTENT_DIR)
     return None
 
+def copy_favicons():
+    """Copies the favicon assets from templates/ to the public/ root."""
+    for name in ("favicon.svg", "favicon-32.png", "favicon-180.png", "favicon.ico"):
+        src = Path(TEMPLATE_DIR) / name
+        if src.exists():
+            shutil.copy2(src, Path(OUTPUT_DIR) / name)
+
 def minify_css():
     """Reads templates/style.css, minifies it, and saves to public/style.min.css"""
     css_path = Path(TEMPLATE_DIR) / "style.css"
@@ -744,6 +751,8 @@ def build_site():
     # Process assets
     print("Minifying and copying CSS...")
     minify_css()
+    print("Copying favicons...")
+    copy_favicons()
 
 if __name__ == "__main__":
     start_time = time.time()

@@ -42,7 +42,7 @@ The build process (`uv run python build.py`) follows these steps:
     - **File Writing**: Saves the output HTML in the `public/` directory, recreating the exact sub-folder structure of the original note.
 6. **Index Generation**: Renders `index.html` showcasing all compiled notes.
 7. **Sitemap Generation**: Renders `sitemap.xml` with one `<url>` per unique note. `<loc>` values are absolute and percent-encoded (spaces, `&`, parentheses, accents, and emoji are all valid in the output), and `<lastmod>` is derived from `updated`/`edited`, falling back to `created`/`planted`.
-8. **Asset Pipeline**: Reads `templates/style.css`, minifies it, and saves it to `public/style.min.css`.
+8. **Asset Pipeline**: Reads `templates/style.css`, minifies it, and saves it to `public/style.min.css`, and copies the favicon set (`favicon.svg`, `favicon-32.png`, `favicon-180.png`, `favicon.ico`) to the output root.
 
 ## Automated Publishing Pipeline (`publish.py` & `Publicar_Web.bat`)
 
