@@ -30,7 +30,7 @@ The project is a custom Static Site Generator (SSG) built in Python. It takes a 
 
 The build process (`uv run python build.py`) follows these steps:
 1. **Directory Setup**: Cleans and recreates the `public/` directory.
-2. **Note Scanning**: Recursively scans `content/` for `.md` files that have `dg-publish: true` in their YAML frontmatter.
+2. **Note Scanning**: Recursively scans `content/` for `.md` files that have `dg-publish: true` in their YAML frontmatter. Notes whose output URL collides with another note (e.g. a stray `content/index.md` vs. the `dg-home` note, which both map to `index.html`) are deduplicated, with the home note winning.
 3. **Link Mapping**: Creates a dictionary mapping note names, filenames, and aliases to their future relative URLs, preserving the nested folder structure.
 4. **Vault Dictionary**: Pre-loads all note contents into memory for transclusion processing.
 5. **Content Processing** (per note):
@@ -41,7 +41,8 @@ The build process (`uv run python build.py`) follows these steps:
     - **Jinja Rendering**: Injects the HTML, TOC, and metadata into the `note.html` template. Let the Jinja template resolve relative paths using a dynamically calculated `root_path`.
     - **File Writing**: Saves the output HTML in the `public/` directory, recreating the exact sub-folder structure of the original note.
 6. **Index Generation**: Renders `index.html` showcasing all compiled notes.
-7. **Asset Pipeline**: Reads `templates/style.css`, minifies it, and saves it to `public/style.min.css`.
+7. **Sitemap Generation**: Renders `sitemap.xml` with one `<url>` per unique note. `<loc>` values are absolute and percent-encoded (spaces, `&`, parentheses, accents, and emoji are all valid in the output), and `<lastmod>` is derived from `updated`/`edited`, falling back to `created`/`planted`.
+8. **Asset Pipeline**: Reads `templates/style.css`, minifies it, and saves it to `public/style.min.css`.
 
 ## Automated Publishing Pipeline (`publish.py` & `Publicar_Web.bat`)
 

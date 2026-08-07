@@ -7,10 +7,9 @@
     </url>
     {% for note in notes %}
     <url>
-        <loc>{{ site_url }}/{{ note.url }}</loc>
-        {% if note.date %}
-        <!-- Basic assumption that date is somewhat formatted -->
-        <lastmod>{{ note.date }}</lastmod>
+        <loc>{{ note.loc }}</loc>
+        {% if note.lastmod %}
+        <lastmod>{{ note.lastmod }}</lastmod>
         {% endif %}
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
