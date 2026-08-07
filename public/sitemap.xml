@@ -261,7 +261,16 @@
     <url>
         <loc>https://glosasdeguardia.es/Proyectos/Tips%20%26%20Tricks/C%C3%B3mo%20montar%20un%20jard%C3%ADn%20digital%20como%20este.html</loc>
         
-        <lastmod>2026-02-26</lastmod>
+        <lastmod>2026-08-07</lastmod>
+        
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://glosasdeguardia.es/Proyectos/Tips%20%26%20Tricks/Instalaci%C3%B3n%20de%20npm.html</loc>
+        
+        <lastmod>2026-08-07</lastmod>
         
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -297,7 +306,7 @@
     <url>
         <loc>https://glosasdeguardia.es/Proyectos/Tips%20%26%20Tricks/Tips%20%26%20Tricks.html</loc>
         
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-07</lastmod>
         
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -361,6 +370,15 @@
         <loc>https://glosasdeguardia.es/%F0%9F%8F%A0%20Personal/%F0%9F%8E%AC%20Pel%C3%ADculas%20y%20series/Pel%C3%ADculas/Ciudadano%20Kane.html</loc>
         
         <lastmod>2023-10-10</lastmod>
+        
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://glosasdeguardia.es/%F0%9F%8F%A0%20Personal/%F0%9F%92%A1%20Ideas%20y%20projectos/La%20soluci%C3%B3n%20a%20la%20memoria/Digital%20garden.html</loc>
+        
+        <lastmod>2026-08-07</lastmod>
         
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
