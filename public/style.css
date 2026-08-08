@@ -137,24 +137,6 @@
   --font-serif: 'Lora', Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #100F0F;
-    --bg-2: #1C1B1A;
-    --ui: #282726;
-    --ui-2: #343331;
-    --ui-3: #403E3C;
-    --tx-3: #575653;
-    --tx-2: #878580;
-    --tx: #CECDC3;
-    --re-base: #D14D41;
-    --bl-base: #4385BE;
-    --gr-base: #879A39;
-    --ye-base: #E0B32D;
-    --pu-base: #8B7EC8;
-  }
-}
-
 /* Reset & Scaffolding */
 * {
   box-sizing: border-box;
