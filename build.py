@@ -1,6 +1,8 @@
 import os
 import re
 import shutil
+import html
+from html.parser import HTMLParser
 import frontmatter
 import markdown
 from jinja2 import Environment, FileSystemLoader
@@ -190,6 +192,22 @@ def get_relative_time(date_val):
     except Exception:
         return ""
 
+def format_relative_phrase(action, relative_time):
+    """
+    Builds the full "{action} ..." phrase from a relative time string.
+    - "hoy"    -> "{action} hoy"
+    - "1 día"  -> "{action} ayer"
+    - otherwise -> "{action} hace {relative_time}"
+    Returns "" when relative_time is empty.
+    """
+    if relative_time == "hoy":
+        return f"{action} hoy"
+    if relative_time == "1 día":
+        return f"{action} ayer"
+    if relative_time:
+        return f"{action} hace {relative_time}"
+    return ""
+
 def extract_metadata(content, frontmatter_dict, fallback_title, extracted_images=None):
     """
     Extracts metadata for the template:
@@ -207,12 +225,16 @@ def extract_metadata(content, frontmatter_dict, fallback_title, extracted_images
     created_val = frontmatter_dict.get("created", frontmatter_dict.get("planted", ""))
     updated_val = frontmatter_dict.get("updated", frontmatter_dict.get("edited", ""))
     
+    updated_relative = get_relative_time(updated_val)
+    created_relative = get_relative_time(created_val)
     metadata = {
         "title": None, # Ignore title from frontmatter
         "subtitle": frontmatter_dict.get("subtitle", ""),
         "date": frontmatter_dict.get("date", frontmatter_dict.get("planted", "")),
-        "planted_hace": get_relative_time(created_val),
-        "atendido_hace": get_relative_time(updated_val)
+        "planted_hace": created_relative,
+        "planted_label": format_relative_phrase("Plantado", created_relative),
+        "atendido_hace": updated_relative,
+        "atendido_label": format_relative_phrase("Atendido", updated_relative)
     }
 
     # lastmod for the sitemap: prefer "updated"/"edited", falling back to
@@ -429,30 +451,30 @@ def copy_favicons():
         if src.exists():
             shutil.copy2(src, Path(OUTPUT_DIR) / name)
 
-def minify_css():
-    """Reads templates/style.css, minifies it, and saves to public/style.min.css"""
-    css_path = Path(TEMPLATE_DIR) / "style.css"
-    out_path = Path(OUTPUT_DIR) / "style.min.css"
-    
-    if not css_path.exists():
+def compile_css():
+    """Compiles templates/style.scss with libsass.
+
+    Writes the readable compiled CSS to public/style.css (handy for
+    debugging) and the minified version to public/style.min.css, which is
+    what the site's HTML actually references.
+    """
+    import sass
+
+    scss_path = Path(TEMPLATE_DIR) / "style.scss"
+    readable_path = Path(OUTPUT_DIR) / "style.css"
+    min_path = Path(OUTPUT_DIR) / "style.min.css"
+
+    if not scss_path.exists():
         return
-        
-    css_content = css_path.read_text(encoding="utf-8")
-    
-    # Remove CSS comments
-    css_content = re.sub(r'/\*[\s\S]*?\*/', '', css_content)
-    # Remove newlines and tabs
-    css_content = re.sub(r'\n+|\t+', '', css_content)
-    # Remove spaces around open brackets
-    css_content = re.sub(r'\s*{\s*', '{', css_content)
-    # Remove spaces around colons (but not inside rules like `url(http://)`)
-    css_content = re.sub(r':\s+', ':', css_content)
-    # Remove spaces around semi-colons
-    css_content = re.sub(r'\s*;\s*', ';', css_content)
-    # Remove last semi-colon in a block
-    css_content = re.sub(r';}', '}', css_content)
-    
-    out_path.write_text(css_content, encoding="utf-8")
+
+    readable_path.write_text(
+        sass.compile(filename=str(scss_path), output_style="expanded"),
+        encoding="utf-8",
+    )
+    min_path.write_text(
+        sass.compile(filename=str(scss_path), output_style="compressed"),
+        encoding="utf-8",
+    )
 
 def convert_wikilinks(content, link_map, current_filepath):
     """
@@ -563,6 +585,151 @@ def build_backlinks_map(notes, link_map):
 
     return backlinks_map
 
+# ---------------------------------------------------------------------------
+# Home page (landing) rendering — the /beta prototype integrated into the
+# real build. The dg-home note is split by its markdown structure into the
+# hero intro, one card per "## heading", and the footer contact panel, then
+# rendered with templates/home.html instead of the plain note layout.
+# ---------------------------------------------------------------------------
+
+class TopLevelSplitter(HTMLParser):
+    """Splits rendered markdown HTML into top-level blocks, keeping each
+    block's raw inner HTML so it can be re-emitted unchanged."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=False)
+        self.depth = 0
+        self.blocks = []
+        self._cur = None
+        self._parts = []
+
+    def _attrs(self, attrs):
+        return "".join(f' {k}="{html.escape(v, quote=True)}"' for k, v in attrs)
+
+    def handle_starttag(self, tag, attrs):
+        if self.depth == 0:
+            self._cur = {"tag": tag, "attrs": dict(attrs), "html": ""}
+            self._parts = []
+        self._parts.append(f"<{tag}{self._attrs(attrs)}>")
+        self.depth += 1
+
+    def handle_startendtag(self, tag, attrs):
+        tag_str = f"<{tag}{self._attrs(attrs)}/>"
+        if self.depth == 0:
+            self.blocks.append({"tag": tag, "attrs": dict(attrs), "html": tag_str})
+        else:
+            self._parts.append(tag_str)
+
+    def handle_endtag(self, tag):
+        if self.depth == 1:
+            self._cur["html"] = "".join(self._parts)
+            self.blocks.append(self._cur)
+            self._cur = None
+        else:
+            self._parts.append(f"</{tag}>")
+        self.depth -= 1
+
+    def handle_data(self, data):
+        if self._cur is not None:
+            self._parts.append(data)
+
+    def handle_entityref(self, name):
+        if self._cur is not None:
+            self._parts.append(f"&{name};")
+
+    def handle_charref(self, name):
+        if self._cur is not None:
+            self._parts.append(f"&#{name};")
+
+
+def split_home(blocks):
+    """Groups top-level blocks into intro / sections / trailing.
+
+    Sections start at every <h2>. A section's body is everything until the
+    next <h2> or until an image or <hr> appears (that starts the trailing
+    footer material). Everything before the first <h2> is the intro.
+    """
+    intro, sections, trailing = [], [], []
+    cur = None
+    trailing_mode = False
+    for b in blocks:
+        if b["tag"] == "h2":
+            trailing_mode = False
+            if cur:
+                sections.append(cur)
+            cur = {
+                "id": b["attrs"].get("id", ""),
+                "title": re.sub(r"<[^>]+>", "", b["html"]).strip(),
+                "html": "",
+            }
+        elif trailing_mode:
+            trailing.append(b)
+        elif cur is None:
+            intro.append(b)
+        elif "<img" in b["html"] or b["tag"] == "hr":
+            if cur:
+                sections.append(cur)
+            trailing_mode = True
+            trailing.append(b)
+            cur = None
+        else:
+            cur["html"] += b["html"] + "\n"
+    if cur:
+        sections.append(cur)
+    return intro, sections, trailing
+
+
+def parse_dt(val):
+    """Best-effort parse of a frontmatter date (datetime or ISO string)."""
+    if not val:
+        return None
+    if isinstance(val, datetime):
+        return val
+    for fmt in ("%Y-%m-%dT%H:%M", "%Y-%m-%d %H:%M", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(str(val), fmt)
+        except ValueError:
+            continue
+    return None
+
+
+def recent_label(dt_val):
+    t = get_relative_time(dt_val)
+    if t == "hoy":
+        return "hoy"
+    if t == "1 día":
+        return "ayer"
+    return f"hace {t}"
+
+
+def compute_recent(notes, limit=5):
+    """The 'Atendidas recientemente' column: most recently updated notes."""
+    items = []
+    for filepath, post in notes:
+        if is_home_note(post):
+            continue
+        rel = filepath.relative_to(Path(CONTENT_DIR))
+        url = rel.with_suffix(".html").as_posix()
+        first_h1 = re.search(r"^#\s+(.+)$", post.content, re.MULTILINE)
+        title = (
+            post.metadata.get("title")
+            or (first_h1.group(1).strip() if first_h1 else filepath.stem)
+        )
+        updated = post.metadata.get(
+            "updated",
+            post.metadata.get(
+                "edited",
+                post.metadata.get("created", post.metadata.get("planted", "")),
+            ),
+        )
+        dt = parse_dt(updated)
+        if dt is None:
+            continue
+        items.append({"url": url, "title": title, "label": recent_label(dt), "_dt": dt})
+    items.sort(key=lambda i: i["_dt"], reverse=True)
+    return items[:limit]
+
+
 def build_site():
     setup_directories()
     
@@ -595,6 +762,7 @@ def build_site():
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
     note_template = env.get_template("note.html")
     index_template = env.get_template("index.html")
+    home_template = env.get_template("home.html")
     sitemap_template = env.get_template("sitemap.xml")
     
     # Initialize markdown converter (with footnotes, toc, and md_in_html)
@@ -603,6 +771,7 @@ def build_site():
     all_notes_data = []
     all_used_images = set()
     home_note_data = None
+    home_data = None
     
     # 1. Pre-build dictionary for transclusions { "Note Name": "Content" }
     # Load ALL markdown files in the content directory to support transclusions from any note
@@ -669,7 +838,9 @@ def build_site():
             "lastmod": metadata["lastmod"],
             "reading_time": metadata["reading_time"],
             "planted_hace": metadata["planted_hace"],
+            "planted_label": metadata["planted_label"],
             "atendido_hace": metadata["atendido_hace"],
+            "atendido_label": metadata["atendido_label"],
             "description": metadata["description"],
             "image": metadata["image"],
             "content": html_content,
@@ -685,6 +856,34 @@ def build_site():
         # Check if note is designated as home page
         if is_home_note(post):
             home_note_data = note_data
+            # Split the rendered content by its markdown structure so the
+            # landing page is driven by the note: hero intro, one card per
+            # "## heading", footer contact panel (same logic as the /beta
+            # prototype, now living in the real build).
+            parser = TopLevelSplitter()
+            parser.feed(html_content)
+            intro, sections, trailing = split_home(parser.blocks)
+            image_src = None
+            for b in trailing:
+                m = re.search(r'<img[^>]+src="([^"]+)"', b["html"])
+                if m:
+                    image_src = m.group(1)
+                    break
+            footer_blocks = [
+                b for b in trailing if "<img" not in b["html"] and b["tag"] != "hr"
+            ]
+            footer_html = "".join(b["html"] + "\n" for b in footer_blocks)
+            footer_html = re.sub(
+                r"(info@[A-Za-z0-9._%+-]+)",
+                r'<span class="email">\1</span>',
+                footer_html,
+            )
+            home_data = {
+                "intro_html": "".join(b["html"] + "\n" for b in intro),
+                "image_src": image_src,
+                "sections": sections,
+                "footer_html": footer_html,
+            }
         
         # Render and save
         output_html = note_template.render(**note_data)
@@ -705,13 +904,17 @@ def build_site():
             os.makedirs(dst.parent, exist_ok=True)
             shutil.copy2(src, dst)
 
-    # Generate Index page
+    # Generate Index page (the landing page: rendered with the /beta home
+    # design when a dg-home note exists, plain fallback listing otherwise)
     if home_note_data:
         print(f"Generating index.html from home note '{home_note_data['title']}' (dg-home: true)...")
-        index_note_data = dict(home_note_data)
-        index_note_data["root_path"] = "./"
-        index_note_data["url"] = "index.html"
-        index_html = note_template.render(**index_note_data)
+        home_render_data = dict(home_note_data)
+        home_render_data.update(home_data)
+        home_render_data["root_path"] = "./"
+        home_render_data["url"] = "index.html"
+        home_render_data["site_url"] = SITE_URL
+        home_render_data["recent"] = compute_recent(notes)
+        index_html = home_template.render(**home_render_data)
     else:
         print("Generating fallback index.html listing page...")
         index_html = index_template.render(
@@ -749,8 +952,8 @@ def build_site():
     print("Build complete! Files are in the 'public' directory.")
     
     # Process assets
-    print("Minifying and copying CSS...")
-    minify_css()
+    print("Compiling and minifying CSS...")
+    compile_css()
     print("Copying favicons...")
     copy_favicons()
 

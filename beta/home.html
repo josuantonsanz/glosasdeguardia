@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ title }} — un jardín digital: anotaciones, ideas, comentarios y trucos, siempre a mano.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Hero top: eyebrow, title, garden-metadata chips -->
+    <section class="hero">
+      <span class="eyebrow">Un jardín digital</span>
+      <h1 class="hero-title">{{ title }}</h1>
+      {% if planted_label or atendido_label %}
+      <div class="hero-chips">
+        {% if planted_label %}<span class="chip">{{ planted_label }}</span>{% endif %}
+        {% if atendido_label %}<span class="chip">{{ atendido_label }}</span>{% endif %}
+      </div>
+      {% endif %}
+    </section>
+
+    <div class="content-row">
+
+      <div class="content-main">
+
+        <div class="hero-prose">{{ intro_html | safe }}</div>
+
+        <!-- Garden photograph -->
+        {% if image_src %}
+        <figure class="garden-banner">
+          <img src="{{ image_src }}" alt="El jardín de {{ title }}">
+        </figure>
+        {% endif %}
+
+        <!-- One card per "## heading" in the note -->
+        <section class="paths" id="caminos">
+          <h2 class="paths-title">Los caminos del jardín</h2>
+          <div class="cards">
+            {% for s in sections %}
+            <article class="card" {% if s.id %}id="{{ s.id }}"{% endif %}>
+              <header class="card-head">
+                <span class="card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22V9.3"/>
+                    <rect x="4.5" y="2.5" width="15" height="6.5" rx="2"/>
+                    <path d="M7.5 5.7h4.4"/>
+                  </svg>
+                </span>
+                <h3 class="card-title">{{ s.title }}</h3>
+              </header>
+              <div class="card-body">{{ s.html | safe }}</div>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+
+        <!-- Contact note, styled like the mobile TOC panel (not collapsible) -->
+        <div class="contact-panel" id="contacto">
+          <div class="contact-panel-header">Contacto</div>
+          <div class="contact-panel-body">{{ footer_html | safe }}</div>
+        </div>
+
+      </div>
+
+      <!-- Recently tended notes -->
+      <aside class="recent">
+        <div class="recent-title">Atendidas recientemente</div>
+        <ol class="recent-list">
+          {% for n in recent %}
+          <li>
+            <a href="../public/{{ n.url }}">{{ n.title }}</a>
+            <span class="recent-date">{{ n.label }}</span>
+          </li>
+          {% endfor %}
+        </ol>
+      </aside>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

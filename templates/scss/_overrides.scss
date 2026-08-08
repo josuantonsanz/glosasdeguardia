@@ -1,0 +1,117 @@
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 1.5rem;
+  }
+
+  .sidebar-left {
+    display: none;
+  }
+
+  .main-content {
+    grid-column: 1;
+  }
+}
+
+/* Base User Structural Overrides */
+html,
+body {
+  background-color: var(--background-primary) !important;
+  color: var(--text-normal) !important;
+  min-height: 100%;
+  --pico-background-color: var(--background-primary);
+  --pico-color: var(--text-normal);
+  --pico-primary: var(--color-principal);
+  --pico-card-background-color: transparent;
+  --pico-card-box-shadow: none;
+  --pico-card-sectioning-background-color: transparent;
+}
+
+article {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body {
+  // Links
+  a,
+  .internal-link {
+    text-decoration-line: underline !important;
+    text-decoration-color: var(--color-principal) !important;
+    color: var(--text-normal);
+    text-underline-offset: 3px;
+
+    &:hover {
+      text-decoration-color: var(--flexoki-orange-300) !important;
+      color: var(--color-principal) !important;
+    }
+  }
+
+  // External links get a small top-right arrow (site-wide)
+  a[href^="http://"],
+  a[href^="https://"] {
+    &::after {
+      content: "\2197";
+      font-size: 0.72em;
+      padding-left: 0.18em;
+    }
+  }
+
+  // Explorer Customizations
+  .filetree-sidebar {
+    color: var(--text-normal) !important;
+
+    h1 {
+      color: var(--color-principal) !important;
+    }
+  }
+}
+
+/* Main Title styling */
+body main h1,
+.note-header h1 {
+  border-bottom: solid var(--color-principal) 0.05em !important;
+  padding-bottom: 0.2em;
+}
+
+body {
+  code {
+    text-shadow: none !important;
+  }
+
+  // Fixed TOC Layout Overrides
+  .toc-nav {
+    > div.toc {
+      padding-left: 0;
+
+      > ul {
+        padding-left: 0;
+        border-left: 0;
+        margin-left: 0;
+
+        > li {
+          // Disable rendering deep nested lists in TOC side bar
+          > ul {
+            display: none;
+          }
+
+          > a {
+            display: block;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
+  .toc-container {
+    max-height: none;
+    border-left: 0;
+  }
+}
+

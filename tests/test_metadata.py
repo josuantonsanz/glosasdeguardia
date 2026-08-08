@@ -68,6 +68,34 @@ def test_extract_metadata_image():
     metadata2, _ = extract_metadata(content, {}, "Title", extracted_images={Path("content/img1.png")})
     assert metadata2["image"] == "content/img1.png"
 
+def test_format_relative_phrase_hoy():
+    from build import format_relative_phrase
+    assert format_relative_phrase("Atendido", "hoy") == "Atendido hoy"
+    assert format_relative_phrase("Plantado", "hoy") == "Plantado hoy"
+
+def test_format_relative_phrase_ayer():
+    from build import format_relative_phrase
+    assert format_relative_phrase("Atendido", "1 día") == "Atendido ayer"
+    assert format_relative_phrase("Plantado", "1 día") == "Plantado ayer"
+
+def test_format_relative_phrase_otros_casos():
+    from build import format_relative_phrase
+    assert format_relative_phrase("Atendido", "3 días") == "Atendido hace 3 días"
+    assert format_relative_phrase("Plantado", "2 meses") == "Plantado hace 2 meses"
+    assert format_relative_phrase("Atendido", "") == ""
+
+def test_extract_metadata_atendido_label_hoy():
+    from datetime import datetime, timedelta
+    frontmatter = {"updated": (datetime.now() - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M")}
+    metadata, _ = extract_metadata("content", frontmatter, "Title")
+    assert metadata["atendido_label"] == "Atendido hoy"
+
+def test_extract_metadata_plantado_label_hoy():
+    from datetime import datetime, timedelta
+    frontmatter = {"created": (datetime.now() - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M")}
+    metadata, _ = extract_metadata("content", frontmatter, "Title")
+    assert metadata["planted_label"] == "Plantado hoy"
+
 def test_process_highlights():
     from build import process_highlights
     content = "This is ==highlighted== text."

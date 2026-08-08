@@ -1,0 +1,156 @@
+/* ===== Mobile Navigation ===== */
+/* Hidden by default: desktop uses the left sidebar for all of this */
+.mobile-topbar,
+.mobile-toc,
+.mobile-backlinks {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  // Sticky single-line site title (links to homepage)
+  .mobile-topbar {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--ui, var(--flexoki-150));
+
+    nav {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.5rem;
+      transition: padding 0.3s ease;
+    }
+
+    // Full site name, centered while at the top of the page
+    .home-link {
+      margin: 0;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .logo-text {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    // Compact "G" mark: hidden at the top, slides in on the right on scroll
+    .logo-mark {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%) scale(0.5);
+      opacity: 0;
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--tx, var(--flexoki-black));
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    // Note title on the left; clicking goes back to the top of the page
+    .note-title {
+      position: absolute;
+      left: 1.5rem;
+      right: 3.5rem;
+      top: 50%;
+      transform: translateY(-50%) translateX(-0.75rem);
+      opacity: 0;
+      pointer-events: none;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--tx, var(--flexoki-black));
+      text-decoration: none !important;
+      white-space: nowrap;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%);
+      mask-image: linear-gradient(to right, black 88%, transparent 100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        color: var(--tx, var(--flexoki-black)) !important;
+      }
+    }
+
+    // Scrolled state: compact bar, "G" on the right, note title fading right
+    &.scrolled {
+      nav {
+        padding: 0.55rem 1.5rem;
+      }
+
+      .logo-text {
+        opacity: 0;
+        transform: translateX(1.5rem);
+      }
+
+      .logo-mark {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+      }
+
+      .note-title {
+        opacity: 1;
+        transform: translateY(-50%);
+        pointer-events: auto;
+      }
+    }
+  }
+
+  // Collapsible "Contenido" panel just below the title
+  .mobile-toc {
+    display: block;
+    margin: 0 0 2rem 0;
+    border: 1px solid var(--ui, var(--flexoki-150));
+    border-radius: 8px;
+    background-color: var(--bg-2);
+    overflow: hidden;
+  }
+
+  .mobile-toc summary,
+  .mobile-backlinks summary {
+    cursor: pointer;
+    user-select: none;
+    padding: 0.7rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-principal);
+    background-color: rgba(0, 0, 0, 0.04);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .mobile-toc .toc-nav {
+    padding: 0.75rem 1rem 1rem;
+    border-top: 1px solid var(--ui, var(--flexoki-150));
+
+    ul {
+      margin-bottom: 0;
+    }
+  }
+
+  // Collapsible "Enlazado desde" panel at the end of the note
+  .mobile-backlinks {
+    display: block;
+    margin-top: 2.5rem;
+    border: 1px solid var(--ui, var(--flexoki-150));
+    border-radius: 8px;
+    background-color: var(--bg-2);
+    overflow: hidden;
+
+    .backlinks-list {
+      margin: 0;
+      padding: 0.75rem 1rem 1rem;
+      border-top: 1px solid var(--ui, var(--flexoki-150));
+    }
+  }
+}

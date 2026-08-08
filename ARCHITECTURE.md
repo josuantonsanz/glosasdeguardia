@@ -18,7 +18,7 @@ The project is a custom Static Site Generator (SSG) built in Python. It takes a 
 ```text
 .
 ├── content/              # The source Obsidian notes (Markdown)
-├── templates/            # Jinja2 templates (base.html, index.html, note.html) and style.css
+├── templates/            # Jinja2 templates (base.html, index.html, note.html) and style.scss
 ├── public/               # The generated static HTML files (output)
 ├── tests/                # Pytest suites for TDD
 ├── build.py              # The main compiler script

@@ -1,0 +1,404 @@
+/* ============================================================
+   Home landing page — the /beta prototype, integrated.
+   The dg-home note is rendered with templates/home.html (see
+   build.py: TopLevelSplitter + split_home + home_template).
+   Everything here is scoped under .home so the rest of the site
+   is untouched. Warm Flexoki paper/ink, one orange accent,
+   Fraunces/Lora/Caveat/Inter, sticky "recently tended" column.
+   No dark mode for now. Links reuse the site-wide rules (orange
+   underline, ink text, ↗ for http(s)); the cards add a "→".
+   ============================================================ */
+
+:root {
+  // Flexoki paper & ink
+  --paper: #FFFCF0;
+  --paper-2: #F2F0E5;
+  --card: #FFFFFF;
+  --ink: #100F0F;
+  --ink-soft: #403E3C;
+  --ink-faint: #878580;
+  --line: #E6E4D9;
+  --line-strong: #DAD8CE;
+
+  // the single accent (matches the site: flexoki orange)
+  --accent: #CB6120;
+  --accent-hover: #EC8B49;
+  --accent-strong: #9D4310;
+  --accent-soft: #FFE7CE;
+  --accent-faint: #FCC192;
+
+  --shadow: 0 1px 2px rgba(16, 15, 15, .05), 0 10px 26px -14px rgba(16, 15, 15, .14);
+  --shadow-hover: 0 2px 4px rgba(16, 15, 15, .06), 0 20px 42px -18px rgba(16, 15, 15, .2);
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Lora", Georgia, serif;
+  --font-hand: "Caveat", cursive;
+  --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html.home,
+body.home {
+  background-color: var(--paper) !important;
+  color: var(--ink) !important;
+}
+
+body.home {
+  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.home ::selection { background: var(--accent-soft); color: var(--ink); }
+
+/* Link style: the site-wide body a rules already give orange underline +
+   ink text everywhere; restated here (scoped) so the landing page keeps
+   them, with 1px thickness. External ↗ comes from the site-wide rule. */
+.home a {
+  color: var(--ink);
+  text-decoration-line: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent-hover);
+  }
+}
+
+/* ---------- layout: hero top, then content + right column ---------- */
+html.home { scroll-behavior: smooth; }
+
+.page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 3rem) clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.content-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: clamp(3rem, 8vw, 6rem);
+  align-items: start;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3.5rem, 9vw, 6rem) 0 0;
+
+  // faint paper grain, for an illustrated feel
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/></svg>");
+    opacity: .8;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero-title {
+  margin: 1rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+  line-height: 1.04;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+
+.hero-chips {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: 1.5rem;
+}
+
+.chip {
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  color: var(--ink-soft);
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: .32rem .95rem;
+}
+
+.hero-prose {
+  position: relative;
+  max-width: 66ch;
+  margin: 0;
+  font-size: 1.16rem;
+  line-height: 1.78;
+  color: var(--ink-soft);
+
+  p {
+    margin: 0 0 1.25em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* ---------- garden banner (the photograph) ---------- */
+.garden-banner {
+  max-width: 780px;
+  margin: clamp(2.8rem, 7vw, 4.5rem) 0 0;
+  padding: .7rem .7rem .4rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transform: rotate(-.5deg);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+}
+
+/* ---------- section cards ---------- */
+.paths {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0 0;
+}
+
+.paths-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.6vw, 2.3rem);
+  letter-spacing: -.01em;
+  margin: 0;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 3px;
+    margin: .95rem 0 0;
+    border-radius: 3px;
+    background: var(--accent);
+  }
+}
+
+.cards {
+  margin-top: 2.4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem 1.7rem;
+  box-shadow: var(--shadow);
+  transition: transform .22s ease, box-shadow .22s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  margin-bottom: 1.15rem;
+}
+
+.card-icon {
+  flex: none;
+  color: var(--accent);
+
+  svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.card-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.32rem;
+  letter-spacing: -.01em;
+}
+
+.card-body {
+  font-size: 1.125rem;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 0 0 .6rem;
+    line-height: 1.55;
+  }
+
+  ul:last-child li:last-child {
+    margin-bottom: 0;
+  }
+
+  // homepage-only: a "→" before each link in the cards
+  a::before {
+    content: "\2192";
+    display: inline-block;
+    color: var(--accent);
+    margin-right: .45rem;
+  }
+
+  // list items without a link (e.g. a note that is not published yet)
+  li:not(:has(a)) {
+    color: var(--ink-faint);
+    font-style: italic;
+
+    &::before {
+      content: "\00B7";
+      margin-right: .55rem;
+      color: var(--accent);
+      font-style: normal;
+    }
+  }
+
+  // label paragraphs inside a card, e.g. "Proyectos hechos (mayormente) con IA:"
+  p {
+    margin: 0 0 .9rem;
+
+    strong {
+      font-family: var(--font-ui);
+      font-size: .74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      color: var(--accent);
+    }
+  }
+}
+
+/* ---------- contact panel (like the mobile TOC panel, not collapsible) ---------- */
+.contact-panel {
+  margin-top: clamp(3.5rem, 7vw, 5.5rem);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--paper-2);
+  overflow: hidden;
+}
+
+.contact-panel-header {
+  padding: .7rem 1rem;
+  font-family: var(--font-ui);
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent);
+  background-color: rgba(0, 0, 0, .04);
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-panel-body {
+  padding: .9rem 1rem 1rem;
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+
+  p {
+    margin: 0;
+  }
+}
+
+.contact-panel .email {
+  font-weight: 700;
+  color: var(--accent-strong);
+  white-space: nowrap;
+}
+
+/* ---------- right column: recently tended notes ---------- */
+.recent {
+  position: sticky;
+  top: 2rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--line);
+}
+
+.recent-title {
+  font-family: var(--font-ui);
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent);
+  margin-bottom: 1.1rem;
+}
+
+.recent-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  a {
+    font-size: .95rem;
+  }
+}
+
+.recent-date {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: .75rem;
+  color: var(--ink-faint);
+  margin-top: .15rem;
+}
+
+/* ---------- responsive & motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html.home { scroll-behavior: auto; }
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}
+
+@media (max-width: 1024px) {
+  .content-row { grid-template-columns: 1fr; gap: 0; }
+  .recent {
+    position: static;
+    border-left: none;
+    border-top: 2px solid var(--line);
+    padding: 1.6rem 0 0;
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero { padding-top: 3rem; }
+  .hero-title { font-size: clamp(2.4rem, 11vw, 3.4rem); }
+  .hero-prose { font-size: 1.08rem; }
+  .cards { grid-template-columns: 1fr; gap: 1.1rem; }
+}

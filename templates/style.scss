@@ -1,0 +1,25 @@
+// Entry point for the site stylesheet.
+//
+// build.py compiles this with libsass:
+//   SCSS  ->  public/style.css      (readable, for debugging)
+//   SCSS  ->  public/style.min.css  (minified, what the site actually loads)
+//
+// The parts live in templates/scss/ so each concern can be edited on its own:
+//   _palette.scss    Flexoki color tokens + theme overrides (+ dark mode)
+//   _base.scss       reset, page layout, sidebars, TOC, typography, prose, tables
+//   _callouts.scss   transclusions + Obsidian callouts
+//   _overrides.scss  mobile layout tweak + Obsidian/structural overrides
+//   _backlinks.scss  side-by-side transclusions + backlinks
+//   _mobilenav.scss  mobile topbar / TOC / backlinks panels
+//   _home.scss       the landing page (scoped under .home)
+//
+// Import order mirrors the rule order of the original style.css, so the
+// compiled output is byte-for-byte the same (modulo the @charset header).
+
+@import "scss/palette";
+@import "scss/base";
+@import "scss/callouts";
+@import "scss/overrides";
+@import "scss/backlinks";
+@import "scss/mobilenav";
+@import "scss/home";

@@ -8,7 +8,7 @@ import os
 
 from PIL import Image, ImageDraw, ImageFont
 
-# Flexoki palette (kept in sync with templates/style.css / favicon.svg)
+# Flexoki palette (kept in sync with templates/scss/_palette.scss / favicon.svg)
 PAPER = "#FFFCF0"
 INK = "#100F0F"
 EDGE = "#E6E4D9"
