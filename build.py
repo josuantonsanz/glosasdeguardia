@@ -1,7 +1,10 @@
 import os
 import re
+import io
+import json
 import shutil
 import html
+from functools import lru_cache
 from html.parser import HTMLParser
 import frontmatter
 import markdown
@@ -16,6 +19,16 @@ SITE_URL = "https://glosasdeguardia.es"
 CONTENT_DIR = "content"
 OUTPUT_DIR = "public"
 TEMPLATE_DIR = "templates"
+
+# Image optimization settings (PageSpeed: 'properly size images')
+MAX_IMAGE_DIM = 1600          # long edge cap, ~2x the widest on-page display
+JPEG_QUALITY = 82
+
+# Persistent build cache: public/ is wiped on every build, so the encoded
+# images live here and are only re-encoded when the source file changes.
+CACHE_DIR = Path(".build-cache")
+ENCODED_DIR = CACHE_DIR / "encoded"
+LEDGER_FILE = CACHE_DIR / "ledger.json"
 
 def setup_directories():
     if os.path.exists(OUTPUT_DIR):
@@ -384,15 +397,30 @@ def resolve_images(content, current_rel_path, image_map):
     """
     Finds ![[image.png]] and standard image links.
     Returns (processed_content, used_images).
-    used_images is a set of relative paths to images to be copied.
+    used_images maps the published target path -> source path (they differ
+    when an opaque PNG is converted to JPEG).
     """
     # 1. Obsidian Embeds ![[image.png]]
     obsidian_pattern = re.compile(r'!\[\[([^\]]+)\]\]')
-    used_images = set()
+    used_images = {}
     
     # Calculate depth to get back to root
     depth = len(current_rel_path.parts) - 1
     root_prefix = "../" * depth if depth > 0 else ""
+
+    def claim(found_img):
+        """Register a used image; returns the path it is published under."""
+        target = image_target(found_img)
+        if (
+            target != found_img
+            and target in used_images
+            and used_images[target] != found_img
+        ):
+            # Collision: the vault has both x.png and x.jpg in use. Keep the
+            # original name instead of overwriting the other image.
+            target = found_img
+        used_images[target] = found_img
+        return target
 
     def obsidian_repl(match):
         img_path_str = match.group(1).split('|')[0].strip() # Handle ![[img.png|100]]
@@ -400,9 +428,9 @@ def resolve_images(content, current_rel_path, image_map):
         # Try to find the image in content dir
         found_img = find_image(img_path_str)
         if found_img:
-            used_images.add(found_img)
+            target = claim(found_img)
             # URL should be relative to the note
-            url = f"{root_prefix}{found_img.as_posix()}"
+            url = f"{root_prefix}{target.as_posix()}"
             return f'![{img_path_str}]({url})'
         return f"*(Image not found: {img_path_str})*"
 
@@ -418,9 +446,9 @@ def resolve_images(content, current_rel_path, image_map):
         if not url.startswith(('http://', 'https://', 'data:')):
             found_img = find_image(url)
             if found_img:
-                used_images.add(found_img)
+                target = claim(found_img)
                 # Ensure the URL is correctly rooted for the output
-                return f'![{alt}]({root_prefix}{found_img.as_posix()})'
+                return f'![{alt}]({root_prefix}{target.as_posix()})'
         return match.group(0)
 
     content = md_pattern.sub(md_repl, content)
@@ -443,6 +471,152 @@ def find_image(img_name):
             if p.is_file():
                 return p.relative_to(CONTENT_DIR)
     return None
+
+def load_image_ledger():
+    """Load the {source -> {sig, dst}} record of already-converted images."""
+    if not LEDGER_FILE.exists():
+        return {}
+    try:
+        return json.loads(LEDGER_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def save_image_ledger(ledger):
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    LEDGER_FILE.write_text(json.dumps(ledger, indent=1), encoding="utf-8")
+
+
+@lru_cache(maxsize=None)
+def png_is_opaque(src_rel):
+    """True when a PNG has no alpha channel, or its alpha is fully opaque —
+    i.e. it's safe to publish as JPEG (which has no transparency)."""
+    try:
+        from PIL import Image
+        with Image.open(Path(CONTENT_DIR) / src_rel) as im:
+            if im.mode == "P":
+                return "transparency" not in im.info
+            if im.mode not in ("RGBA", "LA", "PA"):
+                return True
+            return im.getchannel("A").getextrema() == (255, 255)
+    except Exception:
+        return False
+
+
+@lru_cache(maxsize=None)
+def image_target(src_rel):
+    """The path an image is published under (relative to CONTENT_DIR).
+
+    Opaque PNGs are converted to JPEG: on the vault's current screenshots
+    that cuts them ~85% (e.g. 287 KB -> 43 KB) and nothing is lost since
+    JPEG has no alpha channel anyway. Transparent PNGs and every other
+    format keep their name. Deterministic per file, so published URLs stay
+    stable across builds.
+    """
+    src_rel = Path(src_rel)
+    if src_rel.suffix.lower() == ".png" and png_is_opaque(src_rel.as_posix()):
+        return src_rel.with_suffix(".jpg")
+    return src_rel
+
+
+def emit_image(src_rel, target, ledger):
+    """Write an image to public/, skipping the expensive re-encode when this
+    source file was already converted in a previous build (same size and
+    mtime): the cached bytes are just copied back. Results are persisted so
+    daily publish runs don't re-encode unchanged images.
+    """
+    src = Path(CONTENT_DIR) / src_rel
+    dst = Path(OUTPUT_DIR) / target
+    os.makedirs(dst.parent, exist_ok=True)
+
+    key = src_rel.as_posix()
+    try:
+        st = src.stat()
+        sig = (st.st_size, st.st_mtime_ns)
+    except OSError:
+        return
+
+    cached = ENCODED_DIR / target
+    entry = ledger.get(key)
+    if entry and tuple(entry.get("sig", ())) == sig and cached.exists():
+        shutil.copy2(cached, dst)
+        return "cached"
+
+    optimize_image(src, dst)
+    os.makedirs(cached.parent, exist_ok=True)
+    shutil.copy2(dst, cached)
+    ledger[key] = {"sig": list(sig), "dst": target.as_posix()}
+    return "encoded"
+
+
+def optimize_image(src, dst):
+    """Re-encode src into dst so the site doesn't ship multi-megapixel
+    originals (PageSpeed: 'properly size images'). The output extension
+    decides the format:
+
+    - .jpg -> JPEG (progressive, optimized)
+    - .png -> 8-bit PNG; palette-quantized when screenshot-like
+    - anything else (gif/webp/svg) -> plain copy, animations kept intact
+
+    Falls back to a plain copy when Pillow is missing or the file can't be
+    decoded. Output filenames are unchanged, so URLs stay stable.
+    """
+    try:
+        from PIL import Image, ImageOps
+    except ImportError:
+        shutil.copy2(src, dst)
+        return
+
+    try:
+        im = Image.open(src)
+        if getattr(im, "is_animated", False):
+            shutil.copy2(src, dst)
+            return
+        im = ImageOps.exif_transpose(im)
+
+        # Downscale the long edge to at most MAX_IMAGE_DIM (never upscale).
+        w, h = im.size
+        scale = min(1.0, MAX_IMAGE_DIM / max(w, h))
+        if scale < 1.0:
+            im = im.resize((round(w * scale), round(h * scale)), Image.LANCZOS)
+
+        ext = dst.suffix.lower()
+        if ext == ".jpg":
+            im.convert("RGB").save(
+                dst, "JPEG", quality=JPEG_QUALITY, optimize=True, progressive=True
+            )
+        elif ext == ".png":
+            # Flatten fully opaque alpha; keep real transparency untouched.
+            if im.mode in ("RGBA", "LA", "PA"):
+                if im.getchannel("A").getextrema() == (255, 255):
+                    im = im.convert("RGB")
+            elif im.mode == "P" and "transparency" in im.info:
+                im = im.convert("RGBA")
+            if im.mode.endswith("A") or "transparency" in getattr(im, "info", {}):
+                im.save(dst, "PNG", optimize=True)
+            else:
+                rgb = im.convert("RGB")
+                rgb_buf = io.BytesIO()
+                rgb.save(rgb_buf, "PNG", optimize=True)
+                # Screenshots have few unique colors; photos have hundreds of
+                # thousands. Only quantize when clearly screenshot-like.
+                colors = rgb.getcolors(maxcolors=1 << 22)
+                if colors is not None and len(colors) <= 16384:
+                    pal_buf = io.BytesIO()
+                    rgb.quantize(colors=256, method=Image.MEDIANCUT).save(
+                        pal_buf, "PNG", optimize=True
+                    )
+                    if len(pal_buf.getvalue()) * 1.25 < len(rgb_buf.getvalue()):
+                        dst.write_bytes(pal_buf.getvalue())
+                    else:
+                        dst.write_bytes(rgb_buf.getvalue())
+                else:
+                    dst.write_bytes(rgb_buf.getvalue())
+        else:
+            shutil.copy2(src, dst)
+    except Exception:
+        shutil.copy2(src, dst)
+
 
 def copy_favicons():
     """Copies the favicon assets from templates/ to the public/ root."""
@@ -769,7 +943,8 @@ def build_site():
     md = markdown.Markdown(extensions=['footnotes', 'toc', 'fenced_code', 'tables', 'md_in_html'])
     
     all_notes_data = []
-    all_used_images = set()
+    all_used_images = {}  # {published_target: source} — targets may be .jpg
+    # (opaque PNGs are converted to JPEG, see image_target)
     home_note_data = None
     home_data = None
     
@@ -895,14 +1070,29 @@ def build_site():
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(output_html)
             
-    # Copy only used images
+    # Copy only used images (re-encoding + caching via the .build-cache ledger)
     if all_used_images:
         print(f"Copying {len(all_used_images)} used image assets...")
-        for img_rel_path in all_used_images:
-            src = Path(CONTENT_DIR) / img_rel_path
-            dst = Path(OUTPUT_DIR) / img_rel_path
-            os.makedirs(dst.parent, exist_ok=True)
-            shutil.copy2(src, dst)
+        ledger = load_image_ledger()
+        encoded = 0
+        for target, src in all_used_images.items():
+            if emit_image(src, target, ledger) == "encoded":
+                encoded += 1
+        print(
+            f"Images: {len(all_used_images) - encoded} unchanged (from cache), "
+            f"{encoded} re-encoded."
+        )
+
+        # Drop ledger entries whose source no longer exists in the vault.
+        stale = [k for k in ledger if not (Path(CONTENT_DIR) / k).exists()]
+        for k in stale:
+            enc = ENCODED_DIR / ledger[k]["dst"]
+            if enc.exists():
+                enc.unlink()
+            del ledger[k]
+        if stale:
+            print(f"Pruned {len(stale)} stale image cache entries.")
+        save_image_ledger(ledger)
 
     # Generate Index page (the landing page: rendered with the /beta home
     # design when a dg-home note exists, plain fallback listing otherwise)

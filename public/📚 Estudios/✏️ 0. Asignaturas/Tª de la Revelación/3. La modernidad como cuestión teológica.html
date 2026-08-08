@@ -23,12 +23,14 @@
     <meta property="twitter:description" content="La modernidad como cuestión teológica Parte del curso de Teología de la Revelación ../../../📚 Estudios/✏️ 0. Asignaturas/Tª de la Revelación/Teología de la R...">
     
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (preloaded, applied asynchronously so they don't block
+         first render; font-display=swap already in the URL) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
-        rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+    </noscript>
 
     <!-- Pico.css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">

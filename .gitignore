@@ -11,3 +11,6 @@ wheels/
 
 # The original notes for the garden
 content/
+
+# Build cache: encoded images + ledger, regenerated on demand
+.build-cache/
