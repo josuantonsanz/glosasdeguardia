@@ -280,7 +280,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-sans);
-  color: var(--tx);
+  color: var(--tx, var(--flexoki-black));
   line-height: 1.2;
   margin-top: 2em;
   margin-bottom: 0.5em;
