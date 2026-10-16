@@ -114,13 +114,13 @@
             <div class="meta-right">
                 
                 <span class="meta-item secondary">
-                    Plantado hace 10 meses.
+                    Plantado hace 11 meses.
                 </span>
                 
 
                 
                 <span class="meta-item secondary">
-                    Atendido hace 10 meses.
+                    Atendido hoy.
                 </span>
                 
             </div>
@@ -158,6 +158,11 @@
 <li>En general: <code>uvx jupyter lab</code></li>
 <li>Una versión concreta: <code>uvx --python 3.13 jupyter lab</code></li>
 </ul>
+<p>Si falla por permisos, podemos hacer lo siguiente, en Powershell:</p>
+<pre><code>$runtime = Join-Path $env:TEMP &quot;jupyter-runtime&quot;
+New-Item -ItemType Directory -Force -Path $runtime
+[Environment]::SetEnvironmentVariable(&quot;JUPYTER_RUNTIME_DIR&quot;, $runtime, &quot;User&quot;)
+</code></pre>
     </div>
 
     
